@@ -1,0 +1,15 @@
+package kr.co.taommall.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/auth/product")
+public class ProductController {
+	
+	@RequestMapping("/insert")
+	public String insert(){
+		
+	}
+	
+}

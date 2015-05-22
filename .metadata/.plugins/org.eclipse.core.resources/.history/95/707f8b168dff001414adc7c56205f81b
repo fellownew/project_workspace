@@ -1,0 +1,13 @@
+package kr.co.taommall.product.vo;
+
+public class Product {
+	private String productId;
+	private String productName;
+	private String productPrice;
+	private String category;
+	private String productInfo;
+	private String imagePath;
+	private String regiDate;
+	private String expDate;
+	private String SellerId;
+}
