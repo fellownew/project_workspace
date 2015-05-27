@@ -45,5 +45,37 @@
 		where product_id=#{productId}
 	</select>
 	
+	<select id="selectProductlIKEName" resultMap="product-resultMap" parameterType="String">
+		<include refid="product-select"/>
+		where product_name like |%|#{productName}|%|
+	</select>
+	
+	<select id="selectProductByCategory" resultMap="product-resultMap" parameterType="String">
+		<include refid="product-select"/>
+		where category=#{category}
+	</select>
+	
+	<select id="selectProductByexpDate" resultMap="product-resultMap" parameterType="String">
+		<include refid="product-select"/>
+		where expDate=#{expDate}
+	</select>
+	
+	<select id="selectProductBySellerId" resultMap="product-resultMap" parameterType="String">
+		<include refid="product-select"/>
+		where Seller_id=#{SellerId}
+	</select>
+	
+	<select id="selectProductBetweenPrice" resultMap="product-resultMap" parameterType="String">
+		<include refid="product-select"/>
+		where between price #{0} and #{1}
+	</select>
+	<select id="selectProductMinPrice" resultMap="product-resultMap" parameterType="int">
+		<include refid="product-select"/>
+		where price &gt;= ${price}
+	</select>
+	<select id="selectProductMaxPrice" resultMap="product-resultMap" parameterType="int">
+		<include refid="product-select"/>
+		where price &lt;= ${price}
+	</select>
 	
 </mapper>

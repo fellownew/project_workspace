@@ -6,3 +6,9 @@
 1432702094491	Rename resource 'text.jsp'
 1432702355638	Rename resource 'firstpage.jsp'
 1432704558133	Rename resource 'index.jsp'
+1432707465142	Delete elements
+1432708333228	Rename method 'selectProductByName'
+1432708362535	Rename method 'selectProductByPrice'
+1432708420720	Rename method 'selectProductByName'
+1432708446026	Rename method 'selectProductByPrice'
+1432708580958	Rename method 'selectProductBetweenPrice'

@@ -26,7 +26,6 @@
 	<!-- annotation driven -->
 	<mvc:annotation-driven/>
 	
-	<!--  -->
 	
 	<!-- view resolver 등록 -->
 	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="1"/>
@@ -44,5 +43,6 @@
 	
 	<!-- view controller -->
 	<mvc:view-controller path="/index.do" view-name="main.do"/>
+	<mvc:view-controller path="/join.do" view-name="join.do"/>
 
 </beans>

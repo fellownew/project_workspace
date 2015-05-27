@@ -43,7 +43,7 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
-	public List<Product> selectProductByName(String productName) {
+	public List<Product> selectProductLikeName(String productName) {
 		// TODO Auto-generated method stub
 		return session.selectList(nameSpace+"selectProductByName",productName);
 	}
@@ -67,11 +67,20 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
-	public List<Product> selectProductByPrice(int price) {
-		// TODO Auto-generated method stub
-		return session.selectList(nameSpace+"selectProductByPrice",price);
+	public List<Product> selectProductBetweenPrice(int lPrice,int Hprice) {
+		// TODO Auto-generated method stub 반환값 설정
+		return session.selectList(nameSpace+"selectProductBetweenPrice");
 	}
 
+	@Override
+	public List<Product> selectProductMinPrice(int price) {
+		// TODO Auto-generated method stub
+		return session.selectList(nameSpace+"selectProductMinPrice",price);
+	}
 
-	
+	@Override
+	public List<Product> selectProductMaxPrice(int price) {
+		// TODO Auto-generated method stub
+		return session.selectList(nameSpace+"selectProductMaxPrice",price);
+	}
 }

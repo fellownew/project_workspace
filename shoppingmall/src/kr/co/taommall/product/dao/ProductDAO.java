@@ -10,10 +10,12 @@ public interface ProductDAO {
 	public int deleteProduct(String productId);
 	public List<Product> selectAllProduct();
 	public List<Product> selectProductById(String productId);
-	public List<Product> selectProductByName(String productName);
+	public List<Product> selectProductLikeName(String productName);
 	public List<Product> selectProductByCategory(String productCategory);
 	public List<Product> selectProductByexpDate(String expDate);
 	public List<Product> selectProductBySellerId(String sellerId);
-	public List<Product> selectProductByPrice(int price);
+	public List<Product> selectProductMinPrice(int price);
+	public List<Product> selectProductMaxPrice(int price);
+	public List<Product> selectProductBetweenPrice(int lPrice,int Hprice);
 	
 }
