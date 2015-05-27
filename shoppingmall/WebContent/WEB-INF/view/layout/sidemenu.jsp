@@ -41,9 +41,9 @@
 }
 </style>
 <body>
-	<button class="myButton">버튼1</button>
-	<button class="myButton">버튼2</button>
-	<button class="myButton">버튼3</button>
-	<button class="myButton">버튼4</button>
+	<button class="myButton">버튼1</button><br>
+	<button class="myButton">버튼2</button><br>
+	<button class="myButton">버튼3</button><br>
+	<button class="myButton">버튼4</button><br>
 	
 </body>

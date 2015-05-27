@@ -12,10 +12,10 @@
 		<put-attribute name="footer" value="/WEB-INF/view/layout/footer.jsp"/>
 	</definition>
 
-	<definition name="*.do" extends="template">
+	<definition name="*.tiles" extends="template">
 		<put-attribute name="body" value="/WEB-INF/view/body/{1}.jsp"/>
 	</definition>
-	<definition name="*/*.do" extends="template">
+	<definition name="*/*.tiles" extends="template">
 		<put-attribute name="body" value="/WEB-INF/view/body/{1}/{2}.jsp"/>
 	</definition>
 	

@@ -5,7 +5,6 @@ body li {
 	color: white;
 	background-color: black;
 	border: 1px solid black;
-	float: left;
 	line-height: 30px;
 	vertical-align: middle;
 	text-align: center;
@@ -23,7 +22,7 @@ body a {
 </style>
 
 <body>
-	<li>Logo</li>
-	<li>search</li>
-	<li>banner</li>
+	<li style="width: 300px">Logo</li>
+	<li style="width: 300px">search</li>
+	<li style="width: 300px">banner</li>
 </body>

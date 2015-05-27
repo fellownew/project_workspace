@@ -63,7 +63,7 @@ body{
 	</div>
 	
 	<div class="mainpage">
-		<tiles:insertAttribute name="mainpage"/>
+		<tiles:insertAttribute name="body"/>
 	</div>
 	
 	<div class="footer">
