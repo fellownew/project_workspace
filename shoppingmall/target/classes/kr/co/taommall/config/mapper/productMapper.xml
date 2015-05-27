@@ -36,6 +36,14 @@
 		</association>
 	</resultMap>
 	
+	<select id="selectAllProduct" resultMap="product-resultMap">
+		<include refid="product-select"/>
+	</select>
+	
+	<select id="selectProductById" resultMap="product-resultMap" parameterType="String">
+		<include refid="product-select"/>
+		where product_id=#{productId}
+	</select>
 	
 	
 </mapper>

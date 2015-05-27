@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+
+<html>
+
+
+<head>
+
+<meta charset="UTF-8">
+
+
+<title>Insert title here</title>
+<style>
+#menu ul li {
+	list-style: none;
+	color: white;
+	background-color: black;
+	border: 1px solid black;
+	float: left;
+	line-height: 30px;
+	vertical-align: middle;
+	text-align: center;
+}
+
+#menu a {
+	text-decoration: none;
+	color: white;
+	display: block;
+	width: 150px;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+#menu a:hover {
+	color: black;
+	background-color: white;
+}
+</style>
+
+
+</head>
+
+
+<body>
+
+
+	<nav id="menu">
+
+
+		<ul>
+
+
+			<li><a href="http://cafe.naver.com/jjdev">jjdev</a></li>
+			<li><a href="#">zeroDay</a></li>
+			<li><a href="#">much more</a></li>
+		</ul>
+
+
+	</nav>
+
+
+</body>
+
+
+</html>

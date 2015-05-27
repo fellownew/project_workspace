@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Product implements Serializable{
 	private String productId;
 	private String productName;
-	private String productPrice;
+	private int productPrice;
 	private String category;
 	private String productInfo;
 	private String imagePath;
@@ -15,7 +15,22 @@ public class Product implements Serializable{
 	
 	public Product(){}
 
-	public Product(String productId, String productName, String productPrice,
+	public Product(String productId, String productName, int productPrice,
+			String category, String productInfo, String imagePath,
+			String regiDate, String expDate, String sellerId) {
+		super();
+		this.productId = productId;
+		this.productName = productName;
+		this.productPrice = productPrice;
+		this.category = category;
+		this.productInfo = productInfo;
+		this.imagePath = imagePath;
+		this.regiDate = regiDate;
+		this.expDate = expDate;
+		SellerId = sellerId;
+	}
+
+	public Product(String productId, String productName, int productPrice,
 			String category, String productInfo, String imagePath,
 			String expDate, String sellerId) {
 		super();
@@ -28,18 +43,15 @@ public class Product implements Serializable{
 		this.expDate = expDate;
 		SellerId = sellerId;
 	}
-	
-	public Product(String productId, String productName, String productPrice,
-			String category, String productInfo, String imagePath,
-			String regiDate, String expDate, String sellerId) {
+
+	public Product(String productId, String productName, int productPrice,
+			String category, String productInfo, String expDate, String sellerId) {
 		super();
 		this.productId = productId;
 		this.productName = productName;
 		this.productPrice = productPrice;
 		this.category = category;
 		this.productInfo = productInfo;
-		this.imagePath = imagePath;
-		this.regiDate = regiDate;
 		this.expDate = expDate;
 		SellerId = sellerId;
 	}
@@ -60,11 +72,11 @@ public class Product implements Serializable{
 		this.productName = productName;
 	}
 
-	public String getProductPrice() {
+	public int getProductPrice() {
 		return productPrice;
 	}
 
-	public void setProductPrice(String productPrice) {
+	public void setProductPrice(int productPrice) {
 		this.productPrice = productPrice;
 	}
 
@@ -133,8 +145,7 @@ public class Product implements Serializable{
 				+ ((productInfo == null) ? 0 : productInfo.hashCode());
 		result = prime * result
 				+ ((productName == null) ? 0 : productName.hashCode());
-		result = prime * result
-				+ ((productPrice == null) ? 0 : productPrice.hashCode());
+		result = prime * result + productPrice;
 		result = prime * result
 				+ ((regiDate == null) ? 0 : regiDate.hashCode());
 		return result;
@@ -184,10 +195,7 @@ public class Product implements Serializable{
 				return false;
 		} else if (!productName.equals(other.productName))
 			return false;
-		if (productPrice == null) {
-			if (other.productPrice != null)
-				return false;
-		} else if (!productPrice.equals(other.productPrice))
+		if (productPrice != other.productPrice)
 			return false;
 		if (regiDate == null) {
 			if (other.regiDate != null)
@@ -205,6 +213,6 @@ public class Product implements Serializable{
 				+ ", imagePath=" + imagePath + ", regiDate=" + regiDate
 				+ ", expDate=" + expDate + ", SellerId=" + SellerId + "]";
 	}
-	
-	
+
+
 }
