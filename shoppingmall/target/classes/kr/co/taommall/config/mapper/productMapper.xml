@@ -10,11 +10,16 @@
 		insert into product 
 		(product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id)
 		values
-		(#{productId}, #{productName}, #{productPrice}, #{category}, #{productInfo}, #{imagePath}, #{regiDate},#{expDate}, #{sellerId}))
+		(c_product_id, #{productName}, #{productPrice}, #{category}, #{productInfo}, #{imagePath}, to_char(sysdate, 'yyyy-mm-dd'),#{expDate}, #{sellerId}))
 	</insert>	
 	
 	<update id="updateProduct" parameterType="Product">
-		update product set product_name=#{productName},product_price=#{productPrice},category=#{category},product_info=#{productInfo},image_path=#{imagePath},regi_date=#{regi_date},exp_date=#{expDate},seller_id=#{sellerId}
+		update product set product_name=#{productName},product_price=#{productPrice},category=#{category},product_info=#{productInfo},image_path=#{imagePath},exp_date=#{expDate},seller_id=#{sellerId}
+		where product_id=#{productId}
+	</update>
+	
+	<update id="updateProductIgnoreImagePath" parameterType="Product">
+		update product set product_name=#{productName},product_price=#{productPrice},category=#{category},product_info=#{productInfo},exp_date=#{expDate},seller_id=#{sellerId}
 		where product_id=#{productId}
 	</update>
 	
@@ -65,7 +70,7 @@
 		where Seller_id=#{SellerId}
 	</select>
 	
-	<select id="selectProductBetweenPrice" resultMap="product-resultMap" parameterType="String">
+	<select id="selectProductBetweenPrice" resultMap="product-resultMap" parameterType="int[]">
 		<include refid="product-select"/>
 		where between price #{0} and #{1}
 	</select>

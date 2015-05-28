@@ -1,0 +1,39 @@
+<%@ page contentType="text/html;charset=UTF-8"%>
+<!DOCTYPE html>
+<script type="text/javascript" src="${initParam.rootPath }/script/jquery.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('input').on("focus",function(){
+			$(this).Text("");
+		});
+		$("#register").on("click",function(){
+			alert("df");
+		});
+	});
+</script>
+
+<body>
+<!-- 
+
+	private String productId;
+	private String productName;
+	private int productPrice;
+	private String category;
+	private String productInfo;
+	private String imagePath;
+	private String regiDate;
+	private String expDate;
+	private String SellerId; -->
+
+<form action="/auth/product/insert.do" method="POST">
+	<input type="text" value="상품이름"/>
+	<input type="number" value="상품가격"/>
+	<select name="category" id="category">
+		<option value="food">농/수/축산물</option>
+	</select>
+	
+	<button id="register">클릭</button>
+</form>
+
+
+</body>

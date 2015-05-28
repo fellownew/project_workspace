@@ -18,7 +18,6 @@ public class Product implements Serializable{
 	public Product(String productId, String productName, int productPrice,
 			String category, String productInfo, String imagePath,
 			String regiDate, String expDate, String sellerId) {
-		super();
 		this.productId = productId;
 		this.productName = productName;
 		this.productPrice = productPrice;
@@ -31,22 +30,20 @@ public class Product implements Serializable{
 	}
 
 	public Product(String productId, String productName, int productPrice,
-			String category, String productInfo, String imagePath,
+			String category, String productInfo, String regiDate,
 			String expDate, String sellerId) {
-		super();
 		this.productId = productId;
 		this.productName = productName;
 		this.productPrice = productPrice;
 		this.category = category;
 		this.productInfo = productInfo;
-		this.imagePath = imagePath;
+		this.regiDate = regiDate;
 		this.expDate = expDate;
 		SellerId = sellerId;
 	}
 
 	public Product(String productId, String productName, int productPrice,
 			String category, String productInfo, String expDate, String sellerId) {
-		super();
 		this.productId = productId;
 		this.productName = productName;
 		this.productPrice = productPrice;
@@ -55,6 +52,8 @@ public class Product implements Serializable{
 		this.expDate = expDate;
 		SellerId = sellerId;
 	}
+
+
 
 	public String getProductId() {
 		return productId;
