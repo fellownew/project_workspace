@@ -6,16 +6,16 @@
 
 <tiles-definitions>
 	<definition name="template" template="/WEB-INF/view/layout/template.jsp">
-		<put-attribute name="topmenu" value="/WEB-INF/view/layout/topmenu.jsp"/>
-		<put-attribute name="midmenu" value="/WEB-INF/view/layout/midmenu.jsp"/>
-		<put-attribute name="sidemenu" value="/WEB-INF/view/layout/sidemenu.jsp"/>
+		<put-attribute name="header" value="/WEB-INF/view/layout/header.jsp"/>
+		<put-attribute name="nav" value="/WEB-INF/view/layout/nav.jsp"/>
+		<put-attribute name="aside" value="/WEB-INF/view/layout/aside.jsp"/>
 		<put-attribute name="footer" value="/WEB-INF/view/layout/footer.jsp"/>
 	</definition>
 
-	<definition name="*.do" extends="template">
+	<definition name="*.tiles" extends="template">
 		<put-attribute name="body" value="/WEB-INF/view/body/{1}.jsp"/>
 	</definition>
-	<definition name="*/*.do" extends="template">
+	<definition name="*/*.tiles" extends="template">
 		<put-attribute name="body" value="/WEB-INF/view/body/{1}/{2}.jsp"/>
 	</definition>
 	

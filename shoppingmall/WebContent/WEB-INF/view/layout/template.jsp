@@ -9,36 +9,35 @@
 <style type="text/css" >
 
 body{
-	margin:100px;
+	margin:50px;
 	padding:0auto;
 }
 
-.topmenu{
+#header{
 	background-color:white;
-	
 }
 
-.midmenu{
+#nav{
 	background-color:tomato;
-	color:white;
 	text-align:center;
+	float:none;
 	padding: 5px;
+	overflow:auto;
 }
-.sidemenu{
+#aside{
 	line-height: 50px;
 	background-color:#F5F5DC;
 	padding: 15px;
-	height:400px;
-	width:100px;
+
+	width:150px;
 	float:left;
 }
-.mainpage{
+#section{
 	
 	padding: 15px;
-	height:400px;
 	float:left;
 }
-.footer{
+#footer{
 	background-color:tomato;
 	color:white;
 	padding-top:20px;
@@ -50,23 +49,23 @@ body{
 </style>
 </head>
 <body>
-	<div class="topmenu" style="text-align: right;">
-		<tiles:insertAttribute name="topmenu"/>
+	<div id="header" style="text-align: right;">
+		<tiles:insertAttribute name="header"/>
 	</div>
 	
-	<div class="midmenu">
-		<tiles:insertAttribute name="midmenu"/>
+	<div id="nav">
+		<tiles:insertAttribute name="nav"/>
 	</div>
 
-	<div class="sidemenu">
-		<tiles:insertAttribute name="sidemenu"/>
+	<div id="aside">
+		<tiles:insertAttribute name="aside"/>
 	</div>
 	
-	<div class="mainpage">
-		<tiles:insertAttribute name="mainpage"/>
+	<div id="section">
+		<tiles:insertAttribute name="body"/>
 	</div>
 	
-	<div class="footer">
+	<div id="footer">
 		<tiles:insertAttribute name="footer"/>
 	</div>
 	
