@@ -7,14 +7,22 @@
 	</sql>
 	
 	<insert id="insertProduct" parameterType="Product">
+		<selectKey resultType="_int" keyProperty="productId" order="BEFORE">
+			select c_product_id.nextval from dual
+		</selectKey>
 		insert into product 
 		(product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id)
 		values
-		(#{productId}, #{productName}, #{productPrice}, #{category}, #{productInfo}, #{imagePath}, #{regiDate},#{expDate}, #{sellerId}))
-	</insert>	
+		(#{productId}, #{productName}, #{productPrice}, #{category}, #{productInfo}, #{imagePath}, to_char(sysdate, 'yyyy-mm-dd'),#{expDate}, #{sellerId}))
+	</insert>
 	
 	<update id="updateProduct" parameterType="Product">
-		update product set product_name=#{productName},product_price=#{productPrice},category=#{category},product_info=#{productInfo},image_path=#{imagePath},regi_date=#{regi_date},exp_date=#{expDate},seller_id=#{sellerId}
+		update product set product_name=#{productName},product_price=#{productPrice},category=#{category},product_info=#{productInfo},image_path=#{imagePath},exp_date=#{expDate},seller_id=#{sellerId}
+		where product_id=#{productId}
+	</update>
+	
+	<update id="updateProductIgnoreImagePath" parameterType="Product">
+		update product set product_name=#{productName},product_price=#{productPrice},category=#{category},product_info=#{productInfo},exp_date=#{expDate},seller_id=#{sellerId}
 		where product_id=#{productId}
 	</update>
 	
@@ -45,5 +53,37 @@
 		where product_id=#{productId}
 	</select>
 	
+	<select id="selectProductlIKEName" resultMap="product-resultMap" parameterType="String">
+		<include refid="product-select"/>
+		where product_name like |%|#{productName}|%|
+	</select>
+	
+	<select id="selectProductByCategory" resultMap="product-resultMap" parameterType="String">
+		<include refid="product-select"/>
+		where category=#{category}
+	</select>
+	
+	<select id="selectProductByexpDate" resultMap="product-resultMap" parameterType="String">
+		<include refid="product-select"/>
+		where expDate=#{expDate}
+	</select>
+	
+	<select id="selectProductBySellerId" resultMap="product-resultMap" parameterType="String">
+		<include refid="product-select"/>
+		where Seller_id=#{SellerId}
+	</select>
+	
+	<select id="selectProductBetweenPrice" resultMap="product-resultMap" parameterType="int[]">
+		<include refid="product-select"/>
+		where between price #{0} and #{1}
+	</select>
+	<select id="selectProductMinPrice" resultMap="product-resultMap" parameterType="int">
+		<include refid="product-select"/>
+		where price &gt;= ${price}
+	</select>
+	<select id="selectProductMaxPrice" resultMap="product-resultMap" parameterType="int">
+		<include refid="product-select"/>
+		where price &lt;= ${price}
+	</select>
 	
 </mapper>

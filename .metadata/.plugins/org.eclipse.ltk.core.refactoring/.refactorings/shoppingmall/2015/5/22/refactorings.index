@@ -5,3 +5,15 @@
 1432624168854	Move 'layout' to 'view'
 1432702094491	Rename resource 'text.jsp'
 1432702355638	Rename resource 'firstpage.jsp'
+1432704558133	Rename resource 'index.jsp'
+1432707465142	Delete elements
+1432708333228	Rename method 'selectProductByName'
+1432708362535	Rename method 'selectProductByPrice'
+1432708420720	Rename method 'selectProductByName'
+1432708446026	Rename method 'selectProductByPrice'
+1432708580958	Rename method 'selectProductBetweenPrice'
+1432780407592	Rename resource 'topmenu.jsp'
+1432780424076	Rename resource 'midmenu.jsp'
+1432780435190	Rename resource 'sidemenu.jsp'
+1432780484357	Delete element
+1432793485202	Delete element

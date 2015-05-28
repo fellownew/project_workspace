@@ -3,7 +3,7 @@ package kr.co.taommall.product.vo;
 import java.io.Serializable;
 
 public class Product implements Serializable{
-	private String productId;
+	private int productId;
 	private String productName;
 	private int productPrice;
 	private String category;
@@ -15,7 +15,7 @@ public class Product implements Serializable{
 	
 	public Product(){}
 
-	public Product(String productId, String productName, int productPrice,
+	public Product(int productId, String productName, int productPrice,
 			String category, String productInfo, String imagePath,
 			String regiDate, String expDate, String sellerId) {
 		super();
@@ -30,21 +30,7 @@ public class Product implements Serializable{
 		SellerId = sellerId;
 	}
 
-	public Product(String productId, String productName, int productPrice,
-			String category, String productInfo, String imagePath,
-			String expDate, String sellerId) {
-		super();
-		this.productId = productId;
-		this.productName = productName;
-		this.productPrice = productPrice;
-		this.category = category;
-		this.productInfo = productInfo;
-		this.imagePath = imagePath;
-		this.expDate = expDate;
-		SellerId = sellerId;
-	}
-
-	public Product(String productId, String productName, int productPrice,
+	public Product(int productId, String productName, int productPrice,
 			String category, String productInfo, String expDate, String sellerId) {
 		super();
 		this.productId = productId;
@@ -56,11 +42,40 @@ public class Product implements Serializable{
 		SellerId = sellerId;
 	}
 
-	public String getProductId() {
+	public Product(int productId, String productName, int productPrice,
+			String category, String productInfo, String regiDate,
+			String expDate, String sellerId) {
+		super();
+		this.productId = productId;
+		this.productName = productName;
+		this.productPrice = productPrice;
+		this.category = category;
+		this.productInfo = productInfo;
+		this.regiDate = regiDate;
+		this.expDate = expDate;
+		SellerId = sellerId;
+	}
+	
+	//???
+	public Product(String productName, int productPrice, String category,
+			String productInfo, String imagePath, String regiDate,
+			String expDate, String sellerId) {
+		super();
+		this.productName = productName;
+		this.productPrice = productPrice;
+		this.category = category;
+		this.productInfo = productInfo;
+		this.imagePath = imagePath;
+		this.regiDate = regiDate;
+		this.expDate = expDate;
+		SellerId = sellerId;
+	}
+
+	public int getProductId() {
 		return productId;
 	}
 
-	public void setProductId(String productId) {
+	public void setProductId(int productId) {
 		this.productId = productId;
 	}
 
@@ -139,8 +154,7 @@ public class Product implements Serializable{
 		result = prime * result + ((expDate == null) ? 0 : expDate.hashCode());
 		result = prime * result
 				+ ((imagePath == null) ? 0 : imagePath.hashCode());
-		result = prime * result
-				+ ((productId == null) ? 0 : productId.hashCode());
+		result = prime * result + productId;
 		result = prime * result
 				+ ((productInfo == null) ? 0 : productInfo.hashCode());
 		result = prime * result
@@ -180,10 +194,7 @@ public class Product implements Serializable{
 				return false;
 		} else if (!imagePath.equals(other.imagePath))
 			return false;
-		if (productId == null) {
-			if (other.productId != null)
-				return false;
-		} else if (!productId.equals(other.productId))
+		if (productId != other.productId)
 			return false;
 		if (productInfo == null) {
 			if (other.productInfo != null)
@@ -214,5 +225,5 @@ public class Product implements Serializable{
 				+ ", expDate=" + expDate + ", SellerId=" + SellerId + "]";
 	}
 
-
+	
 }

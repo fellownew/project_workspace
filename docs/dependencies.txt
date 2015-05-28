@@ -1,4 +1,3 @@
-     <dependencies>
       <dependency>
          <groupId>org.springframework</groupId>
          <artifactId>spring-webmvc</artifactId>
@@ -19,6 +18,7 @@
          <artifactId>mybatis-spring</artifactId>
          <version>1.2.2</version>
       </dependency>
+
       <dependency>
          <groupId>commons-dbcp</groupId>
          <artifactId>commons-dbcp</artifactId>
@@ -44,14 +44,23 @@
 		<artifactId>log4j</artifactId>
 		<version>1.2.17</version>
 	</dependency>
-      <dependency>
+	<dependency>
 		<groupId>org.apache.tiles</groupId>
-		<artifactId>tiles-api</artifactId>
+		<artifactId>tiles-core</artifactId>
 		<version>3.0.5</version>
 	</dependency>
-      	<dependency>
+	<dependency>
+		<groupId>org.apache.tiles</groupId>
+		<artifactId>tiles-jsp</artifactId>
+		<version>3.0.5</version>
+	</dependency>
+    <dependency>
 		<groupId>commons-fileupload</groupId>
 		<artifactId>commons-fileupload</artifactId>
 		<version>1.3.1</version>
 	</dependency>
-   </dependencies>
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>javax.servlet-api</artifactId>
+		<version>3.1.0</version>
+	</dependency>
