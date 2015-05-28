@@ -58,7 +58,7 @@ body{
 	text-align: center;
 	width: 150px;
 }
-#topmenu a {
+.topmenu a {
 	text-decoration: none;
 	color: white;
 	display: block;
