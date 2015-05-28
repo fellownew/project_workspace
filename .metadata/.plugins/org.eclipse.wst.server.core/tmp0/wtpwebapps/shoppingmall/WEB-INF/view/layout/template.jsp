@@ -28,14 +28,13 @@ body{
 	line-height: 50px;
 	background-color:#F5F5DC;
 	padding: 15px;
-	height:400px;
+
 	width:150px;
 	float:left;
 }
 #section{
 	
 	padding: 15px;
-	height:400px;
 	float:left;
 }
 #footer{

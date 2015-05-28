@@ -19,6 +19,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	public void updateProduct(Product product){
+		//TODO imagePath가 없을 경우
 		dao.updateProduct(product);
 	}
 

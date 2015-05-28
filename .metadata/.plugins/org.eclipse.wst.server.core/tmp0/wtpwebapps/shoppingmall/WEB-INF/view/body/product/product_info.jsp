@@ -6,6 +6,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+${requestScope.product }
 </body>
 </html>

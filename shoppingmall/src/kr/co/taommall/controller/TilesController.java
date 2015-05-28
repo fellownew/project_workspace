@@ -19,6 +19,9 @@ public class TilesController {
 		return "product/register_form.tiles";
 	}
 	
-	
+	@RequestMapping("/auth/product/registerProductform.do")
+	public String registerProductForm(){
+		return "product/product_join_form.tiles";
+	}
 	
 }

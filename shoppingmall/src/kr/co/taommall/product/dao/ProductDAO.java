@@ -7,6 +7,7 @@ import kr.co.taommall.product.vo.Product;
 public interface ProductDAO {
 	public int insertProduct(Product product);
 	public int updateProduct(Product product);
+	public int updateProductIgnoreImagePath(Product product);
 	public int deleteProduct(String productId);
 	public List<Product> selectAllProduct();
 	public List<Product> selectProductById(String productId);

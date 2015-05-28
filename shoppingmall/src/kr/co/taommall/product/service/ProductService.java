@@ -6,7 +6,7 @@ import kr.co.taommall.product.vo.Product;
 
 public interface ProductService {
 	public void insertProduct(Product product);
-	public void updateProduct(Product product);
+	public void updateProduct(Product product);//imagePath가 없을 경우  updateProductIgnoreImagePath를 불러온다.
 	public int deleteProduct(String productId);
 	public List<Product> selectAllProduct();
 	public List<Product> selectProductById(String productId);

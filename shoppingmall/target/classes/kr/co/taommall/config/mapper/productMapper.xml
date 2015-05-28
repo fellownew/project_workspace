@@ -7,11 +7,14 @@
 	</sql>
 	
 	<insert id="insertProduct" parameterType="Product">
+		<selectKey resultType="_int" keyProperty="productId" order="BEFORE">
+			select c_product_id.nextval from dual
+		</selectKey>
 		insert into product 
 		(product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id)
 		values
-		(c_product_id, #{productName}, #{productPrice}, #{category}, #{productInfo}, #{imagePath}, to_char(sysdate, 'yyyy-mm-dd'),#{expDate}, #{sellerId}))
-	</insert>	
+		(#{productId}, #{productName}, #{productPrice}, #{category}, #{productInfo}, #{imagePath}, to_char(sysdate, 'yyyy-mm-dd'),#{expDate}, #{sellerId}))
+	</insert>
 	
 	<update id="updateProduct" parameterType="Product">
 		update product set product_name=#{productName},product_price=#{productPrice},category=#{category},product_info=#{productInfo},image_path=#{imagePath},exp_date=#{expDate},seller_id=#{sellerId}

@@ -4,49 +4,44 @@
 <script type="text/javascript" src="${initParam.rootPath }/script/date_picker.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('input').on("focus",function(){
-			$(this).Text("");
-		});
-		$('textarea').on("focus",function(){
-			$(this).Text("");
-		});
-		$("#register").on("click",function(){
-			alert("df");
+		$("#registerBtn").on("click",function(){
+			alert($("form").serialize());
+			$.ajax({
+				url:"${initParam.rootPath}/auth/product/insert.do",
+				type:"POST",
+				dataType:"JSON",
+				data:$("form").serialize(),
+				success:function(txt){
+					alert("try");
+				}
+			})
+			alert("3");
 		});
 	});
 </script>
 
 <body>
-<!-- 
+<h2> 상 품 등 록 </h2>
 
-	private String productId;
-	private String productName;
-	private int productPrice;
-	private String category;
-	private String productInfo;
-	private String imagePath;
-	private String regiDate;
-	private String expDate;
-	private String SellerId; -->
-
-<form action="/auth/product/insert.do" method="POST">
-	<input type="text" value="상품이름" id="name"/><br>
-	<input type="number" value="상품가격" id="price"/><br>
+<form>
+	<input type="text" name="productName" placeholder="상품이름"/><br>
+	<input type="number" name="productPrice" placeholder="상품가격"/><br>
+	상품 분류 : 
 	<select name="category" id="category">
 		<option value="food">농/수/축산물</option>
 		<option value="fruit">과일/채소</option>
 		<option value="health">건강식품</option>
 		<option value="snack">간식</option>
 	</select><br>
-	<textarea id="info" rows="200" cols="200">상품 정보</textarea><br>
-	<input type="file" id="imagePath" value="이미지 파일"/><br>
-	<input type="text" id="expDate" name="target_date">
-	<input type="button" value="유통기한" onClick="datePicker(event,'target_date')"><br>
+	<textarea name="productInfo" rows="50" cols="200" placeholder="상품 정보"></textarea><br>
+	<input type="file" name="imagePath"/><br>
+	<input type="text" name="expDate">
+	<input type="button" value="유통기한" onClick="datePicker(event,'expDate')"><br>
 	
-	<input type="hidden" id="command" value="joinProduct"/>
+	<input type="hidden" name="command" value="joinProduct"/>
+	<input type="hidden" name="SellerId" value="seller-1"/> <!-- 테스트용 임시 파라미터 -->
 	
-	<button id="register">클릭</button>
+	<button id="registerBtn">상품등록</button>
 </form>
-
 
 </body>

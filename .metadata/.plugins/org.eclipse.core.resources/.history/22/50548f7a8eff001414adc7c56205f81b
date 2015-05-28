@@ -1,5 +1,0 @@
-package kr.co.taommall.product.dao;
-
-public class ProductDAOImpl implements ProductDAO {
-	
-}

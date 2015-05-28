@@ -15,7 +15,7 @@
 
 </style>
 <body>
-	<ul id="d" style="width: 300px">Logo</ul>
+	<ul id="d" style="width: 300px"><a href="http://localhost:8088/taommall"> Logo</a></ul>
 	<ul id="d" style="width: 300px">search</ul>
 	<ul id="d" style="width: 300px">banner</ul>
 </body>

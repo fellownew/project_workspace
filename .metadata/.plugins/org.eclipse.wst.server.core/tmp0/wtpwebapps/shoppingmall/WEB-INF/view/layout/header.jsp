@@ -23,5 +23,5 @@ body a {
 			<a href="${initParam.rootPath }/login.do">로그인</a>
 		</c:otherwise>
 	</c:choose>
-
+	<a href="auth/product/registerProductform.do">상 품 등 록</a>
 </body>
