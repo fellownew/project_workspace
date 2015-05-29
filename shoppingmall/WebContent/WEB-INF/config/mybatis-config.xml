@@ -3,8 +3,11 @@
 <configuration>
 	<typeAliases>
 		<package name="kr.co.taommall.product.vo"/>
+		<package name="kr.co.taommall.account.vo"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="kr/co/taommall/config/mapper/productMapper.xml"/>
+		<mapper resource="kr/co/taommall/config/mapper/seller-mapper.xml"/>
+		<mapper resource="kr/co/taommall/config/mapper/buyer-mapper.xml"/>
 	</mappers>
 </configuration>
