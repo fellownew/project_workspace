@@ -43,7 +43,7 @@
 					<div id="addressErr" class="error"  style="display: none">필수 정보입니다.</div></td>
 			</tr>
 			<tr>
-				<td><input type="text" id="phone" name="phone" maxlength="12"
+				<td><input type="text" id="phone" name="phone" maxlength="14"
 					placeholder="핸드폰 번호" class="int">
 					<div id="phoneErr" class="error"  style="display: none">필수 정보입니다.</div></td>
 			</tr>
