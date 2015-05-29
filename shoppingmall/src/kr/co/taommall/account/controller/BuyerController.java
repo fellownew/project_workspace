@@ -5,7 +5,6 @@ import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpSession;
 
 import kr.co.taommall.account.service.BuyerService;
-import kr.co.taommall.account.service.BuyerServiceImpl;
 import kr.co.taommall.account.vo.Buyer;
 import kr.co.taommall.mail.SendMail;
 
@@ -69,4 +68,66 @@ public class BuyerController {
 			return "fail";
 		}
 	}
+	
+	@RequestMapping("/passwordModify.do")
+	@ResponseBody
+	public String buyerPasswordModify(String password, HttpSession session){
+		Buyer buyer = (Buyer) session.getAttribute("loginInfo");		
+		buyer.setPassword(password);
+		System.out.println(buyer);
+		int count = service.updateBuyerById(buyer);
+		session.setAttribute("loginInfo", buyer);
+		if(count == 0){
+			return "fail";
+		}
+
+		return password;
+	}
+	
+	@RequestMapping("/phoneModify.do")
+	@ResponseBody
+	public String buyerPhoneModify(String phone, HttpSession session){
+		Buyer buyer = (Buyer) session.getAttribute("loginInfo");		
+		buyer.setPhone(phone);
+		System.out.println(buyer);
+		int count = service.updateBuyerById(buyer);
+		session.setAttribute("loginInfo", buyer);
+		if(count == 0){
+			return "fail";
+		}
+
+		return phone;
+	}
+	
+	@RequestMapping("/emailModify.do")
+	@ResponseBody
+	public String buyerEmailModify(String email, HttpSession session){
+		Buyer buyer = (Buyer) session.getAttribute("loginInfo");		
+		buyer.setEmail(email);
+		System.out.println(buyer);
+		int count = service.updateBuyerById(buyer);
+		session.setAttribute("loginInfo", buyer);
+		if(count == 0){
+			return "fail";
+		}
+
+		return email;
+	}
+	
+	
+	@RequestMapping("/addressModify.do")
+	@ResponseBody
+	public String buyerAddressModify(String address, HttpSession session){
+		Buyer buyer = (Buyer) session.getAttribute("loginInfo");		
+		buyer.setAddress(address);
+		System.out.println(buyer);
+		int count = service.updateBuyerById(buyer);
+		session.setAttribute("loginInfo", buyer);
+		if(count == 0){
+			return "fail";
+		}
+
+		return address;
+	}
+	
 }
