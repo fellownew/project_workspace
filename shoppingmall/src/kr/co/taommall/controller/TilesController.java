@@ -6,13 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class TilesController {
 	
-	@RequestMapping("/main.do")
-	public String mainPage(){
-		return "main.tiles";
-	}
 	@RequestMapping("/join_form.do")	
 	public String join_form(){
-		return "member/join_form.tiles";
+		return "member/join_form.do";
 	}
 	@RequestMapping("/register_form.do")	
 	public String register_form(){
@@ -21,7 +17,7 @@ public class TilesController {
 	
 	@RequestMapping("/auth/product/registerProductform.do")
 	public String registerProductForm(){
-		return "product/product_join_form.tiles";
+		return "product/product_join_form.form";
 	}
 	
 }

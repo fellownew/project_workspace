@@ -15,14 +15,15 @@
 	<context:component-scan base-package="kr.co.taommall"/>
 	<context:component-scan base-package="kr.co.taommall.controller"/>
 	
-	
 	<!-- DB 설정 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" p:url="jdbc:oracle:thin:@127.0.0.1:1521:XE" p:username="taom" p:password="taom91"/>
 	<bean name="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" p:configLocation="/WEB-INF/config/mybatis-config.xml" p:dataSource-ref="dataSource" />
 	<bean name="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" c:sqlSessionFactory-ref="sqlSessionFactory"/>
 	<bean name="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" p:dataSource-ref="dataSource"/>
 	<tx:annotation-driven transaction-manager="transactionManager"/>
-	
+
+
+
 	<!-- annotation driven -->
 	<mvc:annotation-driven/>
 	
@@ -44,8 +45,23 @@
 		</property>
 	</bean>
 	
-	<!-- view controller -->
+	<!-- 공통 view controller -->
 	<mvc:view-controller path="/index.do" view-name="main.do"/>
-	<mvc:view-controller path="/join.do" view-name="join.do"/>
 
+	<!-- 상품 관련 view controller -->
+	<mvc:view-controller path="productInfoForm.do" view-name="product/product_info.form"/>
+	<mvc:view-controller path="productJoinForm.do" view-name="product/product_join_form.form"/>	
+	<mvc:view-controller path="productModifyForm.do" view-name="product/product_modify_form.form"/>
+	
+	<!-- 회원관련 view controller -->
+	<mvc:view-controller path="buyerJoinForm.do" view-name="buyer/buyer_join_form.form"/>
+	<mvc:view-controller path="buyerLoginForm.do" view-name="buyer/buyer_login_form.form"/>
+	<mvc:view-controller path="buyerModifyForm.do" view-name="buyer/buyer_modify_form.form"/>
+	<mvc:view-controller path="buyerInfoForm.do" view-name="buyer/buyer_info.form"/>	
+	
+	<mvc:view-controller path="sellerJoinForm.do" view-name="seller/seller_join_form.form"/>
+	<mvc:view-controller path="sellerLoginForm.do" view-name="seller/seller_login_form.form"/>
+	<mvc:view-controller path="sellerModifyForm.do" view-name="seller/seller_modify_form.form"/>
+	<mvc:view-controller path="sellerInfoForm.do" view-name="seller/seller_info.form"/>	
+	
 </beans>

@@ -31,12 +31,7 @@
 	<!-- view resolver 등록 -->
 	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="1"/>
 	<bean class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" p:order="2"/>
-	
-	<!-- RequestDispatcher방식으로 연결시, /WEB-INF/view/까지 자동으로 찾아 들어가게 함. -->
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-	p:prefix="/WEB-INF/view/"
-	p:order="3"
-	/>
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:order="3"/>
 	
 	<!-- multipartResolver -->
 	<bean name="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
@@ -54,21 +49,19 @@
 	<mvc:view-controller path="/index.do" view-name="main.do"/>
 
 	<!-- 상품 관련 view controller -->
-	<mvc:view-controller path="/join.do" view-name="join.do"/>
-
-
-	<!-- 회원관련 view controller -->
-	<mvc:view-controller path="buyerIndex.do" view-name="via/buyer_index.jsp"/>
-	<mvc:view-controller path="sellerIndex.do" view-name="via/seller_index.jsp"/>
-
-	<mvc:view-controller path="buyer/buyerJoinForm.do" view-name="account/buyer/buyer_join_form.jsp"/>
-	<mvc:view-controller path="buyer/buyerLoginForm.do" view-name="account/buyer/buyer_login_form.jsp"/>
-	<mvc:view-controller path="buyer/buyerModifyForm.do" view-name="account/buyer/buyer_modify_form.jsp"/>
-	<mvc:view-controller path="buyer/buyerInfoForm.do" view-name="account/buyer/buyer_info.jsp"/>	
+	<mvc:view-controller path="productInfoForm.do" view-name="product/product_info.form"/>
+	<mvc:view-controller path="productJoinForm.do" view-name="product/product_join_form.form"/>	
+	<mvc:view-controller path="productModifyForm.do" view-name="product/product_modify_form.form"/>
 	
-	<mvc:view-controller path="seller/sellerJoinForm.do" view-name="account/seller/seller_join_form.jsp"/>
-	<mvc:view-controller path="seller/sellerLoginForm.do" view-name="account/seller/seller_login_form.jsp"/>
-	<mvc:view-controller path="seller/sellerModifyForm.do" view-name="account/seller/seller_modify_form.jsp"/>
-	<mvc:view-controller path="seller/sellerInfoForm.do" view-name="account/seller/seller_info.jsp"/>	
+	<!-- 회원관련 view controller -->
+	<mvc:view-controller path="buyerJoinForm.do" view-name="buyer/buyer_join_form.form"/>
+	<mvc:view-controller path="buyerLoginForm.do" view-name="buyer/buyer_login_form.form"/>
+	<mvc:view-controller path="buyerModifyForm.do" view-name="buyer/buyer_modify_form.form"/>
+	<mvc:view-controller path="buyerInfoForm.do" view-name="buyer/buyer_info.form"/>	
+	
+	<mvc:view-controller path="sellerJoinForm.do" view-name="seller/seller_join_form.form"/>
+	<mvc:view-controller path="sellerLoginForm.do" view-name="seller/seller_login_form.form"/>
+	<mvc:view-controller path="sellerModifyForm.do" view-name="seller/seller_modify_form.form"/>
+	<mvc:view-controller path="sellerInfoForm.do" view-name="seller/seller_info.form"/>	
 	
 </beans>

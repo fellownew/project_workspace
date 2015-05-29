@@ -20,7 +20,7 @@ public class ProductServiceImpl implements ProductService {
 	public void insertProduct(Product product,MultipartFile upfile){
 		//파일명은 현재 시간으로 가져옴.
 		long lFileName = System.currentTimeMillis();
-		String fileName = lFileName+"jpg";
+		String fileName = lFileName+".jpg";
 		File file = new File(imagePath,fileName);
 		try {
 			upfile.transferTo(file);

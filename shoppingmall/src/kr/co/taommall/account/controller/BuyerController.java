@@ -5,7 +5,6 @@ import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpSession;
 
 import kr.co.taommall.account.service.BuyerService;
-import kr.co.taommall.account.service.BuyerServiceImpl;
 import kr.co.taommall.account.vo.Buyer;
 import kr.co.taommall.mail.SendMail;
 
