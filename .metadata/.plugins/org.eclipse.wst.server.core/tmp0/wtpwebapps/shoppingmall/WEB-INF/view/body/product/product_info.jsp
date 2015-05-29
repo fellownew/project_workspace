@@ -7,5 +7,8 @@
 </head>
 <body>
 ${requestScope.product }
+
+
+
 </body>
 </html>

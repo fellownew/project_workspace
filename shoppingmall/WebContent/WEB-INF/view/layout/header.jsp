@@ -10,18 +10,27 @@ body a {
 </style>
 <body>
 	<c:choose>
-		<c:when test="${sessionScope.auth }">
-		
-		
+	<%-- 관리자 --%>
+		<c:when test="${not empty sessionScope.loginInfo.auth}">
+			관리자
 		</c:when>
-		<c:when test="${sessionScope.auth }">
-		
-		
+	<%-- 판매자 --%>
+		<c:when test="${not empty sessionScope.loginInfo.coporateNumber}">
+			<a href="<%=request.getContextPath() %>/productInfoForm.do">상품관리</a> |
+			<a href="<%=request.getContextPath() %>/sellerInfoForm.do">회원정보</a> |
+			<a href="<%=request.getContextPath() %>/logout">로그아웃</a>
 		</c:when>
+	<%-- 구매자 --%>
+		<c:when test="${not empty sessionScope.login}">
+			<a href="<%=request.getContextPath() %>/buyerInfoForm.do">회원정보</a> |
+			<a href="<%=request.getContextPath() %>/logout">로그아웃</a>
+		</c:when>
+	<%-- 비로그인 --%>		
 		<c:otherwise>
-			<a href="${initParam.rootPath }/register.do">회원가입</a> |
-			<a href="${initParam.rootPath }/login.do">로그인</a>
+			<a href="<%=request.getContextPath() %>/buyerJoinForm.do">회원가입</a> |
+			<a href="<%=request.getContextPath() %>/buyerLoginForm.do">로그인</a>
 		</c:otherwise>
 	</c:choose>
-	<a href="auth/product/registerProductform.do">상 품 등 록</a>
+			
+
 </body>
