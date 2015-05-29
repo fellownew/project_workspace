@@ -34,7 +34,7 @@ var codeCheck;
 		});
 		
 		//아이디
-		$("#buyerId").blur(function(){			
+		$("#buyerId").blur(function(){
 			$.ajax({
 				url:"/taommall/buyer/identifyId.do",
 				type:"POST",
