@@ -4,7 +4,7 @@
 <script type="text/javascript" src="${initParam.rootPath }/script/date_picker.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#registerBtn").on("click",function(){
+		$("#register").on("click",function(){
 			alert($("form").serialize());
 			$.ajax({
 				url:"${initParam.rootPath}/auth/product/insert.do",
@@ -23,7 +23,7 @@
 <body>
 <h2> 상 품 등 록 </h2>
 
-<form>
+<form action="${initParam.rootPath}/auth/product/insert.do" method="POST" enctype="multipart/form-data">
 	<input type="text" name="productName" placeholder="상품이름"/><br>
 	<input type="number" name="productPrice" placeholder="상품가격"/><br>
 	상품 분류 : 
@@ -34,14 +34,14 @@
 		<option value="snack">간식</option>
 	</select><br>
 	<textarea name="productInfo" rows="50" cols="200" placeholder="상품 정보"></textarea><br>
-	<input type="file" name="imagePath"/><br>
+	<input type="file" name="upfile"/><br>
 	<input type="text" name="expDate">
 	<input type="button" value="유통기한" onClick="datePicker(event,'expDate')"><br>
 	
 	<input type="hidden" name="command" value="joinProduct"/>
 	<input type="hidden" name="SellerId" value="seller-1"/> <!-- 테스트용 임시 파라미터 -->
-	
-	<button id="registerBtn">상품등록</button>
+	${sessionScope.seller.id }
+	<input type="submit" id="registerBtn" value="상품등록">
 </form>
 
 </body>

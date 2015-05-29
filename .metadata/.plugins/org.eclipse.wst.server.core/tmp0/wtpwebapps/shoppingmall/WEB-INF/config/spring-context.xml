@@ -32,6 +32,9 @@
 	<bean class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" p:order="2"/>
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:order="3"/>
 	
+	<!-- multipartResolver -->
+	<bean name="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+	
 	<!-- Tiles Bean -->
 	<bean name="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<property name="definitions">
