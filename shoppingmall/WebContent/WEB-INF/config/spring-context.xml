@@ -79,8 +79,8 @@
 	<mvc:view-controller path="buyer/buyerModifyForm.do" view-name="body/buyer/buyer_modify_form.jsp"/>
 	<mvc:view-controller path="buyer/buyerInfoForm.do" view-name="body/buyer/buyer_info.jsp"/>	
 	
-	<mvc:view-controller path="sellerJoinForm.do" view-name="body/seller/seller_join_form.jsp"/>
-	<mvc:view-controller path="sellerLoginForm.do" view-name="body/seller/seller_login_form.jsp"/>
-	<mvc:view-controller path="sellerModifyForm.do" view-name="body/seller/seller_modify_form.jsp"/>
-	<mvc:view-controller path="sellerInfoForm.do" view-name="body/seller/seller_info.jsp"/>	
+	<mvc:view-controller path="seller/sellerJoinForm.do" view-name="body/seller/seller_join_form.jsp"/>
+	<mvc:view-controller path="seller/sellerLoginForm.do" view-name="body/seller/seller_login_form.jsp"/>
+	<mvc:view-controller path="seller/sellerModifyForm.do" view-name="body/seller/seller_modify_form.jsp"/>
+	<mvc:view-controller path="seller/sellerInfoForm.do" view-name="body/seller/seller_info.jsp"/>	
 </beans>

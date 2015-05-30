@@ -71,17 +71,19 @@ public class BuyerController {
 	
 	@RequestMapping("/passwordModify.do")
 	@ResponseBody
-	public String buyerPasswordModify(String password, HttpSession session){
-		Buyer buyer = (Buyer) session.getAttribute("loginInfo");		
-		buyer.setPassword(password);
-		System.out.println(buyer);
-		int count = service.updateBuyerById(buyer);
-		session.setAttribute("loginInfo", buyer);
-		if(count == 0){
+	public String buyerPasswordModify(String password,@RequestParam("currPassword") String currPassword, HttpSession session){
+		Buyer buyer = (Buyer) session.getAttribute("loginInfo");
+		if(currPassword !=null && buyer.getPassword().equals(currPassword)){
+			buyer.setPassword(password);
+			System.out.println(buyer);
+			int count = service.updateBuyerById(buyer);
+			session.setAttribute("loginInfo", buyer);
+			return password;
+		}else{
 			return "fail";
 		}
+	
 
-		return password;
 	}
 	
 	@RequestMapping("/phoneModify.do")
