@@ -10,7 +10,7 @@ public interface ProductDAO {
 	public int updateProductIgnoreImagePath(Product product);
 	public int deleteProduct(String productId);
 	public List<Product> selectAllProduct();
-	public List<Product> selectProductById(String productId);
+	public List<Product> selectProductById(int productId);
 	public List<Product> selectProductLikeName(String productName);
 	public List<Product> selectProductByCategory(String productCategory);
 	public List<Product> selectProductByexpDate(String expDate);

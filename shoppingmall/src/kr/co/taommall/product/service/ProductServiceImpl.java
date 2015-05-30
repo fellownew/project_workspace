@@ -56,7 +56,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<Product> selectProductById(String productId) {
+	public List<Product> selectProductById(int productId) {
 		// TODO Auto-generated method stub
 		return dao.selectProductById(productId);
 	}

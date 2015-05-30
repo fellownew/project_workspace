@@ -48,7 +48,7 @@
 		<include refid="product-select"/>
 	</select>
 	
-	<select id="selectProductById" resultMap="product-resultMap" parameterType="String">
+	<select id="selectProductById" resultMap="product-resultMap" parameterType="_int">
 		<include refid="product-select"/>
 		where product_id=#{productId}
 	</select>
