@@ -9,7 +9,7 @@ var passwordCheck;
 var codeCheck;
 	$(document).ready(function() {
 		$("#join").on("click", function() {
-			if($("#buyerId").val().trim()=='' ||
+			if($("#sellerId").val().trim()=='' ||
 					$("#password").val().trim()=='' ||
 					$("#passwordConfirm").val().trim()=='' ||
 					$("#name").val().trim()=='' ||
@@ -21,7 +21,7 @@ var codeCheck;
 				return false;
 			}else{	
 				if(idCheck && codeCheck && passwordCheck){
-				document.getElementById("buyer_form").submit();
+				document.getElementById("seller_form").submit();
 				}else if(!codeCheck){
 					$("#joinErr").show().html("인증번호를 확인해주세요.").attr('style', "color:red");
 					return false;
@@ -35,22 +35,32 @@ var codeCheck;
 
 		});
 		
+		$("#corporateNumber").blur(function(){
+			if($("#corporateNumber").val().trim()==''){
+				$("#corporateErr").show().html("필수 정보입니다").attr('style', "color:red");
+				$("#corporateNumber").val('');
+				return false;
+			}else{
+				$("#corporateErr").hide().html("");
+			}
+		});
+		
 		//아이디
-		$("#buyerId").blur(function(){
+		$("#sellerId").blur(function(){
 			$.ajax({
-				url:"/taommall/buyer/identifyId.do",
+				url:"/taommall/seller/identifyId.do",
 				type:"POST",
-				data:{id:$("#buyerId").val()},	
+				data:{id:$("#sellerId").val()},	
 				dataType:"text",
 				beforeSend:function(){
-					if($("#buyerId").val().trim()==''){
+					if($("#sellerId").val().trim()==''){
 						
 						$("#idErr").show().html("필수 정보입니다").attr('style', "color:red");
-						$("#buyerId").val('');
+						$("#sellerId").val('');		
 						return false;
 					}
 					
-					 if(!re_id.test($("#buyerId").val())){
+					 if(!re_id.test($("#sellerId").val())){
 						 $("#idErr").show().html("영어/숫자 6~12자로 입력하세요").attr('style', "color:red");
 						 return false;
 						}

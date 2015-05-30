@@ -6,6 +6,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-셀러 수정
+index페이지
+
+
+<a href="<%=request.getContextPath()%>/buyerIndex.do">바이어이동</a> | 
+<a href="<%=request.getContextPath()%>/sellerIndex.do">셀러이동</a>
 </body>
 </html>

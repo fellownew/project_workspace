@@ -11,8 +11,8 @@ public class Seller implements Serializable {
 	private String address;
 	private String email;
 	private String phone;
-	private String auth;
-	private String admin;
+	private String auth="false";
+	private String admin="false";
 	private String corporateNumber;
 
 	public Seller() {

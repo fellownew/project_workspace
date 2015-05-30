@@ -1,91 +1,23 @@
+<%@page import="kr.co.taommall.account.vo.Buyer"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<style type="text/css" >
-.tbl_model .thcell{
-	
-	padding:10px 10px 10px
-}
-.tbl_model .tdcell{
-	/*위, 오른쪽, 아래, 왼쪽 */
-	padding:10px 0px 10px 20px
-}
-.tbl_model tr{
-	border-top:1px solid #e5e5e5;
-	border-bottom:1px solid #e5e5e5;
-}
-.tbl_model th{
-	background-color:#f7f7f7;
-	border-right:1px solid #e5e5e5;
-}
-.tbl_model .contxt_tit{
-	font-size:14px;
-	line-height:16px;
-	color:#333
-}
-.tbl_model{
-
-	position:relative;
-	width:100%;
-	border:0;
-	border-bottom:1px solid #e5e5e5;
-	border-spacing:0;
-	border-collapse:collapse;
-	table-layout:fixed;
-	word-break:keep-all;
-	word-wrap:break-word
-}
-.btn_model .btn2{
-	border:1px solid #bfbfbf;
-	background:#fff
-} 
-.tbl_model .btn_area_btm{
-	overflow:hidden;
-	margin-left:-8px;
-	padding-top:27px;
-	text-align:left
-}
-.tbl_model .btn_area_btm a{
-	float:left;
-	margin-left:8px;
-	color:black;
-	text-decoration:none
-}
-.word_br{
-	display:inline-block
-}
-</style>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/buyer_info.css">
 <title>Insert title here</title>
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
-<script type="text/javascript">
-
-$(document).ready(function(){
-	
-	$("#passwordCancel").on("click",function(){
-		$("#passwordDetail").hide();
-	});
-	
-	$("#passwordConfirm").on("click",function(){
-		$("#password").html("asdasd");
-	});
-
-});
-	function password(){
-		$("#passwordDetail").show();
-	};
+<script type="text/javascript" >
+<c:set var="message" value="${sessionScope.loginInfo.password}"/> 
+var pword = '<c:out value="${message}"/>';
+<c:set var="message" value="${sessionScope.loginInfo.phone}"/> 
+var phoneNum = '<c:out value="${message}"/>';
 </script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/script/buyer_info.js"></script>
 </head>
 <body>
-
-바이어 정보<br>
-${sessionScope.loginInfo.name}<br>
-${sessionScope.loginInfo.address}<br>
-${sessionScope.loginInfo.email}<br>
-${sessionScope.loginInfo.phone}<br>
-<hr>
-
 		<fieldset style="border:none; width:70%">
 				<table border="0" class="tbl_model">
 				<colgroup>
@@ -112,14 +44,34 @@ ${sessionScope.loginInfo.phone}<br>
 					</th>
 					<td>
 						<div class="tdcell">
-							<p id="password" class="contxt_tit">${sessionScope.loginInfo.password}</p>
+							<p id="password" class="contxt_tit">
+								<% int length =((Buyer)session.getAttribute("loginInfo")).getPassword().length();%>
+							 	<c:forEach begin="1" end="<%=length%>">*</c:forEach>
+							 	<span id="notify"> </span>
+							</p>
 									<p class="btn_area_btm">
 										<a href="javascript:password()" class="btn_model"><b>비밀번호 변경</b></a>
 									</p>
-							<div id="passwordDetail" style="display:none;">이것은 디테일
+								<div id="passwordDetail" style="display:none;">
+								<div>
+									<input type="password" id="currentPassword" placeholder="현재 비밀번호">
+									<span id="cpasswordErr" class="error" style="display: none">비밀번호가 틀렸습니다.</span>		
+								</div>
+								<div>
+									<input type="password" id="newPassword" placeholder="새 비밀번호">
+									<span id="passwordErr" class="error" style="display: none">비밀번호가 틀렸습니다.</span>
+								</div>
+								<div>
+									<input type="password" id="newPasswordConfirm" placeholder="새 비밀번호 확인">
+									<span id="pconfirmErr" class="error" style="display: none">비밀번호가 틀렸습니다.</span>
+								</div>
+								<p>
 								<button id="passwordConfirm">수정</button>
 								<button id="passwordCancel">수정취소</button>
-							</div>
+								</p>
+								</div>
+									
+							
 						</div>
 					</td>	
 				</tr>
@@ -131,10 +83,22 @@ ${sessionScope.loginInfo.phone}<br>
 					</th>
 					<td>
 						<div class="tdcell">
-							<p class="contxt_tit">${sessionScope.loginInfo.phone}</p>
+							<p id="phoneId" class="contxt_tit">${sessionScope.loginInfo.phone}</p>
 									<p class="btn_area_btm">
-										<a href="" class="btn_model"><b>휴대전화 변경</b></a>
+										<a href="javascript:phone()" class="btn_model"><b>휴대전화 변경</b></a>
 									</p>
+						<div id="phoneDetail" style="display:none;">
+								<div>
+									<input type="text" id="phone" placeholder="${sessionScope.loginInfo.phone}">
+									<span id="phoneErr" class="error" style="display: none">필수입력 사항입니다.</span>		
+								</div>
+
+								<p>
+								<button id="phoneConfirm">수정</button>
+								<button id="phoneCancel">수정취소</button>
+								</p>
+						</div>
+								
 						</div>
 					</td>
 				</tr>
@@ -146,10 +110,21 @@ ${sessionScope.loginInfo.phone}<br>
 					</th>
 					<td>
 						<div class="tdcell">
-							<p class="contxt_tit">${sessionScope.loginInfo.email}</p>
+							<p id="emailId" class="contxt_tit">${sessionScope.loginInfo.email}</p>
 									<p class="btn_area_btm">
-										<a id="passwordBtn" href="" class="btn_model"><b>이메일 변경</b></a>
+										<a id="emailBtn" href="javascript:email()" class="btn_model"><b>이메일 변경</b></a>
 									</p>
+							<div id="emailDetail" style="display:none;">
+								<div>
+									<input type="text" id="email" placeholder="${sessionScope.loginInfo.email}">
+									<span id="emailErr" class="error" style="display: none">필수입력 사항입니다.</span>		
+								</div>
+
+								<p>
+								<button id="emailConfirm">수정</button>
+								<button id="emailCancel">수정취소</button>
+								</p>
+						</div>
 						</div>
 					</td>
 				</tr>
@@ -161,10 +136,21 @@ ${sessionScope.loginInfo.phone}<br>
 					</th>
 					<td>
 						<div class="tdcell">
-							<p class="contxt_tit">${sessionScope.loginInfo.address}</p>
+							<p id="addressId" class="contxt_tit">${sessionScope.loginInfo.address}</p>
 									<p class="btn_area_btm">
-										<a href="" class="btn_model"><b>주소 변경</b></a>
+										<a href="javascript:address()" class="btn_model"><b>주소 변경</b></a>
 									</p>
+						<div id="addressDetail" style="display:none;">
+								<div>
+									<input type="text" id="address" placeholder="${sessionScope.loginInfo.address}">
+									<span id="addressErr" class="error" style="display: none">필수입력 사항입니다.</span>		
+								</div>
+
+								<p>
+								<button id="addressConfirm">수정</button>
+								<button id="addressCancel">수정취소</button>
+								</p>
+						</div>
 						</div>
 					</td>
 				</tr>

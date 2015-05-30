@@ -6,6 +6,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-셀러 로그인
+<jsp:include page="/WEB-INF/view/body/buyer/buyer_login_form.jsp"></jsp:include>
 </body>
 </html>
