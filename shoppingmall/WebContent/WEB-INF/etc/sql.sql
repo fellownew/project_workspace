@@ -5,6 +5,7 @@ drop table seller;
 drop table buyer;
 drop table pboard;
 drop table pboard;
+drop table center;
 
 
 create table buyer(

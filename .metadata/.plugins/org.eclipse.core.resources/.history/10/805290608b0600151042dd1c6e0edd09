@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="kr.co.taommall.order.dao">
+	<sql id="order-select">
+		select order_id,product_id,buyer_id,amount,status,board_no
+		from orders
+	</sql>
+
+	<insert id="insertOrder" parameterType="Order">
+
+		insert into product
+		(product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id)
+		values
+		(#{productId}, #{productName}, #{productPrice}, #{category},
+		#{productInfo}, #{imagePath}, to_char(sysdate,
+		'yyyy-mm-dd'),#{expDate}, #{sellerId}))
+
+		insert into orders(
+		#{order_id},#{product_id},#{buyer_id},#{amount},#{status},#{board_no})
+		values(
+
+		)
+
+	</insert>
+</mapper>

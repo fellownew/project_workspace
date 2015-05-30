@@ -6,5 +6,6 @@
 	</typeAliases>
 	<mappers>
 		<mapper resource="kr/co/taommall/config/mapper/productMapper.xml"/>
+		<mapper resource="kr/co/taommall/config/mapper/orderMapper.xml"/>
 	</mappers>
 </configuration>
