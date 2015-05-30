@@ -63,6 +63,7 @@ public class BuyerController {
 		Buyer buyer = service.selectBuyerById(id);
 		if(buyer !=null && buyer.getPassword().equals(password)){
 			session.setAttribute("loginInfo", buyer);
+			session.setAttribute("user","buyer");
 			return "success";
 		}else{
 			return "fail";
@@ -78,6 +79,7 @@ public class BuyerController {
 			System.out.println(buyer);
 			int count = service.updateBuyerById(buyer);
 			session.setAttribute("loginInfo", buyer);
+			session.setAttribute("user","buyer");
 			return password;
 		}else{
 			return "fail";
@@ -94,6 +96,7 @@ public class BuyerController {
 		System.out.println(buyer);
 		int count = service.updateBuyerById(buyer);
 		session.setAttribute("loginInfo", buyer);
+		session.setAttribute("user","buyer");
 		if(count == 0){
 			return "fail";
 		}
@@ -109,6 +112,7 @@ public class BuyerController {
 		System.out.println(buyer);
 		int count = service.updateBuyerById(buyer);
 		session.setAttribute("loginInfo", buyer);
+		session.setAttribute("user","buyer");
 		if(count == 0){
 			return "fail";
 		}
@@ -125,11 +129,18 @@ public class BuyerController {
 		System.out.println(buyer);
 		int count = service.updateBuyerById(buyer);
 		session.setAttribute("loginInfo", buyer);
+		session.setAttribute("user","buyer");
 		if(count == 0){
 			return "fail";
 		}
 
 		return address;
 	}
+	
+	@RequestMapping("/logout.do")
+	   public String logout(HttpSession session){
+	      session.invalidate();
+	      return "main.do";
+	   }
 	
 }
