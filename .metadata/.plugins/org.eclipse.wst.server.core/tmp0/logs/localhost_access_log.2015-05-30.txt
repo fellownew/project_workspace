@@ -1,0 +1,9 @@
+127.0.0.1 - - [30/May/2015:10:23:41 +0900] "GET / HTTP/1.1" 404 951
+0:0:0:0:0:0:0:1 - - [30/May/2015:10:23:41 +0900] "GET /taommall/ HTTP/1.1" 200 4587
+0:0:0:0:0:0:0:1 - - [30/May/2015:10:23:41 +0900] "GET /script/jquery.js HTTP/1.1" 404 983
+0:0:0:0:0:0:0:1 - - [30/May/2015:10:23:41 +0900] "GET /favicon.ico HTTP/1.1" 404 973
+0:0:0:0:0:0:0:1 - - [30/May/2015:10:23:47 +0900] "GET /taommall/buyerJoinForm.do HTTP/1.1" 200 4592
+0:0:0:0:0:0:0:1 - - [30/May/2015:10:23:47 +0900] "GET /taommall/script/buyerjoin.js HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [30/May/2015:10:23:47 +0900] "GET /taommall/css/buyer.css HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [30/May/2015:10:23:47 +0900] "GET /taommall/script/jquery.js HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [30/May/2015:10:23:50 +0900] "GET /taommall/buyerLoginForm.do HTTP/1.1" 200 7001

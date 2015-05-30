@@ -19,14 +19,21 @@ public class ProductController {
 	@RequestMapping("/insert.do")
 	public String insert(@ModelAttribute Product product,MultipartFile upfile){
 		service.insertProduct(product,upfile);
-		return "/product_info.tiles";
+		return "/product_info.form";
 	}
 	
-	@RequestMapping("/update")
+	@RequestMapping("/update.do")
 	public String update(@ModelAttribute Product product ,MultipartFile upfile){
 		
 		service.updateProduct(product,upfile);
-		return "";
+		
+		return "/product_info.form";
+	}
+	
+	@RequestMapping("/select.do")
+	public String select(){
+		
+		return "/product_list";
 	}
 	
 }

@@ -4,16 +4,12 @@
   	<welcome-file-list>
 		<welcome-file>index.do</welcome-file>
 	</welcome-file-list>
-
-<<<<<<< HEAD
 	
 	<!-- mybatis 설정관련 bean 파일 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>	
 		<param-value>/WEB-INF/config/mybatis-context.xml</param-value>
 	</context-param>
-=======
->>>>>>> 42b7172cce6595177bf7b0addb945b6611f25b57
 	
 <!-- The front controller of this Spring Web application, responsible for handling all application requests -->
 	<servlet>

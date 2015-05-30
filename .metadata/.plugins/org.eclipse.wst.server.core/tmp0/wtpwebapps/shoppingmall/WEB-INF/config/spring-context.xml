@@ -16,7 +16,7 @@
 	<context:component-scan base-package="kr.co.taommall.controller"/>
 	
 	<!-- DB 설정 -->
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" p:url="jdbc:oracle:thin:@127.0.0.1:1521:XE" p:username="taom" p:password="taom91"/>
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" p:url="jdbc:oracle:thin:@192.168.7.25:1521:XE" p:username="taom" p:password="taom91"/>
 	<bean name="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" p:configLocation="/WEB-INF/config/mybatis-config.xml" p:dataSource-ref="dataSource" />
 	<bean name="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" c:sqlSessionFactory-ref="sqlSessionFactory"/>
 	<bean name="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" p:dataSource-ref="dataSource"/>
