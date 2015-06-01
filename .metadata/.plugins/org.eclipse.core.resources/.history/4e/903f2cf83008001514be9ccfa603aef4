@@ -1,0 +1,24 @@
+<%@ page contentType="text/html;charset=UTF-8"%>
+<script type="text/javascript">
+
+function home(){
+	location = "<%=request.getContextPath() %>";
+}
+</script>
+<style type="text/css">
+#left{
+	float: left;
+}
+#sleft{
+	float: left;
+	padding-top: 30px;
+}
+
+</style>
+<body>
+	<ul id="left" style="width: 500px"><img src="<%=request.getContextPath() %>/image/logo.jpg" onclick="home()"></ul>
+	<form id="sleft" style="width: 700px" action="search.do" method="POST">
+		<input type="text" name="search" autofocus="autofocus" style="width:500px;height: 30px" >
+		<input type="submit" value="검색">
+	</form>
+</body>

@@ -27,12 +27,12 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 	@Override
 	public int updateProductIgnoreImagePath(Product product){
-		int cnt = session.update(nameSpace+"updateProduct",product);
+		int cnt = session.update(nameSpace+"updateProductIgnoreImagePath",product);
 		return cnt;
 	}
 	
 	@Override
-	public int deleteProduct(String productId) {
+	public int deleteProduct(int productId) {
 		int cnt = session.delete(nameSpace+"deleteProduct",productId);
 		return cnt;
 	}
@@ -69,7 +69,8 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	public List<Product> selectProductBySellerId(String sellerId) {
 		// TODO Auto-generated method stub
-		return session.selectList(nameSpace+"selectProductBySellerId",sellerId);
+		List<Product> list = session.selectList(nameSpace+"selectProductBySellerId",sellerId);
+		return list;
 	}
 
 	@Override

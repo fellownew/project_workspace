@@ -18,7 +18,7 @@
 		<tbody>
 			<c:forEach items="${requestScope.productList }" var="product">
 				<tr>
-					<td><img src="${product.filename }"/></td>
+					<td><img src="${product.imagePath }"/></td>
 					<td>${product.productId}</td>
 					<td>${product.price}</td>
 					<td>${product.expDate}</td>

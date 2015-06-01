@@ -1,0 +1,18 @@
+<%@ page contentType="text/html;charset=UTF-8"%>
+<style type="text/css">
+#d{
+	float: left;
+}
+#s{
+	float: left;
+}
+
+</style>
+<body>
+	<ul id="d" style="width: 400px"><img src="<%=request.getContextPath() %>/image/logo.jpg" onclick="function(){location=<%=request.getContextPath() %>}"></ul>
+	<form id="s" style="width: 700px" action="search.do" method="POST">
+		<input type="text" name="search" autofocus="autofocus" style="width:500px;height: 30px" >
+		<input type="submit" value="검색">
+	</form>
+	<ul id="d" style="width: 400px">banner</ul>
+</body>

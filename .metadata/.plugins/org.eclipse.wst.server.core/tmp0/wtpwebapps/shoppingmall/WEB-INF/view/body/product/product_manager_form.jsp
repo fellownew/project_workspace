@@ -3,30 +3,42 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <meta charset="UTF-8">
-<script type="text/javascript" src="${initParam.rootPath }/script/jquery.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/script/jquery.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#registerProductBtn").on("click",function(){
-		window.location.href = 'productJoinForm.do';
-		
+		location = '../productJoinForm.do';
 	});
-	$("#deleteProductBtn").on("click",function(){
-		if(confirm("정말 삭제하시겠습니까?")){
-			$.ajax({
-				url:"/deleteProduct.do",
-				type:"POST",
-				data:$(this),	
-				dataType:"json",
-				success:function(res){
-										
-				}
-			});			
-		}else{
-			return false;
-		}
+	$("#modifyProductBtn").on("click",function(){
 		
 	});
 });
+
+function deleteProduct(idx){
+	if(confirm("정말 삭제하시겠습니까?")){
+		$.ajax({
+			url:"deleteProduct.do",
+			type:"POST",
+			data:{productId:idx},	
+			dataType:"json",
+			success:function(res){
+				location="productManager.do?sellerId=${sessionScope.loginInfo.sellerId}";
+				alert(res);
+			}
+		});			
+	}else{
+		return false;
+	}	
+}
+
+function modifyProduct(idx){
+	if(confirm("정말 수정하시겠습니까?")){
+		location = 'productModifyForm.do?productId='+idx;		
+	}else{
+		return false;
+	}
+}
+
 </script>
 
 <body>
@@ -37,6 +49,7 @@ $(document).ready(function(){
 		<thead>
 			<tr>
 				<td></td>
+				<td>상품번호</td>
 				<td>상품명</td>
 				<td>가격</td>
 				<td>유통기한</td>
@@ -45,15 +58,19 @@ $(document).ready(function(){
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${requestScope.productList }" var="product">
+			<c:forEach items="${requestScope.productList }" var="product" >
 				<tr>
-					<td><img src="${product.filename }"/></td>
-					<td>${product.productId}</td>
-					<td>${product.price}</td>
+					<td>
+					<img src="<%=request.getContextPath() %>/${product.imagePath}" width="60px" height="60px"/>
+					${product.imagePath }
+					</td>
+					<td>${product.productId }</td>
+					<td>${product.productName}</td>
+					<td>${product.productPrice}</td>
 					<td>${product.expDate}</td>
 					<td>${product.sellerId}</td>
-					<td><button id="modifyProduct">상품수정</button><br>
-					<button id="deleteProductBtn">상품 삭제</button> </td>
+					<td><button id="modifyProductBtn" onclick="modifyProduct(${product.productId})">상품수정</button><br>
+					<button id="deleteProductBtn" onclick="deleteProduct(${product.productId })">상품 삭제</button> </td>
 				</tr> 
 			</c:forEach>
 		</tbody>

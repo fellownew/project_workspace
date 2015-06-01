@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <!DOCTYPE html>
-<script type="text/javascript" src="${initParam.rootPath }/script/jquery.js"></script>
-<script type="text/javascript" src="${initParam.rootPath }/script/date_picker.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/script/jquery.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/script/date_picker.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#registerBtn").on("click",function(){
@@ -20,7 +20,7 @@
 <body>
 <h2> 상 품 등 록 </h2>
 
-<form action="${initParam.rootPath}/auth/product/insert.do" method="POST" enctype="multipart/form-data">
+<form action="auth/insertProduct.do" method="POST" enctype="multipart/form-data">
 	<input type="text" id="productName" name="productName" placeholder="상품이름" required="required"/><br>
 	<input type="number" id="productPrice" name="productPrice" placeholder="상품가격" required="required"/><br>
 	상품 분류 : 

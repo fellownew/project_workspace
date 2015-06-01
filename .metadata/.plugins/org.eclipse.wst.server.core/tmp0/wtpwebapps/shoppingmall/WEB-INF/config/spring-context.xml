@@ -43,6 +43,8 @@
 			</list>
 		</property>
 	</bean>
+	<!-- 파일 처리를 위한 multipart Resolver -->
+	<bean name="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 	
 	<!-- 공통 view controller -->
 	<mvc:view-controller path="/index.do" view-name="main.do"/>
@@ -50,7 +52,6 @@
 	<!-- 상품 관련 view controller -->  
 	<mvc:view-controller path="productInfoForm.do" view-name="product/product_info.form"/>
 	<mvc:view-controller path="productJoinForm.do" view-name="product/product_join_form.form"/>	
-	<mvc:view-controller path="productModifyForm.do" view-name="product/product_modify_form.form"/>
 	<mvc:view-controller path="productManagerForm.do" view-name="product/product_manager_form.form"/>
 	
 	<!-- 회원관련 view controller -->

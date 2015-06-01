@@ -4,7 +4,7 @@
 <script type="text/javascript" src="${initParam.rootPath }/script/date_picker.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#registerBtn").on("click",function(){
+		$("#modifyBtn").on("click",function(){
 			if($("#productId").val().trim()=='' ||
 					$("#productPrice").val().trim()=='' ||
 					$("#productInfo").val().trim()=='' ||
@@ -18,9 +18,9 @@
 </script>
 
 <body>
-<h2> 상 품 등 록 </h2>
-
-<form action="${initParam.rootPath}/auth/product/modify.do" method="POST" enctype="multipart/form-data">
+<h2> 상 품 정 보 변 경 </h2>
+	상품번호 : ${requestScope.product.productId }
+<form action="${initParam.rootPath}/auth/modifyProduct.do" method="POST" enctype="multipart/form-data">
 	<input type="text" id="productName" name="productName" placeholder="상품이름" value="${requestScope.product.productName }" required="required"/><br>
 	<input type="number" id="productPrice" name="productPrice" placeholder="상품가격" value="${requestScope.product.productPrice }" required="required"/><br>
 	상품 분류 : 
@@ -34,8 +34,9 @@
 	<input type="file" id="upfile" name="upfile"/><br>
 	<input type="text" id="expDate" name="expDate" required="required" value="${requestScope.product.expDate }">
 	<input type="button" value="유통기한" onClick="datePicker(event,'expDate')"><br>
+	<input type="hidden" name="productId" value="${requestScope.product.productId }"/>
 	<input type="hidden" name="SellerId" value="${sessionScope.loginInfo.sellerId }"/>
-	<input type="submit" id="registerBtn" value="상품등록">
+	<input type="submit" id="modifyBtn" value="상품정보 변경">
 </form>
 
 </body>
