@@ -1,11 +1,12 @@
 drop table cart;
 drop table orders;
+drop table center;
+drop table pboard;
 drop table product;
 drop table seller;
 drop table buyer;
-drop table pboard;
-drop table pboard;
-drop table center;
+
+
 
 
 create table buyer(
@@ -36,7 +37,7 @@ create table product(
    product_price number not null,
    category varchar2(20) not null,
    product_info varchar2(2000) not null,
-   image_path varchar2(100) not null,
+   image_path varchar2(200) not null,
    regi_date varchar2(10) not null,
    exp_date varchar2(10) not null,
    seller_id varchar2(20),
@@ -84,10 +85,15 @@ create table pboard(
 
 
 
+select * from seller
+
+insert into seller (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number)
+values('seller-1','1111','홍길동','남','서울','df@df.com','010-1234-1234','true','false','1234-23125')
+
+insert into seller (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number)
+values('admin','admin','홍길동','남','서울','df@df.com','010-1234-1234','true','true','1111-11111')
 
 
-
-
-
-
+select * from product
+select * from buyer
 

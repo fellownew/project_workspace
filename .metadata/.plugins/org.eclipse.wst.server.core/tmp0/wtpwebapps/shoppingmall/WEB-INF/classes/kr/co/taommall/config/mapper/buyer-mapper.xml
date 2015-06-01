@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="account.dao.buyer">
+
+<insert id="insertBuyer" parameterType="buyer" >
+	insert into buyer values(#{buyerId},#{password},#{name},#{address},#{email},#{phone})
+</insert>
+<update id="updateBuyerById" parameterType="buyer">
+	update buyer
+	set password=#{password}, name=#{name}, address=#{address}, email=#{email}, phone=#{phone}
+	where buyer_id=#{buyerId}
+</update>
+
+<delete id="deleteBuyerById" parameterType="string">
+	delete from buyer
+	where buyer_id = #{value}
+</delete>
+
+<sql id="select-buyer-basic">
+	select buyer_id,password,name,address,email,phone
+	from buyer
+</sql>
+<resultMap type="buyer" id="resultMap-buyer-basic">
+	<id column="buyer_id" property="buyerId"/>	
+	<result column="password" property="password"/>
+	<result column="name" property="name"/>
+	<result column="address" property="address"/>
+	<result column="email" property="email"/>
+	<result column="phone" property="phone"/>
+</resultMap>
+<select id="selectBuyerAllMember" resultMap="resultMap-buyer-basic">
+	<include refid="select-buyer-basic"/>
+</select>
+
+<select id="selectBuyerById" parameterType="string" resultMap="resultMap-buyer-basic">
+	<include refid="select-buyer-basic"/>
+	where buyer_id = #{value}
+</select>
+</mapper>

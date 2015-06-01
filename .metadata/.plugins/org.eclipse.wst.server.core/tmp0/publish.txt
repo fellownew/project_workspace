@@ -1,3 +1,7 @@
 #Tomcat publish data
-#Sat May 30 15:08:47 KST 2015
+#Mon Jun 01 09:27:27 KST 2015
+>>>>>>>=429ac48de8138eb5a12b9e3ecf81333b07d0f78a
 org.eclipse.jst.jee.server\:/binary\:C\:\\Users\\KOSTA_03_008\\.m2\\repository\\org\\springframework\\spring-web\\4.1.6.RELEASE\\spring-web-4.1.6.RELEASE.jar=WEB-INF/lib/spring-web-4.1.6.RELEASE.jar
+org.eclipse.jst.jee.server\:/binary\:C\:\\Users\\KOSTA_03_011\\.m2\\repository\\org\\springframework\\spring-web\\4.1.6.RELEASE\\spring-web-4.1.6.RELEASE.jar=WEB-INF/lib/spring-web-4.1.6.RELEASE.jar
+=\=\=\=\=\=\=
+<<<<<<<=HEAD

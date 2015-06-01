@@ -43,7 +43,7 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
-	public List<Product> selectProductById(String productId) {
+	public List<Product> selectProductById(int productId) {
 		// TODO Auto-generated method stub
 		return session.selectList(nameSpace+"selectProductById",productId);
 	}
