@@ -20,6 +20,7 @@
 	select seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number
 	from seller
 </sql>
+
 <resultMap type="seller" id="resultMap-seller-basic">
 	<id column="seller_id" property="sellerId"/>	
 	<result column="password" property="password"/>
@@ -32,6 +33,7 @@
 	<result column="admin" property="admin"/>
 	<result column="corporate_number" property="corporateNumber"/>
 </resultMap>
+
 <select id="selectSellerAllMember" resultMap="resultMap-seller-basic">
 	<include refid="select-seller-basic"/>
 </select>
@@ -41,4 +43,40 @@
 	where seller_id = #{value}
 </select>
 
+
+<select id="selectSellerCount" resultType="_int">
+	select count(*)
+	from seller
+</select>
+
+<select id="selectAllSellerPaging" parameterType="map" resultMap="resultMap-seller-basic">
+		select seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number
+		from (
+			select ceil(rownum/#{contentsPerPage}) page, seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number
+			from (
+				<include refid="select-seller-basic"/>
+					<choose>
+						<when test="auth == 'asc'">
+							order by auth asc
+						</when>
+						<when test="auth == 'desc'">
+							order by auth desc
+						</when>
+					</choose>
+			)
+		) 
+		where page = #{pageNo}
+</select>
+
+<select id="selectSellerOrderByAuth" parameterType="map" resultMap="resultMap-seller-basic">
+	<include refid="select-seller-basic"/>
+	<choose>
+		<when test="auth == 'asc'">
+			order by auth asc
+		</when>
+		<when test="auth == 'desc'">
+			order by auth desc
+		</when>
+	</choose>
+</select>
 </mapper>
