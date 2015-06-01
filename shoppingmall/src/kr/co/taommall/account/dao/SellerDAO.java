@@ -11,4 +11,7 @@ public interface SellerDAO {
 	public int deleteSellerById(String id);
 	public int updateSellerById(Seller seller);
 	public Seller selectSellerById(String id);
+	public List<Seller> selectSellerOrderByAuth(String auth);
+	public int selectSellerCount();
+	public List<Seller> selectAllSellerPaging(int pageNo,String auth);
 }

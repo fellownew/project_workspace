@@ -1,8 +1,11 @@
 package kr.co.taommall.account.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import kr.co.taommall.account.vo.Seller;
+import kr.co.taommall.common.PagingBean;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,10 +41,15 @@ public class SellerDAOImpl implements SellerDAO {
 
 	}
 
+	public List<Seller> selectSellerOrderByAuth(String auth){
+		System.out.println(auth);
+		Map map = new HashMap();
+		map.put("auth", auth);
+		return session.selectList(namespace + "selectSellerOrderByAuth",map);
+	}
+	
 	public Seller selectSellerById(String id) {
-
 		return session.selectOne(namespace + "selectSellerById", id);
-
 	}
 
 	public int deleteSellerById(String id) {
@@ -56,4 +64,20 @@ public class SellerDAOImpl implements SellerDAO {
 
 	}
 
+	public int selectSellerCount(){
+		return session.selectOne(namespace+"selectSellerCount");
+	}
+	
+	public List<Seller> selectAllSellerPaging(int pageNo,String auth){
+		
+		int contentsPerPage =PagingBean.CONTENTS_PER_PAGE;
+		Map map = new HashMap();
+		map.put("contentsPerPage", contentsPerPage);
+		map.put("pageNo", pageNo);
+		map.put("auth", auth);
+		return  session.selectList(namespace+"selectAllSellerPaging",map);
+		
+	}
+	
+	
 }

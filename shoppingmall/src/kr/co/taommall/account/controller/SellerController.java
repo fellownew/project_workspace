@@ -1,13 +1,15 @@
 package kr.co.taommall.account.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import kr.co.taommall.account.service.SellerService;
-import kr.co.taommall.account.service.SellerServiceImpl;
-import kr.co.taommall.account.vo.Buyer;
 import kr.co.taommall.account.vo.Seller;
+import kr.co.taommall.common.PagingBean;
 import kr.co.taommall.mail.SendMail;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/seller")
@@ -25,7 +28,6 @@ public class SellerController {
 	@Autowired
 	@Qualifier("sellerService")
 	SellerService service;
-
 	
 	@RequestMapping("/sellerJoin.do")
 	public String joinBuyer(@ModelAttribute Seller seller,Error error) {
@@ -100,8 +102,6 @@ public class SellerController {
 		}else{
 			return "fail";
 		}
-	
-
 	}
 	
 	@RequestMapping("/phoneModify.do")
@@ -115,7 +115,6 @@ public class SellerController {
 		if(count == 0){
 			return "fail";
 		}
-
 		return phone;
 	}
 	
@@ -130,7 +129,6 @@ public class SellerController {
 		if(count == 0){
 			return "fail";
 		}
-
 		return email;
 	}
 	
@@ -149,4 +147,44 @@ public class SellerController {
 
 		return address;
 	}
+	
+	
+	public String sellerAuthCheck(){
+		
+		List<Seller> list = service.selectSellerOrderByAuth("true");
+		for(Seller s : list){
+			System.out.println(s);
+		}
+		return null;
+	}
+	
+	@RequestMapping("/sellerList.do")
+	public ModelAndView sellerList(){
+		List<Seller> list = service.selectSellerAllMember();
+		Map map = new HashMap();
+		map.put("member_list", list);
+		map.put("auth","asc");
+		return new ModelAndView("/body/seller/memberList.jsp", map);
+	}
+
+	@RequestMapping("/memberListPaging.do")
+	public ModelAndView memberListPaging(	@RequestParam(defaultValue="1")int page,
+											@RequestParam(defaultValue="desc") String auth,
+											@RequestParam(defaultValue="false") String check){
+		if(check.equals("true")){
+			if(auth.equals("asc")){
+				auth="desc";
+			}else{
+				auth="asc";
+			}
+		}
+		Map map = service.selectAllSellerPaging(page,auth);
+
+		map.put("auth", auth);
+		
+		return new ModelAndView("/body/seller/memberList.jsp", map);
+	}
+
+
+
 }

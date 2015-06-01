@@ -84,11 +84,14 @@ create table pboard(
 
 
 
-select * from seller
+
 
 insert into seller (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number)
-values('seller-1','1111','홍길동','남','서울','df@df.com','010-1234-1234','true','false','1234-23125')
+values('seller-2','1111','홍길동','남','서울','df@df.com','010-1234-1234','false','false','1234-23125')
 
-select * from product
+select * from product 
+select * from orders
+select * from buyer
+select * from seller
 
-
+insert into orders(order_id,product_id,amount,status,buyer_id) values('6',41 ,'2 ','배송끝','1')

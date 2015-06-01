@@ -132,4 +132,10 @@ public class BuyerController {
 		return address;
 	}
 	
+	@RequestMapping("/logout.do")
+	public String logout(HttpSession session){
+		session.invalidate();
+		return "page.jsp";
+	}
+	
 }
