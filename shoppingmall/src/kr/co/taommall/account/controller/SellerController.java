@@ -37,7 +37,7 @@ public class SellerController {
 		int count = service.insertSeller(seller);
 		System.out.println(seller);
 		System.out.println(count);
-		return "/index.do";
+		return "main.do";
 	}
 	
 	
