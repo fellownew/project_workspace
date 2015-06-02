@@ -28,7 +28,7 @@ public class BuyerController {
 	public String joinBuyer(@ModelAttribute Buyer buyer,Error error) {
 		int count = service.insertBuyer(buyer);
 		System.out.println(count);
-		return "response.jsp";
+		return "main.do";
 	}
 
 	@RequestMapping("/identifyId.do")
@@ -135,7 +135,7 @@ public class BuyerController {
 		return address;
 	}
 	
-	@RequestMapping("/logout.do")
+	@RequestMapping("/auth/logout.do")
 	   public String logout(HttpSession session){
 	      session.invalidate();
 	      return "main.do";

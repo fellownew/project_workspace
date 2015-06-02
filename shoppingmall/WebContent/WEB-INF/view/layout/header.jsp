@@ -37,20 +37,22 @@ body a {
 			<c:when test="${sessionScope.user=='seller'}">
 				<c:choose>
 					<c:when test="${sessionScope.loginInfo.admin=='true' }">
-						<a href="<%=request.getContextPath() %>/accountManager.do">회원관리</a>	
-						<a href="<%=request.getContextPath() %>/seller/logout.do">로그아웃</a>	
+						<a href="<%=request.getContextPath() %>/seller/auth/memberListPaging.do">회원관리</a>	
+						<a href="<%=request.getContextPath() %>/seller/auth/logout.do">로그아웃</a>	
 					</c:when>
 					<c:otherwise>
+						${requestScope.loginInfo.sellerId }님 환영합니다. | 
 						<a href="<%=request.getContextPath() %>/auth/productManager.do?sellerId=${sessionScope.loginInfo.sellerId}">상품관리</a> |
-						<a href="<%=request.getContextPath() %>/sellerInfoForm.do">회원정보</a> |
-						<a href="<%=request.getContextPath() %>/seller/logout.do">로그아웃</a>	
+						<a href="<%=request.getContextPath() %>/auth/sellerInfoForm.do">회원정보</a> |
+						<a href="<%=request.getContextPath() %>/seller/auth/logout.do">로그아웃</a>	
 					</c:otherwise>
 				</c:choose>	
 			</c:when>
 			<%-- 구매자 확인 --%>
 			<c:when test="${sessionScope.user=='buyer'}">
-				<a href="<%=request.getContextPath() %>/buyerInfoForm.do">회원정보</a> |
-				<a href="<%=request.getContextPath() %>/buyer/logout.do">로그아웃</a>	
+				${requestScope.loginInfo.buyerId }님 환영합니다. | 
+				<a href="<%=request.getContextPath() %>/auth/buyerInfoForm.do">회원정보</a> |
+				<a href="<%=request.getContextPath() %>/buyer/auth/logout.do">로그아웃</a>	
 			</c:when>
 			<%-- 비로그인 --%>
 			<c:otherwise>

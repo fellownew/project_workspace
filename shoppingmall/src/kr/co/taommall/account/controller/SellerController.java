@@ -37,7 +37,7 @@ public class SellerController {
 		int count = service.insertSeller(seller);
 		System.out.println(seller);
 		System.out.println(count);
-		return "response.jsp";
+		return "/index.do";
 	}
 	
 	
@@ -143,23 +143,14 @@ public class SellerController {
 	}
 	
 
-	@RequestMapping("/logout.do")
+	@RequestMapping("/auth/logout.do")
 	   public String logout(HttpSession session){
 	      session.invalidate();
 	      return "main.do";
 	   }
 
-	
-	public String sellerAuthCheck(){
-		
-		List<Seller> list = service.selectSellerOrderByAuth("true");
-		for(Seller s : list){
-			System.out.println(s);
-		}
-		return null;
-	}
 
-	@RequestMapping("/memberListPaging.do")
+	@RequestMapping("/auth/memberListPaging.do")
 	public ModelAndView memberListPaging(	@RequestParam(defaultValue="1")int page,
 											@RequestParam(defaultValue="desc") String auth,
 											@RequestParam(defaultValue="false") String check,
@@ -174,10 +165,10 @@ public class SellerController {
 		Map map = service.selectAllSellerPaging(page,auth,Integer.parseInt(count));
 		map.put("auth", auth);
 		map.put("count", count);
-		return new ModelAndView("/body/seller/memberList.jsp", map);
+		return new ModelAndView("/WEB-INF/view/body/seller/memberList.jsp", map);
 	}	
 	
-	@RequestMapping("/updateAuth.do")
+	@RequestMapping("/auth/updateAuth.do")
 	@ResponseBody 
 	public String updateAuth(	@RequestParam(value="auth")ArrayList<String> list,
 								@RequestParam(value="unchecked")ArrayList<String> unchecked){
@@ -209,5 +200,6 @@ public class SellerController {
 		return "success";
 		
 	}
+
 	
 }

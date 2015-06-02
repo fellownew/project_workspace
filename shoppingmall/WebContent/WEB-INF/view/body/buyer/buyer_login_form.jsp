@@ -6,7 +6,6 @@
 <link rel="stylesheet" type="text/css"
 	href="	">
 <title>Insert title here</title>
-
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/buyer_login.js"></script>
 </head>
@@ -16,7 +15,7 @@
 	<label>셀러<input type="radio" id="sLogin" name="login" class="login" ></label>
 	<fieldset style="height:200px;border:none;">
 	<div	 id="blog" class="loginForm">
-	<form action="<%=request.getContextPath()%>/buyerInfoForm.do" class="loginForm" id="buyerLogin" method="post">
+	<form action="<%=request.getContextPath()%>/index.do" class="loginForm" id="buyerLogin" method="post">
 		<div>
 		<input type="text" name="bId" id="bId" placeholder="아이디1" class="loginInput">
 		<span id="bIdErr" class="error" style="display:none">아이디를 입력해주세요.</span>
@@ -30,7 +29,7 @@
 	</form>
 	</div>
 	<div id="slog" class="loginForm" style="display:none">
-	<form action="<%=request.getContextPath()%>/sellerInfoForm.do" class="loginForm" id="sellerLogin" method="post">
+	<form action="<%=request.getContextPath()%>/index.do" class="loginForm" id="sellerLogin" method="post">
 		<div>
 		<input type="text" name="sId" id="sId" placeholder="아이디2" class="loginInput">
 		<span id="sIdErr" class="error" style="display:none">아이디를 입력해주세요.</span>
