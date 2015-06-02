@@ -3,6 +3,20 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <meta charset="UTF-8">
+<script type="text/javascript" src="<%=request.getContextPath() %>/script/jquery.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#tbody").on("mouseover","tr",function(){
+		$("#tbody tr").css("background-color","red");
+		$(this).css("background-color","rosybrown");
+	});
+});
+
+function info(idx){
+	location="productInfo.do?productId="+idx;
+}
+</script>
+
 <body>
 <c:if test="${fn:length(requestScope.productList) != 0 }">
 	<table width="700" border='1'>
@@ -17,7 +31,7 @@
 		</thead>
 		<tbody>
 			<c:forEach items="${requestScope.productList }" var="product">
-				<tr>
+				<tr onclick="info(${product.productId})">
 					<td><img src="${product.imagePath }" width="120px" height="120px"/></td>
 					<td>${product.productName}</td>
 					<td>${product.productPrice}</td>

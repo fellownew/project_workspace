@@ -47,6 +47,7 @@ create table product(
 create table cart(
    buyer_id varchar2(20),
    product_id number,
+   amount number,
    
    constraint cart_buyer_id_fk foreign key(buyer_id) references buyer(buyer_id) ON DELETE CASCADE,
    constraint cart_product_id_fk foreign key(product_id) references product(product_id) ON DELETE CASCADE

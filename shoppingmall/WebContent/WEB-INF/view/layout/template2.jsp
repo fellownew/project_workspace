@@ -43,7 +43,7 @@ body{
 .center{
 	margin-left:auto;
 	margin-right:auto;
-	width:30%
+	width:50%
 }
 
 </style>

@@ -25,7 +25,7 @@ public class ProductController {
 	//상품관리 페이지
 	@RequestMapping("/productManager.do")
 	public String selectBySellerId(@RequestParam String sellerId,Model model){
-			List<Product> list = service.selectProductBySellerIdNoPaging(sellerId);
+			List<Product> list = service.selectProductBySellerIdNoPaging(sellerId,model);
 			model.addAttribute("productList", list);
 		return "product/product_manager_form.form";
 	}
@@ -39,7 +39,7 @@ public class ProductController {
 	//상품 수정 폼
 	@RequestMapping("/productModifyForm.do")
 	public String updateForm(@RequestParam int productId,Model model){
-		Product product = service.selectProductByIdNoPaging(productId);
+		Product product = service.selectProductByIdNoPaging(productId,model);
 		model.addAttribute("product", product);
 		return "product/product_modify_form.form";
 	}
@@ -48,7 +48,7 @@ public class ProductController {
 	@RequestMapping("/modifyProduct.do")
 	public String update(@ModelAttribute Product product ,MultipartFile upfile,Model model,HttpSession session){
 		service.updateProduct(product,upfile);
-		Product rProduct = service.selectProductByIdNoPaging(product.getProductId());
+		Product rProduct = service.selectProductByIdNoPaging(product.getProductId(),model);
 		model.addAttribute("product",rProduct);
 		Seller seller = (Seller)session.getAttribute("loginInfo");
 		return "productManager.do?sellerId="+seller.getSellerId();

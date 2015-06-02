@@ -40,4 +40,12 @@ public class CommonController {
 		return "product/product_list.form";
 	}
 	
+	@RequestMapping("/productInfo.do")
+	public String selectProductById(@RequestParam String productId,Model model){
+		int pId = Integer.parseInt(productId);
+		Product product = service.selectProductByIdNoPaging(pId,model);
+		model.addAttribute("product", product);
+		return "product/product_info.form";
+	}
+	
 }

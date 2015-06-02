@@ -37,7 +37,7 @@ public class SellerController {
 		int count = service.insertSeller(seller);
 		System.out.println(seller);
 		System.out.println(count);
-		return "/index.do";
+		return "main.do";
 	}
 	
 	
@@ -165,7 +165,7 @@ public class SellerController {
 		Map map = service.selectAllSellerPaging(page,auth,Integer.parseInt(count));
 		map.put("auth", auth);
 		map.put("count", count);
-		return new ModelAndView("/WEB-INF/view/body/seller/memberList.jsp", map);
+		return new ModelAndView("seller/memberList.form", map);
 	}	
 	
 	@RequestMapping("/auth/updateAuth.do")
@@ -199,8 +199,6 @@ public class SellerController {
 		}
 		return "success";
 		
-		return new ModelAndView("seller/memberList.form", map);
-
 	}
 
 	

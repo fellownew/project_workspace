@@ -37,7 +37,7 @@ body a {
 			<c:when test="${sessionScope.user=='seller'}">
 				<c:choose>
 					<c:when test="${sessionScope.loginInfo.admin=='true' }">
-						<a href="<%=request.getContextPath() %>/seller/auth/memberListPaging.do">회원관리</a>	
+						<a href="<%=request.getContextPath() %>/seller/auth/memberListPaging.do">회원관리</a>
 						<a href="<%=request.getContextPath() %>/seller/auth/logout.do">로그아웃</a>	
 					</c:when>
 					<c:otherwise>

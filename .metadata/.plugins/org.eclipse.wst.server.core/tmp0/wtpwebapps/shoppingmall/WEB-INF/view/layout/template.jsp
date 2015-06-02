@@ -46,6 +46,11 @@ body{
 	height:50px;
 	clear:both;
 }
+.center{
+	margin-left:auto;
+	margin-right:auto;
+	width:50%
+}
 
 </style>
 </head>
@@ -62,7 +67,7 @@ body{
 		<tiles:insertAttribute name="aside"/>
 	</div>
 	
-	<div id="section">
+	<div id="section" class="center">
 		<tiles:insertAttribute name="body"/>
 	</div>
 	

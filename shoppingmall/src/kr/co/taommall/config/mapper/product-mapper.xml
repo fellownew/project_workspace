@@ -43,7 +43,7 @@
 	</resultMap>
 	
 	
-	<select id="selectProductByIdNoPaging" parameterType="String" resultMap="product-resultMap">
+	<select id="selectProductByIdNoPaging" parameterType="int" resultMap="product-resultMap">
 		<include refid="product-select"/>
 		where product_id=#{productId}
 	</select>

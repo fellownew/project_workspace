@@ -60,53 +60,93 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public List<Product> selectAllProduct(int pageNo,Model model) {
-		List<Product> list = dao.selectAllProduct(pageNo, model);
 		int totalContent = dao.selectProductCount();
 		PagingBean pagingBean = new PagingBean(totalContent, pageNo);
-		model.addAttribute("member_list", list);
+		int contentsPerPage =PagingBean.CONTENTS_PER_PAGE;
+		model.addAttribute("contentsPerPage", contentsPerPage);
+		model.addAttribute("pageNo", pageNo);
 		model.addAttribute("pagingBean", pagingBean);
+		//dao작업
+		List<Product> list = dao.selectAllProduct(model);
+		model.addAttribute("member_list", list);
 		return list;
 	}
 
 	@Override
 	public List<Product> selectProductById(int productId,int pageNo,Model model) {
+		int totalContent = dao.selectProductCount();
+		PagingBean pagingBean = new PagingBean(totalContent, pageNo);
+		int contentsPerPage =PagingBean.CONTENTS_PER_PAGE;
+		model.addAttribute("contentsPerPage", contentsPerPage);
+		model.addAttribute("pageNo", pageNo);
+		model.addAttribute("pagingBean", pagingBean);
 		model.addAttribute("productId", productId);
-		return dao.selectProductById(pageNo, model);
+		return dao.selectProductById(model);
 	}
 
 	@Override
 	public List<Product> selectProductLikeName(String productName,int pageNo,Model model) {
+		int totalContent = dao.selectProductCount();
+		PagingBean pagingBean = new PagingBean(totalContent, pageNo);
+		int contentsPerPage =PagingBean.CONTENTS_PER_PAGE;
+		model.addAttribute("contentsPerPage", contentsPerPage);
+		model.addAttribute("pageNo", pageNo);
+		model.addAttribute("pagingBean", pagingBean);
 		model.addAttribute("productName", productName);
-		return dao.selectProductLikeName(pageNo, model);
+		return dao.selectProductLikeName(model);
 	}
 
 	@Override
 	public List<Product> selectProductByCategory(String productCategory,int pageNo,Model model) {
+		int totalContent = dao.selectProductCount();
+		PagingBean pagingBean = new PagingBean(totalContent, pageNo);
+		int contentsPerPage =PagingBean.CONTENTS_PER_PAGE;
+		model.addAttribute("contentsPerPage", contentsPerPage);
+		model.addAttribute("pageNo", pageNo);
+		model.addAttribute("pagingBean", pagingBean);
 		model.addAttribute("category", productCategory);
-		return dao.selectProductByCategory(pageNo, model);
+		return dao.selectProductByCategory(model);
 	}
 
 	@Override
 	public List<Product> selectProductByexpDate(String expDate,int pageNo,Model model) {
+		int totalContent = dao.selectProductCount();
+		PagingBean pagingBean = new PagingBean(totalContent, pageNo);
+		int contentsPerPage =PagingBean.CONTENTS_PER_PAGE;
+		model.addAttribute("contentsPerPage", contentsPerPage);
+		model.addAttribute("pageNo", pageNo);
+		model.addAttribute("pagingBean", pagingBean);
 		model.addAttribute("expDate", expDate);
-		return dao.selectProductByexpDate(pageNo, model);
+		return dao.selectProductByexpDate(model);
 	}
 
 	@Override
 	public List<Product> selectProductBySellerId(String sellerId,int pageNo,Model model) {
+		int totalContent = dao.selectProductCount();
+		PagingBean pagingBean = new PagingBean(totalContent, pageNo);
+		int contentsPerPage =PagingBean.CONTENTS_PER_PAGE;
+		model.addAttribute("contentsPerPage", contentsPerPage);
+		model.addAttribute("pageNo", pageNo);
+		model.addAttribute("pagingBean", pagingBean);
 		model.addAttribute("sellerId", sellerId);
-		return dao.selectProductBySellerId(pageNo, model);
+		return dao.selectProductBySellerId(model);
 	}
 
 	@Override
 	public List<Product> selectProductByPrice(int lPrice,int Hprice,int pageNo,Model model) {
 		// TODO Auto-generated method stub 검색 조건에 따라 다르게 검색 함.
+		int totalContent = dao.selectProductCount();
+		PagingBean pagingBean = new PagingBean(totalContent, pageNo);
+		int contentsPerPage =PagingBean.CONTENTS_PER_PAGE;
+		model.addAttribute("contentsPerPage", contentsPerPage);
+		model.addAttribute("pageNo", pageNo);
+		model.addAttribute("pagingBean", pagingBean);
 		model.addAttribute("min", lPrice);
 		model.addAttribute("max",Hprice);
 		if(true){
-			List<Product> list = dao.selectProductBetweenPrice(pageNo, model);
-			List<Product> list1 = dao.selectProductMinPrice(pageNo, model);
-			List<Product> list2 = dao.selectProductMaxPrice(pageNo, model);
+			List<Product> list = dao.selectProductBetweenPrice(model);
+			List<Product> list1 = dao.selectProductMinPrice(model);
+			List<Product> list2 = dao.selectProductMaxPrice(model);
 		}
 		
 		
@@ -114,12 +154,12 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
-	public Product selectProductByIdNoPaging(int productId){
+	public Product selectProductByIdNoPaging(int productId,Model model){
 		return dao.selectProductByIdNoPaging(productId);
 	}
 	
 	@Override
-	public List<Product> selectProductBySellerIdNoPaging(String sellerId){
+	public List<Product> selectProductBySellerIdNoPaging(String sellerId,Model model){
 		return dao.selectProductBySellerIdNoPaging(sellerId);
 	}
 }
