@@ -13,25 +13,25 @@ body a {
 	font-weight: bold;
 	
 }
-#left{
+.left{
 	float: left;
 }
-#sleft{
+#search{
 	float: left;
 	padding-top: 30px;
 }
-#right{
+.right{
 	float: left;
 	padding-top: 60px;
 }
 </style>
 <body>
-	<ul id="left" style="width: 500px"><img src="<%=request.getContextPath() %>/image/logo.jpg" onclick="home()"></ul>
-	<form id="sleft" style="width: 700px" action="search.do" method="POST">
+	<ul class="left" style="width: 500px"><img src="<%=request.getContextPath() %>/image/logo.jpg" onclick="home()"></ul>
+	<form id="search" style="width: 700px" action="list.do" method="POST">
 		<input type="text" name="search" autofocus="autofocus" style="width:500px;height: 30px" >
 		<input type="submit" value="검색">
 	</form>
-	<ul id="right">
+	<ul class="right">
 		<c:choose>
 			<%-- 판매자 확인 --%>
 			<c:when test="${sessionScope.user=='seller'}">

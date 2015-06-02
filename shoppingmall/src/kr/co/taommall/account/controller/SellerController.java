@@ -195,7 +195,7 @@ public class SellerController {
 
 		map.put("auth", auth);
 		
-		return new ModelAndView("/body/seller/memberList.jsp", map);
+		return new ModelAndView("seller/memberList.form", map);
 	}
 
 

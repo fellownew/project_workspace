@@ -1,0 +1,109 @@
+package kr.co.taommall.product.dao;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import kr.co.taommall.account.vo.Seller;
+import kr.co.taommall.common.PagingBean;
+import kr.co.taommall.product.vo.Product;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class ProductDAOImpl implements ProductDAO {
+	
+	@Autowired
+	private SqlSessionTemplate session;
+	private String nameSpace = "kr.co.taommall.product.dao.";
+	
+	@Override
+	public int insertProduct(Product product){
+		int cnt = session.insert(nameSpace+"insertProduct",product);
+		return cnt;
+	}
+	@Override
+	public int updateProduct(Product product){
+			int cnt = session.update(nameSpace+"updateProduct",product);
+			return cnt;
+	}
+	@Override
+	public int updateProductIgnoreImagePath(Product product){
+		int cnt = session.update(nameSpace+"updateProductIgnoreImagePath",product);
+		return cnt;
+	}
+	
+	@Override
+	public int deleteProduct(int productId) {
+		int cnt = session.delete(nameSpace+"deleteProduct",productId);
+		return cnt;
+	}
+
+	@Override
+	public List<Product> selectAllProduct() {
+		return session.selectList(nameSpace+"selectAllProduct");
+	}
+
+	@Override
+	public List<Product> selectProductById(int productId) {
+		// TODO Auto-generated method stub
+		return session.selectList(nameSpace+"selectProductById",productId);
+	}
+
+	@Override
+	public List<Product> selectProductLikeName(String productName) {
+		// TODO Auto-generated method stub
+		return session.selectList(nameSpace+"selectProductlIKEName",productName);
+	}
+
+	@Override
+	public List<Product> selectProductByCategory(String productCategory) {
+		// TODO Auto-generated method stub
+		return session.selectList(nameSpace+"selectProductByCategory",productCategory);
+	}
+
+	@Override
+	public List<Product> selectProductByexpDate(String expDate) {
+		// TODO Auto-generated method stub
+		return session.selectList(nameSpace+"selectProductByexpDate",expDate);
+	}
+
+	@Override
+	public List<Product> selectProductBySellerId(String sellerId) {
+		// TODO Auto-generated method stub
+		List<Product> list = session.selectList(nameSpace+"selectProductBySellerId",sellerId);
+		return list;
+	}
+
+	@Override
+	public List<Product> selectProductBetweenPrice(int lPrice,int Hprice) {
+		// TODO Auto-generated method stub 반환값 설정
+		int[] cnt = {lPrice,Hprice};
+		return session.selectList(nameSpace+"selectProductBetweenPrice",cnt);
+	}
+
+	@Override
+	public List<Product> selectProductMinPrice(int price) {
+		// TODO Auto-generated method stub
+		return session.selectList(nameSpace+"selectProductMinPrice",price);
+	}
+
+	@Override
+	public List<Product> selectProductMaxPrice(int price) {
+		// TODO Auto-generated method stub
+		return session.selectList(nameSpace+"selectProductMaxPrice",price);
+	}
+	
+	public List<Seller> selectAllProductPaging(int pageNo){
+		
+		int contentsPerPage =PagingBean.CONTENTS_PER_PAGE;
+		Map<String,Object> map = new HashMap();
+		map.put("contentsPerPage", contentsPerPage);
+		map.put("pageNo", pageNo);
+		return  session.selectList(nameSpace+"selectAllSellerPaging",map);
+		
+	}
+	
+}

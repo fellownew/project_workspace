@@ -4,11 +4,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import kr.co.taommall.common.PagingBean;
 import kr.co.taommall.product.dao.ProductDAO;
 import kr.co.taommall.product.vo.Product;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
@@ -40,6 +42,8 @@ public class ProductServiceImpl implements ProductService {
 	public void updateProduct(Product product,MultipartFile upfile){
 		//imagePath가 있는 경우
 		if(product.getImagePath()!=null){
+			File file = new File(abImagePath,product.getImagePath().substring(8));
+			file.delete();
 			dao.updateProduct(product);	
 		}else{
 			dao.updateProductIgnoreImagePath(product);
@@ -48,62 +52,74 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public int deleteProduct(int productId) {
-		List<Product> list = dao.selectProductById(productId);
-		Product product = list.get(0);
+		Product product = dao.selectProductByIdNoPaging(productId);
 		File file = new File(abImagePath,product.getImagePath().substring(8));
 		file.delete();
 		return dao.deleteProduct(productId);
 	}
 
 	@Override
-	public List<Product> selectAllProduct() {
-		
-		return dao.selectAllProduct();
+	public List<Product> selectAllProduct(int pageNo,Model model) {
+		List<Product> list = dao.selectAllProduct(pageNo, model);
+		int totalContent = dao.selectProductCount();
+		PagingBean pagingBean = new PagingBean(totalContent, pageNo);
+		model.addAttribute("member_list", list);
+		model.addAttribute("pagingBean", pagingBean);
+		return list;
 	}
 
 	@Override
-	public List<Product> selectProductById(int productId) {
-		// TODO Auto-generated method stub
-		return dao.selectProductById(productId);
+	public List<Product> selectProductById(int productId,int pageNo,Model model) {
+		model.addAttribute("productId", productId);
+		return dao.selectProductById(pageNo, model);
 	}
 
 	@Override
-	public List<Product> selectProductLikeName(String productName) {
-		// TODO Auto-generated method stub
-		return dao.selectProductLikeName(productName);
+	public List<Product> selectProductLikeName(String productName,int pageNo,Model model) {
+		model.addAttribute("productName", productName);
+		return dao.selectProductLikeName(pageNo, model);
 	}
 
 	@Override
-	public List<Product> selectProductByCategory(String productCategory) {
-		// TODO Auto-generated method stub
-		return dao.selectProductByCategory(productCategory);
+	public List<Product> selectProductByCategory(String productCategory,int pageNo,Model model) {
+		model.addAttribute("category", productCategory);
+		return dao.selectProductByCategory(pageNo, model);
 	}
 
 	@Override
-	public List<Product> selectProductByexpDate(String expDate) {
-		// TODO Auto-generated method stub
-		return dao.selectProductByexpDate(expDate);
+	public List<Product> selectProductByexpDate(String expDate,int pageNo,Model model) {
+		model.addAttribute("expDate", expDate);
+		return dao.selectProductByexpDate(pageNo, model);
 	}
 
 	@Override
-	public List<Product> selectProductBySellerId(String sellerId) {
-		// TODO Auto-generated method stub
-		return dao.selectProductBySellerId(sellerId);
+	public List<Product> selectProductBySellerId(String sellerId,int pageNo,Model model) {
+		model.addAttribute("sellerId", sellerId);
+		return dao.selectProductBySellerId(pageNo, model);
 	}
 
 	@Override
-	public List<Product> selectProductByPrice(int lPrice,int Hprice) {
+	public List<Product> selectProductByPrice(int lPrice,int Hprice,int pageNo,Model model) {
 		// TODO Auto-generated method stub 검색 조건에 따라 다르게 검색 함.
-			
+		model.addAttribute("min", lPrice);
+		model.addAttribute("max",Hprice);
 		if(true){
-			List<Product> list = dao.selectProductBetweenPrice(lPrice, Hprice);
-			List<Product> list1 = dao.selectProductMinPrice(lPrice);
-			List<Product> list2 = dao.selectProductMaxPrice(Hprice);
+			List<Product> list = dao.selectProductBetweenPrice(pageNo, model);
+			List<Product> list1 = dao.selectProductMinPrice(pageNo, model);
+			List<Product> list2 = dao.selectProductMaxPrice(pageNo, model);
 		}
 		
 		
 		return null;
 	}
-
 	
+	@Override
+	public Product selectProductByIdNoPaging(int productId){
+		return dao.selectProductByIdNoPaging(productId);
+	}
+	
+	@Override
+	public List<Product> selectProductBySellerIdNoPaging(String sellerId){
+		return dao.selectProductBySellerIdNoPaging(sellerId);
+	}
 }

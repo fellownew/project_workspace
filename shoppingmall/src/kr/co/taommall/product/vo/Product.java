@@ -11,7 +11,7 @@ public class Product implements Serializable{
 	private String imagePath;
 	private String regiDate;
 	private String expDate;
-	private String SellerId;
+	private String sellerId;
 	
 	public Product(){}
 
@@ -27,48 +27,31 @@ public class Product implements Serializable{
 		this.imagePath = imagePath;
 		this.regiDate = regiDate;
 		this.expDate = expDate;
-		SellerId = sellerId;
+		this.sellerId = sellerId;
 	}
 
 	public Product(int productId, String productName, int productPrice,
-			String category, String productInfo, String expDate, String sellerId) {
+			String category, String productInfo, String imagePath,
+			String expDate) {
 		super();
 		this.productId = productId;
-		this.productName = productName;
-		this.productPrice = productPrice;
-		this.category = category;
-		this.productInfo = productInfo;
-		this.expDate = expDate;
-		SellerId = sellerId;
-	}
-
-	public Product(int productId, String productName, int productPrice,
-			String category, String productInfo, String regiDate,
-			String expDate, String sellerId) {
-		super();
-		this.productId = productId;
-		this.productName = productName;
-		this.productPrice = productPrice;
-		this.category = category;
-		this.productInfo = productInfo;
-		this.regiDate = regiDate;
-		this.expDate = expDate;
-		SellerId = sellerId;
-	}
-	
-	//???
-	public Product(String productName, int productPrice, String category,
-			String productInfo, String imagePath, String regiDate,
-			String expDate, String sellerId) {
-		super();
 		this.productName = productName;
 		this.productPrice = productPrice;
 		this.category = category;
 		this.productInfo = productInfo;
 		this.imagePath = imagePath;
-		this.regiDate = regiDate;
 		this.expDate = expDate;
-		SellerId = sellerId;
+	}
+
+	public Product(int productId, String productName, int productPrice,
+			String category, String productInfo, String expDate) {
+		super();
+		this.productId = productId;
+		this.productName = productName;
+		this.productPrice = productPrice;
+		this.category = category;
+		this.productInfo = productInfo;
+		this.expDate = expDate;
 	}
 
 	public int getProductId() {
@@ -136,19 +119,17 @@ public class Product implements Serializable{
 	}
 
 	public String getSellerId() {
-		return SellerId;
+		return sellerId;
 	}
 
 	public void setSellerId(String sellerId) {
-		SellerId = sellerId;
+		this.sellerId = sellerId;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((SellerId == null) ? 0 : SellerId.hashCode());
 		result = prime * result
 				+ ((category == null) ? 0 : category.hashCode());
 		result = prime * result + ((expDate == null) ? 0 : expDate.hashCode());
@@ -162,6 +143,8 @@ public class Product implements Serializable{
 		result = prime * result + productPrice;
 		result = prime * result
 				+ ((regiDate == null) ? 0 : regiDate.hashCode());
+		result = prime * result
+				+ ((sellerId == null) ? 0 : sellerId.hashCode());
 		return result;
 	}
 
@@ -174,11 +157,6 @@ public class Product implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Product other = (Product) obj;
-		if (SellerId == null) {
-			if (other.SellerId != null)
-				return false;
-		} else if (!SellerId.equals(other.SellerId))
-			return false;
 		if (category == null) {
 			if (other.category != null)
 				return false;
@@ -213,6 +191,11 @@ public class Product implements Serializable{
 				return false;
 		} else if (!regiDate.equals(other.regiDate))
 			return false;
+		if (sellerId == null) {
+			if (other.sellerId != null)
+				return false;
+		} else if (!sellerId.equals(other.sellerId))
+			return false;
 		return true;
 	}
 
@@ -222,8 +205,9 @@ public class Product implements Serializable{
 				+ productName + ", productPrice=" + productPrice
 				+ ", category=" + category + ", productInfo=" + productInfo
 				+ ", imagePath=" + imagePath + ", regiDate=" + regiDate
-				+ ", expDate=" + expDate + ", SellerId=" + SellerId + "]";
+				+ ", expDate=" + expDate + ", sellerId=" + sellerId + "]";
 	}
+
 
 	
 }

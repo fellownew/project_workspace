@@ -6,6 +6,7 @@
 <title>Insert title here</title>
 </head>
 <body style="text-align: center;">
+	<a href="seller/memberListPaging.do">memberListPaging.do</a>
 	<table border="1" style="width: 1400px;height: 800px" >
 		<tr>
 			<td>상품1</td>

@@ -22,39 +22,38 @@ public class ProductController {
 	
 	@Autowired
 	ProductService service;
-	
+	//상품관리 페이지
 	@RequestMapping("/productManager.do")
 	public String selectBySellerId(@RequestParam String sellerId,Model model){
-			List<Product> list = service.selectProductBySellerId(sellerId);
+			List<Product> list = service.selectProductBySellerIdNoPaging(sellerId);
 			model.addAttribute("productList", list);
 		return "product/product_manager_form.form";
 	}
-	
+	//상품 등록 처리
 	@RequestMapping("/insertProduct.do")
-	public String insert(@ModelAttribute Product product,MultipartFile upfile,Model model){
+	public String insert(@ModelAttribute Product product,MultipartFile upfile,Model model,HttpSession session){
 		service.insertProduct(product,upfile);
-		return "product/product_manager_form.form";
+		Seller seller = (Seller)session.getAttribute("loginInfo");
+		return "productManager.do?sellerId="+seller.getSellerId();
 	}
-	
+	//상품 수정 폼
 	@RequestMapping("/productModifyForm.do")
 	public String updateForm(@RequestParam int productId,Model model){
-		List<Product> list = service.selectProductById(productId);
-		Product product = list.get(0);
+		Product product = service.selectProductByIdNoPaging(productId);
 		model.addAttribute("product", product);
 		return "product/product_modify_form.form";
 	}
 	
-	
+	//상품 수정 처리
 	@RequestMapping("/modifyProduct.do")
 	public String update(@ModelAttribute Product product ,MultipartFile upfile,Model model,HttpSession session){
 		service.updateProduct(product,upfile);
-		List<Product> rProduct = service.selectProductById(product.getProductId());
-		model.addAttribute("product",rProduct.get(0));
+		Product rProduct = service.selectProductByIdNoPaging(product.getProductId());
+		model.addAttribute("product",rProduct);
 		Seller seller = (Seller)session.getAttribute("loginInfo");
-		System.out.println("asdf : "+seller);
 		return "productManager.do?sellerId="+seller.getSellerId();
 	}
-	
+	//상품 삭제 처리
 	@RequestMapping("/deleteProduct.do")
 	public String delete(@RequestParam String productId, HttpSession session){
 			int pId = Integer.parseInt(productId); 
@@ -62,14 +61,5 @@ public class ProductController {
 			Seller seller = (Seller)session.getAttribute("loginInfo");
 		return "productManager.do?sellerId="+seller.getSellerId();
 	}
-	
-	@RequestMapping("/select.do")
-	public String selectList(@RequestParam String search, @ModelAttribute Product product,Model model){
-		
-		
-		return "/product_list";
-	}
-	
-
 	
 }
