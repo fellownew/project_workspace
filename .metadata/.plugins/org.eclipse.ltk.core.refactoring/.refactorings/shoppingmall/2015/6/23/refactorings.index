@@ -2,3 +2,7 @@
 1433137314130	Delete elements
 1433139492767	Delete elements
 1433144951423	Move 'topmenu.css' to 'css'
+1433205347768	Copy compilation unit
+1433205369689	Rename type 'ProductController'
+1433207121248	Move 'fakeData.sql' to 'data'
+1433207124426	Move 'fakeData.sql' to 'etc'

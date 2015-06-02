@@ -45,7 +45,7 @@ function modifyProduct(idx){
 <h2>상품 관리</h2>
 <button id="registerProductBtn" >상품등록</button>
 <c:if test="${fn:length(requestScope.productList) != 0 }">
-	<table style="width: 700" border='1'>
+	<table style="width: 1000" border='1'>
 		<thead>
 			<tr>
 				<td></td>
@@ -62,7 +62,6 @@ function modifyProduct(idx){
 				<tr>
 					<td>
 					<img src="<%=request.getContextPath() %>/${product.imagePath}" width="60px" height="60px"/>
-					${product.imagePath }
 					</td>
 					<td>${product.productId }</td>
 					<td>${product.productName}</td>

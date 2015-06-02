@@ -199,6 +199,8 @@ public class SellerController {
 		}
 		return "success";
 		
+		return new ModelAndView("seller/memberList.form", map);
+
 	}
 
 	

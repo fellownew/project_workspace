@@ -18,14 +18,46 @@
 		<tbody>
 			<c:forEach items="${requestScope.productList }" var="product">
 				<tr>
-					<td><img src="${product.imagePath }"/></td>
-					<td>${product.productId}</td>
-					<td>${product.price}</td>
+					<td><img src="${product.imagePath }" width="120px" height="120px"/></td>
+					<td>${product.productName}</td>
+					<td>${product.productPrice}</td>
 					<td>${product.expDate}</td>
 					<td>${product.sellerId}</td>
 				</tr> 
 			</c:forEach>
 		</tbody>
 	</table>
+				<c:choose>
+			<c:when test="${pagingBean.previousPageGroup }">
+			${requestScope.productList.[0].category }
+				<a href="<%=request.getContextPath()%>/list.do?page=${pagingBean.startPageOfPageGroup-1}&search=${requestScope.product.category}">◀</a>
+			</c:when>
+			<c:otherwise>
+				◀
+			</c:otherwise>
+		</c:choose>	
+		<!-- 페이지 번호 -->
+		<c:forEach begin="${pagingBean.startPageOfPageGroup }" end="${pagingBean.endPageOfPageGroup}" var="pageNum">
+			<c:choose>
+				<c:when test="${pageNum == pagingBean.currentPage }">
+					<b>[${pageNum}]</b>
+				</c:when>
+				<c:otherwise>
+					<a href="<%=request.getContextPath()%>/list.do?page=${pageNum}">
+						${pageNum}
+					</a>
+				</c:otherwise>
+			</c:choose>
+			&nbsp;&nbsp;
+		</c:forEach>
+		<!-- 다음 페이지 그룹 -->
+		<c:choose>
+			<c:when test="${pagingBean.nextPageGroup }">
+				<a href="<%=request.getContextPath()%>/list.do?page=${pagingBean.endPageOfPageGroup+1}&search=${product.category}">▶</a>
+			</c:when>
+			<c:otherwise>
+				▶
+			</c:otherwise>
+		</c:choose>	
 </c:if>
 </body>

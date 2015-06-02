@@ -3,15 +3,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <meta charset="UTF-8">
-	private int productId;
-	private String productName;
-	private int productPrice;
-	private String category;
-	private String productInfo;
-	private String imagePath;
-	private String regiDate;
-	private String expDate;
-	private String SellerId;
+
 <body>
 	<table width="700" border='1'>
 		<thead>
@@ -29,7 +21,7 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td><img src="${requestScope.product.filename }"/></td>
+				<td><img src="<%=request.getContextPath() %>/${requestScope.product.imagePath }"/></td>
 				<td>${product.productId}</td>
 				<td>${product.productName}</td>
 				<td>${product.price}</td>

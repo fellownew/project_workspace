@@ -1,0 +1,20 @@
+package kr.co.taommall.product.vo;
+
+import java.io.Serializable;
+
+public class Product implements Serializable{
+	private int productId;
+	private String productName;
+	private int productPrice;
+	private String category;
+	private String productInfo;
+	private String imagePath;
+	private String regiDate;
+	private String expDate;
+	private String sellerId;
+	
+	public Product(){}
+
+
+	
+}

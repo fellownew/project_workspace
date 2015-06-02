@@ -30,7 +30,7 @@ create table seller(
 
 create table product(
    product_id number primary key,
-   product_name varchar2(20) not null,
+   product_name varchar2(50) not null,
    product_price number not null,
    category varchar2(20) not null,
    product_info varchar2(2000) not null,
@@ -119,4 +119,7 @@ select c_product_id.nextval from dual
 select * from seller
 select * from product
 select * from buyer
+
+
+select count(*)from product
 
