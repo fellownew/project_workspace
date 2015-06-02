@@ -28,7 +28,7 @@ public class BuyerController {
 	public String joinBuyer(@ModelAttribute Buyer buyer,Error error) {
 		int count = service.insertBuyer(buyer);
 		System.out.println(count);
-		return "response.jsp";
+		return "main.do";
 	}
 
 	@RequestMapping("/identifyId.do")
@@ -59,7 +59,6 @@ public class BuyerController {
 	@RequestMapping("/buyerLogin.do")
 	@ResponseBody
 	public String LoginBuyer(@RequestParam("bId") String id,@RequestParam("bPassword") String password,HttpSession session) {
-		System.out.println(id+":"+password+"buyer");
 		Buyer buyer = service.selectBuyerById(id);
 		if(buyer !=null && buyer.getPassword().equals(password)){
 			session.setAttribute("loginInfo", buyer);
@@ -76,7 +75,6 @@ public class BuyerController {
 		Buyer buyer = (Buyer) session.getAttribute("loginInfo");
 		if(currPassword !=null && buyer.getPassword().equals(currPassword)){
 			buyer.setPassword(password);
-			System.out.println(buyer);
 			int count = service.updateBuyerById(buyer);
 			session.setAttribute("loginInfo", buyer);
 			session.setAttribute("user","buyer");
@@ -137,7 +135,7 @@ public class BuyerController {
 		return address;
 	}
 	
-	@RequestMapping("/logout.do")
+	@RequestMapping("/auth/logout.do")
 	   public String logout(HttpSession session){
 	      session.invalidate();
 	      return "main.do";

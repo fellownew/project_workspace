@@ -1,38 +1,17 @@
 $(document).ready(function(){
-	//바이어 와 셀러의 로그인 화면 변경
-	$(".login").on("click", function() {
-			//바이어
-			if ($(this).attr("id") == 'bLogin') {
-
-				$("#slog").hide();
-				$("#blog").show();
-				$("#sId").val('');
-				$("#sPassword").val('');
-			//셀러
-			} else if ($(this).attr("id") == 'sLogin') {
-				$("#blog").hide();
-				$("#slog").show();
-				$("#bId").val('');
-				$("#bPassword").val('');
-			}
-
-		});
-
-	
-		//바이어 로그인 처리
+	//바이어 로그인 처리
 		$("#bButton").on("click",function(){
-			alert('dd');
 			$.ajax({
 				url:"/taommall/buyer/buyerLogin.do",
 				type:"POST",
 				data:{bId:$("#bId").val(),bPassword:$("#bPassword").val()},	
 				dataType:"text",
 				beforeSend:function(){
-	
 						//바이어 아이디 비면 에러
 						if($("#bId").val().trim()==''){
 							$("#bIdErr").show();
 							$("#bPasswordErr").hide();
+							$("#bLoginError").hide();
 							$("#bId").val('');
 							$("#bId").focus();
 							return false;
@@ -42,17 +21,17 @@ $(document).ready(function(){
 							$("#bIdErr").hide();
 							$("#bPasswordErr").show();
 							$("#bPassword").val('');
+							$("#bLoginError").hide();
 							$("#bPassword").focus();
 							return false;
 						}
 				},
 				success:function(res){
-					alert('성공?');
-					alert(res);
 					if(res=='success'){
 						document.getElementById("buyerLogin").submit();
 					}else{
-						alert('dd');
+						$("#bIdErr").hide();
+						$("#bPasswordErr").hide();
 						$("#bLoginError").show();
 						return false;
 					}
@@ -77,6 +56,7 @@ $(document).ready(function(){
 							$("#sIdErr").show();
 							$("#sPasswordErr").hide();
 							$("#sId").val('');
+							$("#sLoginError").hide();
 							$("#sId").focus();
 							return false;
 						}
@@ -85,22 +65,39 @@ $(document).ready(function(){
 							$("#sIdErr").hide();
 							$("#sPasswordErr").show();
 							$("#sPassword").val('');
+							$("#sLoginError").hide();
 							$("#sPassword").focus();
 							return false;
 						}
 				},
 				success:function(res){
-					alert('성공?');
-					alert(res);
 					if(res=='success'){
 						document.getElementById("sellerLogin").submit();
 					}else{
-						alert('dd');
+						$("#sIdErr").hide();
+						$("#sPasswordErr").hide();
 						$("#sLoginError").show();
 						return false;
 					}
 				}
 			});
 			
-		});	
+		});
+		
+		
+		$(function () {
+
+		    $(".tab_content").hide();
+		    $(".tab_content:first").show();
+
+		    $("ul.tabs li").click(function () {
+		        $("ul.tabs li").removeClass("active").css("color", "#333");
+		        //$(this).addClass("active").css({"color": "darkred","font-weight": "bolder"});
+		        $(this).addClass("active").css("color", "darkred");
+		        $(".tab_content").hide()
+		        var activeTab = $(this).attr("rel");
+		        $("#" + activeTab).fadeIn()
+		    });
+		});
 });
+

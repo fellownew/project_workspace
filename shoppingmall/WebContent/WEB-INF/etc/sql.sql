@@ -90,6 +90,30 @@ insert into seller (seller_id,password,name,gender,address,email,phone,auth,admi
 values('admin','admin','홍길동','남','서울','df@df.com','010-1234-1234','true','true','1111-11111');
 
 
+insert into seller (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number)
+values('seller-15','1111','홍길동','남','서울','df@df.com','010-1234-1234','true','false','1234-23125');
+
+insert into seller (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number)
+values('seller-16','1111','홍길동','남','서울','df@df.com','010-1234-1234','true','false','1234-23125');
+
+insert into seller (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number)
+values('seller-17','1111','홍길동','남','서울','df@df.com','010-1234-1234','true','false','1234-23125');
+
+insert into seller (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number)
+values('seller-18','1111','홍길동','남','서울','df@df.com','010-1234-1234','true','false','1234-23125');
+
+insert into seller (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number)
+values('seller-19','1111','홍길동','남','서울','df@df.com','010-1234-1234','true','false','1234-23125');
+
+insert into seller (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number)
+values('seller-20','1111','홍길동','남','서울','df@df.com','010-1234-1234','true','false','1234-23125');
+
+insert into seller (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number)
+values('seller-21','1111','홍길동','남','서울','df@df.com','010-1234-1234','true','false','1234-23125');
+insert into seller (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number)
+values('seller-22','1111','홍길동','남','서울','df@df.com','010-1234-1234','true','false','1234-23125');
+
+
 select c_product_id.nextval from dual
 
 select * from seller

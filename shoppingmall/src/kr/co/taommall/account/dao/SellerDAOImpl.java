@@ -58,9 +58,9 @@ public class SellerDAOImpl implements SellerDAO {
 
 	}
 
-	public int updateSellerById(Seller seller) {
+	public int updateSeller(Seller seller) {
 
-		return session.update(namespace + "updateSellerById", seller);
+		return session.update(namespace + "updateSeller", seller);
 
 	}
 
@@ -70,9 +70,8 @@ public class SellerDAOImpl implements SellerDAO {
 	
 	public List<Seller> selectAllSellerPaging(int pageNo,String auth){
 		
-		int contentsPerPage =PagingBean.CONTENTS_PER_PAGE;
 		Map map = new HashMap();
-		map.put("contentsPerPage", contentsPerPage);
+		map.put("contentsPerPage", PagingBean.CONTENTS_PER_PAGE);
 		map.put("pageNo", pageNo);
 		map.put("auth", auth);
 		return  session.selectList(namespace+"selectAllSellerPaging",map);

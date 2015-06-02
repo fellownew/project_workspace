@@ -10,8 +10,7 @@
 </head>
 <body>
 	<h2>셀러 회원가입</h2>
-	<form id="seller_form"
-		action="<%=request.getContextPath()%>/seller/sellerJoin.do" method="post">
+	<form id="seller_form" action="<%=request.getContextPath()%>/seller/sellerJoin.do" method="post">
 		<table>
 			<tr>
 				<td><input type="text" id="sellerId" name="sellerId"
