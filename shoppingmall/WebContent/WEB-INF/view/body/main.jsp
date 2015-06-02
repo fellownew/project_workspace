@@ -5,9 +5,23 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
-이곳은 처음 보이는 메인페이지 입니다.
-<a href="<%=request.getContextPath()%>/buyerIndex.do">바이어이동</a> | 
-<a href="<%=request.getContextPath()%>/sellerIndex.do">셀러이동</a>
+<body style="text-align: center;">
+	<table border="1" style="width: 1400px;height: 800px" >
+		<tr>
+			<td>상품1</td>
+			<td>상품2</td>
+			<td>상품3</td>
+		</tr>
+		<tr>
+			<td>상품4</td>
+			<td>상품5</td>
+			<td>상품6</td>
+		</tr>
+		<tr>
+			<td>상품7</td>
+			<td>상품8</td>
+			<td>상품9</td>
+		</tr>
+	</table>
 </body>
 </html>

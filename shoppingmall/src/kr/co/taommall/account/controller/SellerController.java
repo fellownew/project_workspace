@@ -33,7 +33,7 @@ public class SellerController {
 	SellerService service;
 	
 	@RequestMapping("/sellerJoin.do")
-	public String joinBuyer(@ModelAttribute Seller seller,Error error) {
+	public String joinSeller(@ModelAttribute Seller seller,Error error) {
 		int count = service.insertSeller(seller);
 		System.out.println(seller);
 		System.out.println(count);
@@ -43,12 +43,11 @@ public class SellerController {
 	
 	@RequestMapping("/sellerLogin.do")
 	@ResponseBody
-	public String LoginBuyer(@RequestParam("sId") String id,@RequestParam("sPassword") String password,HttpSession session) {
-		System.out.println(id+":"+password);
+	public String LoginSeller(@RequestParam("sId") String id,@RequestParam("sPassword") String password,HttpSession session) {
 		Seller seller = service.selectSellerById(id);
-		System.out.println(seller);
 		if(seller !=null && seller.getPassword().equals(password)){
 			session.setAttribute("loginInfo", seller);
+			session.setAttribute("user","seller");
 			return "success";
 		}else{
 			return "fail";
@@ -79,18 +78,6 @@ public class SellerController {
 
 		return number;
 	}
-	@RequestMapping("/buyerLogin.do")
-	@ResponseBody
-	public String LoginSeller(@RequestParam("bId") String id,@RequestParam("bPassword") String password,HttpSession session) {
-		System.out.println(id+":"+password+"buyer");
-		Seller seller = service.selectSellerById(id);
-		if(seller !=null && seller.getPassword().equals(password)){
-			session.setAttribute("loginInfo", seller);
-			return "success";
-		}else{
-			return "fail";
-		}
-	}
 	
 	@RequestMapping("/passwordModify.do")
 	@ResponseBody
@@ -101,6 +88,7 @@ public class SellerController {
 			System.out.println(seller);
 			int count = service.updateSeller(seller);
 			session.setAttribute("loginInfo", seller);
+			session.setAttribute("user","seller");
 			return password;
 		}else{
 			return "fail";
@@ -115,6 +103,7 @@ public class SellerController {
 		System.out.println(buyer);
 		int count = service.updateSeller(buyer);
 		session.setAttribute("loginInfo", buyer);
+		session.setAttribute("user","seller");
 		if(count == 0){
 			return "fail";
 		}
@@ -129,6 +118,7 @@ public class SellerController {
 		System.out.println(buyer);
 		int count = service.updateSeller(buyer);
 		session.setAttribute("loginInfo", buyer);
+		session.setAttribute("user","seller");
 		if(count == 0){
 			return "fail";
 		}
@@ -144,6 +134,7 @@ public class SellerController {
 		System.out.println(buyer);
 		int count = service.updateSeller(buyer);
 		session.setAttribute("loginInfo", buyer);
+		session.setAttribute("user","seller");
 		if(count == 0){
 			return "fail";
 		}
@@ -151,6 +142,13 @@ public class SellerController {
 		return address;
 	}
 	
+
+	@RequestMapping("/logout.do")
+	   public String logout(HttpSession session){
+	      session.invalidate();
+	      return "main.do";
+	   }
+
 	
 	public String sellerAuthCheck(){
 		
@@ -212,17 +210,4 @@ public class SellerController {
 		
 	}
 	
-	@RequestMapping("/boardCheck.do")
-	@ResponseBody 
-	public String boardCheck(	@RequestParam(defaultValue="1")int page,
-								@RequestParam(defaultValue="desc") String auth,
-								String count){
-		System.out.println(count);
-		HashMap map = service.selectAllSellerPaging(page, auth,Integer.parseInt(count));
-		return "success";
-		
-	}
-
-
-
 }

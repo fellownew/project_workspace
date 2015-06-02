@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>따옴몰</title>
 
 <style type="text/css" >
 
@@ -15,6 +15,7 @@ body{
 
 #header{
 	background-color:white;
+	overflow:auto;
 }
 
 #nav{
@@ -28,9 +29,9 @@ body{
 	line-height: 50px;
 	background-color:#F5F5DC;
 	padding: 15px;
-
 	width:150px;
-	float:left;
+	float:right;
+		overflow:auto;
 }
 #section{
 	
@@ -49,7 +50,7 @@ body{
 </style>
 </head>
 <body>
-	<div id="header" style="text-align: right;">
+	<div id="header">
 		<tiles:insertAttribute name="header"/>
 	</div>
 	

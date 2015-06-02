@@ -4,7 +4,16 @@
   	<welcome-file-list>
 		<welcome-file>index.do</welcome-file>
 	</welcome-file-list>
-
+	  <context-param>
+	  	<param-name>rootPath</param-name>
+	  	<param-value>/taommall</param-value>
+	  </context-param>
+	
+	<!-- mybatis 설정관련 bean 파일 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>	
+		<param-value>/WEB-INF/config/mybatis-context.xml</param-value>
+	</context-param>
 	
 <!-- The front controller of this Spring Web application, responsible for handling all application requests -->
 	<servlet>

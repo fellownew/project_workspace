@@ -1,27 +1,15 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-<style type="text/css">
-#d{
-	list-style: none;
-	color: white;
-	background-color: black;
-	border: 1px solid black;
-	line-height: 30px;
-	vertical-align: middle;
-	text-align: center;
-	width: 150px;
-	float: left;
-}
-#s{
-	float: left;
-	margin-top: 30px;
-}
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/topmenu.css">
+<script type="text/javascript" src="${initParam.rootPath }/script/jquery.js"></script>
 
-</style>
+
 <body>
-	<ul id="d" style="width: 400px"><a href="<%=request.getContextPath() %>"> Logo</a></ul>
-	<form id="s" style="width: 700px" action="search.do" method="POST">
-		<input type="text" name="search" autofocus="autofocus" style="width:500px;height: 30px" >
-		<input type="submit" value="검색">
-	</form>
-	<ul id="d" style="width: 400px">banner</ul>
+<div id='cssmenu'>
+<ul>
+   <li class='active'><a href='list?search=food'><span>농/수/축산물</span></a></li>
+   <li><a href='list?search=fruit'><span>과일/채소</span></a></li>
+   <li><a href='list?search=health'><span>건강식품</span></a></li>
+   <li class='last'><a href='list?search=snack'><span>간식</span></a></li>
+</ul>
+</div>
 </body>

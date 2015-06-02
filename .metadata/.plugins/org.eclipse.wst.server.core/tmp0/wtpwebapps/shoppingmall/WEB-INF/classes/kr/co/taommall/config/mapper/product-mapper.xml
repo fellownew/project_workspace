@@ -26,7 +26,7 @@
 		where product_id=#{productId}
 	</update>
 	
-	<delete id="deleteProduct" parameterType="String">
+	<delete id="deleteProduct" parameterType="int">
 		delete from product where product_id=#{productId}
 	</delete>
 	
@@ -39,16 +39,14 @@
 		<result column="image_path" property="imagePath"/>
 		<result column="regi_date" property="regiDate"/>
 		<result column="exp_date" property="expDate"/>
-		<association column="seller_id" property="sellerId">
-			<id column="seller_id" property="sellerId"/>
-		</association>
+		<result column="seller_id" property="sellerId"/>
 	</resultMap>
 	
 	<select id="selectAllProduct" resultMap="product-resultMap">
 		<include refid="product-select"/>
 	</select>
 	
-	<select id="selectProductById" resultMap="product-resultMap" parameterType="String">
+	<select id="selectProductById" resultMap="product-resultMap" parameterType="_int">
 		<include refid="product-select"/>
 		where product_id=#{productId}
 	</select>
@@ -70,7 +68,7 @@
 	
 	<select id="selectProductBySellerId" resultMap="product-resultMap" parameterType="String">
 		<include refid="product-select"/>
-		where Seller_id=#{SellerId}
+		where seller_id=#{sellerId}
 	</select>
 	
 	<select id="selectProductBetweenPrice" resultMap="product-resultMap" parameterType="int[]">

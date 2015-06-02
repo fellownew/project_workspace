@@ -1,6 +1,8 @@
 
 var re_id = /^[a-z0-9_-]{6,12}$/; // 아이디 검사식
 var re_pw = /^[a-z0-9_-]{6,16}$/; // 비밀번호 검사식
+var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+var reg_phone = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
 var msg;
 var idCheck;
 var passwordCheck;
@@ -34,7 +36,7 @@ var codeCheck;
 		});
 		
 		//아이디
-		$("#buyerId").blur(function(){			
+		$("#buyerId").blur(function(){
 			$.ajax({
 				url:"/taommall/buyer/identifyId.do",
 				type:"POST",
@@ -142,7 +144,12 @@ var codeCheck;
 		$("#phone").keydown(function(){
 			$("#phoneErr").hide();
 		});
-		$("#phone").blur(function(){		
+		$("#phone").blur(function(){	
+			
+			if(reg_phone.test($("#phone").val())===false){
+				$("#phoneErr").show().html("형식에 맞게 입력하세요.").attr('style', "color:red");
+				return false;
+			}
 			if($("#phone").val().trim()==''){
 				$("#phoneErr").show().html("필수 정보입니다").attr('style', "color:red");
 				$("#phone").val('');
@@ -156,7 +163,13 @@ var codeCheck;
 		$("#email").keydown(function(){
 			$("#emailErr").hide();
 		});
-		$("#email").blur(function(){		
+		$("#email").blur(function(){
+			
+			
+			if(regex.test($("#email").val()) === false) {
+				$("#emailErr").show().html("email 형식에 맞게 입력하세요.").attr('style', "color:red");
+				 return false;
+			}
 			if($("#email").val().trim()==''){
 				$("#emailErr").show().html("필수 정보입니다").attr('style', "color:red");
 				$("#email").val('');

@@ -6,8 +6,6 @@ drop table product;
 drop table seller;
 drop table buyer;
 
-
-
 create table buyer(
    buyer_id varchar2(20) primary key,
    password varchar2(50) not null,
@@ -41,15 +39,17 @@ create table product(
    exp_date varchar2(10) not null,
    seller_id varchar2(20),
    
-   constraint product_seller_id_fk foreign key(seller_id) references seller(seller_id)
+   constraint product_seller_id_fk foreign key(seller_id) references seller(seller_id) ON DELETE CASCADE
 );
+
+
 
 create table cart(
    buyer_id varchar2(20),
    product_id number,
    
-   constraint cart_buyer_id_fk foreign key(buyer_id) references buyer(buyer_id),
-   constraint cart_product_id_fk foreign key(product_id) references product(product_id)
+   constraint cart_buyer_id_fk foreign key(buyer_id) references buyer(buyer_id) ON DELETE CASCADE,
+   constraint cart_product_id_fk foreign key(product_id) references product(product_id) ON DELETE CASCADE
 );
 
 create table orders(
@@ -59,8 +59,8 @@ create table orders(
    status varchar2(10),
    buyer_id varchar2(20),
    
-   constraint order_product_id_fk foreign key(product_id) references product(product_id),
-   constraint order_buyer_id_fk foreign key(buyer_id) references buyer(buyer_id)
+   constraint order_product_id_fk foreign key(product_id) references product(product_id) ON DELETE CASCADE,
+   constraint order_buyer_id_fk foreign key(buyer_id) references buyer(buyer_id) ON DELETE CASCADE
 );
 
 create table center(
@@ -77,15 +77,20 @@ create table pboard(
 	product_id number not null,
 	buyer_id varchar2(20) not null,
 	
-	constraint pboard_product_id_pk foreign key(product_id) references product(product_id),
-	constraint pboard_buyer_id_fk foreign key(buyer_id) references buyer(buyer_id)
+	constraint pboard_product_id_pk foreign key(product_id) references product(product_id) ON DELETE CASCADE,
+	constraint pboard_buyer_id_fk foreign key(buyer_id) references buyer(buyer_id) ON DELETE CASCADE
 
 );
 
 
+insert into seller (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number)
+values('seller-1','1111','홍길동','남','서울','df@df.com','010-1234-1234','true','false','1234-23125');
+
+insert into seller (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number)
+values('admin','admin','홍길동','남','서울','df@df.com','010-1234-1234','true','true','1111-11111');
 
 
-
+<<<<<<< HEAD
 insert into seller (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number)
 values('seller-15','1111','홍길동','남','서울','df@df.com','010-1234-1234','true','false','1234-23125');
 
@@ -112,11 +117,9 @@ values('seller-22','1111','홍길동','남','서울','df@df.com','010-1234-1234'
 
 
 
+select c_product_id.nextval from dual
 
-
-select * from product 
-select * from orders
-select * from buyer
 select * from seller
+select * from product
+select * from buyer
 
-insert into orders(order_id,product_id,amount,status,buyer_id) values('6',41 ,'2 ','배송끝','1')

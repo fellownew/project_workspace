@@ -22,20 +22,21 @@
 		<put-attribute name="body" value="/WEB-INF/view/body/{1}/{2}/{3}.jsp"/>
 	</definition>
 	
-	<definition name="extend_template" template="/WEB-INF/view/layout/extend_template.jsp">
+	<definition name="template2" template="/WEB-INF/view/layout/template2.jsp">
 		<put-attribute name="header" value="/WEB-INF/view/layout/header.jsp"/>
 		<put-attribute name="nav" value="/WEB-INF/view/layout/nav.jsp"/>
 		<put-attribute name="footer" value="/WEB-INF/view/layout/footer.jsp"/>
 	</definition>
 	
-	<definition name="*.form" extends="extend_template">
+	<definition name="*.form" extends="template2">
 		<put-attribute name="body" value="/WEB-INF/view/body/{1}.jsp"/>
 	</definition>
-	<definition name="*/*.form" extends="extend_template">
+	<definition name="*/*.form" extends="template2">
 		<put-attribute name="body" value="/WEB-INF/view/body/{1}/{2}.jsp"/>
 	</definition>
-	<definition name="*/*/*.form" extends="extend_template">
+	<definition name="*/*/*.form" extends="template2">
 		<put-attribute name="body" value="/WEB-INF/view/body/{1}/{2}/{3}.jsp"/>
 	</definition>
+	
 	
 </tiles-definitions>
