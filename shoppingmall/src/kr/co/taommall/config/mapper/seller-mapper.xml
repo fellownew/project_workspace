@@ -5,9 +5,36 @@
 <insert id="insertSeller" parameterType="seller" >
 	insert into seller values(#{sellerId},#{password},#{name},#{gender},#{address},#{email},#{phone},#{auth},#{admin},#{corporateNumber})
 </insert>
-<update id="updateSellerById" parameterType="seller">
+<update id="updateSeller" parameterType="seller">
 	update seller
-	set password=#{password}, name=#{name}, gender=#{gender}, address=#{address}, email=#{email}, phone=#{phone}, auth=#{auth},corporate_number=#{corporate_Number}
+	<set>
+	
+		<if test="password !=null">
+		 password=#{password},
+		</if>
+		<if test="name !=null">
+		name=#{name},
+		</if>
+		<if test="gender !=null">
+		 gender=#{gender},
+		 </if>
+		 <if test="address !=null">
+		 address=#{address},
+		 </if>
+		 <if test="email !=null">
+		 email=#{email},
+		 </if>
+		 <if test="phone !=null">
+		 phone=#{phone},
+		 </if>
+		 <if test="auth!=null">
+		 auth=#{auth},
+		 </if>
+		 <if test="corporateNumber !=null">
+		  corporate_number=#{corporateNumber}
+		 </if>
+		
+	</set>
 	where seller_id=#{sellerId}
 </update>
 

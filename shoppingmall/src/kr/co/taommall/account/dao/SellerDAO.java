@@ -9,7 +9,7 @@ public interface SellerDAO {
 	public int insertSeller(Seller seller);
 	public List<Seller> selectSellerAllMember();
 	public int deleteSellerById(String id);
-	public int updateSellerById(Seller seller);
+	public int updateSeller(Seller seller);
 	public Seller selectSellerById(String id);
 	public List<Seller> selectSellerOrderByAuth(String auth);
 	public int selectSellerCount();

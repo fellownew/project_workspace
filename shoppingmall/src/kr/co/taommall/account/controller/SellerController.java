@@ -1,15 +1,18 @@
 package kr.co.taommall.account.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
 import kr.co.taommall.account.service.SellerService;
 import kr.co.taommall.account.vo.Seller;
-import kr.co.taommall.common.PagingBean;
 import kr.co.taommall.mail.SendMail;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,7 +99,7 @@ public class SellerController {
 		if(currPassword !=null && seller.getPassword().equals(currPassword)){
 			seller.setPassword(password);
 			System.out.println(seller);
-			int count = service.updateSellerById(seller);
+			int count = service.updateSeller(seller);
 			session.setAttribute("loginInfo", seller);
 			return password;
 		}else{
@@ -110,7 +113,7 @@ public class SellerController {
 		Seller buyer = (Seller) session.getAttribute("loginInfo");		
 		buyer.setPhone(phone);
 		System.out.println(buyer);
-		int count = service.updateSellerById(buyer);
+		int count = service.updateSeller(buyer);
 		session.setAttribute("loginInfo", buyer);
 		if(count == 0){
 			return "fail";
@@ -124,7 +127,7 @@ public class SellerController {
 		Seller buyer = (Seller) session.getAttribute("loginInfo");		
 		buyer.setEmail(email);
 		System.out.println(buyer);
-		int count = service.updateSellerById(buyer);
+		int count = service.updateSeller(buyer);
 		session.setAttribute("loginInfo", buyer);
 		if(count == 0){
 			return "fail";
@@ -139,7 +142,7 @@ public class SellerController {
 		Seller buyer = (Seller) session.getAttribute("loginInfo");		
 		buyer.setAddress(address);
 		System.out.println(buyer);
-		int count = service.updateSellerById(buyer);
+		int count = service.updateSeller(buyer);
 		session.setAttribute("loginInfo", buyer);
 		if(count == 0){
 			return "fail";
@@ -157,20 +160,12 @@ public class SellerController {
 		}
 		return null;
 	}
-	
-	@RequestMapping("/sellerList.do")
-	public ModelAndView sellerList(){
-		List<Seller> list = service.selectSellerAllMember();
-		Map map = new HashMap();
-		map.put("member_list", list);
-		map.put("auth","asc");
-		return new ModelAndView("/body/seller/memberList.jsp", map);
-	}
 
 	@RequestMapping("/memberListPaging.do")
 	public ModelAndView memberListPaging(	@RequestParam(defaultValue="1")int page,
 											@RequestParam(defaultValue="desc") String auth,
-											@RequestParam(defaultValue="false") String check){
+											@RequestParam(defaultValue="false") String check,
+											@RequestParam(defaultValue="10") String count){
 		if(check.equals("true")){
 			if(auth.equals("asc")){
 				auth="desc";
@@ -178,11 +173,54 @@ public class SellerController {
 				auth="asc";
 			}
 		}
-		Map map = service.selectAllSellerPaging(page,auth);
-
+		Map map = service.selectAllSellerPaging(page,auth,Integer.parseInt(count));
 		map.put("auth", auth);
-		
+		map.put("count", count);
 		return new ModelAndView("/body/seller/memberList.jsp", map);
+	}	
+	
+	@RequestMapping("/updateAuth.do")
+	@ResponseBody 
+	public String updateAuth(	@RequestParam(value="auth")ArrayList<String> list,
+								@RequestParam(value="unchecked")ArrayList<String> unchecked){
+		System.out.println(list.size());
+		System.out.println(unchecked.size());
+		if(list ==null && unchecked ==null){
+			return "fail";
+		}
+		
+		for(String str : list){
+			Seller seller = service.selectSellerById(str);
+			if(seller !=null ){
+				seller.setAuth("true");
+				System.out.println(seller);
+				int count = service.updateSeller(seller);
+				seller = service.selectSellerById(str);
+				System.out.println(seller);
+			}
+		
+		}
+		
+		for(String str : unchecked){
+			Seller seller = service.selectSellerById(str);
+			if(seller!=null){
+				seller.setAuth("false");
+				int count = service.updateSeller(seller);
+			}
+		}
+		return "success";
+		
+	}
+	
+	@RequestMapping("/boardCheck.do")
+	@ResponseBody 
+	public String boardCheck(	@RequestParam(defaultValue="1")int page,
+								@RequestParam(defaultValue="desc") String auth,
+								String count){
+		System.out.println(count);
+		HashMap map = service.selectAllSellerPaging(page, auth,Integer.parseInt(count));
+		return "success";
+		
 	}
 
 

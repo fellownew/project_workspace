@@ -11,6 +11,6 @@
 <a href="<%=request.getContextPath()%>/seller/sellerModifyForm.do">정보수정</a> | 
 <a href="<%=request.getContextPath()%>/seller/sellerInfoForm.do">정보조회</a> | 
 <a href="<%=request.getContextPath()%>/seller/sellerLoginForm.do">로그인</a><br>
-<a href="<%=request.getContextPath()%>/seller/sellerList.do">셀러 리스트</a><br>
+<a href="<%=request.getContextPath()%>/seller//memberListPaging.do">셀러 리스트</a><br>
 </body>
 </html>

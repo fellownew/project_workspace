@@ -11,7 +11,7 @@ public interface SellerService {
 
 	public int deleteSellerById(String id);
 
-	public int updateSellerById(Seller seller);
+	public int updateSeller(Seller seller);
 
 	public List<Seller> selectSellerAllMember();
 	
@@ -20,6 +20,6 @@ public interface SellerService {
 	public Seller selectSellerById(String id);
 	
 	public int selectSellerCount();
-	public HashMap selectAllSellerPaging(int pageNo,String auth);
+	public HashMap selectAllSellerPaging(int pageNo,String auth,int count);
 
 }

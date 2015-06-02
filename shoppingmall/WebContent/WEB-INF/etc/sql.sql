@@ -87,7 +87,32 @@ create table pboard(
 
 
 insert into seller (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number)
-values('seller-2','1111','홍길동','남','서울','df@df.com','010-1234-1234','false','false','1234-23125')
+values('seller-15','1111','홍길동','남','서울','df@df.com','010-1234-1234','true','false','1234-23125');
+
+insert into seller (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number)
+values('seller-16','1111','홍길동','남','서울','df@df.com','010-1234-1234','true','false','1234-23125');
+
+insert into seller (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number)
+values('seller-17','1111','홍길동','남','서울','df@df.com','010-1234-1234','true','false','1234-23125');
+
+insert into seller (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number)
+values('seller-18','1111','홍길동','남','서울','df@df.com','010-1234-1234','true','false','1234-23125');
+
+insert into seller (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number)
+values('seller-19','1111','홍길동','남','서울','df@df.com','010-1234-1234','true','false','1234-23125');
+
+insert into seller (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number)
+values('seller-20','1111','홍길동','남','서울','df@df.com','010-1234-1234','true','false','1234-23125');
+
+insert into seller (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number)
+values('seller-21','1111','홍길동','남','서울','df@df.com','010-1234-1234','true','false','1234-23125');
+insert into seller (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number)
+values('seller-22','1111','홍길동','남','서울','df@df.com','010-1234-1234','true','false','1234-23125');
+
+
+
+
+
 
 select * from product 
 select * from orders

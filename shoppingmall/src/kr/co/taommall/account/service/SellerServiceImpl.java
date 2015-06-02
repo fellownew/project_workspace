@@ -27,9 +27,9 @@ public class SellerServiceImpl implements SellerService {
 		return dao.deleteSellerById(id);
 	}
 
-	public int updateSellerById(Seller seller) {
+	public int updateSeller(Seller seller) {
 
-		return dao.updateSellerById(seller);
+		return dao.updateSeller(seller);
 	}
 
 	public List selectSellerAllMember() {
@@ -48,12 +48,14 @@ public class SellerServiceImpl implements SellerService {
 		return dao.selectSellerCount();
 	}
 
-	public HashMap selectAllSellerPaging(int pageNo,String auth) {
-		System.out.println(pageNo);
+	public HashMap selectAllSellerPaging(int pageNo,String auth,int count) {
 		// 목록에 뿌려줄 List<Member> 조회
+		PagingBean.CONTENTS_PER_PAGE=count;
+		
 		List<Seller> list = dao.selectAllSellerPaging(pageNo,auth);
 		// PagingBean 생성
 		int totalContent = dao.selectSellerCount();
+		
 		PagingBean pagingBean = new PagingBean(totalContent, pageNo);
 		// 두개의 값(List, PagingBean)을 Map에 넣어 return
 		HashMap map = new HashMap();
