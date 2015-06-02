@@ -72,7 +72,6 @@ $(document).ready(function(){
 				},
 				success:function(res){
 					if(res=='success'){
-						alert('되나??');
 						document.getElementById("sellerLogin").submit();
 					}else{
 						$("#sIdErr").hide();
