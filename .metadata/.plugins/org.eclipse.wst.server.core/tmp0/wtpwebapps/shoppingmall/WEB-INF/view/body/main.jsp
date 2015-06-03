@@ -29,16 +29,25 @@
 						<h2>${product.productName }</h2>
 						<p>${product.productInfo }</p>
 						<a href="productInfo.do?productId=${product.productId }" class="da-link">상품가기</a>
-						<div class="da-img"><img src="${product.imagePath }" alt="image01" /></div>
+						<div class="da-img"><img src="${product.imagePath }" alt="image01" width="320px" height="320px"/></div>
 					</div>
 	  		 	</c:forEach>
-
-
 				<nav class="da-arrows">
 					<span class="da-arrows-prev"></span>
 					<span class="da-arrows-next"></span>
 				</nav>
 			</div>
         </div>
-
+		<div id="productTable">
+			<table style="width: 900px;height: 500px;margin: 0 auto" border="1">
+				<tr>
+					<td>상품1</td>
+					<td>상품2</td>
+				</tr>
+				<tr>
+					<td>상품3</td>
+					<td>상품4</td>
+				</tr>
+			</table>
+		</div>
     </body>
