@@ -62,4 +62,5 @@ public class ProductController {
 		return "productManager.do?sellerId="+seller.getSellerId();
 	}
 	
+	
 }

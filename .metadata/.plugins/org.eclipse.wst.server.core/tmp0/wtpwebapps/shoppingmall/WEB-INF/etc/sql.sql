@@ -124,3 +124,13 @@ select * from buyer
 
 select count(*)from product
 
+
+select product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
+from (
+	select product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
+		from product where category = 'fruit'
+	order by DBMS_RANDOM.VALUE
+	)
+where (rownum <= 5)
+
+

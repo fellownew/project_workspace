@@ -22,5 +22,6 @@ public interface ProductService {
 	public List<Product> selectProductByPrice(int lPrice,int Hprice,int pageNo,Model model);
 	public Product selectProductByIdNoPaging(int productId,Model model);
 	public List<Product> selectProductBySellerIdNoPaging(String sellerId,Model model);
+	public List<Product> selectProductToRandom();
 	
 }

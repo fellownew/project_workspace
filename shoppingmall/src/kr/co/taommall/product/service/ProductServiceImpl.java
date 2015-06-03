@@ -162,4 +162,9 @@ public class ProductServiceImpl implements ProductService {
 	public List<Product> selectProductBySellerIdNoPaging(String sellerId,Model model){
 		return dao.selectProductBySellerIdNoPaging(sellerId);
 	}
+	
+	@Override
+	public List<Product> selectProductToRandom(){
+		return dao.selectProductToRandom();
+	}
 }

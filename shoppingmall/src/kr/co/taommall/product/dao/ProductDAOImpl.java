@@ -97,4 +97,9 @@ public class ProductDAOImpl implements ProductDAO {
 	public List<Product> selectProductBySellerIdNoPaging(String sellerId){
 		return session.selectList(nameSpace+"selectProductBySellerIdNoPaging",sellerId);		
 	}
+	
+	@Override
+	public List<Product> selectProductToRandom(){
+		return session.selectList(nameSpace+"selectProductToRandom");
+	}
 }
