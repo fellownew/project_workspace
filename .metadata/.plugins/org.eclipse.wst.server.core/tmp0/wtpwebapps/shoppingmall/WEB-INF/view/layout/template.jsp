@@ -9,11 +9,12 @@
 <style type="text/css" >
 
 body{
-	margin:50px;
-	padding:0auto;
+	width:1300px;
+	margin:0 auto;
 }
 
 #header{
+	
 	background-color:white;
 	overflow:auto;
 }
@@ -27,16 +28,19 @@ body{
 }
 #aside{
 	line-height: 50px;
-	background-color:#F5F5DC;
-	padding: 15px;
-	width:150px;
+	background-color:white;
 	float:right;
-		overflow:auto;
+	width:300px;
+	text-align:right;
+	margin:0 auto;
 }
 #section{
-	
-	padding: 15px;
+	text-align:center;
 	float:left;
+	width: 970px;
+	padding:15px;
+	margin:0 auto; 
+	
 }
 #footer{
 	background-color:tomato;
@@ -45,11 +49,6 @@ body{
 	text-align:center;
 	height:50px;
 	clear:both;
-}
-.center{
-	margin-left:auto;
-	margin-right:auto;
-	width:50%
 }
 
 </style>
@@ -67,7 +66,7 @@ body{
 		<tiles:insertAttribute name="aside"/>
 	</div>
 	
-	<div id="section" class="center">
+	<div id="section">
 		<tiles:insertAttribute name="body"/>
 	</div>
 	

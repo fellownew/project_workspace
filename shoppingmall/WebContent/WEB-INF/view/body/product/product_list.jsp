@@ -16,62 +16,61 @@ function info(idx){
 	location="productInfo.do?productId="+idx;
 }
 </script>
-
-<body>
-<c:if test="${fn:length(requestScope.productList) != 0 }">
-	<table width="700" border='1'>
-		<thead>
-			<tr>
-				<td></td>
-				<td>상품명</td>
-				<td>가격</td>
-				<td>유통기한</td>
-				<td>판매자</td>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${requestScope.productList }" var="product">
-				<tr onclick="info(${product.productId})">
-					<td><img src="${product.imagePath }" width="120px" height="120px"/></td>
-					<td>${product.productName}</td>
-					<td>${product.productPrice}</td>
-					<td>${product.expDate}</td>
-					<td>${product.sellerId}</td>
-				</tr> 
-			</c:forEach>
-		</tbody>
-	</table>
-				<c:choose>
-			<c:when test="${pagingBean.previousPageGroup }">
-			${requestScope.productList.[0].category }
-				<a href="<%=request.getContextPath()%>/list.do?page=${pagingBean.startPageOfPageGroup-1}&search=${requestScope.product.category}">◀</a>
-			</c:when>
-			<c:otherwise>
-				◀
-			</c:otherwise>
-		</c:choose>	
-		<!-- 페이지 번호 -->
-		<c:forEach begin="${pagingBean.startPageOfPageGroup }" end="${pagingBean.endPageOfPageGroup}" var="pageNum">
-			<c:choose>
-				<c:when test="${pageNum == pagingBean.currentPage }">
-					<b>[${pageNum}]</b>
+<div>
+	<c:if test="${fn:length(requestScope.productList) != 0 }">
+		<table width="800" border='1'  style="margin: 0 auto">
+			<thead>
+				<tr>
+					<td></td>
+					<td>상품명</td>
+					<td>가격</td>
+					<td>유통기한</td>
+					<td>판매자</td>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${requestScope.productList }" var="product">
+					<tr onclick="info(${product.productId})">
+						<td><img src="${product.imagePath }" width="120px" height="120px"/></td>
+						<td>${product.productName}</td>
+						<td>${product.productPrice}</td>
+						<td>${product.expDate}</td>
+						<td>${product.sellerId}</td>
+					</tr> 
+				</c:forEach>
+			</tbody>
+		</table>
+					<c:choose>
+				<c:when test="${pagingBean.previousPageGroup }">
+				${requestScope.productList.[0].category }
+					<a href="<%=request.getContextPath()%>/list.do?page=${pagingBean.startPageOfPageGroup-1}&search=${requestScope.product.category}">◀</a>
 				</c:when>
 				<c:otherwise>
-					<a href="<%=request.getContextPath()%>/list.do?page=${pageNum}">
-						${pageNum}
-					</a>
+					◀
 				</c:otherwise>
-			</c:choose>
-			&nbsp;&nbsp;
-		</c:forEach>
-		<!-- 다음 페이지 그룹 -->
-		<c:choose>
-			<c:when test="${pagingBean.nextPageGroup }">
-				<a href="<%=request.getContextPath()%>/list.do?page=${pagingBean.endPageOfPageGroup+1}&search=${product.category}">▶</a>
-			</c:when>
-			<c:otherwise>
-				▶
-			</c:otherwise>
-		</c:choose>	
-</c:if>
-</body>
+			</c:choose>	
+			<!-- 페이지 번호 -->
+			<c:forEach begin="${pagingBean.startPageOfPageGroup }" end="${pagingBean.endPageOfPageGroup}" var="pageNum">
+				<c:choose>
+					<c:when test="${pageNum == pagingBean.currentPage }">
+						<b>[${pageNum}]</b>
+					</c:when>
+					<c:otherwise>
+						<a href="<%=request.getContextPath()%>/list.do?page=${pageNum}">
+							${pageNum}
+						</a>
+					</c:otherwise>
+				</c:choose>
+				&nbsp;&nbsp;
+			</c:forEach>
+			<!-- 다음 페이지 그룹 -->
+			<c:choose>
+				<c:when test="${pagingBean.nextPageGroup }">
+					<a href="<%=request.getContextPath()%>/list.do?page=${pagingBean.endPageOfPageGroup+1}&search=${product.category}">▶</a>
+				</c:when>
+				<c:otherwise>
+					▶
+				</c:otherwise>
+			</c:choose>	
+	</c:if>
+</div>

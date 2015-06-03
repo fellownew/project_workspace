@@ -12,9 +12,9 @@ function cart(id){
 	location = "cart.do?productId="+id+"&amount="+amount;
 }
 </script>
-<body>
+<div>
 	<h2>상품정보</h2>
-	<table width="1000px" border='1'>
+	<table style="width:1000px;margin: 0 auto"  border='1'>
 		<thead>
 			<tr>
 				<td width="300px">이미지</td>
@@ -56,4 +56,4 @@ function cart(id){
 			<td>${product.productInfo }</td>
 		</tr>
 	</table>
-</body>
+</div>

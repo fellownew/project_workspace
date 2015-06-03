@@ -9,11 +9,12 @@
 <style type="text/css" >
 
 body{
-	margin:50px;
-	padding:0auto;
+	width:1300px;
+	margin:0 auto;
 }
 
 #header{
+	
 	background-color:white;
 	overflow:auto;
 }
@@ -25,11 +26,12 @@ body{
 	padding: 5px;
 	overflow:auto;
 }
-
 #section{
-
-	padding: 15px;
-	float:none;
+	text-align:center;
+	float:left;
+	width: 1300px;
+	margin:0 auto; 
+	
 }
 #footer{
 	background-color:tomato;
@@ -38,14 +40,7 @@ body{
 	text-align:center;
 	height:50px;
 	clear:both;
-}
-
-.center{
-	margin-left:auto;
-	margin-right:auto;
-	width:50%
-}
-
+}	
 </style>
 </head>
 <body>
@@ -57,7 +52,7 @@ body{
 		<tiles:insertAttribute name="nav"/>
 	</div>
 	
-	<div id="section" class="center">
+	<div id="section">
 		<tiles:insertAttribute name="body"/>
 	</div>
 	
