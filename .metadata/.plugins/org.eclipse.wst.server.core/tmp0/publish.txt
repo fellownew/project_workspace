@@ -1,3 +1,4 @@
 #Tomcat publish data
-#Tue Jun 02 14:28:10 KST 2015
-org.eclipse.jst.jee.server\:/binary\:C\:\\Users\\KOSTA_03_011\\.m2\\repository\\org\\springframework\\spring-web\\4.1.6.RELEASE\\spring-web-4.1.6.RELEASE.jar=WEB-INF/lib/spring-web-4.1.6.RELEASE.jar
+#Wed Jun 03 16:53:26 KST 2015
+org.eclipse.jst.jee.server\:shoppingmall=C\:\\JAVA\\apache-tomcat-7.0.59\\webapps\\shoppingmall
+org.eclipse.jst.jee.server\:/binary\:C\:\\Users\\KOSTA_03_008\\.m2\\repository\\org\\springframework\\spring-web\\4.1.6.RELEASE\\spring-web-4.1.6.RELEASE.jar=C\:\\JAVA\\apache-tomcat-7.0.59\\webapps\\shoppingmall\\WEB-INF\\lib\\spring-web-4.1.6.RELEASE.jar

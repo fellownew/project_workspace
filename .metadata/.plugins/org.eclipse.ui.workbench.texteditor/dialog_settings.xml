@@ -8,6 +8,10 @@
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="order_row"/>
+			<item value="memberOrderForm"/>
+			<item value="memberLoginForm"/>
+			<item value="getContextPath"/>
 			<item value="file"/>
 		</list>
 		<list key="replacehistory">

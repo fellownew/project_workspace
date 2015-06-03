@@ -1,0 +1,79 @@
+<%@ page contentType="text/html;charset=UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/css/order.css">
+<title>Insert title here</title>
+</head>
+<body>
+	주문상품 확인
+	<!-- 구매자 정보 회원일 경우 -->
+	<div class="order_row">
+		<h2>
+			<img
+				src="https://sslimg.appstory.co.kr/c.appstory.co.kr/renew_v2/tit_order1.gif"
+				alt="구매자 정보" />
+		</h2>
+
+		<table class="type_col">
+
+
+			<caption>비회원구매자정보입력하기</caption>
+			<tr>
+				<th scope="row"><img
+					src="https://sslimg.appstory.co.kr/c.appstory.co.kr/renew_v2/label_name.gif"
+					alt="이름" /></th>
+				<td><input type="text" name="dbentry_name" id="dbentry_name"
+					value="" /></td>
+			</tr>
+			<tr>
+				<th scope="row"><img
+					src="https://sslimg.appstory.co.kr/c.appstory.co.kr/renew_v2/label_phone.gif"
+					alt="휴대폰" /></th>
+				<td><input type="hidden" name="hp1" id="hp1" value="" /> <input
+					type="hidden" name="hp2" id="hp2" value="" /> <input type="hidden"
+					name="hp3" id="hp3" value="" /> <select id="dbtel1" name="dbtel1">
+						<option value="010">010</option>
+						<option value="011">011</option>
+						<option value="016">016</option>
+						<option value="017">017</option>
+						<option value="018">018</option>
+						<option value="019">019</option>
+				</select> <i class="dash">-</i> <input type="text" value="" maxlength="4"
+					id="dbtel2" name="dbtel2"
+					onkeyup="this.form.hp2.value = this.value" /> <i class="dash">-</i>
+					<input type="text" value="" maxlength="4" id="dbtel3" name="dbtel3"
+					onkeyup="this.form.hp3.value = this.value" /></td>
+			</tr>
+			<tr>
+				<th scope="row"><img
+					src="https://sslimg.appstory.co.kr/c.appstory.co.kr/renew_v2/label_mail.gif"
+					alt="이메일" /></th>
+				<td><input class="text" type="text" id="email1" name="email1"
+					value="" /> <i class="at">@</i> <input class="text" type="text"
+					id="email2" name="email2" value="" /> <select id="email_domain"
+					name="email_domain">
+						<option value="">직접입력</option>
+						<option value="naver.com">naver.com</option>
+						<option value="hanmail.net">hanmail.net</option>
+						<option value="nate.com">nate.com</option>
+						<option value="hotmail.com">hotmail.com</option>
+						<option value="paran.com">paran.com</option>
+						<option value="gmail.com">gmail.com</option>
+						<option value="empas.com">empas.com</option>
+						<option value="netian.com">netian.com</option>
+						<option value="chol.com">chol.com</option>
+						<option value="dreamwiz.com">dreamwiz.com</option>
+						<option value="freechal.com">freechal.com</option>
+						<option value="hanafos.com">hanafos.com</option>
+						<option value="hanmir.com">hanmir.com</option>
+						<option value="hitel.net">hitel.net</option>
+						<option value="korea.com">korea.com</option>
+				</select></td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+body {
+	font: 17px "맑은 고딕", 돋움;
+}
+
+td, th {
+	padding: 10px 30px;
+}
+
+table, td, th {
+	border: 1px #000 solid;
+	border-collapse: separate;
+}

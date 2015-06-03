@@ -1,0 +1,61 @@
+<%@ page contentType="text/html;charset=UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/order.css">
+<title>Insert title here</title>
+</head>
+<body>
+주문상품 확인
+<div id="container">
+	
+
+
+</div>
+	<table style="width:900px; margin:0 auto;">
+		<tr>
+			<td>상품/옵션정보</td>
+			<td>수량</td>
+			<td>상품금액</td>
+			<td>판매자</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
+</body>
+
+<body>
+<script type="text/javascript">
+ 
+$(document).ready(function(){
+ $(".btn a").each(function(){
+  
+  var image = $(this).children("img");
+  var imgsrc = $(image).attr("src");     //attr 속성의 값을 가져온다.
+  
+  //add mouseOver
+  $(this).mouseover(function(){
+   var on = imgsrc.replace(/_off.gif/,"_on.gif");   //앞에 문자열을 뒤에 문자열로 변환 
+   $(image).attr("src",on);                              //attr 속성의 값을 변경
+  });
+  
+    //add mouseOut
+  $(this).mouseout(function(){
+   var off = imgsrc.replace(/_on.gif/,"_off.gif");
+   $(image).attr("src",off);
+  });
+  
+  //add mouseDown
+  $(this).mousedown(function(){
+   var dn = imgsrc.replace(/_off.gif/,"_b.gif");
+   $(image).attr("src",dn);
+  });
+ });
+ });
+</script>
+</html>

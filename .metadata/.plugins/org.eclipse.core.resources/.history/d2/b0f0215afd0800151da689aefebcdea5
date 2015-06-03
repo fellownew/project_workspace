@@ -1,0 +1,123 @@
+<%@ page contentType="text/html;charset=UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/css/order.css">
+<title>Insert title here</title>
+</head>
+<body>
+	주문상품 확인
+	<div class="order_row">
+		<fieldset>
+			<legend>배송지정보입력하기</legend>
+			<h2>
+				<img src="https://sslimg.appstory.co.kr/c.appstory.co.kr/renew_v2/tit_order2.gif" alt="배송지 정보" />
+			</h2>
+			<table class="type_col">
+				<caption>배송지정보입력하기</caption>
+				<tr>
+					<th scope="row"><img
+						src="https://sslimg.appstory.co.kr/c.appstory.co.kr/renew_v2/label_ship_sel.gif"
+						alt="배송지선택" /></th>
+					<td>
+						<ul class="addr_sel">
+							<li><label><input type="checkbox" value="default"
+									name="addr_status" /> 주문자 정보와 동일</label></li>
+							<input type="hidden" value="new_addr" name="addr_status"
+								id="addr_basic" />
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row"><img
+						src="https://sslimg.appstory.co.kr/c.appstory.co.kr/renew_v2/label_name.gif"
+						alt="이름" /></th>
+					<td><input class="text entry_name" type="text"
+						name="entry_name" id="entry_name" value="" /></td>
+				</tr>
+				<tr>
+					<th scope="row"><img
+						src="https://sslimg.appstory.co.kr/c.appstory.co.kr/renew_v2/label_phone2.gif"
+						alt="연락처" /></th>
+					<td><input type="hidden" name="hp1" id="hp1" value="" /> <input
+						type="hidden" name="hp2" id="hp2" value="" /> <input
+						type="hidden" name="hp3" id="hp3" value="" /> <select id="tel1"
+						name="tel1">
+							<option value="010">010</option>
+							<option value="011">011</option>
+							<option value="016">016</option>
+							<option value="017">017</option>
+							<option value="018">018</option>
+							<option value="019">019</option>
+					</select> <i class="dash">-</i> <input type="text" value="" maxlength="4"
+						id="tel2" name="tel2" onkeyup="this.form.hp2.value = this.value" />
+						<i class="dash">-</i> <input type="text" value="" maxlength="4"
+						id="tel3" name="tel3" onkeyup="this.form.hp3.value = this.value" />
+					</td>
+				</tr>
+				<tr>
+					<th scope="row"><img
+						src="https://sslimg.appstory.co.kr/c.appstory.co.kr/renew_v2/label_addr.gif"
+						alt="주소" /></th>
+					<td>
+						<p>
+							<button title="우편번호 검색" id="addr_search" type="button">우편번호검색</button>
+							<input type="text" value="" maxlength="3" id="addr1" name="addr1"
+								readonly /> <i class="dash">-</i> <input type="text" value=""
+								maxlength="3" id="addr2" name="addr2" readonly />
+						</p>
+						<p>
+							<input type="text" value="" id="addr3" name="addr3" readonly="" />
+							<input type="text" id="addr4" name="addr4" value="" />
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row"><img
+						src="https://sslimg.appstory.co.kr/c.appstory.co.kr/renew_v2/label_ship_memo.gif"
+						alt="배송메모" /></th>
+					<td><input type="text" id="memo" name="memo" maxlength="40"
+						placeholder="배송 시 택배기사님께 전달할 메시지를 최대 40자까지 입력 가능합니다." /> <span
+						class="msg">(40자)</span> <span> <select name="memo_select"
+							id="memo_select">
+								<option value="">입력하실 문구를 선택 해주세요.</option>
+								<option value="1">배송 전 미리 연락 주세요.</option>
+								<option value="2">빠른 배송 부탁 드립니다.</option>
+								<option value="3">경비실에 맡겨 주세요.</option>
+								<option value="4">부재 시 연락 주세요.</option>
+								<option value="5">부재 시 경비실에 맡겨 주세요.</option>
+								<option value="6">제품 손상되지 않게 안전배송 해주세요.</option>
+						</select>
+					</span></td>
+				</tr>
+				<tr>
+					<th scope="row"><img
+						src="https://sslimg.appstory.co.kr/c.appstory.co.kr/renew_v2/label_order_pw.gif"
+						alt="주문비밀번호" /></th>
+					<td><input type="password" name="guest_pwd" id="guest_pwd"
+						value="" maxlength="4"
+						onKeyPress="if ((event.keyCode < 48) || (event.keyCode > 57)){event.returnValue = false;};"
+						style="ime-mode: disabled" /> <span class="msg"><strong><img
+								src="https://sslimg.appstory.co.kr/c.appstory.co.kr/renew_v2/bu_msg.gif"
+								alt="" /> 비회원 구매는 주문비밀번호(숫자 4자리)를 입력하시면 구매내역을 조회</strong>하실 수 있습니다.</span></td>
+				</tr>
+
+				<tr>
+					<th scope="row"><img
+						src="https://sslimg.appstory.co.kr/c.appstory.co.kr/renew_v2/label_order_pw2.jpg"
+						alt="비밀번호 확인" /></th>
+					<td><input type="password" name="guest_pwd2" id="guest_pwd2"
+						value="" maxlength="4"
+						onKeyPress="if ((event.keyCode < 48) || (event.keyCode > 57)){event.returnValue = false;};"
+						style="ime-mode: disabled; width: 62px;" /> <span class="msg">
+							입력하신 <strong>주문비밀번호(숫자 4자리)를 다시 입력</strong>해주세요.
+					</span></td>
+				</tr>
+
+			</table>
+		</fieldset>
+	</div>
+</body>
+</html>
