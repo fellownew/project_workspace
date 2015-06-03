@@ -19,11 +19,13 @@ font-size: 10px;
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	
+		
 	$("input[type='text']").blur(function(){
+		var amount = $(this).val();
 		var id = '#'+$(this).attr('id');
 		var err = id+"_span";
-		
+		var sum = id+"_sum";
+		var price =id+"_price";
 		if(isNaN($(id).val())){
 			$(err).show();
 			$(id).val('1');
@@ -32,35 +34,19 @@ $(document).ready(function(){
 		}else{
 			$(err).hide();
 			
-			$.ajax({
-				url:"/taommall/cart/auth/modifyAmount.do",
-				type:"POST",
-				data:{password:$("#newPassword").val(),currPassword:$("#currentPassword").val()},	
-				dataType:"text",
-				beforeSend:function(){
-					 if(!isPassword){
-						$("#cpasswordErr").show().html("필수 정보입니다").attr('style', "color:red");
-						return false;
-					}else if(!isNewPassword){
-						$("#pconfirmErr").show().html("비밀번호를 확인해주세요").attr('style', "color:red");
-						return false;
-					}
-				},
-				success:function(res){
-					if(res=="fail"){
-						$("#cpasswordErr").show().html("비밀번호가 틀렸습니다.").attr('style', "color:red");
-					}else{
-						$("#currentPassword").val('');
-						$("#newPasswordConfirm").val('');
-						$("#newPassword").val('');
-						$("#passwordDetail").hide();
-						$("#notify").html("변경완료");
-					}
-					
-				}
-			});	
+			
 		}
-		
+		$.ajax({
+			url:"/taommall/cart/auth/modifyAmount.do",
+			type:"POST",
+			data:{buyerId : '${buyerId}',productId :$(this).attr('id'), amount:amount},	
+			dataType:"text",
+			success:function(res){
+				if(res=='success'){
+					$(sum).text($(price).text()*amount);
+				}
+			}
+		});	
 		
 
 	})
@@ -69,8 +55,10 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
+
 <hr>
 	<div class="cart_list_table">
+	
 		<table id="">
 			<caption>장바구니 리스트</caption>
 			<colgroup>
@@ -104,8 +92,8 @@ $(document).ready(function(){
 					<div class="info">${cart.product.productInfo }</div>
 				</td>	
 				<td style="text-align: center;"><span><input type="text" id="${cart.productId}" value="${cart.amount}" size="1"  max="99" maxlength="2"></span><div><span id="${cart.productId}_span" class="error" style="display: none;">숫자를<br>입력하세요.</span></div></td>
-				<td style="text-align: center;"><span>${cart.product.productPrice}원</span></td>
-				<td style="text-align: center;"><span>${cart.product.productPrice * cart.amount}원</span></td>
+				<td style="text-align: center;"><span id="${cart.productId}_price">${cart.product.productPrice}</span>원</td>
+				<td style="text-align: center;"><span id="${cart.productId}_sum">${cart.product.productPrice * cart.amount}</span>원</td>
 				<td style="text-align: center;"><span >무료</span></td>
 				</tr>
 			</c:forEach>

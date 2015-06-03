@@ -12,7 +12,9 @@ import kr.co.taommall.cart.vo.Cart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/cart/auth")
@@ -24,16 +26,23 @@ public class CartController {
 	CartService service;
 	
 	@RequestMapping("/cartList.do")
+
 	public String cartList(HttpServletRequest request,HttpSession session){
 		Buyer buyer = (Buyer)session.getAttribute("loginInfo");
 		String buyerId = buyer.getBuyerId();
 		List<Cart> list = service.selectCartByerId(buyerId);
 		request.setAttribute("cart_list", list);
-		
+		request.setAttribute("buyerId", buyerId);		
 		return "/WEB-INF/view/body/cart/cartList.jsp";
 	}
 	@RequestMapping("modifyAmount.do")
-	public String modifyAmount(){
-		return "success";
+	@ResponseBody
+	public String modifyAmount(@ModelAttribute Cart cart){
+		int count = service.updateCart(cart);
+		if(count !=0){
+			return "success";			
+		}else{
+			return "fail";
+		}
 	}
 }
