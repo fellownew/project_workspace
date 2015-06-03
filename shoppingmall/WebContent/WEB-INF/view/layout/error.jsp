@@ -9,7 +9,7 @@
 $(document).ready(function(){
 	
 	alert('${requestScope.errorMessage}');
-	var url ='<%=request.getContextPath()%>/index.do';
+	var url ='<%=request.getContextPath()%>/mainPage.do';
 	$(location).attr('href',url);
 });
 </script>
