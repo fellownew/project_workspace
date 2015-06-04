@@ -1,4 +1,4 @@
-package kr.co.taommall.cart.controller;
+package kr.co.taommall.cart.service;
 
 import java.util.List;
 

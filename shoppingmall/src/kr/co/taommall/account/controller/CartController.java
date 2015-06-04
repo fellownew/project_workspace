@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import kr.co.taommall.account.vo.Buyer;
-import kr.co.taommall.cart.controller.CartService;
+import kr.co.taommall.cart.service.CartService;
 import kr.co.taommall.cart.vo.Cart;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,6 @@ public class CartController {
 	CartService service;
 	
 	@RequestMapping("/cartList.do")
-
 	public String cartList(HttpServletRequest request,HttpSession session){
 		Buyer buyer = (Buyer)session.getAttribute("loginInfo");
 		String buyerId = buyer.getBuyerId();
@@ -46,14 +45,16 @@ public class CartController {
 		}
 	}
 	@RequestMapping("deleteCartList.do")
-	public String deleteCartList(@ModelAttribute Cart cart){
+	public String deleteCartList(@ModelAttribute Cart cart,HttpServletRequest request){
 		System.out.println(cart);
 		int count = service.deleteCart(cart);
 		System.out.println(count);
+		List<Cart> list = service.selectCartByerId(cart.getBuyerId());
+		request.setAttribute("cart_list", list);
 		if(count !=0){
 			return "/WEB-INF/view/body/cart/cartList.jsp";			
 		}else{
-			System.out.println("tlfvo");
+			request.setAttribute("error", "잘못된 접근입니다.");
 			return "/WEB-INF/view/body/cart/cartList.jsp";
 		}
 	}

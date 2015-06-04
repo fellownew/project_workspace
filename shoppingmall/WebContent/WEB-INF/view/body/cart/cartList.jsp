@@ -19,7 +19,26 @@ font-size: 10px;
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-		
+	
+	
+	$("#purchase").on("click",function(){
+		var list = new Array();
+	 	  $('.chk').each(function() {
+			  if($(this).is(":checked")){
+					 list.push($(this).attr('value'));
+			  }
+			
+		   });
+	 	  alert(list);
+	 	  
+	 	 var url ='<%=request.getContextPath()%>/auth/buyerOrderForm.do?list=list';
+			$(location).attr('href',url);
+	 	  
+	 	  
+	});
+		if(${requestScope.error != null}){
+			alert('${requestScope.error}');
+		}
 	
 	$("#allCheck").on("click",function(){
 		if($(this).is(":checked")){
@@ -144,7 +163,7 @@ $(document).ready(function(){
 			</c:forEach>
 			</tbody>
 		</table>
-		<input type="text" id="result" >
+		<input type="text" id="result" > <input type="button" id="purchase" value="구매하기">
 	</div>
 </body>
 </html>
