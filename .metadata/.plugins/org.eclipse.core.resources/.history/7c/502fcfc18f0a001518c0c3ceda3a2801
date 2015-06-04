@@ -47,7 +47,7 @@ public class CartController {
 		List<Cart> list = service.selectCartByerId(buyerId);
 		request.setAttribute("cart_list", list);
 		request.setAttribute("buyerId", buyerId);
-		return "cart/cartList.form";
+		return "/WEB-INF/view/body/cart/cartList.jsp";
 	}
 
 	@RequestMapping("modifyAmount.do")
@@ -70,7 +70,7 @@ public class CartController {
 			return "redirect:cartList.do";
 		} else {
 			request.setAttribute("error", "실패");
-			return "cart/cartList.form";
+			return "/WEB-INF/view/body/cart/cartList.jsp";
 		}
 	}
 }
