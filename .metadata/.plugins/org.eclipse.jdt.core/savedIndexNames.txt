@@ -1,6 +1,9 @@
 INDEX VERSION 1.127+C:\JAVA\eclipse\project_workspace\.metadata\.plugins\org.eclipse.jdt.core
+<<<<<<< HEAD
+=======
 2440696389.index
 976010186.index
+>>>>>>> origin/master
 1740101647.index
 1039617268.index
 1158793691.index
@@ -59,5 +62,11 @@ INDEX VERSION 1.127+C:\JAVA\eclipse\project_workspace\.metadata\.plugins\org.ecl
 3840947683.index
 3751413.index
 1530861385.index
+<<<<<<< HEAD
+2007412362.index
+2709374206.index
+3121493799.index
+=======
 177130084.index
 3428526334.index
+>>>>>>> origin/master
