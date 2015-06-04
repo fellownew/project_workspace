@@ -129,6 +129,12 @@ select * from seller
 select * from product
 select * from buyer
 
+select * from cart
+
+insert into cart values('123456',61,2);
+insert into cart values('123456',62,4);
+insert into cart values('123456',63,15);
+insert into cart values('123456',65,1);
 
 select count(*)from product
 
