@@ -75,4 +75,6 @@
 	
 	<mvc:view-controller path="memberLoginForm.do" view-name="member/member_login_form.form"/>
 	<mvc:view-controller path="memberJoinForm.do" view-name="member/member_join_form.form"/>
+	<mvc:view-controller path="memberOrderForm.do" view-name="member/member_order_form.form"/>	<!-- OrderPage 추가 -->
+	
 </beans>

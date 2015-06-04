@@ -1,0 +1,21 @@
+body {
+	font: 17px "맑은 고딕", 돋움;
+}
+
+td, th {
+	padding: 10px 30px;
+}
+
+table, td, th {
+	
+	
+}
+
+.center {
+ background:url(4.png) no-repeat;
+ border: 1px #000 solid;
+ border-collapse: collapse;		//서로 이웃하는 테이블이나 셀의 테두리선을 겹쳐서 표현
+ width:700px;
+ margin:0 auto; 
+}
+

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	<typeAliases>
+		<package name="kr.co.taommall.product.vo"/>
+		<package name="kr.co.taommall.account.vo"/>
+		<package name="kr.co.taommall.order.vo"/>
+	</typeAliases>
+	<mappers>
+<<<<<<< HEAD
+		<mapper resource="kr/co/taommall/config/mapper/productMapper.xml"/>
+		<mapper resource="kr/co/taommall/config/mapper/orderMapper.xml"/>
+=======
+		<mapper resource="kr/co/taommall/config/mapper/product-mapper.xml"/>
+		<mapper resource="kr/co/taommall/config/mapper/seller-mapper.xml"/>
+		<mapper resource="kr/co/taommall/config/mapper/buyer-mapper.xml"/>
+>>>>>>> 429ac48de8138eb5a12b9e3ecf81333b07d0f78a
+	</mappers>
+</configuration>

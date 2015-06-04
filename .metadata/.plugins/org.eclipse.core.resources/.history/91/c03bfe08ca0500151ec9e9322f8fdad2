@@ -1,0 +1,8 @@
+package kr.co.taommall.order.vo;
+
+import java.io.Serializable;
+
+public class Order implements Serializable{
+	private String order_id;
+	
+}

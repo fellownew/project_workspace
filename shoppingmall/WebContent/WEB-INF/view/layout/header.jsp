@@ -62,7 +62,8 @@ a{
 			<%-- 비로그인 --%>
 			<c:otherwise>
 					<a href="<%=request.getContextPath() %>/memberJoinForm.do">회원가입</a> |
-					<a href="<%=request.getContextPath() %>/memberLoginForm.do">로그인</a>
+					<a href="<%=request.getContextPath() %>/memberLoginForm.do">로그인</a>	|
+					<a href="<%=request.getContextPath() %>/memberOrderForm.do">구매하기</a>
 			</c:otherwise>	
 		</c:choose>
 	</ul>
