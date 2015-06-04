@@ -12,8 +12,9 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd">
 	
 	<!-- 컴포넌트 스캔. -->	
-	<context:component-scan base-package="kr.co.taommall"/>
-	<context:component-scan base-package="kr.co.taommall.product.controller"/>
+	<context:component-scan base-package="kr.co.taommall.*.dao"/>
+	<context:component-scan base-package="kr.co.taommall.*.service"/>
+	<context:component-scan base-package="kr.co.taommall.common.controller"/>
 	
 	<!-- DB 설정 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" p:url="jdbc:oracle:thin:@192.168.7.25:1521:XE" p:username="taom" p:password="taom91"/>

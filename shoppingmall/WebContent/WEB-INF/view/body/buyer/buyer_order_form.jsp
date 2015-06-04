@@ -9,7 +9,7 @@
  <script type="text/javascript"> 
  
  $(document).ready(function(){
-	 
+	 //만약에 상품을 구입하면, 장바구니에서 삭제 되게 해야한당.
 	list = '${param.cart_list}';
 	var varList = list.split(",");
 	var list = new Array();
