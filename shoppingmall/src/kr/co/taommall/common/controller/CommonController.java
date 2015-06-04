@@ -40,4 +40,22 @@ public class CommonController {
 		return "product/product_list.form";
 	}
 	
+	@RequestMapping("/productInfo.do")
+	public String selectProductById(@RequestParam String productId,Model model){
+		int pId = Integer.parseInt(productId);
+		Product product = service.selectProductByIdNoPaging(pId,model);
+		model.addAttribute("product", product);
+		return "product/product_info.form";
+	}
+	
+	
+	
+	
+	//카테고리별 상품 랜덤5개 뽑아오기 - 메인페이지 슬라이드용.
+	@RequestMapping("/mainPage.do")
+	public String selectProductByCategoryWithRandom(Model model){
+		List<Product> list = service.selectProductToRandom();
+		model.addAttribute("productList",list);
+		return "main.do";
+	}
 }

@@ -2,7 +2,6 @@ package kr.co.taommall.product.dao;
 
 import java.util.List;
 
-import kr.co.taommall.common.PagingBean;
 import kr.co.taommall.product.vo.Product;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -41,76 +40,49 @@ public class ProductDAOImpl implements ProductDAO {
 	//Select
 	
 	@Override
-	public List<Product> selectAllProduct(int pageNo,Model model){
-		int contentsPerPage =PagingBean.CONTENTS_PER_PAGE;
-		model.addAttribute("contentsPerPage", contentsPerPage);
-		model.addAttribute("pageNo", pageNo);
+	public List<Product> selectAllProduct(Model model){
 		return  session.selectList(nameSpace+"selectAllProduct",model);
 		
 	}
 
 	@Override
-	public List<Product> selectProductById(int pageNo, Model model) {
-		int contentsPerPage =PagingBean.CONTENTS_PER_PAGE;
-		model.addAttribute("contentsPerPage", contentsPerPage);
-		model.addAttribute("pageNo", pageNo);
+	public List<Product> selectProductById(Model model) {
 		return session.selectList(nameSpace+"selectProductById",model);
 	}
 
 	@Override
-	public List<Product> selectProductLikeName(int pageNo, Model model) {
-		int contentsPerPage =PagingBean.CONTENTS_PER_PAGE;
-		model.addAttribute("contentsPerPage", contentsPerPage);
-		model.addAttribute("pageNo", pageNo);
+	public List<Product> selectProductLikeName(Model model) {
 		return session.selectList(nameSpace+"selectProductlIKEName",model);
 	}
 
 	@Override
-	public List<Product> selectProductByCategory(int pageNo, Model model) {
-		int contentsPerPage =PagingBean.CONTENTS_PER_PAGE;
-		model.addAttribute("contentsPerPage", contentsPerPage);
-		model.addAttribute("pageNo", pageNo);
+	public List<Product> selectProductByCategory(Model model) {
 		return session.selectList(nameSpace+"selectProductByCategory",model);
 	}
 
 	@Override
-	public List<Product> selectProductByexpDate(int pageNo, Model model) {
-		int contentsPerPage =PagingBean.CONTENTS_PER_PAGE;
-		model.addAttribute("contentsPerPage", contentsPerPage);
-		model.addAttribute("pageNo", pageNo);
+	public List<Product> selectProductByexpDate(Model model) {
 		return session.selectList(nameSpace+"selectProductByexpDate",model);
 	}
 
 	@Override
-	public List<Product> selectProductBySellerId(int pageNo, Model model) {
-		int contentsPerPage =PagingBean.CONTENTS_PER_PAGE;
-		model.addAttribute("contentsPerPage", contentsPerPage);
-		model.addAttribute("pageNo", pageNo);
+	public List<Product> selectProductBySellerId(Model model) {
 		List<Product> list = session.selectList(nameSpace+"selectProductBySellerId",model);
 		return list;
 	}
 
 	@Override
-	public List<Product> selectProductBetweenPrice(int pageNo, Model model) {
-		int contentsPerPage =PagingBean.CONTENTS_PER_PAGE;
-		model.addAttribute("contentsPerPage", contentsPerPage);
-		model.addAttribute("pageNo", pageNo);
+	public List<Product> selectProductBetweenPrice(Model model) {
 		return session.selectList(nameSpace+"selectProductBetweenPrice",model);
 	}
 
 	@Override
-	public List<Product> selectProductMinPrice(int pageNo, Model model) {
-		int contentsPerPage =PagingBean.CONTENTS_PER_PAGE;
-		model.addAttribute("contentsPerPage", contentsPerPage);
-		model.addAttribute("pageNo", pageNo);
+	public List<Product> selectProductMinPrice(Model model) {
 		return session.selectList(nameSpace+"selectProductMinPrice",model);
 	}
 
 	@Override
-	public List<Product> selectProductMaxPrice(int pageNo, Model model) {
-		int contentsPerPage =PagingBean.CONTENTS_PER_PAGE;
-		model.addAttribute("contentsPerPage", contentsPerPage);
-		model.addAttribute("pageNo", pageNo);
+	public List<Product> selectProductMaxPrice(Model model) {
 		return session.selectList(nameSpace+"selectProductMaxPrice",model);
 	}
 	@Override
@@ -123,6 +95,11 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 	@Override
 	public List<Product> selectProductBySellerIdNoPaging(String sellerId){
-		return session.selectList(nameSpace+"selectProductByIdNoPaging",sellerId);		
+		return session.selectList(nameSpace+"selectProductBySellerIdNoPaging",sellerId);		
+	}
+	
+	@Override
+	public List<Product> selectProductToRandom(){
+		return session.selectList(nameSpace+"selectProductToRandom");
 	}
 }

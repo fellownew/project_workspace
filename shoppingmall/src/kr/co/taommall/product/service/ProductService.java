@@ -20,7 +20,8 @@ public interface ProductService {
 	public List<Product> selectProductByexpDate(String expDate,int pageNo,Model model);
 	public List<Product> selectProductBySellerId(String sellerId,int pageNo,Model model);
 	public List<Product> selectProductByPrice(int lPrice,int Hprice,int pageNo,Model model);
-	public Product selectProductByIdNoPaging(int productId);
-	public List<Product> selectProductBySellerIdNoPaging(String sellerId);
+	public Product selectProductByIdNoPaging(int productId,Model model);
+	public List<Product> selectProductBySellerIdNoPaging(String sellerId,Model model);
+	public List<Product> selectProductToRandom();
 	
 }

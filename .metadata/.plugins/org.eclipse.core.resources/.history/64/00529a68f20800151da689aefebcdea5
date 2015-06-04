@@ -58,7 +58,7 @@
 	<bean name="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 	
 	<!-- 공통 view controller -->
-	<mvc:view-controller path="/index.do" view-name="main.do"/>
+	<!-- <mvc:view-controller path="/index.do" view-name="main.do"/> -->
 
 	<!-- 상품 관련 view controller -->  
 	<mvc:view-controller path="productInfoForm.do" view-name="product/product_info.form"/>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="account.dao.seller">
+
+<insert id="insertSeller" parameterType="seller" >
+	insert into seller values(#{sellerId},#{password},#{name},#{gender},#{address},#{email},#{phone},#{auth},#{admin},#{corporateNumber})
+</insert>
+<update id="updateSeller" parameterType="seller">
+	update seller
+	<set>
+	
+		<if test="password !=null">
+		 password=#{password},
+		</if>
+		<if test="name !=null">
+		name=#{name},
+		</if>
+		<if test="gender !=null">
+		 gender=#{gender},
+		 </if>
+		 <if test="address !=null">
+		 address=#{address},
+		 </if>
+		 <if test="email !=null">
+		 email=#{email},
+		 </if>
+		 <if test="phone !=null">
+		 phone=#{phone},
+		 </if>
+		 <if test="auth!=null">
+		 auth=#{auth},
+		 </if>
+		 <if test="corporateNumber !=null">
+		  corporate_number=#{corporateNumber}
+		 </if>
+		
+	</set>
+	where seller_id=#{sellerId}
+</update>
+
+<delete id="deleteSellerById" parameterType="string">
+	delete from seller
+	where seller_id = ${value}
+</delete>
+
+<sql id="select-seller-basic">
+	select seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number
+	from seller
+</sql>
+
+<resultMap type="seller" id="resultMap-seller-basic">
+	<id column="seller_id" property="sellerId"/>	
+	<result column="password" property="password"/>
+	<result column="name" property="name"/>
+	<result column="gender" property="gender"/>
+	<result column="address" property="address"/>
+	<result column="email" property="email"/>
+	<result column="phone" property="phone"/>
+	<result column="auth" property="auth"/>
+	<result column="admin" property="admin"/>
+	<result column="corporate_number" property="corporateNumber"/>
+</resultMap>
+
+<select id="selectSellerAllMember" resultMap="resultMap-seller-basic">
+	<include refid="select-seller-basic"/>
+</select>
+
+<select id="selectSellerById" parameterType="string" resultMap="resultMap-seller-basic">
+	<include refid="select-seller-basic"/>
+	where seller_id = #{value}
+</select>
+
+
+<select id="selectSellerCount" resultType="_int">
+	select count(*)
+	from seller
+</select>
+
+<select id="selectAllSellerPaging" parameterType="map" resultMap="resultMap-seller-basic">
+		select seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number
+		from (
+			select ceil(rownum/#{contentsPerPage}) page, seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number
+			from (
+				<include refid="select-seller-basic"/>
+					<choose>
+						<when test="auth == 'asc'">
+							order by auth asc
+						</when>
+						<when test="auth == 'desc'">
+							order by auth desc
+						</when>
+					</choose>
+			)
+		) 
+		where page = #{pageNo}
+</select>
+
+<select id="selectSellerOrderByAuth" parameterType="map" resultMap="resultMap-seller-basic">
+	<include refid="select-seller-basic"/>
+	<choose>
+		<when test="auth == 'asc'">
+			order by auth asc
+		</when>
+		<when test="auth == 'desc'">
+			order by auth desc
+		</when>
+	</choose>
+</select>
+</mapper>

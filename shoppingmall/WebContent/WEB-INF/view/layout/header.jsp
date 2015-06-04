@@ -7,27 +7,32 @@ function home(){
 }
 </script>
 <style type="text/css">
-body a {
+a{
 	width: 150px;
 	font-size: 15px;
 	font-weight: bold;
-	
 }
 .left{
 	float: left;
+	width: 350px;
 }
 #search{
 	float: left;
+	width:600px;
 	padding-top: 30px;
+	margin:0 auto;
+	margin-top: 30px;
+	
 }
 .right{
 	float: left;
+	width:250px;
 	padding-top: 60px;
 }
 </style>
 <body>
-	<ul class="left" style="width: 500px"><img src="<%=request.getContextPath() %>/image/logo.jpg" onclick="home()"></ul>
-	<form id="search" style="width: 700px" action="list.do" method="POST">
+	<ul class="left"><img src="<%=request.getContextPath() %>/image/logo.jpg" onclick="home()"></ul>
+	<form id="search" action="list.do" method="POST">
 		<input type="text" name="search" autofocus="autofocus" style="width:500px;height: 30px" >
 		<input type="submit" value="검색">
 	</form>
@@ -37,7 +42,7 @@ body a {
 			<c:when test="${sessionScope.user=='seller'}">
 				<c:choose>
 					<c:when test="${sessionScope.loginInfo.admin=='true' }">
-						<a href="<%=request.getContextPath() %>/seller/auth/memberListPaging.do">회원관리</a>	
+						<a href="<%=request.getContextPath() %>/seller/auth/memberListPaging.do">회원관리</a>
 						<a href="<%=request.getContextPath() %>/seller/auth/logout.do">로그아웃</a>	
 					</c:when>
 					<c:otherwise>

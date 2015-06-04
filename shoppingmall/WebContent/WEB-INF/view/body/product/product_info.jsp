@@ -3,34 +3,57 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <meta charset="UTF-8">
-
-<body>
-	<table width="700" border='1'>
+<script type="text/javascript">
+function order(id){
+	location = "order.do?productId"+id;
+}
+function cart(id){
+	var amount = document.getElementById("amount");
+	location = "cart.do?productId="+id+"&amount="+amount;
+}
+</script>
+<div>
+	<h2>상품정보</h2>
+	<table style="width:1000px;margin: 0 auto"  border='1'>
 		<thead>
 			<tr>
-				<td>이미지</td>
-				<td>주문번호</td>
-				<td>상품명</td>
-				<td>가격</td>
-				<td>분류</td>
-				<td>상품정보</td>
-				<td>등록일자</td>
-				<td>유통기한</td>
-				<td>판매자</td>
+				<td width="300px">이미지</td>
+				<td colspan="2">정보</td>
 			</tr>
-		</thead>
+			</thead>
+			
 		<tbody>
 			<tr>
-				<td><img src="<%=request.getContextPath() %>/${requestScope.product.imagePath }"/></td>
-				<td>${product.productId}</td>
-				<td>${product.productName}</td>
-				<td>${product.price}</td>
-				<td>${product.category}</td>
-				<td>${product.productInfo}</td>
-				<td>${product.productregiDate}</td>
-				<td>${product.productexpDate}</td>
+				<td rowspan="6"><img src="<%=request.getContextPath() %>/${requestScope.product.imagePath }"/></td>
+				<td width="200px">상품명</td>	
+			    <td>${product.productName}</td>	
+			</tr>
+			<tr>
+				<td>상품가격</td>
+				<td>${product.productPrice}</td>
+			</tr>
+			<tr>
+
+				<td>유통기한</td>
+				<td>${product.expDate}</td>
+			</tr>
+			<tr>
+				<td>판매자 정보</td>
 				<td>${product.sellerId}</td>
+			</tr> 
+			<tr>
+				<td>수량</td>
+				<td><input type="number" id="amount"></td>
+			</tr> 
+			<tr>
+				<td colspan="2"><button onclick="order(${product.productId})">주문</button><button onclick="cart(${product.productId})">장바구니</button></td>
+				
 			</tr> 
 		</tbody>
 	</table>
-</body>
+	<table>
+		<tr>
+			<td>${product.productInfo }</td>
+		</tr>
+	</table>
+</div>
