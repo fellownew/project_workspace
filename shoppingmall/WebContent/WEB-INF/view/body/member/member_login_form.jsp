@@ -18,7 +18,7 @@
     </ul>
     <div class="tab_container">
         <div id="blog" class="tab_content">
-            <form action="<%=request.getContextPath()%>/index.do" class="loginForm" id="buyerLogin" method="post">
+            <form action="<%=request.getContextPath()%>/mainPage.do" class="loginForm" id="buyerLogin" method="post">
 		<div>
 		<input type="text" name="bId" id="bId" placeholder="구매자아이디" class="loginInput">
 		<span id="bIdErr" class="error" style="display:none">아이디를 입력해주세요.</span>
@@ -35,7 +35,7 @@
         </div>
         <!-- #tab1 -->
         <div id="slog" class="tab_content">
-        <form action="<%=request.getContextPath()%>/index.do" class="loginForm" id="sellerLogin" method="post">
+        <form action="<%=request.getContextPath()%>/mainPage.do" class="loginForm" id="sellerLogin" method="post">
 		<div>
 		<input type="text" name="sId" id="sId" placeholder="판매자아이디" class="loginInput">
 		<span id="sIdErr" class="error" style="display:none">아이디를 입력해주세요.</span>
