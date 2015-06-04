@@ -27,7 +27,6 @@ body{
 	overflow:auto;
 }
 #section{
-	text-align:center;
 	float:left;
 	width: 1300px;
 	margin:0 auto; 

@@ -63,8 +63,8 @@
 
 	<!-- 상품 관련 view controller -->  
 	<mvc:view-controller path="productInfoForm.do" view-name="product/product_info.form"/>
-	<mvc:view-controller path="productJoinForm.do" view-name="product/product_join_form.form"/>	
-	<mvc:view-controller path="productManagerForm.do" view-name="product/product_manager_form.form"/>
+	<mvc:view-controller path="auth/productJoinForm.do" view-name="product/product_join_form.form"/>	
+	<mvc:view-controller path="auth/productManagerForm.do" view-name="product/product_manager_form.form"/>
 	<mvc:view-controller path="cartList.do" view-name="cart/cartList.form"/>
 	
 	<!-- 회원관련 view controller -->

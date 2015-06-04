@@ -141,7 +141,6 @@ public class SellerController {
 	public ModelAndView memberListPaging(	@RequestParam(defaultValue="1")int page,
 											@RequestParam(defaultValue="desc") String auth,
 											@RequestParam(defaultValue="false") String check,
-											@RequestParam(defaultValue="10") String count){
 											@RequestParam(defaultValue="10") String count,HttpSession session){
 		Object obj =  session.getAttribute("loginInfo");
 		if(( obj instanceof Buyer ) || ((Seller)obj).getAdmin()=="false"){

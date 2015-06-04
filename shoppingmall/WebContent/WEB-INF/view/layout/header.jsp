@@ -15,28 +15,32 @@ a{
 .left{
 	float: left;
 	width: 300px;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 #search{
 	float: left;
 	width:600px;
-	padding-top: 30px;
 	margin:0 auto;
-	margin-top: 30px;
+	margin-top: 60px;
 	
 }
 .right{
 	float: left;
-	width:200px;
-	padding-top: 60px;
+	width:350px;
+	margin-top:80px;
+	text-align: right;
 }
 </style>
 <body>
-	<ul class="left"><img src="<%=request.getContextPath() %>/image/logo.jpg" onclick="home()"></ul>
+	<div class="left">
+		<img src="<%=request.getContextPath() %>/image/logo.jpg" alt="Taom" onclick="home()">
+	</div>
 	<form id="search" action="list.do" method="POST">
 		<input type="text" name="search" autofocus="autofocus" style="width:500px;height: 30px" >
 		<input type="submit" value="검색">
 	</form>
-	<ul class="right">
+	<div class="right">
 		<c:choose>
 			<%-- 판매자 확인 --%>
 			<c:when test="${sessionScope.user=='seller'}">
@@ -66,8 +70,8 @@ a{
 			<%-- 비로그인 --%>
 			<c:otherwise>
 					<a href="<%=request.getContextPath() %>/memberJoinForm.do">회원가입</a> |
-					<a href="<%=request.getContextPath() %>/memberLoginForm.do">로그인</a>	|
+					<a href="<%=request.getContextPath() %>/memberLoginForm.do">로그인</a>
 			</c:otherwise>	
 		</c:choose>
-	</ul>
+	</div>
 </body>
