@@ -5,8 +5,15 @@ drop table pboard;
 drop table product;
 drop table seller;
 drop table buyer;
+<<<<<<< HEAD
 select *
 from cart
+=======
+
+
+
+
+>>>>>>> d8f172b7dee6e0f4d2960577365e4df149aec429
 create table buyer(
    buyer_id varchar2(20) primary key,
    password varchar2(50) not null,

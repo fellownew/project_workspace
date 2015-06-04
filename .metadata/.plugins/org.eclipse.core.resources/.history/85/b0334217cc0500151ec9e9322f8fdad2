@@ -1,0 +1,8 @@
+package kr.co.taommall.order.service;
+
+import kr.co.taommall.order.vo.Order;
+
+public interface OrderService {
+	public void insertOrder(Order order);
+
+}

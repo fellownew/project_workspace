@@ -1,5 +1,8 @@
 Manifest-Version: 1.0
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> d8f172b7dee6e0f4d2960577365e4df149aec429
 Built-By: KOSTA_03_008
 Build-Jdk: 1.8.0_25
 =======

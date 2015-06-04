@@ -1,0 +1,5 @@
+package kr.co.taommall.order.service;
+
+public interface OrderService {
+
+}
