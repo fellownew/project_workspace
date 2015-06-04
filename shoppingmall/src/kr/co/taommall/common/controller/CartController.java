@@ -26,7 +26,6 @@ public class CartController {
 	CartService service;
 	
 	@RequestMapping("/cartList.do")
-
 	public String cartList(HttpServletRequest request,HttpSession session){
 		Buyer buyer = (Buyer)session.getAttribute("loginInfo");
 		String buyerId = buyer.getBuyerId();
@@ -46,12 +45,15 @@ public class CartController {
 		}
 	}
 	@RequestMapping("deleteCartList.do")
-	public String deleteCartList(@ModelAttribute Cart cart){
+	public String deleteCartList(@ModelAttribute Cart cart,HttpServletRequest request){
 		System.out.println(cart);
 		int count = service.deleteCart(cart);
 		System.out.println(count);
+		List<Cart> list = service.selectCartByerId(cart.getBuyerId());
+		request.setAttribute("cart_list", list);
+		
 		if(count !=0){
-			return "/WEB-INF/view/body/cart/cartList.jsp";			
+			return "redirect:cartList.do";			
 		}else{
 			System.out.println("tlfvo");
 			return "/WEB-INF/view/body/cart/cartList.jsp";

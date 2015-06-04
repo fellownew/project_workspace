@@ -12,7 +12,7 @@
 
 	$(document).ready(function() {
 		$("#selectList").on("change",function(){
-			var url ='<%=request.getContextPath()%>/seller/auth/memberListPaging.do?count=' + $(this).val() + '&auth=${requestScope.auth}&page=1';
+			var url ='<%=request.getContextPath()%>/seller/auth/memberList.do?count=' + $(this).val() + '&auth=${requestScope.auth}&page=1';
 			$(location).attr('href',url);
 		});
 		
@@ -84,7 +84,7 @@
 				<td>핸드폰번호</td>
 				<td>사업자번호</td>
 				<td><input type="checkbox" id="allcheck" >
-				<a href="<%=request.getContextPath()%>/seller/auth/memberListPaging.do?count=${requestScope.count}&auth=${requestScope.auth}&page=${pagingBean.currentPage}&check=true">판매여부</a></td>
+				<a href="<%=request.getContextPath()%>/seller/auth/memberList.do?count=${requestScope.count}&auth=${requestScope.auth}&page=${pagingBean.currentPage}&check=true">판매여부</a></td>
 			<tr>
 		</thead>
 		<tbody>
@@ -119,7 +119,7 @@
 		<!-- 이전 페이지 그룹 -->
 		<c:choose>
 			<c:when test="${pagingBean.previousPageGroup }">
-				<a href="<%=request.getContextPath()%>/seller/auth/memberListPaging.do?count=${requestScope.count}&auth=${requestScope.auth}&page=${pagingBean.startPageOfPageGroup-1}">◀</a>
+				<a href="<%=request.getContextPath()%>/seller/auth/memberList.do?count=${requestScope.count}&auth=${requestScope.auth}&page=${pagingBean.startPageOfPageGroup-1}">◀</a>
 			</c:when>
 			<c:otherwise>
 				◀
@@ -132,7 +132,7 @@
 					<b>[${pageNum}]</b>
 				</c:when>
 				<c:otherwise>
-					<a href="<%=request.getContextPath()%>/seller/auth/memberListPaging.do?count=${requestScope.count}&auth=${requestScope.auth}&page=${pageNum}">
+					<a href="<%=request.getContextPath()%>/seller/auth/memberList.do?count=${requestScope.count}&auth=${requestScope.auth}&page=${pageNum}">
 						${pageNum}
 					</a>
 				</c:otherwise>
@@ -142,7 +142,7 @@
 		<!-- 다음 페이지 그룹 -->
 		<c:choose>
 			<c:when test="${pagingBean.nextPageGroup }">
-				<a href="<%=request.getContextPath()%>/seller/auth/memberListPaging.do?count=${requestScope.count}&auth=${requestScope.auth}&page=${pagingBean.endPageOfPageGroup+1}">▶</a>
+				<a href="<%=request.getContextPath()%>/seller/auth/memberList.do?count=${requestScope.count}&auth=${requestScope.auth}&page=${pagingBean.endPageOfPageGroup+1}">▶</a>
 			</c:when>
 			<c:otherwise>
 				▶

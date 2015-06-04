@@ -24,7 +24,7 @@
 		<span id="bIdErr" class="error" style="display:none">아이디를 입력해주세요.</span>
 		</div>
 		<div>
-		<input type="password" name="bPassword" id="bPassword" placeholder="비밀번호"class="loginInput">
+		<input type="password" name="bPassword" id="bPassword" placeholder="비밀번호" class="loginInput">
 		<span id="bPasswordErr" class="error" style="display:none">비밀번호를 입력해주세요.</span> 
 		</div>
 		<div>

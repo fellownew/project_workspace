@@ -18,9 +18,26 @@ font-size: 10px;
 <title>Insert title here</title>
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
 <script type="text/javascript">
+
+
 $(document).ready(function(){
 	
-	
+
+
+		 var finalValue=0;
+			 $("#allCheck").prop("checked",true);
+			 $(".chk").prop("checked",true);
+	 	  $('.chk').each(function() {
+			  if($(this).is(":checked")){
+				  var text = $(this).attr('value');	
+				  var sum = '#'+text+"_sum";
+
+				  var value2 = $(sum).text();
+				  finalValue = finalValue*1+value2*1;
+			  }
+		   });
+	 		 $("#result").val(finalValue);
+
 	$("#purchase").on("click",function(){
 		var list = new Array();
 	 	  $('.chk').each(function() {
@@ -47,11 +64,11 @@ $(document).ready(function(){
 	
 	$("#allCheck").on("click",function(){
 		 $("#purchaseErr").hide();
-		if($(this).is(":checked")){
-		$(".chk").prop("checked",true);
-		}else{
-			$(".chk").prop("checked",false);	
-		}
+			if($(this).is(":checked")){
+			$(".chk").prop("checked",true);
+			}else{
+				$(".chk").prop("checked",false);	
+			}
 	});
 	
 
@@ -67,26 +84,11 @@ $(document).ready(function(){
 
 			  var value2 = $(sum).text();
 			  finalValue = finalValue*1+value2*1;
-		  }else{
-			  
 		  }
 	   });
  		 $("#result").val(finalValue);
- 	  
 	});
 
-/* 	  
-	$("input[type='checkbox']").on("click",function(){
-		var text = $(this).attr('value');
-		var sum = '#'+text+"_sum";
-
-		var value1 = $("#result").val();
-		var value2 = $(sum).text();
-		
-		alert(result);
-		$("#result").val(result);
-	}); */
-	
 	
 	$("input[type='text']").blur(function(){
 		var amount = $(this).val();
@@ -101,8 +103,6 @@ $(document).ready(function(){
 			return false;
 		}else{
 			$(err).hide();
-			
-			
 		}
 		$.ajax({
 			url:"/taommall/cart/auth/modifyAmount.do",
@@ -112,6 +112,18 @@ $(document).ready(function(){
 			success:function(res){
 				if(res=='success'){
 					$(sum).text($(price).text()*amount);
+			 		 var finalValue=0;
+			 	 	  $('.chk').each(function() {
+			 			  if($(this).is(":checked")){
+			 				  var text = $(this).attr('value');	
+			 				  var sum = '#'+text+"_sum";
+
+			 				  var value2 = $(sum).text();
+			 				  finalValue = finalValue*1+value2*1;
+			 			  }
+			 		   });
+			 	 		 $("#result").val(finalValue);
+					
 				}
 			}
 		});	
@@ -134,8 +146,8 @@ $(document).ready(function(){
 				<col style="width: 45%;" />
 				<col style="width: 12%;" />
 				<col style="width: 14%;" />
-				<col style="width: 9%;" />
-				<col style="width: 11%;" />
+				<col style="width: 12%;" />
+				<col style="width: 8%;" />
 				<col style="width: 5%;" />
 			</colgroup>
 			<thead>
@@ -151,6 +163,8 @@ $(document).ready(function(){
 				</tr>
 			</thead>
 			<tbody>
+			<c:choose>
+			<c:when test="${not empty requestScope.cart_list }">
 			<c:forEach items="${requestScope.cart_list}" var="cart">
 			<tr>
 				<td><input type="checkbox" id="${cart.productId}_chk" value="${cart.productId}"
@@ -168,6 +182,13 @@ $(document).ready(function(){
 				<td style="text-align: center;"><a href="<%=request.getContextPath()%>/cart/auth/deleteCartList.do?productId=${cart.productId}&buyerId=${cart.buyerId}">삭제</a></td>
 				</tr>
 			</c:forEach>
+			</c:when>
+			<c:when test="${empty requestScope.cart_list }">
+			<tr>
+				<td style="text-align: center" colspan="6">상품이 없습니다.<td>
+			 </tr>
+			</c:when>
+			</c:choose>
 			</tbody>
 		</table>
 		<input type="text" id="result" > <input type="button" id="purchase" value="구매하기"><span id="purchaseErr" style="display: none;" class="error">상품을 1개이상 선택해주세요.</span>
