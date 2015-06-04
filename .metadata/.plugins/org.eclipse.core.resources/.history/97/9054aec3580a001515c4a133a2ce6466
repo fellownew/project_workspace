@@ -68,7 +68,11 @@
 	<!-- 회원관련 view controller -->
 	<mvc:view-controller path="buyerJoinForm.do" view-name="buyer/buyer_join_form.form"/>
 	<mvc:view-controller path="auth/buyerInfoForm.do" view-name="buyer/buyer_info.form"/>	
+<<<<<<< HEAD
 	<mvc:view-controller path="auth/buyerOrderForm.do" view-name="buyer/buyer_order_form.form"/>	<!-- OrderPage 추가 -->
+=======
+	<mvc:view-controller path="auth/buyerOrderForm.do" view-name="buyer/buyer_order_form.form"/>
+>>>>>>> origin/master
 	
 	<mvc:view-controller path="sellerJoinForm.do" view-name="seller/seller_join_form.form"/>
 	<mvc:view-controller path="auth/sellerInfoForm.do" view-name="seller/seller_info.form"/>

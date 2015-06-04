@@ -79,6 +79,85 @@
 				<td>배송 시<br>요구사항</td>
 				<td style="text-align:left"><input type="text" name="" id="" size="75"></td>
 			</tr>
+							<tr >
+					<th scope="row">
+						<label for="prdOrdDlvReqCont0">배송시요구사항</label>
+						<div style="display:none">
+							<label class="prd_input" for="chkCont"><input type="checkbox" id="chkCont" name="chkCont" onclick="javascript:step2.contTypeChange(this);">상품별 입력</label>
+						</div>
+					</th>
+					<td>
+
+							<!-- 자동완성기능 때문에 CSS가 다릅니다. 오버시 textbox_over, 입력 후에는 textbox  -->
+							<span id="ordDlvReqContSpan">
+							<div class="toGo_OrderD">
+								<label for="prdOrdDlvReqCont0">
+										<input type="text" style="width:620px;" id='prdOrdDlvReqCont0' name='prdOrdDlvReqCont' value="" onclick="layerView('autoSentence00');" onkeydown="javascript:step2.calcTextareaValueLength(this, document.getElementById('ordDlvReqContCountSpan'));" onkeyup="javascript:step2.calcTextareaValueLength(this , document.getElementById('ordDlvReqContCountSpan'));">
+								</label>
+								(<span id="ordDlvReqContCountSpan">0</span>자/50자)
+
+								<div class="toGo_OptionLyWrap">
+									<div class="toGo_OptionLy" id="autoSentence00" onMouseOver="layerView('autoSentence00');" onMouseOut="layerHidden('autoSentence00');" style="display:none">
+										<ul>
+
+											<li><a href="javascript:setDlvReqCont('옥상 문 앞에 보관해주세요. 감사합니다.', document.mainform.prdOrdDlvReqCont, 'ordDlvReqContCountSpan','autoSentence00');">옥상 문 앞에 보관해주세요. 감사합니다.</a></li>
+
+											<li><a href="javascript:setDlvReqCont('부재시 경비실에 맡겨주세요.', document.mainform.prdOrdDlvReqCont, 'ordDlvReqContCountSpan','autoSentence00');">부재시 경비실에 맡겨주세요.</a></li>
+
+											<li><a href="javascript:setDlvReqCont('빠른 배송 부탁드립니다.', document.mainform.prdOrdDlvReqCont, 'ordDlvReqContCountSpan','autoSentence00');">빠른 배송 부탁드립니다.</a></li>
+
+											<li><a href="javascript:setDlvReqCont('부재시 핸드폰으로 연락바랍니다.', document.mainform.prdOrdDlvReqCont, 'ordDlvReqContCountSpan','autoSentence00');">부재시 핸드폰으로 연락바랍니다.</a></li>
+
+											<li><a href="javascript:setDlvReqCont('배송 전 연락바랍니다.', document.mainform.prdOrdDlvReqCont, 'ordDlvReqContCountSpan','autoSentence00');">배송 전 연락바랍니다.</a></li>
+
+
+										</ul>
+									</div>
+								</div>
+								<p class="cp_desc">특정한 배송일을 지정하고자 할 경우 판매자와 연락하여 배송일을 확인해주시기 바랍니다.</p>
+
+							</div>
+							</span>
+
+
+
+							<span id="ordDlvReqContPrdSpan" name="ordDlvReqContPrdSpan">
+							<div class="toGo_OrderD">
+								<div class="GoodsName"><script>document.write(prodNMArr[0]);</script></div>
+								<label for="ordDlvReqContPrd1">
+									<a href="javascript:void(0);"  onclick="layerView('autoSentence0');">
+										<input type="text" style="width:620px;" name="ordDlvReqContPrd" id="ordDlvReqContPrd1" size="20" onclick="layerView('autoSentence0');"  onkeydown="javascript:step2.calcTextareaValueLength(this , document.getElementById('ordDlvReqContPrdConutSpan0'));" onkeyup="javascript:step2.calcTextareaValueLength(this , document.getElementById('ordDlvReqContPrdConutSpan0'));">
+									</a>
+								</label>
+								(<span id="ordDlvReqContPrdConutSpan0">0</span>자/50자)
+
+								<div class="toGo_OptionLyWrap">
+									<div class="toGo_OptionLy" id="autoSentence0" onMouseOver="layerView('autoSentence0');" onMouseOut="layerHidden('autoSentence0');" style="display:none">
+										<ul>
+
+											<li><a href="javascript:setDlvReqCont('옥상 문 앞에 보관해주세요. 감사합니다.', document.getElementById('ordDlvReqContPrd1'), 'ordDlvReqContCountSpan0','autoSentence0');">옥상 문 앞에 보관해주세요. 감사합니다.</a></li>
+
+											<li><a href="javascript:setDlvReqCont('부재시 경비실에 맡겨주세요.', document.getElementById('ordDlvReqContPrd1'), 'ordDlvReqContCountSpan0','autoSentence0');">부재시 경비실에 맡겨주세요.</a></li>
+
+											<li><a href="javascript:setDlvReqCont('빠른 배송 부탁드립니다.', document.getElementById('ordDlvReqContPrd1'), 'ordDlvReqContCountSpan0','autoSentence0');">빠른 배송 부탁드립니다.</a></li>
+
+											<li><a href="javascript:setDlvReqCont('부재시 핸드폰으로 연락바랍니다.', document.getElementById('ordDlvReqContPrd1'), 'ordDlvReqContCountSpan0','autoSentence0');">부재시 핸드폰으로 연락바랍니다.</a></li>
+
+											<li><a href="javascript:setDlvReqCont('배송 전 연락바랍니다.', document.getElementById('ordDlvReqContPrd1'), 'ordDlvReqContCountSpan0','autoSentence0');">배송 전 연락바랍니다.</a></li>
+
+										</ul>
+									</div>
+								</div>
+
+								<p class="cp_desc">특정한 배송일을 지정하고자 할 경우 판매자와 연락하여 배송일을 확인해주시기 바랍니다.</p>
+
+							</div>
+							</span>
+
+
+						</div>
+					</td>
+				</tr>
 	</table><br>
 
 	<table class="center">
