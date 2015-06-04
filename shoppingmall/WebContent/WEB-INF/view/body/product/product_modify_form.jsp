@@ -17,7 +17,7 @@
 	});
 </script>
 
-<body>
+<div>
 <h2> 상 품 정 보 변 경 </h2>
 	상품번호 : ${requestScope.product.productId }
 <form action="${initParam.rootPath}/auth/modifyProduct.do" method="POST" enctype="multipart/form-data">
@@ -39,4 +39,4 @@
 	<input type="submit" id="modifyBtn" value="상품정보 변경">
 </form>
 
-</body>
+</div>

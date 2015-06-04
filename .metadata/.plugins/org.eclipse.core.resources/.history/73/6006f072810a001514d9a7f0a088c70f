@@ -1,0 +1,146 @@
+ul.tabs {
+    margin: 0;
+    padding: 0;
+    float: left;
+    list-style: none;
+    height: 32px;
+    border-bottom: 1px solid #eee;
+    border-left: 1px solid #eee;
+    width: 100%;
+    font-family:"dotum";
+    font-size:12px;
+}
+ul.tabs li {
+    float: left;
+    text-align:center;
+    cursor: pointer;
+    width:82px;
+    height: 31px;
+    line-height: 31px;
+    border: 1px solid #eee;
+    border-left: none;
+    font-weight: bold;
+    background: #fafafa;
+    overflow: hidden;
+    position: relative;
+}
+ul.tabs li.active {
+    background: #FFFFFF;
+    border-bottom: 1px solid #FFFFFF;
+}
+.tab_container {
+    border: 1px solid #eee;
+    border-top: none;
+    clear: both;
+    float: left;
+    width: 330px;
+    height:180px;
+    background: #FFFFFF;
+    margin: 0 auto;
+}
+.tab_content {
+    padding: 5px;
+    font-size: 12px;
+    display: none;
+    width:300px;
+	height:70px;
+	
+}
+.tab_container .tab_content ul {
+    width:100%;
+    margin:0px;
+    padding:0px;
+}
+.tab_container .tab_content ul li {
+    padding:5px;
+    list-style:none
+}
+;
+ #container {
+    width: 249px;
+    margin: 0 auto;
+}
+
+.error {
+	margin: 3px 0 3px 1px;
+	font-size: 12px;
+	color: #f00
+}
+
+table {
+	width: 400px;
+	border-collapse: collapse;
+	margin: 0 auto;
+}
+
+table, td {
+	border: 1px solid black;
+}
+
+td {
+	padding: 5px;
+}
+
+thead {
+	background-color: gray;
+	color: white;
+}
+
+fieldset {
+	width: 300px;
+}
+
+.join {
+	background-color: black;
+}
+
+.int {
+	position: relative;
+	*position: absolute;
+	*top: 0;
+	*left: 0;
+	z-index: 10;
+	padding: 6px 0;
+	width: 100%;
+	height: 15px;
+	border: none;
+	background: #fff;
+	font-size: 15px;
+	font-weight: bold; none;
+	apperance: none;
+	-webkit-apperance: none
+}
+
+.int2 {
+	position: relative;
+	*position: absolute;
+	*top: 0;
+	*left: 0;
+	z-index: 10;
+	padding: 6px 0;
+	width: 80%;
+	height: 15px;
+	border: none;
+	background: #fff;
+	font-size: 15px;
+	font-weight: bold; none;
+	apperance: none;
+	-webkit-apperance: none
+}
+
+.loginInput {
+	position: relative;
+	*position: absolute;
+	*top: 0;
+	*left: 0;
+	z-index: 10;
+	padding: 6px 0;
+	width: 100%;
+	height: 15px;
+	margin: 2px;
+	background: #fff;
+	font-size: 15px;
+	font-weight: bold; none;
+	apperance: none;
+	-webkit-apperance: none
+}

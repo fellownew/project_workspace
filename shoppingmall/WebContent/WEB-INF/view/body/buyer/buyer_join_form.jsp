@@ -1,6 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
-<html>
 <head>
 <meta charset="UTF-8">
 <title>BUYER JOIN</title>
@@ -8,10 +7,10 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/buyerjoin.js" ></script>
 </head>
-<body>
+<div>
 	<h2>바이어 회원가입</h2>
 	<form id="buyer_form"
-		action="<%=request.getContextPath()%>/buyer/buyerJoin.do" method="post">
+		action="<%=request.getContextPath()%>/buyer/buyerJoin.do" method="post" style="margin-bottom: 20px">
 		<table>
 			<tr>
 				<td><input type="text" id="buyerId" name="buyerId"
@@ -70,5 +69,4 @@
 			</tr>
 		</table>
 	</form>
-</body>
-</html>
+</div>

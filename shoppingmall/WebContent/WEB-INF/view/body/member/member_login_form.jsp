@@ -1,17 +1,11 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
-<html>
-<head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/buyer.css">
-<title>Insert title here</title>
-
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/buyer_login.js"></script>
-</head>
-<body>
 
- <div id="container">
+ <div id="container" style="width:300px;margin:0 auto;">
     <ul class="tabs">
         <li class="active" rel="blog">구매자</li>
         <li rel="slog">판매자</li>
@@ -55,5 +49,3 @@
     </div>
     <!-- .tab_container -->
 </div>
-</body>
-</html>

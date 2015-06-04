@@ -27,8 +27,7 @@ public class BuyerController {
 	@RequestMapping("/buyerJoin.do")
 	public String joinBuyer(@ModelAttribute Buyer buyer,Error error) {
 		int count = service.insertBuyer(buyer);
-		System.out.println(count);
-		return "main.do";
+		return "redirect:/mainPage.do";
 	}
 
 	@RequestMapping("/identifyId.do")
@@ -107,7 +106,6 @@ public class BuyerController {
 	public String buyerEmailModify(String email, HttpSession session){
 		Buyer buyer = (Buyer) session.getAttribute("loginInfo");		
 		buyer.setEmail(email);
-		System.out.println(buyer);
 		int count = service.updateBuyerById(buyer);
 		session.setAttribute("loginInfo", buyer);
 		session.setAttribute("user","buyer");
@@ -124,7 +122,6 @@ public class BuyerController {
 	public String buyerAddressModify(String address, HttpSession session){
 		Buyer buyer = (Buyer) session.getAttribute("loginInfo");		
 		buyer.setAddress(address);
-		System.out.println(buyer);
 		int count = service.updateBuyerById(buyer);
 		session.setAttribute("loginInfo", buyer);
 		session.setAttribute("user","buyer");
@@ -135,10 +132,5 @@ public class BuyerController {
 		return address;
 	}
 	
-	@RequestMapping("/auth/logout.do")
-	   public String logout(HttpSession session){
-	      session.invalidate();
-	      return "main.do";
-	   }
 	
 }

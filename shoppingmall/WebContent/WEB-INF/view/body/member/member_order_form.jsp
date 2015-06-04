@@ -2,12 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
-<html>
-<head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/order.css">
-<title>Insert title here</title>
-</head>
 
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -35,10 +31,10 @@
 
 
 
-<body>
+<div>
 <!-- 	<fieldset style="height:500px"> -->
 	
-	<table class="center"><br><br>
+	<table class="center">
 		<caption style="text-align:left; font-weight:bold; font-size:20px" >주문상품 확인</caption>
 		<thead>
 			<tr>
@@ -79,10 +75,11 @@
 				<td>배송 시<br>요구사항</td>
 				<td style="text-align:left"><input type="text" name="" id="" size="75"></td>
 			</tr>
+			</thead>
 	</table><br>
 
 	<table class="center">
-
+		<thead>
 			<tr>
 				<td style="width:80px">배송지</td>
 				<td style="text-align:left">
@@ -112,5 +109,4 @@
 			
 		</thead>
 	</table><br>
-</body>
-</html>
+</div>

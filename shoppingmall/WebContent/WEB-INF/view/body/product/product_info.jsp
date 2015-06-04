@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <script type="text/javascript">
 function order(id){
-	location = "order.do?productId"+id;
+	location = "memberOrderForm.do?productId"+id;
 }
 function cart(id){
 	var amount = document.getElementById("amount");

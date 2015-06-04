@@ -41,7 +41,7 @@ function modifyProduct(idx){
 
 </script>
 
-<body>
+<div>
 <h2>상품 관리</h2>
 <button id="registerProductBtn" >상품등록</button>
 <c:if test="${fn:length(requestScope.productList) != 0 }">
@@ -75,4 +75,4 @@ function modifyProduct(idx){
 		</tbody>
 	</table>
 </c:if>
-</body>
+</div>

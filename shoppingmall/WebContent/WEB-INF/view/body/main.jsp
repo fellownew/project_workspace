@@ -20,7 +20,7 @@
 			});
 		</script>	
 
-    <body>
+<div>
         <div class="container">
 			<div id="da-slider" class="da-slider">
 			   <c:forEach items="${requestScope.productList }" var="product">
@@ -51,4 +51,4 @@
 			<div style="width:280px;height:300px ;margin:0auto;float:left;border-style:solid; ;border-color: blue;">상품 9</div>
 		</div>
 		
-    </body>
+</div>

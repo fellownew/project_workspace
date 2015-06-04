@@ -2,10 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
-<html>
-<head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/script/jquery.js"></script>
 <script type="text/javascript">
@@ -63,9 +60,7 @@
 	});
 </script>
 	
-</head>
-<body>
-
+<div>
 <select id="selectList">
 <option >게시글 보기</option>
 <option value="5">5개</option>
@@ -149,5 +144,4 @@
 			</c:otherwise>
 		</c:choose>	
 		<input type="button" id="updateAuth" value="변경">
-</body>
-</html>
+</div>

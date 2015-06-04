@@ -29,7 +29,7 @@
 	border-collapse:collapse;
 	table-layout:fixed;
 	word-break:keep-all;
-	word-wrap:break-word
+	word-wrap:break-word;
 }
 .btn_model .btn2{
 	border:1px solid #bfbfbf;
@@ -40,6 +40,7 @@
 	margin-left:-8px;
 	padding-top:27px;
 	text-align:left
+	
 }
 .tbl_model .btn_area_btm a{
 	float:left;

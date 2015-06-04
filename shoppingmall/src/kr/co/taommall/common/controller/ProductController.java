@@ -34,7 +34,7 @@ public class ProductController {
 	public String insert(@ModelAttribute Product product,MultipartFile upfile,Model model,HttpSession session){
 		service.insertProduct(product,upfile);
 		Seller seller = (Seller)session.getAttribute("loginInfo");
-		return "productManager.do?sellerId="+seller.getSellerId();
+		return "redirect:productManager.do?sellerId="+seller.getSellerId();
 	}
 	//상품 수정 폼
 	@RequestMapping("/productModifyForm.do")
@@ -51,7 +51,7 @@ public class ProductController {
 		Product rProduct = service.selectProductByIdNoPaging(product.getProductId(),model);
 		model.addAttribute("product",rProduct);
 		Seller seller = (Seller)session.getAttribute("loginInfo");
-		return "productManager.do?sellerId="+seller.getSellerId();
+		return "redirect:productManager.do?sellerId="+seller.getSellerId();
 	}
 	//상품 삭제 처리
 	@RequestMapping("/deleteProduct.do")
@@ -59,7 +59,7 @@ public class ProductController {
 			int pId = Integer.parseInt(productId); 
 			service.deleteProduct(pId);
 			Seller seller = (Seller)session.getAttribute("loginInfo");
-		return "productManager.do?sellerId="+seller.getSellerId();
+		return "redirect:productManager.do?sellerId="+seller.getSellerId();
 	}
 	
 	

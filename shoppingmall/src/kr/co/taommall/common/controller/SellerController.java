@@ -2,12 +2,7 @@ package kr.co.taommall.common.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -35,9 +30,7 @@ public class SellerController {
 	@RequestMapping("/sellerJoin.do")
 	public String joinSeller(@ModelAttribute Seller seller,Error error) {
 		int count = service.insertSeller(seller);
-		System.out.println(seller);
-		System.out.println(count);
-		return "main.do";
+		return "redirect:/mainPage.do";
 	}
 	
 	
@@ -143,14 +136,7 @@ public class SellerController {
 	}
 	
 
-	@RequestMapping("/auth/logout.do")
-	   public String logout(HttpSession session){
-	      session.invalidate();
-	      return "main.do";
-	   }
-
-
-	@RequestMapping("/auth/memberListPaging.do")
+	@RequestMapping("/auth/memberList.do")
 	public ModelAndView memberListPaging(	@RequestParam(defaultValue="1")int page,
 											@RequestParam(defaultValue="desc") String auth,
 											@RequestParam(defaultValue="false") String check,
@@ -200,6 +186,4 @@ public class SellerController {
 		return "success";
 		
 	}
-
-	
 }

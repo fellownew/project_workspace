@@ -14,7 +14,7 @@ a{
 }
 .left{
 	float: left;
-	width: 350px;
+	width: 300px;
 }
 #search{
 	float: left;
@@ -26,7 +26,7 @@ a{
 }
 .right{
 	float: left;
-	width:250px;
+	width:200px;
 	padding-top: 60px;
 }
 </style>
@@ -42,14 +42,16 @@ a{
 			<c:when test="${sessionScope.user=='seller'}">
 				<c:choose>
 					<c:when test="${sessionScope.loginInfo.admin=='true' }">
-						<a href="<%=request.getContextPath() %>/seller/auth/memberListPaging.do">회원관리</a>
-						<a href="<%=request.getContextPath() %>/seller/auth/logout.do">로그아웃</a>	
+						<a href="<%=request.getContextPath() %>/seller/auth/memberList.do">회원관리</a> |
+						<a href="#">고객센터 관리</a> |
+						<a href="<%=request.getContextPath() %>/auth/logout.do">로그아웃</a>	
 					</c:when>
 					<c:otherwise>
 						${sessionScope.loginInfo.sellerId }님 환영합니다. <br>
-						<a href="<%=request.getContextPath() %>/auth/productManager.do?sellerId=${sessionScope.loginInfo.sellerId}">상품관리</a> |
 						<a href="<%=request.getContextPath() %>/auth/sellerInfoForm.do">회원정보</a> |
-						<a href="<%=request.getContextPath() %>/seller/auth/logout.do">로그아웃</a>	
+						<a href="<%=request.getContextPath() %>/auth/productManager.do?sellerId=${sessionScope.loginInfo.sellerId}">상품관리</a> |
+						<a href="#">고객센터</a> |
+						<a href="<%=request.getContextPath() %>/auth/logout.do">로그아웃</a>	
 					</c:otherwise>
 				</c:choose>	
 			</c:when>
@@ -57,13 +59,14 @@ a{
 			<c:when test="${sessionScope.user=='buyer'}">
 				${sessionScope.loginInfo.buyerId }님 환영합니다. <br>
 				<a href="<%=request.getContextPath() %>/auth/buyerInfoForm.do">회원정보</a> |
-				<a href="<%=request.getContextPath() %>/buyer/auth/logout.do">로그아웃</a>	
+				<a href="#">장바구니</a> |
+				<a href="#">고객센터</a> |
+				<a href="<%=request.getContextPath() %>/auth/logout.do">로그아웃</a>	
 			</c:when>
 			<%-- 비로그인 --%>
 			<c:otherwise>
 					<a href="<%=request.getContextPath() %>/memberJoinForm.do">회원가입</a> |
 					<a href="<%=request.getContextPath() %>/memberLoginForm.do">로그인</a>	|
-					<a href="<%=request.getContextPath() %>/memberOrderForm.do">구매하기</a>
 			</c:otherwise>	
 		</c:choose>
 	</ul>

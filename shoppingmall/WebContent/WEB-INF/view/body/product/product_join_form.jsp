@@ -17,7 +17,7 @@
 	});
 </script>
 
-<body>
+<div>
 <h2> 상 품 등 록 </h2>
 
 <form action="auth/insertProduct.do" method="POST" enctype="multipart/form-data">
@@ -37,4 +37,4 @@
 	<input type="hidden" name="SellerId" value="${sessionScope.loginInfo.sellerId }"/>
 	<input type="submit" id="registerBtn" value="상품등록">
 </form>
-</body>
+</div>

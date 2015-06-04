@@ -3,11 +3,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 <!DOCTYPE html>
-<html>
-<head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/buyer_info.css">
-<title>Insert title here</title>
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
 <script type="text/javascript" >
 <c:set var="message" value="${sessionScope.loginInfo.password}"/> 
@@ -16,9 +13,8 @@ var pword = '<c:out value="${message}"/>';
 var phoneNum = '<c:out value="${message}"/>';
 </script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/buyer_info.js"></script>
-</head>
-<body>
-		<fieldset style="border:none; width:70%">
+<div>
+		<fieldset style="border:none; width:70%;margin:0 auto	">
 				<table border="0" class="tbl_model">
 				<colgroup>
 				<col style="width:22%"><col>
@@ -158,5 +154,4 @@ var phoneNum = '<c:out value="${message}"/>';
 				</table>
 				
 		</fieldset>		
-</body>
-</html>
+</div>

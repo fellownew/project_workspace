@@ -68,7 +68,6 @@ public class ProductServiceImpl implements ProductService {
 		model.addAttribute("pagingBean", pagingBean);
 		//dao작업
 		List<Product> list = dao.selectAllProduct(model);
-		model.addAttribute("member_list", list);
 		return list;
 	}
 

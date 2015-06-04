@@ -1,0 +1,1 @@
+<img src="http://gumchim.co.kr/images/imgs/err.gif">

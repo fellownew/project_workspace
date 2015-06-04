@@ -1,7 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
-<html>
-<head>
 <meta charset="UTF-8">
 <style type="text/css">
 p {
@@ -20,16 +18,11 @@ p {
 #seller {
 	margin-right: 0px;
 }
-
-
 </style>
-<title>Insert title here</title>
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
 <script type="text/javascript">
 
 </script>
-</head>
-<body>
+<div>
 <a href="<%=request.getContextPath()%>/buyerJoinForm.do" ><img class="img" id="buyer" src="<%=request.getContextPath()%>/image/buyer.png"></a><a href="<%=request.getContextPath()%>/sellerJoinForm.do"><img class="img" id="seller" src="<%=request.getContextPath()%>/image/seller.png"></a>
-</body>
-</html>
+</div>

@@ -1,16 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
-<html>
-<head>
 <meta charset="UTF-8">
-<title>SELLER JOIN</title>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/seller.css">
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/seller_join.js" ></script>
-</head>
-<body>
+<div>
 	<h2>셀러 회원가입</h2>
-	<form id="seller_form" action="<%=request.getContextPath()%>/seller/sellerJoin.do" method="post">
+	<form id="seller_form" action="<%=request.getContextPath()%>/seller/sellerJoin.do" method="post" style="margin-bottom: 20px">
 		<table>
 			<tr>
 				<td><input type="text" id="sellerId" name="sellerId"
@@ -82,5 +78,4 @@
 			</tr>
 		</table>
 	</form>
-</body>
-</html>
+</div>

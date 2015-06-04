@@ -3,17 +3,13 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 <!DOCTYPE html>
-<html>
-<head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/buyer_info.css">
-<title>Insert title here</title>
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/seller_info.js"></script>
-</head>
-<body>
-		<fieldset style="border:none; width:70%">
-				<table border="0" class="tbl_model">
+<div>
+		<fieldset style="border:none; width:70%;margin: 0 auto">
+				<table class="tbl_model">
 				<colgroup>
 				<col style="width:22%"><col>
 				</colgroup>
@@ -166,5 +162,4 @@
 				</table>	
 				
 		</fieldset>		
-</body>
-</html>
+</div>

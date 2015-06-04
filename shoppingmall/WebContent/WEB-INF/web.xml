@@ -39,5 +39,12 @@
   	<filter-name>encoding</filter-name>
   	<url-pattern>*.do</url-pattern>
   </filter-mapping>
-  
+	  <error-page> 
+		 <error-code>404</error-code> 
+		  <location>/error/error404.jsp</location> 
+	 </error-page> 
+	 <error-page> 
+		 <error-code>500</error-code> 
+		 <location>/error/Error500.jsp</location> 
+	 </error-page>
 </web-app>
