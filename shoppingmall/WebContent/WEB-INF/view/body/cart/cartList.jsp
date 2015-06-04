@@ -22,7 +22,10 @@ font-size: 10px;
 
 $(document).ready(function(){
 	
-
+	if(${requestScope.error != null}){
+		alert('${requestScope.error}');
+		return false;
+	}
 
 		 var finalValue=0;
 			 $("#allCheck").prop("checked",true);
@@ -127,8 +130,6 @@ $(document).ready(function(){
 				}
 			}
 		});	
-		
-
 	});
 });
 
@@ -136,7 +137,6 @@ $(document).ready(function(){
 </head>
 <body>
 
-<hr>
 	<div class="cart_list_table">
 	
 		<table id="">

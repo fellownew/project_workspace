@@ -10,4 +10,5 @@ public interface CartDAO {
 	public int deleteCartByProductId(Cart cart);
 	public int insertCart(Cart cart);
 	public int updateCartByProductId(Cart cart);
+	public Cart selectCartByProductId(Cart cart);
 }

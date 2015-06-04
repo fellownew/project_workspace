@@ -141,8 +141,7 @@ public class SellerController {
 	public ModelAndView memberListPaging(	@RequestParam(defaultValue="1")int page,
 											@RequestParam(defaultValue="desc") String auth,
 											@RequestParam(defaultValue="false") String check,
-											@RequestParam(defaultValue="10") String count){
-											@RequestParam(defaultValue="10") String count,HttpSession session){
+											@RequestParam(defaultValue="10") String count, HttpSession session){
 		Object obj =  session.getAttribute("loginInfo");
 		if(( obj instanceof Buyer ) || ((Seller)obj).getAdmin()=="false"){
 			return  new ModelAndView("/WEB-INF/view/layout/error.jsp","errorMessage","잘못된 접근입니다.메인페이지로 이동합니다.");

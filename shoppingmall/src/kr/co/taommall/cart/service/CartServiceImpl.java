@@ -25,10 +25,22 @@ public class CartServiceImpl implements CartService {
 	}
 
 	public int insertCart(Cart cart) {
-		return dao.insertCart(cart);
+		
+		Cart result = dao.selectCartByProductId(cart);
+		if (result != null) {
+			cart.setAmount(result.getAmount()+cart.getAmount());
+			return dao.updateCartByProductId(cart);
+		} else {
+			return dao.insertCart(cart);
+		}
 	}
-	
-	public int deleteCart(Cart cart){
+
+	public int deleteCart(Cart cart) {
 		return dao.deleteCartByProductId(cart);
+	}
+
+	@Override
+	public Cart selectCartByProductId(Cart cart) {
+		return dao.selectCartByProductId(cart);
 	}
 }
