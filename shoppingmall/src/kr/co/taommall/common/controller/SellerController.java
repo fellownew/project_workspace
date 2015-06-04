@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import kr.co.taommall.account.service.SellerService;
+import kr.co.taommall.account.vo.Buyer;
 import kr.co.taommall.account.vo.Seller;
 import kr.co.taommall.mail.SendMail;
 
@@ -141,6 +142,12 @@ public class SellerController {
 											@RequestParam(defaultValue="desc") String auth,
 											@RequestParam(defaultValue="false") String check,
 											@RequestParam(defaultValue="10") String count){
+											@RequestParam(defaultValue="10") String count,HttpSession session){
+		Object obj =  session.getAttribute("loginInfo");
+		if(( obj instanceof Buyer ) || ((Seller)obj).getAdmin()=="false"){
+			return  new ModelAndView("/WEB-INF/view/layout/error.jsp","errorMessage","잘못된 접근입니다.메인페이지로 이동합니다.");
+		}
+		
 		if(check.equals("true")){
 			if(auth.equals("asc")){
 				auth="desc";

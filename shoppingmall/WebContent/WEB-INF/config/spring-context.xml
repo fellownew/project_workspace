@@ -12,8 +12,9 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd">
 	
 	<!-- 컴포넌트 스캔. -->	
-	<context:component-scan base-package="kr.co.taommall"/>
-	<context:component-scan base-package="kr.co.taommall.product.controller"/>
+	<context:component-scan base-package="kr.co.taommall.*.dao"/>
+	<context:component-scan base-package="kr.co.taommall.*.service"/>
+	<context:component-scan base-package="kr.co.taommall.common.controller"/>
 	
 	<!-- DB 설정 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" p:url="jdbc:oracle:thin:@192.168.7.25:1521:XE" p:username="taom" p:password="taom91"/>
@@ -69,13 +70,13 @@
 	<!-- 회원관련 view controller -->
 	<mvc:view-controller path="buyerJoinForm.do" view-name="buyer/buyer_join_form.form"/>
 	<mvc:view-controller path="auth/buyerInfoForm.do" view-name="buyer/buyer_info.form"/>	
-	<mvc:view-controller path="auth/buyerOrderForm.do" view-name="buyer/buyer_order_form.form"/>
-	
+	<mvc:view-controller path="auth/buyerOrderForm.do" view-name="buyer/buyer_order_form.form"/>	<!-- OrderPage 추가 -->
+
 	<mvc:view-controller path="sellerJoinForm.do" view-name="seller/seller_join_form.form"/>
 	<mvc:view-controller path="auth/sellerInfoForm.do" view-name="seller/seller_info.form"/>
 	
 	<mvc:view-controller path="memberLoginForm.do" view-name="member/member_login_form.form"/>
 	<mvc:view-controller path="memberJoinForm.do" view-name="member/member_join_form.form"/>
-	<mvc:view-controller path="memberOrderForm.do" view-name="member/member_order_form.form"/>	<!-- OrderPage 추가 -->
+
 	
 </beans>
