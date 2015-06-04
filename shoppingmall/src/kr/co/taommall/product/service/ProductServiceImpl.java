@@ -97,13 +97,13 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public List<Product> selectProductByCategory(String productCategory,int pageNo,Model model) {
-		int totalContent = dao.selectProductCount();
+		model.addAttribute("category", productCategory);
+		int totalContent = dao.selectProductCountByCategory(productCategory);
 		PagingBean pagingBean = new PagingBean(totalContent, pageNo);
 		int contentsPerPage =PagingBean.CONTENTS_PER_PAGE;
 		model.addAttribute("contentsPerPage", contentsPerPage);
 		model.addAttribute("pageNo", pageNo);
 		model.addAttribute("pagingBean", pagingBean);
-		model.addAttribute("category", productCategory);
 		return dao.selectProductByCategory(model);
 	}
 

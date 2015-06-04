@@ -1,0 +1,22 @@
+package kr.co.taommall.board.vo;
+
+public class Board {
+	private int boardNo;
+	private String title;
+	private String content;
+	private int productId;
+	private String buyerId;
+	
+	public Board(){}
+
+	public Board(int boardNo, String title, String content, int productId,
+			String buyerId) {
+		super();
+		this.boardNo = boardNo;
+		this.title = title;
+		this.content = content;
+		this.productId = productId;
+		this.buyerId = buyerId;
+	}
+	
+}

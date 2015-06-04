@@ -21,6 +21,7 @@ public interface ProductDAO {
 	public List<Product> selectProductMinPrice(Model model);
 	public List<Product> selectProductMaxPrice(Model model);
 	public int selectProductCount();
+	public int selectProductCountByCategory(String category);
 	public Product selectProductByIdNoPaging(int productId);
 	public List<Product> selectProductBySellerIdNoPaging(String sellerId);
 	public List<Product> selectProductToRandom(int num);

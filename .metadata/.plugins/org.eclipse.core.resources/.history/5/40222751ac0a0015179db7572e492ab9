@@ -1,0 +1,13 @@
+package kr.co.taommall.board.service;
+
+import kr.co.taommall.board.vo.Board;
+
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+
+public interface BoardService {
+	public String insertBoard(Model model);
+	public String deleteBoard(Model model);
+	public String selectBoardByProductId(Model model);
+	
+}

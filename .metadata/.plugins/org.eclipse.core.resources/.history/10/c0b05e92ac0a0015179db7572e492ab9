@@ -1,0 +1,10 @@
+package kr.co.taommall.board.service;
+
+import org.springframework.ui.Model;
+
+public interface BoardService {
+	public String insertBoard(Model model);
+	public String deleteBoard(Model model);
+	public List<Board> selectBoardByProductId(Model model);
+	
+}

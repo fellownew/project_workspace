@@ -1,0 +1,38 @@
+package kr.co.taommall.common.controller;
+
+import java.util.List;
+
+import kr.co.taommall.board.service.BoardService;
+import kr.co.taommall.board.vo.Board;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@Controller
+public class BoardController {
+	
+	@Autowired
+	BoardService service;
+	
+	public String insertBoard(@ModelAttribute Board board,Model model){
+		service.insertBoard(model);
+		return "";
+	}
+	
+	public String deleteBoard(@RequestParam int boardNo,Model model){
+		service.deleteBoard(model);
+		return "";
+	}
+	
+	public String selectBoardByProductId(@RequestParam int productId,Model model){
+		List<Board> list = service.selectBoardByProductId(model);
+		model.addAttribute("boardList",list);
+		return "";
+	}
+	
+	
+	
+}

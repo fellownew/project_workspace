@@ -86,10 +86,6 @@ public class ProductDAOImpl implements ProductDAO {
 		return session.selectList(nameSpace+"selectProductMaxPrice",model);
 	}
 	@Override
-	public int selectProductCount(){
-		return session.selectOne(nameSpace+"selectProductCount");
-	}
-	@Override
 	public Product selectProductByIdNoPaging(int productId){
 		return session.selectOne(nameSpace+"selectProductByIdNoPaging",productId);
 	}
@@ -101,5 +97,14 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	public List<Product> selectProductToRandom(int num){
 		return session.selectList(nameSpace+"selectProductToRandom",num);
+	}
+	@Override
+	public int selectProductCount(){
+		return session.selectOne(nameSpace+"selectProductCount");
+	}
+	
+	@Override
+	public int selectProductCountByCategory(String category){
+		return session.selectOne(nameSpace+"selectProductCountByCategory",category);
 	}
 }

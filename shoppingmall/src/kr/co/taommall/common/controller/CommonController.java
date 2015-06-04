@@ -39,6 +39,7 @@ public class CommonController {
 		}
 		
 		model.addAttribute("productList",list);
+		model.addAttribute("search", search);
 		return "product/product_list.form";
 	}
 	

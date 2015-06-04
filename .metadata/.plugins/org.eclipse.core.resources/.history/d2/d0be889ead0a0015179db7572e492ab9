@@ -1,0 +1,37 @@
+package kr.co.taommall.board.dao;
+
+import java.util.List;
+
+import kr.co.taommall.board.vo.Board;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
+
+@Repository
+public class BoardDAOImpl implements BoardDAO {
+
+	@Autowired
+	private SqlSessionTemplate session;
+	private String nameSpace = "kr.co.taommall.board.dao.";
+	
+	@Override
+	public int insertBoard(Model model) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int deleteBoard(Model model) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<Board> selectBoardByProductId(Model model) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

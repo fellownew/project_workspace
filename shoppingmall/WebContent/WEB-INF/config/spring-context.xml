@@ -59,6 +59,7 @@
 	<bean name="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 	
 	<!-- 공통 view controller -->
+	<mvc:view-controller path="auth/centerList.do" view-name="center/center_list.form"/>
 	<!-- <mvc:view-controller path="/index.do" view-name="main.do"/> -->
 
 	<!-- 상품 관련 view controller -->  

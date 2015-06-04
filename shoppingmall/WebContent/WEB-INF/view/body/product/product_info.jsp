@@ -4,7 +4,24 @@
 <!DOCTYPE html>
 <meta charset="UTF-8">
 <style type="text/css">
+.buyButton {
+  font-family: arial;
+  font-weight: bold;
+  color: #FFFFFF !important;
+  font-size: 14px;
+  padding: 9px 11px;
+  background: #CD0000;
+}
 
+.cartButton {
+  font-family: arial;
+  font-weight: bold;
+  color: #000000 !important;
+  font-size: 14px;
+  padding: 9px 11px;
+  border: 1px solid #000000;
+  background: #FFFFFF;
+}
 
 </style>
 <script type="text/javascript" src="<%=request.getContextPath() %>/script/jquery.js"></script>
@@ -18,15 +35,8 @@ function cart(id){
 }
 </script>
 <div>
-	<h2>상품정보</h2>
-	<table style="width:1000px;margin: 0 auto"  border='1'>
-		<thead>
-			<tr>
-				<td width="300px">이미지</td>
-				<td colspan="2">정보</td>
-			</tr>
-			</thead>
-			
+	<h2 style="text-align: center;margin-top:20px">상품정보</h2>
+	<table style="width:1000px;margin: 0 auto;"  border='1'>
 		<tbody>	
 			<tr>
 				<td  rowspan="6"><img src="<%=request.getContextPath() %>/${requestScope.product.imagePath }"/></td>
@@ -51,14 +61,15 @@ function cart(id){
 				<td><input type="number" id="amount" value="1" size="1"  max="99" maxlength="2"></td>
 			</tr> 
 			<tr>
-				<td colspan="2"><button onclick="order(${product.productId})">주문</button><button id="cart" onclick="cart(${product.productId})">장바구니 담기</button></td>
+				<td colspan="2"><button class="buyButton" onclick="order(${product.productId})">주문</button><button class="cartButton" id="cart" onclick="cart(${product.productId})">장바구니 담기</button></td>
 				
 			</tr> 
+			<tr>
+				<td colspan="3">${product.productInfo }
+			</td>
+		</tr>
 		</tbody>
 	</table>
-	<table>
-		<tr>
-			<td>${product.productInfo }</td>
-		</tr>
-	</table>
+	<jsp:include page="product_info_board.jsp"></jsp:include>
+	
 </div>

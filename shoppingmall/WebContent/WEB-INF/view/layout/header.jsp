@@ -54,7 +54,7 @@ a{
 						${sessionScope.loginInfo.sellerId }님 환영합니다. <br>
 						<a href="<%=request.getContextPath() %>/auth/sellerInfoForm.do">회원정보</a> |
 						<a href="<%=request.getContextPath() %>/auth/productManager.do?sellerId=${sessionScope.loginInfo.sellerId}">상품관리</a> |
-						<a href="#">고객센터</a> |
+						<a href="<%=request.getContextPath() %>/auth/centerList.do">고객센터</a> |
 						<a href="<%=request.getContextPath() %>/auth/logout.do">로그아웃</a>	
 					</c:otherwise>
 				</c:choose>	
@@ -64,7 +64,7 @@ a{
 				${sessionScope.loginInfo.buyerId }님 환영합니다. <br>
 				<a href="<%=request.getContextPath()%>/auth/buyerInfoForm.do">회원정보</a> |
 				<a href="<%=request.getContextPath()%>/cart/auth/cartList.do">장바구니</a> |
-				<a href="#">고객센터</a> |
+				<a href="<%=request.getContextPath() %>/auth/centerList.do">고객센터</a> |
 				<a href="<%=request.getContextPath() %>/auth/logout.do">로그아웃</a>	
 			</c:when>
 			<%-- 비로그인 --%>

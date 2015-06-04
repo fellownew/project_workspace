@@ -6,8 +6,8 @@ drop table product;
 drop table seller;
 drop table buyer;
 
-select *
-from cart
+select * from cart
+select * from pboard;
 
 create table buyer(
    buyer_id varchar2(20) primary key,

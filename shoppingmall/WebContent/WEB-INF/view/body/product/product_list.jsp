@@ -3,12 +3,13 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/table.css">
 <script type="text/javascript" src="<%=request.getContextPath() %>/script/jquery.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#tbody").on("mouseover","tr",function(){
-		$("#tbody tr").css("background-color","red");
-		$(this).css("background-color","rosybrown");
+		$("#tbody tr").css("background-color","white");
+		$(this).css("background-color","#E2B4A9");
 	});
 });
 
@@ -29,7 +30,7 @@ function info(idx){
 					<td>판매자</td>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody id="tbody">
 				<c:forEach items="${requestScope.productList }" var="product">
 					<tr onclick="info(${product.productId})">
 						<td><img src="${product.imagePath }" width="120px" height="120px"/></td>
@@ -41,10 +42,9 @@ function info(idx){
 				</c:forEach>
 			</tbody>
 		</table>
-					<c:choose>
+			<c:choose>
 				<c:when test="${pagingBean.previousPageGroup }">
-				${requestScope.productList.[0].category }
-					<a href="<%=request.getContextPath()%>/list.do?page=${pagingBean.startPageOfPageGroup-1}&search=${requestScope.product.category}">◀</a>
+					<a href="<%=request.getContextPath()%>/list.do?page=${pagingBean.startPageOfPageGroup-1}&search=${requestScope.search }">◀</a>
 				</c:when>
 				<c:otherwise>
 					◀
@@ -57,7 +57,7 @@ function info(idx){
 						<b>[${pageNum}]</b>
 					</c:when>
 					<c:otherwise>
-						<a href="<%=request.getContextPath()%>/list.do?page=${pageNum}">
+						<a href="<%=request.getContextPath()%>/list.do?page=${pageNum}&search=${requestScope.search }">
 							${pageNum}
 						</a>
 					</c:otherwise>
@@ -67,7 +67,7 @@ function info(idx){
 			<!-- 다음 페이지 그룹 -->
 			<c:choose>
 				<c:when test="${pagingBean.nextPageGroup }">
-					<a href="<%=request.getContextPath()%>/list.do?page=${pagingBean.endPageOfPageGroup+1}&search=${product.category}">▶</a>
+					<a href="<%=request.getContextPath()%>/list.do?page=${pagingBean.endPageOfPageGroup+1}&search=${requestScope.search }">▶</a>
 				</c:when>
 				<c:otherwise>
 					▶
