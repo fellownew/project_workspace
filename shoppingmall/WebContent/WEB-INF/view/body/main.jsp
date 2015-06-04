@@ -18,7 +18,6 @@
 			$(function() {			
 				$('#da-slider').cslider();		
 			});
-
 		</script>	
 
     <body>
@@ -38,16 +37,18 @@
 				</nav>
 			</div>
         </div>
-		<div id="productTable">
-			<table style="width: 900px;height: 500px;margin: 0 auto" border="1">
-				<tr>
-					<td>상품1</td>
-					<td>상품2</td>
-				</tr>
-				<tr>
-					<td>상품3</td>
-					<td>상품4</td>
-				</tr>
-			</table>
+        
+		<div id="productTable" style="width:900px;margin:0auto">
+	
+			<div style="width:280px;height:300px ;margin:0auto;float:left;border-style:solid; ;border-color: blue;">상품 1</div>
+			<div style="width:280px;height:300px ;margin:0auto;float:left;border-style:solid; ;border-color: blue;">상품 2</div>
+			<div style="width:280px;height:300px ;margin:0auto;float:left;border-style:solid; ;border-color: blue;">상품 3</div>
+			<div style="width:280px;height:300px ;margin:0auto;float:left;border-style:solid; ;border-color: blue;">상품 4</div>
+			<div style="width:280px;height:300px ;margin:0auto;float:left;border-style:solid; ;border-color: blue;">상품 5</div>
+			<div style="width:280px;height:300px ;margin:0auto;float:left;border-style:solid; ;border-color: blue;">상품 6</div>
+			<div style="width:280px;height:300px ;margin:0auto;float:left;border-style:solid; ;border-color: blue;">상품 7</div>
+			<div style="width:280px;height:300px ;margin:0auto;float:left;border-style:solid; ;border-color: blue;">상품 8</div>
+			<div style="width:280px;height:300px ;margin:0auto;float:left;border-style:solid; ;border-color: blue;">상품 9</div>
 		</div>
+		
     </body>

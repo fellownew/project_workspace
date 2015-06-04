@@ -37,5 +37,4 @@
 	<input type="hidden" name="SellerId" value="${sessionScope.loginInfo.sellerId }"/>
 	<input type="submit" id="registerBtn" value="상품등록">
 </form>
-
 </body>
