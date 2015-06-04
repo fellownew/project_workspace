@@ -9,7 +9,7 @@
 	</typeAliases>
 	<mappers>
 
-		<mapper resource="kr/co/taommall/config/mapper/orderMapper.xml"/>
+		<mapper resource="kr/co/taommall/config/mapper/orders-mapper.xml"/>
 		<mapper resource="kr/co/taommall/config/mapper/product-mapper.xml"/>
 		<mapper resource="kr/co/taommall/config/mapper/seller-mapper.xml"/>
 		<mapper resource="kr/co/taommall/config/mapper/buyer-mapper.xml"/>

@@ -25,14 +25,19 @@ $(document).ready(function(){
 		var list = new Array();
 	 	  $('.chk').each(function() {
 			  if($(this).is(":checked")){
-					 list.push($(this).attr('value'));
+				var value = $(this).attr('value');
+					 list.push(value);
 			  }
 			
 		   });
-	 	  alert(list);
-	 	  
-	 	 var url ='<%=request.getContextPath()%>/auth/buyerOrderForm.do?list=list';
-			$(location).attr('href',url);
+	 	  if(list.length==0){
+	 		  $("#purchaseErr").show();
+	 		  return false;
+	 	  }
+	 	 var url ='<%=request.getContextPath()%>/auth/buyerOrderForm.do?cart_list='+list;
+	 	  alert(url);
+	 	<%--  
+			$(location).attr('href',url); --%>
 	 	  
 	 	  
 	});
@@ -41,6 +46,7 @@ $(document).ready(function(){
 		}
 	
 	$("#allCheck").on("click",function(){
+		 $("#purchaseErr").hide();
 		if($(this).is(":checked")){
 		$(".chk").prop("checked",true);
 		}else{
@@ -52,6 +58,7 @@ $(document).ready(function(){
 	
 	
 	$("input[type='checkbox']").on("click",function(){
+		 $("#purchaseErr").hide();
  		 var finalValue=0;
  	  $('.chk').each(function() {
 		  if($(this).is(":checked")){
@@ -163,7 +170,7 @@ $(document).ready(function(){
 			</c:forEach>
 			</tbody>
 		</table>
-		<input type="text" id="result" > <input type="button" id="purchase" value="구매하기">
+		<input type="text" id="result" > <input type="button" id="purchase" value="구매하기"><span id="purchaseErr" style="display: none;" class="error">상품을 1개이상 선택해주세요.</span>
 	</div>
 </body>
 </html>
