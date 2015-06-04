@@ -163,7 +163,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
-	public List<Product> selectProductToRandom(){
-		return dao.selectProductToRandom();
+	public List<Product> selectProductToRandom(int num){
+		return dao.selectProductToRandom(num);
 	}
 }

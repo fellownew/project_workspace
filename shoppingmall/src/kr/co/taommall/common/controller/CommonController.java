@@ -56,8 +56,10 @@ public class CommonController {
 	//카테고리별 상품 랜덤5개 뽑아오기 - 메인페이지 슬라이드용.
 	@RequestMapping("/mainPage.do")
 	public String selectProductByCategoryWithRandom(Model model){
-		List<Product> list = service.selectProductToRandom();
+		List<Product> list = service.selectProductToRandom(5);
+		List<Product> bottomList = service.selectProductToRandom(9);
 		model.addAttribute("productList",list);
+		model.addAttribute("bottomList",bottomList);
 		return "main.do";
 	}
 	

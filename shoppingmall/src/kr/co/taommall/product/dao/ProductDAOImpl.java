@@ -99,7 +99,7 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 	
 	@Override
-	public List<Product> selectProductToRandom(){
-		return session.selectList(nameSpace+"selectProductToRandom");
+	public List<Product> selectProductToRandom(int num){
+		return session.selectList(nameSpace+"selectProductToRandom",num);
 	}
 }

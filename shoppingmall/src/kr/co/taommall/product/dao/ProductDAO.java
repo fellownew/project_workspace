@@ -23,5 +23,5 @@ public interface ProductDAO {
 	public int selectProductCount();
 	public Product selectProductByIdNoPaging(int productId);
 	public List<Product> selectProductBySellerIdNoPaging(String sellerId);
-	public List<Product> selectProductToRandom();
+	public List<Product> selectProductToRandom(int num);
 }
