@@ -3,13 +3,18 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <meta charset="UTF-8">
+<style type="text/css">
+
+
+</style>
+<script type="text/javascript" src="<%=request.getContextPath() %>/script/jquery.js"></script>
 <script type="text/javascript">
 function order(id){
 	location = "memberOrderForm.do?productId"+id;
 }
 function cart(id){
-	var amount = document.getElementById("amount");
-	location = "cart.do?productId="+id+"&amount="+amount;
+	var amount = $("#amount").val();
+	location = "<%=request.getContextPath() %>/cart/auth/cartInput.do?productId="+id+"&amount="+amount;	
 }
 </script>
 <div>
@@ -22,9 +27,9 @@ function cart(id){
 			</tr>
 			</thead>
 			
-		<tbody>
+		<tbody>	
 			<tr>
-				<td rowspan="6"><img src="<%=request.getContextPath() %>/${requestScope.product.imagePath }"/></td>
+				<td  rowspan="6"><img src="<%=request.getContextPath() %>/${requestScope.product.imagePath }"/></td>
 				<td width="200px">상품명</td>	
 			    <td>${product.productName}</td>	
 			</tr>
@@ -43,10 +48,10 @@ function cart(id){
 			</tr> 
 			<tr>
 				<td>수량</td>
-				<td><input type="number" id="amount"></td>
+				<td><input type="number" id="amount" value="1" size="1"  max="99" maxlength="2"></td>
 			</tr> 
 			<tr>
-				<td colspan="2"><button onclick="order(${product.productId})">주문</button><button onclick="cart(${product.productId})">장바구니</button></td>
+				<td colspan="2"><button onclick="order(${product.productId})">주문</button><button id="cart" onclick="cart(${product.productId})">장바구니 담기</button></td>
 				
 			</tr> 
 		</tbody>

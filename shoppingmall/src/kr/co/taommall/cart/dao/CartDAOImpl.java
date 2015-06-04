@@ -44,4 +44,9 @@ public class CartDAOImpl implements CartDAO {
 		return session.update(namespace + "updateCartByProductId", cart);
 
 	}
+
+	@Override
+	public Cart selectCartByProductId(Cart cart) {
+		return session.selectOne(namespace+"selectCartByProductId",cart);
+	}
 }

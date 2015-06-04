@@ -15,5 +15,7 @@ public interface CartService {
 	
 	public int deleteCart(Cart cart);
 	
+	public Cart selectCartByProductId(Cart cart);
+	
 	
 }

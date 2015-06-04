@@ -62,8 +62,8 @@ a{
 			<%-- 구매자 확인 --%>
 			<c:when test="${sessionScope.user=='buyer'}">
 				${sessionScope.loginInfo.buyerId }님 환영합니다. <br>
-				<a href="<%=request.getContextPath() %>/auth/buyerInfoForm.do">회원정보</a> |
-				<a href="#">장바구니</a> |
+				<a href="<%=request.getContextPath()%>/auth/buyerInfoForm.do">회원정보</a> |
+				<a href="<%=request.getContextPath()%>/cart/auth/cartList.do">장바구니</a> |
 				<a href="#">고객센터</a> |
 				<a href="<%=request.getContextPath() %>/auth/logout.do">로그아웃</a>	
 			</c:when>

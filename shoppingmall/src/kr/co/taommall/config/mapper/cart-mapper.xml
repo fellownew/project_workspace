@@ -34,4 +34,9 @@
   <include refid="select-cart-basic" />
    where c.product_id = p.product_id and c.buyer_id = #{value}
   </select>
+  
+    <select id="selectCartByProductId" parameterType="cart" resultMap="resultMap-cart-default">
+  <include refid="select-cart-basic" />
+   where c.product_id = p.product_id and c.product_id = #{productId} and c.buyer_id = #{buyerId}
+  </select>
 </mapper>
