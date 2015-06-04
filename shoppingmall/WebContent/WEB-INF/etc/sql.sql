@@ -5,7 +5,8 @@ drop table pboard;
 drop table product;
 drop table seller;
 drop table buyer;
-
+select *
+from cart
 create table buyer(
    buyer_id varchar2(20) primary key,
    password varchar2(50) not null,

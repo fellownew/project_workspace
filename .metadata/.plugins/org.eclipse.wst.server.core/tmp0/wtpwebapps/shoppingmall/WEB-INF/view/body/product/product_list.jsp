@@ -17,8 +17,9 @@ function info(idx){
 }
 </script>
 <div>
-	<c:if test="${fn:length(requestScope.productList) != 0 }">
-		<table width="800" border='1'  style="margin: 0 auto">
+<c:choose>
+	<c:when test="${fn:length(requestScope.productList) != 0 }">
+		<table border='1'  style=" width:800px;margin: 0 auto">
 			<thead>
 				<tr>
 					<td></td>
@@ -72,5 +73,10 @@ function info(idx){
 					▶
 				</c:otherwise>
 			</c:choose>	
-	</c:if>
+	</c:when>
+	<c:otherwise>
+		검색 결과가 없습니다.
+	</c:otherwise>
+</c:choose>
+
 </div>
