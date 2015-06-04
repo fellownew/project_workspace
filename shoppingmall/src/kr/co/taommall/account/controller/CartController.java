@@ -45,4 +45,16 @@ public class CartController {
 			return "fail";
 		}
 	}
+	@RequestMapping("deleteCartList.do")
+	public String deleteCartList(@ModelAttribute Cart cart){
+		System.out.println(cart);
+		int count = service.deleteCart(cart);
+		System.out.println(count);
+		if(count !=0){
+			return "/WEB-INF/view/body/cart/cartList.jsp";			
+		}else{
+			System.out.println("tlfvo");
+			return "/WEB-INF/view/body/cart/cartList.jsp";
+		}
+	}
 }
