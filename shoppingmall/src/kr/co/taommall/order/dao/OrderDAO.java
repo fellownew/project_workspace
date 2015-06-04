@@ -12,6 +12,7 @@ public interface OrderDAO {
 	public int deleteOrderById(String orderId);
 	public Order selectOrderByOrderId(String orderId);
 	public List<Order> selectAllOrder();
+	public List<Order> selectOrderByProductId(String productId);
 	public List<Order> selectOrderByBuyerId(String buyerId);
 	public List<Order> selectOrderByStatus(String status);
 

@@ -8,6 +8,7 @@ public interface OrderService {
 	public void insertOrder(Order order);
 	public void updateOrder(Order order);
 	public int deleteOrder(String orderId);
-	public List<Order> selectAllOrder();
+	public List<Order> selectOrderByBuyerId(String buyerId);
+	public List<Order> selectOrderByProductId(String productId);
 
 }

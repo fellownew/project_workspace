@@ -30,8 +30,15 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public List<Order> selectAllOrder() {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public List<Order> selectOrderByBuyerId(String buyerId){
+		
+		return dao.selectOrderByBuyerId(buyerId);
+	}
+
+	@Override
+	public List<Order> selectOrderByProductId(String productId) {
+		System.out.println("OrderService");
+		return dao.selectOrderByProductId(productId);
 	}
 }

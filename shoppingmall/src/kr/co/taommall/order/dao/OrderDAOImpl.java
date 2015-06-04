@@ -8,7 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-@Repository
+@Repository("OrderDAO")
 public class OrderDAOImpl implements OrderDAO{
 
 	private static OrderDAOImpl instance = new OrderDAOImpl();
@@ -28,6 +28,12 @@ public class OrderDAOImpl implements OrderDAO{
 		return session.selectList(namespace + "selectAllOrder");
 	}
 
+	public List<Order> selectOrderByProductId(String productId) {
+		System.out.println("DAOImpl"+productId);
+		return session.selectOne(namespace + "selectOrderByProductId", productId);
+	}
+	
+	@Override
 	public Order selectOrderByOrderId(String orderId) {
 		return session.selectOne(namespace + "selectOrderByOrderId", orderId);
 	}

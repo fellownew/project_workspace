@@ -51,6 +51,11 @@ where o.product_id = p.product_id and o.buyer_id = b.buyer_id
 </select>
 
 
+<select id="selectOrderByProductId" parameterType="string" resultMap="resultMap-order-default">
+<include refid="select-order-default"/>
+where p.product_id = ${value}
+</select>
+
 <select id="selectOrderByOrderId" parameterType="string" resultMap="resultMap-order-default">
 <include refid="select-order-default"/>
 where o.product_id = p.product_id and o.buyer_id = b.buyer_id and o.order_id = #{value}
