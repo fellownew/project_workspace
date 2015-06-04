@@ -3,6 +3,10 @@ IMPORT_FILES_AND_FOLDERS_TYPE=23,1\:7,1
 PROBLEMS_FILTERS_MIGRATE=true
 SWITCH_PERSPECTIVE_ON_PROJECT_CREATION=never
 eclipse.preferences.version=1
+<<<<<<< HEAD
 platformState=1421311636798
+=======
+platformState=1421311097652
+>>>>>>> origin/master
 quickStart=false
 tipsAndTricks=true

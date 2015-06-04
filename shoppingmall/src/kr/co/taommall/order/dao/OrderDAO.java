@@ -5,7 +5,10 @@ import java.util.List;
 import kr.co.taommall.order.vo.Order;
 
 public interface OrderDAO {
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 
 	public int insertOrder(Order order);
 	public int updateOrder(Order order);
@@ -14,6 +17,10 @@ public interface OrderDAO {
 	public List<Order> selectAllOrder();
 	public List<Order> selectOrderByBuyerId(String buyerId);
 	public List<Order> selectOrderByStatus(String status);
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> origin/master
 
 }

@@ -14,5 +14,6 @@
 		<mapper resource="kr/co/taommall/config/mapper/seller-mapper.xml"/>
 		<mapper resource="kr/co/taommall/config/mapper/buyer-mapper.xml"/>
 		<mapper resource="kr/co/taommall/config/mapper/cart-mapper.xml"/>
+
 	</mappers>
 </configuration>

@@ -102,5 +102,4 @@ public class Order implements Serializable {
 				+ ", amount=" + amount + ", status=" + status + ", buyerId="
 				+ buyerId + ", buyer=" + buyer + ", product=" + product + "]";
 	}
-
 }
