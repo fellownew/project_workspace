@@ -22,7 +22,7 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter{
 		Object loginFlag = session.getAttribute("loginInfo");
 		
 		if(loginFlag == null){
-			throw new ModelAndViewDefiningException(new ModelAndView("/WEB-INF/view/","errorMessage","로그인 먼저 하세요"));
+			throw new ModelAndViewDefiningException(new ModelAndView("/WEB-INF/view/layout/error.jsp","errorMessage","로그인 먼저 하세요"));
 		}else{
 			//로그인한 클라이언트의 요청
 		}
