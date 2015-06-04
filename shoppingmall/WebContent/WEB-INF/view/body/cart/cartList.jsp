@@ -25,13 +25,14 @@ $(document).ready(function(){
 		var list = new Array();
 	 	  $('.chk').each(function() {
 			  if($(this).is(":checked")){
-					 list.push($(this).attr('value'));
+				var value = $(this).attr('value');
+					 list.push(value);
 			  }
 			
 		   });
 	 	  alert(list);
 	 	  
-	 	 var url ='<%=request.getContextPath()%>/auth/buyerOrderForm.do?list=list';
+	 	 var url ='<%=request.getContextPath()%>/auth/buyerOrderForm.do?cart_list='+list;
 			$(location).attr('href',url);
 	 	  
 	 	  
