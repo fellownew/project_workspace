@@ -123,14 +123,17 @@ select c_product_id.nextval from dual
 select * from seller
 select * from product
 select * from buyer
-
+select * from orders
 select * from cart
-
+select * from center
 insert into cart values('123456',61,2);
 insert into cart values('123456',62,4);
 insert into cart values('123456',63,15);
 insert into cart values('123456',65,1);
 
+
+
+insert into ORDERS values('123',61,3,'123','secret88','seller-1');
 select count(*)from product
 
 
@@ -142,4 +145,9 @@ from (
 	)
 where (rownum <= 5)
 
+delete from ORDERS
+where order_id = 123456
 
+alter table orders add (seller_id varchar2(20))
+alter table orders drop column seller_id 
+ALTER TABLE orders ADD foreign key(seller_id) references seller(seller_id)

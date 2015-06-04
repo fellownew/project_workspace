@@ -3,15 +3,13 @@
 <mapper namespace="order.dao.order">
 	
 <insert id="insertOrder" parameterType="order" >
-	insert into orders values(#{orderId},#{productId},#{amount},#{status},#{buyerId})
+	insert into orders values(#{orderId},#{productId},#{amount},#{status},#{buyerId},#{sellerId})
 </insert>
+
 
 <update id="updateOrderById" parameterType="order">
 	update orders
 	<set>
-		<if test="productId != 0">
-		product_id = #{productId} ,
-		</if>
 		<if test="amount != 0" >
 		amount=#{amount} ,
 		</if>
@@ -26,12 +24,13 @@
 	delete from orders
 	where order_id = ${value}
 </delete>
-	
+
 <sql id="select-order-default" >
 	select 	o.order_id, o.product_id, o.buyer_id, o.amount, o.status, 
 			p.product_id, p.product_name, p.product_price, p.category, p.product_info,p.image_path, p.regi_date,p.exp_date, p.seller_id,
 			b.buyer_id, b.password, b.name, b.address, b.email, b.phone
-	from orders o,product p, buyer b
+			s.seller_id, s.password, s.name, s.gender, s.address, s.email, s.phone, s.auth, s.admin, s.corporate_number
+	from orders o,product p, buyer b, seller s
 </sql>
 
 <!-- DefaultOrderResultMap -->
@@ -43,27 +42,35 @@
 	<result column="status" property="status"/>
 	<association property="product" javaType="kr.co.taommall.product.vo.Product" resultMap="kr.co.taommall.product.dao.product-resultMap"/>
 	<association property="buyer" javaType="kr.co.taommall.account.vo.Buyer" resultMap="account.dao.buyer.resultMap-buyer-basic"/>
+	<association property="seller" javaType="kr.co.taommall.common.vo.Seller" resultMap="account.dao.seller.resultMap-seller-basic"></association>
 </resultMap>
 
 <select id="selectAllOrder"  resultMap="resultMap-order-default">
 <include refid="select-order-default"/>
-where o.product_id = p.product_id and o.buyer_id = b.buyer_id
+where o.product_id = p.product_id and o.buyer_id = b.buyer_id and o.seller_id = s.seller_id
 </select>
 
 
 <select id="selectOrderByOrderId" parameterType="string" resultMap="resultMap-order-default">
 <include refid="select-order-default"/>
-where o.product_id = p.product_id and o.buyer_id = b.buyer_id and o.order_id = #{value}
+where o.product_id = p.product_id and o.buyer_id = b.buyer_id and o.seller_id = s.seller_id and o.order_id = #{value}
 </select>
 
 <select id="selectOrderByBuyerId" parameterType="string" resultMap="resultMap-order-default">
 <include refid="select-order-default"/>
-where o.product_id = p.product_id and o.buyer_id = b.buyer_id and o.buyer_id = #{value}
+where e o.product_id = p.product_id and o.buyer_id = b.buyer_id and o.seller_id = s.seller_id  and o.buyer_id = #{value}
 </select>
 
 <select id="selectOrderByStatus" parameterType="string" resultMap="resultMap-order-default">
 <include refid="select-order-default"/>
-where o.product_id = p.product_id and o.buyer_id = b.buyer_id and o.status = #{value}
+where e o.product_id = p.product_id and o.buyer_id = b.buyer_id and o.seller_id = s.seller_id and o.status = #{value}
 </select>
+
+<select id="selectOrderBySellerId" parameterType="string" resultMap="resultMap-order-default">
+<include refid="select-order-default"/>
+where e o.product_id = p.product_id and o.buyer_id = b.buyer_id and o.seller_id = s.seller_id and o.seller_id = #{value}
+</select>
+
+
 
 </mapper>

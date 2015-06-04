@@ -32,6 +32,10 @@ public class OrderDAOImpl implements OrderDAO{
 		return session.selectOne(namespace + "selectOrderByOrderId", orderId);
 	}
 
+	public List<Order> selectOrderBySellerId(String sellerId) {
+		return session.selectList(namespace + "selectOrderByBuyerId", sellerId);
+	}
+	
 	public List<Order> selectOrderByBuyerId(String buyerId) {
 		return session.selectList(namespace + "selectOrderByBuyerId", buyerId);
 	}
