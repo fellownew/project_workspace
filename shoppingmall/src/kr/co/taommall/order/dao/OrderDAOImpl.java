@@ -6,7 +6,9 @@ import kr.co.taommall.order.vo.Order;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class OrderDAOImpl implements OrderDAO{
 
 	private static OrderDAOImpl instance = new OrderDAOImpl();
