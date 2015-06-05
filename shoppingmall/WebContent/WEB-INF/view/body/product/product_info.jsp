@@ -29,6 +29,8 @@
 function order(id){
 	location = "<%=request.getContextPath() %>/auth/memberOrderForm.do?productId="+id+"&amount="+$("#amount").val();
 }
+	   location = "<%=request.getContextPath() %>/auth/memberOrderForm.do?productId="+id+"&amount="+$("#amount").val();
+	}
 function cart(id){
 	var amount = $("#amount").val();
 	location = "<%=request.getContextPath() %>/cart/auth/cartInput.do?productId="+id+"&amount="+amount;	
@@ -60,6 +62,8 @@ function cart(id){
 				<td>수량</td>
 				<td><input type="number" id="amount" value="1" size="1"  max="99" maxlength="2"></td>
 			</tr> 	
+				<td><input type="number" id="amount" value="1"></td>
+			</tr> 
 			<tr>
 				<td colspan="2"><button class="buyButton" onclick="order(${product.productId})">주문</button><button class="cartButton" id="cart" onclick="cart(${product.productId})">장바구니 담기</button></td>
 				

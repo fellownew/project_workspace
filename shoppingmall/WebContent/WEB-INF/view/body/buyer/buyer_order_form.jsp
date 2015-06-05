@@ -66,21 +66,34 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
+
+		$("#payment").on("click",function(){
+			alert("결제완료");
+			location = "<%=request.getContextPath() %>/auth/payment.do?productId="
+					+${requestScope.product.productId}
+             		+"&amount="+${requestScope.amount}
+             		+"&name="+$("#name").val()
+             		+"&address="+$("#address").val()
+             		+"&phone="+$("#phone").val()
+             		+"&detail="+$("#detail").val();
+		});
+	 
+		
 		$("#test1").on("click",function(){
 			//$("#td1").html($("#text1").val());
 			//$("#td2").html($("#text2").val());
 			//$("#td3").html($("#text3").val());
- 			$("#text1").prop("readonly", true).val("${sessionScope.loginInfo.name}");
-			$("#text2").prop("readonly", true).val("${sessionScope.loginInfo.address}");
-			$("#text3").prop("readonly", true).val("${sessionScope.loginInfo.phone}");
+ 			$("#name").prop("readonly", true).val("${sessionScope.loginInfo.name}");
+			$("#address").prop("readonly", true).val("${sessionScope.loginInfo.address}");
+			$("#phone").prop("readonly", true).val("${sessionScope.loginInfo.phone}");
 		});
 	});
 	
 	$(document).ready(function(){
 		$("#test2").on("click",function(){
- 			$("#text1").prop("readonly", false).val("");
-			$("#text2").prop("readonly", false).val("");
-			$("#text3").prop("readonly", false).val("");
+ 			$("#name").prop("readonly", false).val("");
+			$("#address").prop("readonly", false).val("");
+			$("#phone").prop("readonly", false).val("");
 			//$("#td1").html($("<input id='text1' value='" + $("#td1").html() + "'>"));
 			//$("#td2").html($("<input id='text2' value='" + $("#td2").html() + "'>"));
 			//$("#td3").html($("<input id='text3' value='" + $("#td3").html() + "'>"));
@@ -111,6 +124,9 @@
 					<td><img src="<%=request.getContextPath()%>/${requestScope.product.imagePath }" width="120px" height="120px"/></td>
 					<td>${requestScope.amount}</td>
 					<td>${requestScope.product.productPrice}</td>
+					<td><img src="<%=request.getContextPath() %>/${requestScope.product.imagePath }" width="120px" height="120px"/></td>
+					<td>${requestScope.amount}</td>
+					<td>${requestScope.product.productPrice * requestScope.amount}</td>
 					<td>${requestScope.product.sellerId}</td>
 				</tr> 
 		</tbody>
@@ -145,23 +161,23 @@
 			</tr>
 			<tr>
 				<td>받는분</td>
-				<td style="text-align:left"><input type="text" name="" id="text1" readonly="readonly" value="${sessionScope.loginInfo.name}"></td>
+				<td style="text-align:left"><input type="text" name="name" id="name" readonly="readonly" value="${sessionScope.loginInfo.name}"></td>
 				<!-- <td style="text-align:left" id="td1">${sessionScope.loginInfo.name}</td>  -->
 			</tr>
 			<tr>
 				<td>주소</td>
-				<td style="text-align:left"><input type="text" size="75" name="" id="text2" readonly="readonly" value="${sessionScope.loginInfo.address}"></td>
+				<td style="text-align:left"><input type="text" size="75" name="address" id="address" readonly="readonly" value="${sessionScope.loginInfo.address}"></td>
 				<!-- <td style="text-align:left" id="td2">${sessionScope.loginInfo.address}</td>-->
 			</tr>
 			<tr>
 				<td>연락처</td>
-				<td style="text-align:left"><input type="text" name="" id="text3" readonly="readonly" value="${sessionScope.loginInfo.phone }"></td>
+				<td style="text-align:left"><input type="text" name="phone" id="phone" readonly="readonly" value="${sessionScope.loginInfo.phone }"></td>
 				<!-- <td style="text-align:left" id="td3">${sessionScope.loginInfo.phone}</td>-->
 			</tr>
 			<tr>
 				<td>배송 시<br>요구사항</td>
 				<td style="text-align:left">
-					<input type="text" id="" name="" size="75">
+					<input type="text" id="detail" name="detail" size="75">
 <!-- 					<select>
 						<option>옥상 문 앞에 보관해주세요. 감사합니다.</option>
 						<option>부재시 경비실에 맡겨주세요.</option>
@@ -174,5 +190,8 @@
 			</tr>
 	</table><br>
 				<button id="payment">결제하기</button>
+		</thead>
+	</table><br>
+	<button id="payment">결제하기</button>
 </body>
 </html>
