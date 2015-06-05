@@ -61,6 +61,4 @@ public class ProductController {
 			Seller seller = (Seller)session.getAttribute("loginInfo");
 		return "redirect:productManager.do?sellerId="+seller.getSellerId();
 	}
-	
-	
 }

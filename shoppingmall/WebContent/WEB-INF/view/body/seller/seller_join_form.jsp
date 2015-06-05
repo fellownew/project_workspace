@@ -1,8 +1,11 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/address.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/seller.css">
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
+<script type="text/javascript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js" ></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/script/address.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/seller_join.js" ></script>
 <div>
 	<h2>셀러 회원가입</h2>
@@ -38,9 +41,15 @@
 					<div id="genderErr" class="error"  style="display: none">필수 정보입니다.</div></td>
 			</tr>
 			<tr>
-				<td><input type="text" id="address" name="address"
-					placeholder="주소" class="int">
-					<div id="addressErr" class="error"  style="display: none">필수 정보입니다.</div></td>
+				<td><input type="text" id="postcode1" readonly="readonly"
+					class="d_form mini" size="4" maxlength="3"> - <input
+					type="text" id="postcode2" readonly="readonly" class="d_form mini" size="4"
+					maxlength="3"> <input type="button" id="addressBtn" value="우편번호 찾기" class="d_btn"><br>
+					<input type="text" id="address" class="d_form std" placeholder="주소" readonly="readonly"> 
+					<input type="text" id="addressDetail" class="d_form" placeholder="상세주소">
+					<div id="addressErr" class="error" style="display: none">필수 정보입니다.</div>
+					<input type="hidden" id="postcode" name="postcode" value="2"> <input type="hidden" name="addressDetails" id="addressDetails" value="3">
+				</td>
 			</tr>
 			<tr>
 				<td><input type="text" id="phone" name="phone" maxlength="14"

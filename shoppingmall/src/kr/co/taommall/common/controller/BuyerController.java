@@ -5,6 +5,7 @@ import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpSession;
 
 import kr.co.taommall.account.service.BuyerService;
+import kr.co.taommall.account.vo.Address;
 import kr.co.taommall.account.vo.Buyer;
 import kr.co.taommall.mail.SendMail;
 
@@ -25,8 +26,9 @@ public class BuyerController {
 	BuyerService service;
 
 	@RequestMapping("/buyerJoin.do")
-	public String joinBuyer(@ModelAttribute Buyer buyer,Error error) {
-		int count = service.insertBuyer(buyer);
+	public String joinBuyer(@ModelAttribute Address address,@ModelAttribute Buyer buyer,Error error) {
+		buyer.setAddress(address);
+			int count = service.insertBuyer(buyer);
 		return "redirect:/mainPage.do";
 	}
 
@@ -90,7 +92,6 @@ public class BuyerController {
 	public String buyerPhoneModify(String phone, HttpSession session){
 		Buyer buyer = (Buyer) session.getAttribute("loginInfo");		
 		buyer.setPhone(phone);
-		System.out.println(buyer);
 		int count = service.updateBuyerById(buyer);
 		session.setAttribute("loginInfo", buyer);
 		session.setAttribute("user","buyer");
@@ -119,14 +120,14 @@ public class BuyerController {
 	
 	@RequestMapping("/addressModify.do")
 	@ResponseBody
-	public String buyerAddressModify(String address, HttpSession session){
+	public Address buyerAddressModify(Address address, HttpSession session){
 		Buyer buyer = (Buyer) session.getAttribute("loginInfo");		
 		buyer.setAddress(address);
 		int count = service.updateBuyerById(buyer);
 		session.setAttribute("loginInfo", buyer);
 		session.setAttribute("user","buyer");
 		if(count == 0){
-			return "fail";
+			return null;
 		}
 
 		return address;

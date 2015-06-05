@@ -4,8 +4,11 @@
 
 <!DOCTYPE html>
 <meta charset="UTF-8">
+
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/buyer_info.css">
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
+<script type="text/javascript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js" ></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/script/address.js"></script>
 <script type="text/javascript" >
 <c:set var="message" value="${sessionScope.loginInfo.password}"/> 
 var pword = '<c:out value="${message}"/>';
@@ -132,15 +135,20 @@ var phoneNum = '<c:out value="${message}"/>';
 					</th>
 					<td>
 						<div class="tdcell">
-							<p id="addressId" class="contxt_tit">${sessionScope.loginInfo.address}</p>
+						<p id="postcodeId" class="contxt_tit">${sessionScope.loginInfo.address.postcode}</p>
+							<p id="addressId" class="contxt_tit">${sessionScope.loginInfo.address.addressDetails}</p>
 									<p class="btn_area_btm">
 										<a href="javascript:address()" class="btn_model"><b>주소 변경</b></a>
 									</p>
 						<div id="addressDetail" style="display:none;">
-								<div>
-									<input type="text" id="address" placeholder="${sessionScope.loginInfo.address}">
-									<span id="addressErr" class="error" style="display: none">필수입력 사항입니다.</span>		
-								</div>
+					<div>
+							<input type="text" id="postcode1" readonly="readonly" class="d_form mini" size="4" maxlength="3"> - <input
+							type="text" id="postcode2" readonly="readonly" class="d_form mini" size="4"	maxlength="3"> 
+							<input type="button" id="addressBtn" value="우편번호 찾기" class="d_btn"><br>
+							<input type="text" id="address" class="d_form std" placeholder="주소" readonly="readonly" size="40"> 
+							<input type="text" id="addressDetails" class="d_form" placeholder="상세주소" size="30">								
+							<span id="addressErr" class="error" style="display: none">필수입력 사항입니다.</span>		
+					</div>
 
 								<p>
 								<button id="addressConfirm">수정</button>

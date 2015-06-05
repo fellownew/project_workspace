@@ -180,20 +180,12 @@ $(document).ready(function(){
 	});	
 
 	//주소 변경
-	$("#address").blur(function(){		
-		if($("#address").val().trim()==''){
-			$("#addressErr").show().html("필수 정보입니다").attr('style', "color:red");
-			$("#address").val('');
-			return false;
-		}
-	});
 	$("#addressConfirm").on("click",function(){
-		
 		$.ajax({
 			url:"/taommall/buyer/addressModify.do",
 			type:"POST",
-			data:{address:$("#address").val()},	
-			dataType:"text",
+			data:{postcode:$("#postcode1").val()+"-"+$("#postcode2").val(),addressDetails:$("#address").val()+" "+$("#addressDetails").val()},	
+			dataType:"json",
 			beforeSend:function(){
 				if($("#address").val().trim()==''){
 					$("#addressErr").show().html("필수 정보입니다").attr('style', "color:red");
@@ -202,12 +194,14 @@ $(document).ready(function(){
 				}
 			},
 			success:function(res){
-
-				
+				$("#postcodeId").html(res.postcode);
+				$("#addressId").html(res.addressDetails);
+				$("#postcode1").val('');
+				$("#postcode2").val('');
+				$("#addressDetails").val('');
 				$("#address").val('');
 				$("#addressErr").html('');
 				$("#addressDetail").hide();
-				$("#addressId").html(res);
 			}
 		});	
 	});

@@ -20,7 +20,10 @@ var codeCheck;
 				$(".error").show();
 				return false;
 			}else{	
-				if(idCheck && codeCheck && passwordCheck){
+				if(idCheck && passwordCheck && codeCheck){
+					$("#postcode").val($("#postcode1").val()+"-"+$("#postcode2").val());
+					$("#addressDetails").val($("#address").val()+" "+$("#addressDetail").val());
+					alert($("#postcode").val()+":"+$("#addressDetails").val());
 				document.getElementById("seller_form").submit();
 				}else if(!codeCheck){
 					$("#joinErr").show().html("인증번호를 확인해주세요.").attr('style', "color:red");
@@ -135,21 +138,6 @@ var codeCheck;
 	
 		});
 		
-		
-		//주소
-		$("#address").keydown(function(){
-			$("#addressErr").hide();
-		});
-		$("#address").blur(function(){		
-			if($("#address").val().trim()==''){
-				$("#addressErr").show().html("필수 정보입니다").attr('style', "color:red");
-				$("#address").val('');
-				return false;
-			}else{
-				$("#addressErr").html('').hide();
-			}
-		});
-		
 		//핸드폰
 		$("#phone").keydown(function(){
 			$("#phoneErr").hide();
@@ -243,8 +231,6 @@ var codeCheck;
 			}else{
 				$("#codeErr").html('인증번호를 다시 확인해주세요').attr('style', "color:red");
 			}
-		})
-		
-		
-		
-	});
+		});
+
+});
