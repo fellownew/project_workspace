@@ -15,17 +15,17 @@ public class OrderServiceImpl implements OrderService{
 	private OrderDAO dao;
 
 	@Override
-	public void insertOrder(Order order) {
-		dao.insertOrder(order);
+	public int insertOrder(Order order) {
+		return dao.insertOrder(order);
 	}
 
 	@Override
-	public void updateOrder(Order order) {
-		dao.updateOrder(order);
+	public int updateOrder(Order order) {
+		return dao.updateOrder(order);
 	}
 
 	@Override
-	public int deleteOrder(String orderId) {
+	public int deleteOrderById(int orderId) {
 		return dao.deleteOrderById(orderId);
 	}
 

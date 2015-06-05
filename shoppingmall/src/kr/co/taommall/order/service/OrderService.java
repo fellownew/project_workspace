@@ -5,9 +5,9 @@ import java.util.List;
 import kr.co.taommall.order.vo.Order;
 
 public interface OrderService {
-	public void insertOrder(Order order);
-	public void updateOrder(Order order);
-	public int deleteOrder(String orderId);
+	public int insertOrder(Order order);
+	public int updateOrder(Order order);
+	public int deleteOrderById(int orderId);
 	public List<Order> selectOrderByBuyerId(String buyerId);
 	public List<Order> selectOrderByProductId(String productId);
 

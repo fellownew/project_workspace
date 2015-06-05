@@ -15,7 +15,7 @@ public class OrderDAOImpl implements OrderDAO{
 
 	@Autowired
 	private SqlSessionTemplate session;
-	private String namespace = "order.dao.order.";
+	private String namespace = "kr.co.taommall.order.dao.";
 
 	private OrderDAOImpl() {
 	}
@@ -46,7 +46,7 @@ public class OrderDAOImpl implements OrderDAO{
 		return session.selectList(namespace + "selectOrderByStatus", status);
 	}
 
-	public int deleteOrderById(String id) {
+	public int deleteOrderById(int id) {
 		return session.delete(namespace + "deleteOrderById", id);
 	}
 

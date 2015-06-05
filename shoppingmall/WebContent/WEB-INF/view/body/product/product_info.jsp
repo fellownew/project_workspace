@@ -5,8 +5,8 @@
 <meta charset="UTF-8">
 <script type="text/javascript">
 function order(id){
-	location = "order.do?productId"+id;
-}
+	   location = "<%=request.getContextPath() %>/auth/memberOrderForm.do?productId="+id+"&amount="+$("#amount").val();
+	}
 function cart(id){
 	var amount = document.getElementById("amount");
 	location = "cart.do?productId="+id+"&amount="+amount;
@@ -43,7 +43,7 @@ function cart(id){
 			</tr> 
 			<tr>
 				<td>수량</td>
-				<td><input type="number" id="amount"></td>
+				<td><input type="number" id="amount" value="1"></td>
 			</tr> 
 			<tr>
 				<td colspan="2"><button onclick="order(${product.productId})">주문</button><button onclick="cart(${product.productId})">장바구니</button></td>

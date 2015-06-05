@@ -6,13 +6,15 @@ drop table product;
 drop table seller;
 drop table buyer;
 
-
 select * from orders
 select * from buyer
 select * from product
 
-insert into orders (order_id,product_id,amount,status,buyer_id)
-values('123456',61,5,'배송중','buyer-3');
+insert into orders (order_id,product_id,amount,status,buyer_id,seller_id)
+values('7',62,6,'배송중','buyer-3','seller-1');
+
+delete from orders
+where seller_id='seller-1'
 
 create table buyer(
    buyer_id varchar2(20) primary key,
@@ -36,6 +38,7 @@ create table seller(
    corporate_number varchar2(12) not null
 );
 
+select * from recipient
 create table product(
    product_id number primary key,
    product_name varchar2(50) not null,
@@ -61,6 +64,12 @@ create table cart(
    constraint cart_product_id_fk foreign key(product_id) references product(product_id) ON DELETE CASCADE
 );
 
+select * from orders
+update ORDERS
+set RECIPIENT_ID = 1
+where buyer_id = 'secret88'
+
+select * from orders
 create table orders(
    order_id varchar2(10) primary key,
    product_id number,
@@ -70,6 +79,8 @@ create table orders(
    
    constraint order_product_id_fk foreign key(product_id) references product(product_id) ON DELETE CASCADE,
    constraint order_buyer_id_fk foreign key(buyer_id) references buyer(buyer_id) ON DELETE CASCADE
+   alter table orders add(recipient_id number)
+   alter table orders add constraint recipient_id_fk foreign key (recipient_id) references recipient(recipient_id);
 );
 
 create table center(
@@ -90,6 +101,19 @@ create table pboard(
 	constraint pboard_buyer_id_fk foreign key(buyer_id) references buyer(buyer_id) ON DELETE CASCADE
 
 );
+
+create table recipient(
+	recipient_id number primary key,
+	name varchar2(20) not null,
+	address varchar2(100) not null,
+	phone varchar2(13) not null,
+	detail varchar2(200) not null
+);
+
+select * from RECIPIENT
+create sequence recipient_no_seq
+
+insert into recipient values(recipient_no_seq.nextval,'최지우','성남시 분당구','010-9687-3539','조심좀;;;');
 
 
 insert into seller (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number)

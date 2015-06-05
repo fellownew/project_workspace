@@ -9,7 +9,7 @@ public interface OrderDAO {
 
 	public int insertOrder(Order order);
 	public int updateOrder(Order order);
-	public int deleteOrderById(String orderId);
+	public int deleteOrderById(int orderId);
 	public Order selectOrderByOrderId(String orderId);
 	public List<Order> selectAllOrder();
 	public List<Order> selectOrderByProductId(String productId);

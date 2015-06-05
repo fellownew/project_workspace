@@ -57,8 +57,7 @@ a{
 			<c:when test="${sessionScope.user=='buyer'}">
 				${sessionScope.loginInfo.buyerId }님 환영합니다. <br>
 				<a href="<%=request.getContextPath() %>/auth/buyerInfoForm.do">회원정보</a> |
-				<a href="<%=request.getContextPath() %>/buyer/auth/logout.do">로그아웃</a>  |
-				<a href="<%=request.getContextPath() %>/auth/buyerOrderForm.do?productId=61">구매하기</a>
+				<a href="<%=request.getContextPath() %>/buyer/auth/logout.do">로그아웃</a>
 			</c:when>
 			<%-- 비로그인 --%>
 			<c:otherwise>
