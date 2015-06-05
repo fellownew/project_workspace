@@ -1,0 +1,29 @@
+package kr.co.taommall.board.service;
+
+import java.util.List;
+
+import kr.co.taommall.board.vo.Board;
+
+import org.springframework.ui.Model;
+
+public class BoardServiceImpl implements BoardService {
+
+	@Override
+	public int insertBoard(Model model) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int deleteBoard(Model model) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<Board> selectBoardByProductId(Model model) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

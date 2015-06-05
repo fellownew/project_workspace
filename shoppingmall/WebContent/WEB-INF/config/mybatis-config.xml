@@ -6,6 +6,8 @@
 		<package name="kr.co.taommall.account.vo"/>
 		<package name="kr.co.taommall.order.vo"/>
 		<package name="kr.co.taommall.cart.vo"/>
+		<package name="kr.co.taommall.board.vo"/>
+		<package name="kr.co.taommall.recipient.vo"/>
 	</typeAliases>
 	<mappers>
 
@@ -14,6 +16,9 @@
 		<mapper resource="kr/co/taommall/config/mapper/seller-mapper.xml"/>
 		<mapper resource="kr/co/taommall/config/mapper/buyer-mapper.xml"/>
 		<mapper resource="kr/co/taommall/config/mapper/cart-mapper.xml"/>
+		<mapper resource="kr/co/taommall/config/mapper/board-mapper.xml"/>
+		<mapper resource="kr/co/taommall/config/mapper/recipient-mapper.xml"/>		<!-- recipient-mapper.xml 추가 -->
+		
 
 	</mappers>
 </configuration>

@@ -1,7 +1,0 @@
-package kr.co.taommall.order.dao;
-
-import kr.co.taommall.order.vo.Order;
-
-public interface OrderDAO {
-	public int insertOrder(Order order);
-}

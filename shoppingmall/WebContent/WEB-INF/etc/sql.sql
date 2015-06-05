@@ -6,23 +6,18 @@ drop table product;
 drop table seller;
 drop table buyer;
 
-create table temp as 
-select buyer_id,password,name,postcode,address,email,phone
-from buyer
-select * from temp
- 
-select *
-from cart
-
-select * from buyer
 select * from seller
-
 select * from orders
 select * from buyer
 select * from product
+select * from RECIPIENT
 
-insert into orders (order_id,product_id,amount,status,buyer_id)
-values('123456',61,5,'배송중','buyer-3');
+alter table  
+insert into orders (order_id,product_id,amount,status,buyer_id,seller_id)
+values('7',62,6,'배송중','buyer-3','seller-1');
+
+delete from orders
+where seller_id='seller-1'
 
 create table buyer(
    buyer_id varchar2(20) primary key,
@@ -46,6 +41,7 @@ create table seller(
    corporate_number varchar2(12) not null
 );
 
+select * from recipient
 create table product(
    product_id number primary key,
    product_name varchar2(50) not null,
@@ -71,6 +67,12 @@ create table cart(
    constraint cart_product_id_fk foreign key(product_id) references product(product_id) ON DELETE CASCADE
 );
 
+select * from orders
+update ORDERS
+set RECIPIENT_ID = 1
+where buyer_id = 'secret88'
+
+select * from orders
 create table orders(
    order_id varchar2(10) primary key,
    product_id number,
@@ -80,6 +82,8 @@ create table orders(
    
    constraint order_product_id_fk foreign key(product_id) references product(product_id) ON DELETE CASCADE,
    constraint order_buyer_id_fk foreign key(buyer_id) references buyer(buyer_id) ON DELETE CASCADE
+   alter table orders add(recipient_id number)
+   alter table orders add constraint recipient_id_fk foreign key (recipient_id) references recipient(recipient_id);
 );
 
 create table center(
@@ -100,6 +104,19 @@ create table pboard(
 	constraint pboard_buyer_id_fk foreign key(buyer_id) references buyer(buyer_id) ON DELETE CASCADE
 
 );
+
+create table recipient(
+	recipient_id number primary key,
+	name varchar2(20) not null,
+	address varchar2(100) not null,
+	phone varchar2(13) not null,
+	detail varchar2(200) not null
+);
+
+select * from RECIPIENT
+create sequence recipient_no_seq
+
+insert into recipient values(recipient_no_seq.nextval,'최지우','성남시 분당구','010-9687-3539','조심좀;;;');
 
 
 insert into seller (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number)
@@ -138,21 +155,14 @@ select c_product_id.nextval from dual
 select * from seller
 select * from product
 select * from buyer
-select * from orders
+
 select * from cart
-select * from center
 
 insert into cart values('123456',61,2);
 insert into cart values('123456',62,4);
 insert into cart values('123456',63,15);
 insert into cart values('123456',65,1);
 
-create sequence recipient_no_seq
-
-delete from orders
-where order_id = 0
-
-insert into recipient values(recipient_no_seq.nextval,'최지우','성남시 분당구','010-9687-3539','조심좀;;;');
 select count(*)from product
 
 
@@ -164,36 +174,4 @@ from (
 	)
 where (rownum <= 5)
 
-delete from ORDERS
-where order_id = 123456
 
-
-select * from seller
-
-create table temp as 
-select buyer_id,password,name,postcode,address,email,phone
-from buyer
-select * from q
- drop table buyer
-
-rename q to buyer;
-rename temp to buyer;
-
-select * from seller
-update seller
-set gender ='male'
-where gender ='남'
-alter table buyer add (postcode varchar2(10))
-alter table seller add (postcode varchar2(10))
-
-alter table orders modify status varchar2(16) not null;
-alter table orders modify order_id number primary key;
-
-alter table buyer modify postcode varchar2(10) not null;
-alter table seller modify postcode varchar2(10) not null;
-update seller
-set postcode='123-456'
-where gender='male'
-alter table orders add (seller_id varchar2(20))
-alter table orders drop column seller_id 
-ALTER TABLE orders ADD foreign key(seller_id) references seller(seller_id)

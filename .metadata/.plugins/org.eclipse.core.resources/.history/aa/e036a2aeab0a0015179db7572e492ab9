@@ -1,0 +1,5 @@
+package kr.co.taommall.board.service;
+
+public interface BoardService {
+	
+}

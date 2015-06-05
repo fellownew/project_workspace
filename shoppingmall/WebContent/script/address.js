@@ -20,11 +20,6 @@ $(document).ready(function() {
 			});
 });
 
-/*
-	$("#postcode").val($("#postcode1").val()+"-"+$("#postcode2").val());
-	$("#addressDetails").val($("#address").val()+" "+$("#addressDetail").val());
-					
- */
 function addressDAUM() {
 	new daum.Postcode({
 		oncomplete : function(data) {

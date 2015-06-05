@@ -45,8 +45,10 @@ a{
 			<%-- 판매자 확인 --%>
 			<c:when test="${sessionScope.user=='seller'}">
 				<c:choose>
+					<%-- 관리자 --%>
 					<c:when test="${sessionScope.loginInfo.admin=='true' }">
 						<a href="<%=request.getContextPath() %>/seller/auth/memberList.do">회원관리</a> |
+						<a href="<%=request.getContextPath() %>/auth/boardList.do">후기관리</a>
 						<a href="#">고객센터 관리</a> |
 						<a href="<%=request.getContextPath() %>/auth/logout.do">로그아웃</a>	
 					</c:when>
@@ -54,7 +56,7 @@ a{
 						${sessionScope.loginInfo.sellerId }님 환영합니다. <br>
 						<a href="<%=request.getContextPath() %>/auth/sellerInfoForm.do">회원정보</a> |
 						<a href="<%=request.getContextPath() %>/auth/productManager.do?sellerId=${sessionScope.loginInfo.sellerId}">상품관리</a> |
-						<a href="#">고객센터</a> |
+						<a href="<%=request.getContextPath() %>/auth/centerList.do">고객센터</a> |
 						<a href="<%=request.getContextPath() %>/auth/logout.do">로그아웃</a>	
 					</c:otherwise>
 				</c:choose>	
@@ -65,13 +67,8 @@ a{
 
 				<a href="<%=request.getContextPath()%>/auth/buyerInfoForm.do">회원정보</a> |
 				<a href="<%=request.getContextPath()%>/cart/auth/cartList.do">장바구니</a> |
-				<a href="#">고객센터</a> |
+				<a href="<%=request.getContextPath() %>/auth/centerList.do">고객센터</a> |
 				<a href="<%=request.getContextPath() %>/auth/logout.do">로그아웃</a>	
-
-				<a href="<%=request.getContextPath() %>/auth/buyerInfoForm.do">회원정보</a> |
-				<a href="<%=request.getContextPath() %>/buyer/auth/logout.do">로그아웃</a>  |
-				<a href="<%=request.getContextPath() %>/auth/buyerOrderForm.do?productId=61">구매하기</a>
-
 			</c:when>
 			<%-- 비로그인 --%>
 			<c:otherwise>

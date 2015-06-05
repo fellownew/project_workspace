@@ -2,15 +2,6 @@ INDEX VERSION 1.3+C:\JAVA\eclipse\project_workspace\.metadata\.plugins\org.eclip
 113758656.index
 2457810028.index
 2822452857.index
-<<<<<<< HEAD
-2358489328.index
-2463009565.index
-3630192381.index
-64916664.index
-3318923866.index
-=======
->>>>>>> 0054f1b84ba1b30983249cd86eac6a33be80d461
 1397729945.index
-338116390.index
 3630192381.index
 2358489328.index

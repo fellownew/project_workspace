@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="kr.co.taommall.board.dao">
+	<sql id="board-select">
+		select board_no,title,content,product_id,buyer_id
+		from pboard
+	</sql>
+	
+	<insert id="insertBoard" parameterType="Board">
+		<selectKey resultType="int" keyProperty="boardNo" order="BEFORE">
+			select c_board_id.nextval from dual
+		</selectKey>
+		insert into board 
+		(board_no,title,content,product_id,buyer_id)
+		values
+		(#{boardNo}, #{title}, #{content}, #{productId}, #{buyerId})
+	</insert>
+	
+	<delete id="deleteBoard" parameterType="int">
+		delete from board where board_no=#{boardNo}
+	</delete>
+	
+	<resultMap type="Board" id="board-resultMap">
+		<id column="board_no" property="boardNo"/>
+		<result column="title" property="title"/>
+		<result column="content" property="content"/>
+		<result column="product_id" property="productId"/>
+		<result column="buyer_id" property="buyerId"/>
+	</resultMap>
+	
+	
+	<select id="selectProductByIdNoPaging" parameterType="int" resultMap="product-resultMap">
+		<include refid="product-select"/>
+		where product_id=#{productId}
+	</select>
+
+	<select id="selectProductBySellerIdNoPaging" parameterType="String" resultMap="product-resultMap">
+		<include refid="product-select"/>
+		where seller_id=#{sellerId}
+	</select>	
+	
+	<select id="selectAllProduct" parameterType="org.springframework.ui.Model" resultMap="product-resultMap">
+		select product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
+		from (
+			select ceil(rownum/#{contentsPerPage}) page, product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
+			from (
+				<include refid="product-select"/>
+				order by exp_date asc
+			)
+		) 
+		where page = #{pageNo}
+	</select>
+	
+	<select id="selectProductById" resultMap="product-resultMap" parameterType="org.springframework.ui.Model">
+		select product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
+		from (
+			select ceil(rownum/#{contentsPerPage}) page, product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
+			from (
+				<include refid="product-select"/>
+				where product_id=#{productId}
+				order by exp_date asc
+			)
+		) 
+		where page = #{pageNo}
+	</select>
+	
+	<select id="selectProductlIKEName" resultMap="product-resultMap" parameterType="org.springframework.ui.Model">
+		select product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
+		from (
+			select ceil(rownum/#{contentsPerPage}) page, product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
+			from (
+				<include refid="product-select"/>
+				where product_name like '%'||#{productName}||'%'
+				order by exp_date asc
+			)
+		) 
+		where page = #{pageNo}
+	</select>
+	
+	<select id="selectProductByCategory" resultMap="product-resultMap" parameterType="org.springframework.ui.Model">
+		select product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
+		from (
+			select ceil(rownum/#{contentsPerPage}) page, product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
+			from (
+				<include refid="product-select"/>
+				where category=#{category}
+				order by exp_date asc
+			)
+		) 
+		where page = #{pageNo}
+	</select>
+	
+	<select id="selectProductByexpDate" resultMap="product-resultMap" parameterType="org.springframework.ui.Model">
+		select product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
+		from (
+			select ceil(rownum/#{contentsPerPage}) page, product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
+			from (
+				<include refid="product-select"/>
+				where expDate=#{expDate}
+				order by exp_date asc
+			)
+		) 
+		where page = #{pageNo}
+	</select>
+	
+	<select id="selectProductBySellerId" resultMap="product-resultMap" parameterType="org.springframework.ui.Model">
+		select product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
+		from (
+			select ceil(rownum/#{contentsPerPage}) page, product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
+			from (
+				<include refid="product-select"/>
+				where seller_id=#{sellerId}
+				order by exp_date asc
+			)
+		) 
+		where page = #{pageNo}
+	</select>
+	
+	<select id="selectProductBetweenPrice" resultMap="product-resultMap" parameterType="org.springframework.ui.Model">
+		select product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
+		from (
+			select ceil(rownum/#{contentsPerPage}) page, product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
+			from (
+				<include refid="product-select"/>
+				where between price #{min} and #{max}
+				order by exp_date asc
+			)
+		) 
+		where page = #{pageNo}
+	</select>
+	<select id="selectProductMinPrice" resultMap="product-resultMap" parameterType="org.springframework.ui.Model">
+		select product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
+		from (
+			select ceil(rownum/#{contentsPerPage}) page, product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
+			from (
+				<include refid="product-select"/>
+				where price &gt;= #{price}
+				order by exp_date asc
+			)
+		) 
+		where page = #{pageNo}
+	</select>
+	<select id="selectProductMaxPrice" resultMap="product-resultMap" parameterType="org.springframework.ui.Model">
+		select product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
+		from (
+			select ceil(rownum/#{contentsPerPage}) page, product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
+			from (
+				<include refid="product-select"/>
+				where price &lt;= #{price}
+				order by exp_date asc
+			)
+		) 
+		where page = #{pageNo}
+	</select>
+	
+	<select id="selectProductCount" resultType="_int">
+		select count(*)from product
+	</select>
+	
+	<select id="selectProductCountByCategory" resultType="_int" parameterType="String">
+		select count(*)from product where category=#{category}
+	</select>
+	
+	<select id="selectProductCountlIKEName" resultType="_int" parameterType="String">
+		select count(*)from product where product_name like '%'||#{productName}||'%'
+	</select>
+	
+	<select id="selectProductToRandom" resultMap="product-resultMap" parameterType="int">
+		select product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id from (
+			select product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id from product
+			order by DBMS_RANDOM.VALUE
+			)
+		where <![CDATA[(rownum <= #{num})]]>
+	</select>
+	
+</mapper>
