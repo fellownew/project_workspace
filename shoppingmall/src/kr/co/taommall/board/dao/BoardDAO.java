@@ -7,7 +7,7 @@ import kr.co.taommall.board.vo.Board;
 import org.springframework.ui.Model;
 
 public interface BoardDAO {
-	public int insertBoard(Model model);
-	public int deleteBoard(Model model);
-	public List<Board> selectBoardByProductId(Model model);
+	public int insertBoard(Board board);
+	public int deleteBoard(int boardNo);
+	public List<Board> selectBoardByProductId(int productId,Model model);
 }

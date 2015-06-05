@@ -4,11 +4,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import kr.co.taommall.board.dao.BoardDAO;
 import kr.co.taommall.common.PagingBean;
 import kr.co.taommall.product.dao.ProductDAO;
 import kr.co.taommall.product.vo.Product;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,6 +21,7 @@ public class ProductServiceImpl implements ProductService {
 	private String deImagePath = "upimage/";
 	@Autowired
 	private ProductDAO dao;
+	
 	
 	public void insertProduct(Product product,MultipartFile upfile){
 		//파일명은 현재 시간으로 가져옴.

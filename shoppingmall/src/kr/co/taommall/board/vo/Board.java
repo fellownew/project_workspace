@@ -1,6 +1,8 @@
 package kr.co.taommall.board.vo;
 
-public class Board {
+import java.io.Serializable;
+
+public class Board implements Serializable{
 	private int boardNo;
 	private String title;
 	private String content;

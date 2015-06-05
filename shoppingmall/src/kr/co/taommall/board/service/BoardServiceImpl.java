@@ -4,6 +4,7 @@ import java.util.List;
 
 import kr.co.taommall.board.dao.BoardDAO;
 import kr.co.taommall.board.vo.Board;
+import kr.co.taommall.common.PagingBean;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,19 +16,21 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired
 	BoardDAO dao;
 	
+	
 	@Override
-	public int insertBoard(Model model) {
-		return dao.insertBoard(model);
+	public int insertBoard(Board board) {
+		
+		return dao.insertBoard(board);
 	}
 
 	@Override
-	public int deleteBoard(Model model) {
-		return dao.deleteBoard(model);
+	public int deleteBoard(int boardNo) {
+		return dao.deleteBoard(boardNo);
 	}
 
 	@Override
-	public List<Board> selectBoardByProductId(Model model) {
-		List<Board> list = dao.selectBoardByProductId(model);
+	public List<Board> selectBoardByProductId(int productId,Model model) {
+		List<Board> list = dao.selectBoardByProductId(productId,model);
 		return list;
 	}
 

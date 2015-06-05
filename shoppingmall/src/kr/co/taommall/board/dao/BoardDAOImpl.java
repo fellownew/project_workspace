@@ -17,18 +17,18 @@ public class BoardDAOImpl implements BoardDAO {
 	private String nameSpace = "kr.co.taommall.board.dao.";
 	
 	@Override
-	public int insertBoard(Model model) {
-		return session.insert(nameSpace+"insertBoard",model);
+	public int insertBoard(Board board) {
+		return session.insert(nameSpace+"insertBoard",board);
 	}
 
 	@Override
-	public int deleteBoard(Model model) {
-		return session.insert(nameSpace+"deleteBoard",model);
+	public int deleteBoard(int boardNo) {
+		return session.insert(nameSpace+"deleteBoard",boardNo);
 	}
 
 	@Override
-	public List<Board> selectBoardByProductId(Model model) {
-		return session.selectList(nameSpace+"selectBoardByProductId",model);
+	public List<Board> selectBoardByProductId(int productId,Model model) {
+		return session.selectList(nameSpace+"selectBoardByProductId",productId);
 	}
 
 }

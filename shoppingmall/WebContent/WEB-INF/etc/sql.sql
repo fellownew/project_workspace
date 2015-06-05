@@ -86,6 +86,9 @@ create table pboard(
 
 );
 
+create sequence c_board_id;
+
+select rownum,board_no,title,content,product_id,buyer_id from pboard;
 
 insert into seller (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number)
 values('seller-1','1111','홍길동','남','서울','df@df.com','010-1234-1234','true','false','1234-23125');
@@ -119,6 +122,7 @@ values('seller-22','1111','홍길동','남','서울','df@df.com','010-1234-1234'
 
 
 select c_product_id.nextval from dual
+select c_board_id.nextval from dual
 
 select * from seller
 select * from product

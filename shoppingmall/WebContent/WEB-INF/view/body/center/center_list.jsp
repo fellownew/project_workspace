@@ -33,7 +33,7 @@ $(document).ready(function(){
 </script>
 
 
-<table style="width: 500px">
+<table style="width: 500px;margin:0 auto;padding-top: 30px;padding-bottom: 30px">
 <colgroup>
 				<col style="width: 3px;" />
 				<col style="width: 100px;" />

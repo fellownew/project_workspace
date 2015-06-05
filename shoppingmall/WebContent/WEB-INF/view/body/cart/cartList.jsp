@@ -137,9 +137,9 @@ $(document).ready(function(){
 </head>
 <body>
 
-	<div class="cart_list_table">
+	<div class="cart_list_table" >
 	
-		<table id="">
+		<table id="" style="witdh:1000px;margin:0 auto">
 			<caption>장바구니 리스트</caption>
 			<colgroup>
 				<col style="width: 4%;" />
@@ -191,7 +191,7 @@ $(document).ready(function(){
 			</c:choose>
 			</tbody>
 		</table>
-		<input type="text" id="result" > <input type="button" id="purchase" value="구매하기"><span id="purchaseErr" style="display: none;" class="error">상품을 1개이상 선택해주세요.</span>
+		<input type="text" id="result" ><input type="button" id="purchase" value="구매하기" ><span id="purchaseErr" style="display: none;" class="error">상품을 1개이상 선택해주세요.</span>
 	</div>
 </body>
 </html>
