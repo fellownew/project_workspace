@@ -1,0 +1,22 @@
+package kr.co.taommall.recipient.vo;
+
+import java.io.Serializable;
+
+public class Recipient implements Serializable{
+	private String name;
+	private String address;
+	private String phone;
+	private String detail;
+	
+	public Recipient(){}
+
+	public Recipient(String name, String address, String phone, String detail) {
+		super();
+		this.name = name;
+		this.address = address;
+		this.phone = phone;
+		this.detail = detail;
+	}
+
+	
+}

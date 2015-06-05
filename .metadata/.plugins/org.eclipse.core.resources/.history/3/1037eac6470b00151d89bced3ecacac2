@@ -1,0 +1,16 @@
+package kr.co.taommall.recipient.dao;
+
+import kr.co.taommall.recipient.vo.Recipient;
+
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class RecipientDAOImpl implements RecipientDAO{
+
+	@Override
+	public int insertRecipient(Recipient recipient) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+}

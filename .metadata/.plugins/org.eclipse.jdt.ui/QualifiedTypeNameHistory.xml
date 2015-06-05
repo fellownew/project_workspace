@@ -1,2 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="kr.co.taommall.order.service.OrderService"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
+<fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+<fullyQualifiedTypeName name="kr.co.taommall.account.vo.Buyer"/>
+<fullyQualifiedTypeName name="java.io.Serializable"/>
+<fullyQualifiedTypeName name="kr.co.taommall.recipient.vo.RecipientService"/>
+<fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
+<fullyQualifiedTypeName name="kr.co.taommall.recipient.service.RecipientService"/>
+<fullyQualifiedTypeName name="kr.co.taommall.recipient.dao.RecipientDAO"/>
+<fullyQualifiedTypeName name="org.springframework.stereotype.Repository"/>
+<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+<fullyQualifiedTypeName name="org.mybatis.spring.SqlSessionTemplate"/>
+<fullyQualifiedTypeName name="kr.co.taommall.recipient.vo.Recipient"/>
+<fullyQualifiedTypeName name="kr.co.taommall.order.vo.Order"/>
+</qualifiedTypeNameHistroy>
