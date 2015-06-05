@@ -3,7 +3,7 @@
 <mapper namespace="account.dao.seller">
 
 <insert id="insertSeller" parameterType="seller" >
-	insert into seller values(#{sellerId},#{password},#{name},#{gender},#{address},#{email},#{phone},#{auth},#{admin},#{corporateNumber})
+	insert into seller values(#{sellerId},#{password},#{name},#{gender},#{address.addressDetails},#{email},#{phone},#{auth},#{admin},#{corporateNumber},#{address.postcode})
 </insert>
 <update id="updateSeller" parameterType="seller">
 	update seller
@@ -18,8 +18,11 @@
 		<if test="gender !=null">
 		 gender=#{gender},
 		 </if>
-		 <if test="address !=null">
-		 address=#{address},
+		 <if test="address.addressDetails !=null">
+		 address=#{address.addressDetails},
+		 </if>
+		 <if test="address.postcode !=null">
+		 postcode=#{address.postcode},
 		 </if>
 		 <if test="email !=null">
 		 email=#{email},
@@ -44,7 +47,7 @@
 </delete>
 
 <sql id="select-seller-basic">
-	select seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number
+	select seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number,postcode
 	from seller
 </sql>
 
@@ -53,12 +56,12 @@
 	<result column="password" property="password"/>
 	<result column="name" property="name"/>
 	<result column="gender" property="gender"/>
-	<result column="address" property="address"/>
 	<result column="email" property="email"/>
 	<result column="phone" property="phone"/>
 	<result column="auth" property="auth"/>
 	<result column="admin" property="admin"/>
 	<result column="corporate_number" property="corporateNumber"/>
+	<association  property="address" javaType="kr.co.taommall.account.vo.Address" resultMap="account.dao.buyer.address-default"/>
 </resultMap>
 
 <select id="selectSellerAllMember" resultMap="resultMap-seller-basic">
@@ -77,7 +80,7 @@
 </select>
 
 <select id="selectAllSellerPaging" parameterType="map" resultMap="resultMap-seller-basic">
-		select seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number
+		select seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number,postcode
 		from (
 			select ceil(rownum/#{contentsPerPage}) page, seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number
 			from (

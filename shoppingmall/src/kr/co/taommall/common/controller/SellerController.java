@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import kr.co.taommall.account.service.SellerService;
+import kr.co.taommall.account.vo.Address;
 import kr.co.taommall.account.vo.Buyer;
 import kr.co.taommall.account.vo.Seller;
 import kr.co.taommall.mail.SendMail;
@@ -29,7 +30,8 @@ public class SellerController {
 	SellerService service;
 	
 	@RequestMapping("/sellerJoin.do")
-	public String joinSeller(@ModelAttribute Seller seller,Error error) {
+	public String joinSeller(@ModelAttribute Seller seller,@ModelAttribute Address address,Error error) {
+		seller.setAddress(address);
 		int count = service.insertSeller(seller);
 		return "redirect:/mainPage.do";
 	}
@@ -94,7 +96,6 @@ public class SellerController {
 	public String sellerPhoneModify(String phone, HttpSession session){
 		Seller buyer = (Seller) session.getAttribute("loginInfo");		
 		buyer.setPhone(phone);
-		System.out.println(buyer);
 		int count = service.updateSeller(buyer);
 		session.setAttribute("loginInfo", buyer);
 		session.setAttribute("user","seller");
@@ -109,7 +110,6 @@ public class SellerController {
 	public String sellerEmailModify(String email, HttpSession session){
 		Seller buyer = (Seller) session.getAttribute("loginInfo");		
 		buyer.setEmail(email);
-		System.out.println(buyer);
 		int count = service.updateSeller(buyer);
 		session.setAttribute("loginInfo", buyer);
 		session.setAttribute("user","seller");
@@ -122,17 +122,15 @@ public class SellerController {
 	
 	@RequestMapping("/addressModify.do")
 	@ResponseBody
-	public String sellerAddressModify(String address, HttpSession session){
-		Seller buyer = (Seller) session.getAttribute("loginInfo");		
-		buyer.setAddress(address);
-		System.out.println(buyer);
-		int count = service.updateSeller(buyer);
-		session.setAttribute("loginInfo", buyer);
+	public Address buyerAddressModify(Address address, HttpSession session){
+		Seller seller = (Seller) session.getAttribute("loginInfo");		
+		seller.setAddress(address);
+		int count = service.updateSeller(seller);
+		session.setAttribute("loginInfo", seller);
 		session.setAttribute("user","seller");
 		if(count == 0){
-			return "fail";
+			return null;
 		}
-
 		return address;
 	}
 	

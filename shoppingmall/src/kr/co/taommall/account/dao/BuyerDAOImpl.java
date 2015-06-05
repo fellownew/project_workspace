@@ -27,7 +27,6 @@ public class BuyerDAOImpl implements BuyerDAO{
 	}
 
 	public int insertBuyer(Buyer buyer) {
-
 			return session.insert(namespace + "insertBuyer", buyer);
 
 	}
@@ -49,7 +48,6 @@ public class BuyerDAOImpl implements BuyerDAO{
 
 	@Override
 	public Buyer selectBuyerById(String id) {
-
 			return session.selectOne(namespace+"selectBuyerById",id);			
 
 	}

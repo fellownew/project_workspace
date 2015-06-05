@@ -10,39 +10,13 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
  <script type="text/javascript"> 
  
- /*   
- private String orderId;
- private int productId;
- private int amount;
- private String status;
- private String buyerId;
- private String sellerId;
- 
-     OrderController에 들어감 @RequestMapping("payment.do") public String payment(){};
-        taommall/auth/payment.do
-     
-        1. orderId - 자동으로 생성되게 seq써서 만들것.
-        2. productId는 내가 ${reqeustScope.product.productId}
-        3. amount는 ${requestScope.amount}
-        4. status default="배송준비";
-        5. buyerId <--sessionScope.loginInfo //Controller HttpSession  Buyer buyer = session.getAttribute("loginInfo");
-                 buyer.getbuyerId();
-        6.          Product product = productService.selectProductNoPaging(productId,null); 
-           String sellerId = product.getSellerId();
 
-          Order order = new Order(orderId,productId,amount,status,buyerId,sellerId);
-          
-          int count = serivce.insertOrder(order);
-       System.out.Println(count);
-       
-       
-       */
  $(document).ready(function(){
 	 
 	 $("#payment").on("click",function(){
-		
-		 location = "<%=request.getContextPath() %>/auth/payment.do?productId="+${requestScope.product.productId}
-		 		+"&amount="+ ${requestScope.amount};
+		 
+
+		 location = "<%=request.getContextPath() %>/auth/memberOrderForm.do?productId="+id+"&amount="+$("#amount").val();
 
 	 });
 	 

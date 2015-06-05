@@ -3,11 +3,27 @@
 <mapper namespace="account.dao.buyer">
 
 <insert id="insertBuyer" parameterType="buyer" >
-	insert into buyer values(#{buyerId},#{password},#{name},#{address},#{email},#{phone})
+	insert into buyer values(#{buyerId},#{password},#{name},#{address.addressDetails},#{email},#{phone},#{address.postcode})
 </insert>
 <update id="updateBuyerById" parameterType="buyer">
 	update buyer
-	set password=#{password}, name=#{name}, address=#{address}, email=#{email}, phone=#{phone}
+	<set>
+		<if test="password !=null">
+		 password=#{password},
+		</if>
+		<if test="address.addressDetails !=null">
+		 address=#{address.addressDetails},
+		</if>		
+		<if test="email !=null">
+		 email=#{email},
+		</if>
+		<if test="phone !=null">
+		 phone=#{phone},
+		</if>
+		<if test="address.postcode !=null">
+		 postcode=#{address.postcode}
+		</if>			
+	</set>
 	where buyer_id=#{buyerId}
 </update>
 
@@ -17,16 +33,22 @@
 </delete>
 
 <sql id="select-buyer-basic">
-	select buyer_id,password,name,address,email,phone
+	select buyer_id,password,name,address,email,phone,postcode
 	from buyer
 </sql>
+
+<resultMap type="address" id="address-default">
+		<result column="postcode" property="postcode"/>
+		<result column="address" property="addressDetails"/>
+</resultMap>
+
 <resultMap type="buyer" id="resultMap-buyer-basic">
 	<id column="buyer_id" property="buyerId"/>	
 	<result column="password" property="password"/>
 	<result column="name" property="name"/>
-	<result column="address" property="address"/>
 	<result column="email" property="email"/>
 	<result column="phone" property="phone"/>
+	<association  property="address" javaType="kr.co.taommall.account.vo.Address" resultMap="address-default"/>
 </resultMap>
 <select id="selectBuyerAllMember" resultMap="resultMap-buyer-basic">
 	<include refid="select-buyer-basic"/>

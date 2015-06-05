@@ -7,23 +7,23 @@ public class Buyer implements Serializable {
 	private String buyerId;
 	private String password;
 	private String name;
-	private String address;
 	private String email;
 	private String phone;
+	private Address address;
 
 	public Buyer() {
 		super();
 	}
 
-	public Buyer(String buyerId, String password, String name, String address,
-			String email, String phone) {
+	public Buyer(String buyerId, String password, String name, String email,
+			String phone, Address address) {
 		super();
 		this.buyerId = buyerId;
 		this.password = password;
 		this.name = name;
-		this.address = address;
 		this.email = email;
 		this.phone = phone;
+		this.address = address;
 	}
 
 	public String getBuyerId() {
@@ -50,14 +50,6 @@ public class Buyer implements Serializable {
 		this.name = name;
 	}
 
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -74,11 +66,19 @@ public class Buyer implements Serializable {
 		this.phone = phone;
 	}
 
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
 	@Override
 	public String toString() {
 		return "Buyer [buyerId=" + buyerId + ", password=" + password
-				+ ", name=" + name + ", address=" + address + ", email="
-				+ email + ", phone=" + phone + "]";
+				+ ", name=" + name + ", email=" + email + ", phone=" + phone
+				+ ", address=" + address + "]";
 	}
 
 }

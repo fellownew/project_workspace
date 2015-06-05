@@ -2,7 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="order.dao.order">
 	
+	
+
+
 <insert id="insertOrder" parameterType="order" >
+<selectKey keyProperty="orderId" order="BEFORE" resultType="_int">select order_no.nextval from dual</selectKey>
 	insert into orders values(#{orderId},#{productId},#{amount},#{status},#{buyerId},#{sellerId})
 </insert>
 
@@ -42,7 +46,7 @@
 	<result column="status" property="status"/>
 	<association property="product" javaType="kr.co.taommall.product.vo.Product" resultMap="kr.co.taommall.product.dao.product-resultMap"/>
 	<association property="buyer" javaType="kr.co.taommall.account.vo.Buyer" resultMap="account.dao.buyer.resultMap-buyer-basic"/>
-	<association property="seller" javaType="kr.co.taommall.common.vo.Seller" resultMap="account.dao.seller.resultMap-seller-basic"></association>
+	<association property="seller" javaType="kr.co.taommall.account.vo.Seller" resultMap="account.dao.seller.resultMap-seller-basic"></association>
 </resultMap>
 
 <select id="selectAllOrder"  resultMap="resultMap-order-default">
@@ -50,6 +54,11 @@
 where o.product_id = p.product_id and o.buyer_id = b.buyer_id and o.seller_id = s.seller_id
 </select>
 
+
+<select id="selectOrderByProductId" parameterType="string" resultMap="resultMap-order-default">
+<include refid="select-order-default"/>
+where p.product_id = ${value}
+</select>
 
 <select id="selectOrderByOrderId" parameterType="string" resultMap="resultMap-order-default">
 <include refid="select-order-default"/>

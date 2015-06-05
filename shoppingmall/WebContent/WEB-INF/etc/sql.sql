@@ -6,8 +6,23 @@ drop table product;
 drop table seller;
 drop table buyer;
 
+create table temp as 
+select buyer_id,password,name,postcode,address,email,phone
+from buyer
+select * from temp
+ 
 select *
 from cart
+
+select * from buyer
+select * from seller
+
+select * from orders
+select * from buyer
+select * from product
+
+insert into orders (order_id,product_id,amount,status,buyer_id)
+values('123456',61,5,'배송중','buyer-3');
 
 create table buyer(
    buyer_id varchar2(20) primary key,
@@ -126,14 +141,18 @@ select * from buyer
 select * from orders
 select * from cart
 select * from center
+
 insert into cart values('123456',61,2);
 insert into cart values('123456',62,4);
 insert into cart values('123456',63,15);
 insert into cart values('123456',65,1);
 
+create sequence recipient_no_seq
 
+delete from orders
+where order_id = 0
 
-insert into ORDERS values('123',61,3,'123','secret88','seller-1');
+insert into recipient values(recipient_no_seq.nextval,'최지우','성남시 분당구','010-9687-3539','조심좀;;;');
 select count(*)from product
 
 
@@ -148,6 +167,33 @@ where (rownum <= 5)
 delete from ORDERS
 where order_id = 123456
 
+
+select * from seller
+
+create table temp as 
+select buyer_id,password,name,postcode,address,email,phone
+from buyer
+select * from q
+ drop table buyer
+
+rename q to buyer;
+rename temp to buyer;
+
+select * from seller
+update seller
+set gender ='male'
+where gender ='남'
+alter table buyer add (postcode varchar2(10))
+alter table seller add (postcode varchar2(10))
+
+alter table orders modify status varchar2(16) not null;
+alter table orders modify order_id number primary key;
+
+alter table buyer modify postcode varchar2(10) not null;
+alter table seller modify postcode varchar2(10) not null;
+update seller
+set postcode='123-456'
+where gender='male'
 alter table orders add (seller_id varchar2(20))
 alter table orders drop column seller_id 
 ALTER TABLE orders ADD foreign key(seller_id) references seller(seller_id)

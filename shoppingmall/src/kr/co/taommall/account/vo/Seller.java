@@ -8,11 +8,11 @@ public class Seller implements Serializable {
 	private String password;
 	private String name;
 	private String gender;
-	private String address;
+	private Address address;
 	private String email;
 	private String phone;
-	private String auth="false";
-	private String admin="false";
+	private String auth = "false";
+	private String admin = "false";
 	private String corporateNumber;
 
 	public Seller() {
@@ -20,7 +20,7 @@ public class Seller implements Serializable {
 	}
 
 	public Seller(String sellerId, String password, String name, String gender,
-			String address, String email, String phone, String corporateNumber) {
+			Address address, String email, String phone, String corporateNumber) {
 		super();
 		this.sellerId = sellerId;
 		this.password = password;
@@ -30,12 +30,11 @@ public class Seller implements Serializable {
 		this.email = email;
 		this.phone = phone;
 		this.corporateNumber = corporateNumber;
-		auth = "false";
-		admin = "false";
 	}
-
+	
+	
 	public Seller(String sellerId, String password, String name, String gender,
-			String address, String email, String phone, String auth,
+			Address address, String email, String phone, String auth,
 			String admin, String corporateNumber) {
 		super();
 		this.sellerId = sellerId;
@@ -82,11 +81,11 @@ public class Seller implements Serializable {
 		this.gender = gender;
 	}
 
-	public String getAddress() {
+	public Address getAddress() {
 		return address;
 	}
 
-	public void setAddress(String address) {
+	public void setAddress(Address address) {
 		this.address = address;
 	}
 

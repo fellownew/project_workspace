@@ -20,7 +20,9 @@ var codeCheck;
 				$(".error").show();
 				return false;
 			}else{	
-				if(idCheck && codeCheck && passwordCheck){
+				if(idCheck && passwordCheck && codeCheck){// 
+					$("#postcode").val($("#postcode1").val()+"-"+$("#postcode2").val());
+					$("#addressDetails").val($("#address").val()+" "+$("#addressDetail").val());
 				document.getElementById("buyer_form").submit();
 				}else if(!codeCheck){
 					$("#joinErr").show().html("인증번호를 확인해주세요.").attr('style', "color:red");
@@ -123,38 +125,24 @@ var codeCheck;
 				$("#nameErr").html('').hide();
 			}
 	
-		});
-		
-		
-		//주소
-		$("#address").keydown(function(){
-			$("#addressErr").hide();
-		});
-		$("#address").blur(function(){		
-			if($("#address").val().trim()==''){
-				$("#addressErr").show().html("필수 정보입니다").attr('style', "color:red");
-				$("#address").val('');
-				return false;
-			}else{
-				$("#addressErr").html('').hide();
-			}
-		});
+		});		
 		
 		//핸드폰
 		$("#phone").keydown(function(){
 			$("#phoneErr").hide();
 		});
+		
 		$("#phone").blur(function(){	
 			
 			if(reg_phone.test($("#phone").val())===false){
-				$("#phoneErr").show().html("형식에 맞게 입력하세요.").attr('style', "color:red");
+				$("#phoneErr").show().html("휴대전화 형식에 맞게 입력하세요.").attr('style', "color:red");
 				return false;
 			}
 			if($("#phone").val().trim()==''){
 				$("#phoneErr").show().html("필수 정보입니다").attr('style', "color:red");
 				$("#phone").val('');
 				return false;
-			}else{
+			}else{	
 				$("#phoneErr").html('').hide();
 			}
 		});
@@ -163,6 +151,7 @@ var codeCheck;
 		$("#email").keydown(function(){
 			$("#emailErr").hide();
 		});
+		
 		$("#email").blur(function(){
 			
 			
@@ -233,8 +222,8 @@ var codeCheck;
 			}else{
 				$("#codeErr").html('인증번호를 다시 확인해주세요').attr('style', "color:red");
 			}
-		})
+		});
 		
 		
 		
-	});
+});
