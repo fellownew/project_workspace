@@ -1,0 +1,26 @@
+<%@ page contentType="text/html;charset=UTF-8"%>
+
+
+
+	<table border='1'  style=" width:800px;margin: 0 auto">
+		<thead>
+			<tr>
+				<td></td>
+				<td>상품명</td>
+				<td>가격</td>
+				<td>유통기한</td>
+				<td>판매자</td>
+			</tr>
+		</thead>
+		<tbody id="tbody">
+			<c:forEach items="${requestScope.productList }" var="product">
+				<tr onclick="info(${product.productId})">
+					<td><img src="${product.imagePath }" width="120px" height="120px"/></td>
+					<td>${product.productName}</td>
+					<td>${product.productPrice}</td>
+					<td>${product.expDate}</td>
+					<td>${product.sellerId}</td>
+				</tr> 
+			</c:forEach>
+		</tbody>
+	</table>

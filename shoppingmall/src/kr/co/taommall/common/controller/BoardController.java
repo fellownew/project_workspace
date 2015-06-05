@@ -39,4 +39,11 @@ public class BoardController {
 		model.addAttribute("boardList",list);
 		return list;
 	}
+	
+	@RequestMapping("/boardList.do")
+	public String selectAllBoard(Model model){
+		
+		
+		return "product/board_list.form";
+	}
 }
