@@ -31,7 +31,6 @@
 		
 		
 		$("#payment").on("click",function(){
-			alert("결제완료");
 			
 		 	if($("#test1").is(":checked")){
 		 		$("#postcode").val('${sessionScope.loginInfo.address.postcode}');

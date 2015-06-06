@@ -59,7 +59,6 @@ $(document).ready(function(){
 	 		  return false;
 	 	  }
 	 	 var url ='<%=request.getContextPath()%>/auth/memberOrderForm.do?productId='+list+"&amount="+amountList;
-	 	  alert(url);
 
 			$(location).attr('href',url); 
 	 	  
