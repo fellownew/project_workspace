@@ -70,6 +70,10 @@ a{
 				<a href="<%=request.getContextPath() %>/auth/centerList.do">고객센터</a> |
 				<a href="<%=request.getContextPath() %>/auth/logout.do">로그아웃</a>	
 
+				<a href="<%=request.getContextPath() %>/auth/buyerInfoForm.do">회원정보</a> |
+				<a href="<%=request.getContextPath() %>/buyer/auth/logout.do">로그아웃</a>  |
+				<a href="<%=request.getContextPath() %>/auth/buyerOrderForm.do?productId=61">구매하기</a>
+
 			</c:when>
 			<%-- 비로그인 --%>
 			<c:otherwise>
