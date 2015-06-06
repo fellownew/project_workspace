@@ -1,3 +1,8 @@
+/*
+ * 세팅용 sql문.
+ */
+
+
 drop table cart;
 drop table orders;
 drop table center;
@@ -5,19 +10,13 @@ drop table pboard;
 drop table product;
 drop table seller;
 drop table buyer;
+drop table recipient;
 
-select * from seller
-select * from orders
-select * from buyer
-select * from product
-select * from RECIPIENT
+drop sequence recipient_no_seq;
+drop sequence c_product_id;
+drop sequence c_board_id;
+drop sequence order_no;
 
-alter table  
-insert into orders (order_id,product_id,amount,status,buyer_id,seller_id)
-values('7',62,6,'배송중','buyer-3','seller-1');
-
-delete from orders
-where seller_id='seller-1'
 
 create table buyer(
    buyer_id varchar2(20) primary key,
@@ -25,7 +24,8 @@ create table buyer(
    name varchar2(12) not null,
    address varchar2(100) not null,
    email varchar2(20) not null,
-   phone varchar2(30) not null
+   phone varchar2(30) not null,
+   postcode varchar2(10) not null
 );
 
 create table seller(
@@ -38,10 +38,10 @@ create table seller(
    phone varchar2(30) not null,
    auth varchar2(10) not null,
    admin varchar2(10) not null,
-   corporate_number varchar2(12) not null
+   corporate_number varchar2(12) not null,
+   postcode varchar2(10) not null
 );
 
-select * from recipient
 create table product(
    product_id number primary key,
    product_name varchar2(50) not null,
@@ -56,7 +56,21 @@ create table product(
    constraint product_seller_id_fk foreign key(seller_id) references seller(seller_id) ON DELETE CASCADE
 );
 
+create table center(
+	board_no number primary key,
+	title varchar2(20) not null,
+	content varchar2(2000) not null,
+	id varchar2(20) not null
+);
 
+create table recipient(
+	recipient_id number primary key,
+	name varchar2(20) not null,
+	address varchar2(100) not null,
+	phone varchar2(13) not null,
+	detail varchar2(200) not null
+	
+);
 
 create table cart(
    buyer_id varchar2(20),
@@ -67,30 +81,17 @@ create table cart(
    constraint cart_product_id_fk foreign key(product_id) references product(product_id) ON DELETE CASCADE
 );
 
-select * from orders
-update ORDERS
-set RECIPIENT_ID = 1
-where buyer_id = 'secret88'
-
-select * from orders
 create table orders(
-   order_id varchar2(10) primary key,
+   order_id number primary key,
    product_id number,
    amount number,
-   status varchar2(10),
+   status varchar2(20),
    buyer_id varchar2(20),
+   recipient_id number,
    
    constraint order_product_id_fk foreign key(product_id) references product(product_id) ON DELETE CASCADE,
-   constraint order_buyer_id_fk foreign key(buyer_id) references buyer(buyer_id) ON DELETE CASCADE
-   alter table orders add(recipient_id number)
-   alter table orders add constraint recipient_id_fk foreign key (recipient_id) references recipient(recipient_id);
-);
-
-create table center(
-	board_no number primary key,
-	title varchar2(20) not null,
-	content varchar2(2000) not null,
-	id varchar2(20) not null
+   constraint order_buyer_id_fk foreign key(buyer_id) references buyer(buyer_id) ON DELETE CASCADE,
+   constraint recipient_id_fk foreign key (recipient_id) references recipient(recipient_id) ON DELETE CASCADE
 );
 
 create table pboard(
@@ -106,67 +107,50 @@ create table pboard(
 );
 
 
-create table recipient(
-	recipient_id number primary key,
-	name varchar2(20) not null,
-	address varchar2(100) not null,
-	phone varchar2(13) not null,
-	detail varchar2(200) not null
-);
-
-select * from RECIPIENT
-create sequence recipient_no_seq
-
-insert into recipient values(recipient_no_seq.nextval,'최지우','성남시 분당구','010-9687-3539','조심좀;;;');
+create sequence recipient_no_seq;
+create sequence c_product_id;
+create sequence c_board_id;
+create sequence order_no;
 
 
-insert into seller (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number)
-values('seller-1','1111','홍길동','남','서울','df@df.com','010-1234-1234','true','false','1234-23125');
-
-insert into seller (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number)
-values('admin','admin','홍길동','남','서울','df@df.com','010-1234-1234','true','true','1111-11111');
+/*
+ * 세팅용 sql문 끝
+ */
 
 
-insert into seller (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number)
-values('seller-15','1111','홍길동','남','서울','df@df.com','010-1234-1234','true','false','1234-23125');
-
-insert into seller (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number)
-values('seller-16','1111','홍길동','남','서울','df@df.com','010-1234-1234','true','false','1234-23125');
-
-insert into seller (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number)
-values('seller-17','1111','홍길동','남','서울','df@df.com','010-1234-1234','true','false','1234-23125');
-
-insert into seller (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number)
-values('seller-18','1111','홍길동','남','서울','df@df.com','010-1234-1234','true','false','1234-23125');
-
-insert into seller (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number)
-values('seller-19','1111','홍길동','남','서울','df@df.com','010-1234-1234','true','false','1234-23125');
-
-insert into seller (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number)
-values('seller-20','1111','홍길동','남','서울','df@df.com','010-1234-1234','true','false','1234-23125');
-
-insert into seller (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number)
-values('seller-21','1111','홍길동','남','서울','df@df.com','010-1234-1234','true','false','1234-23125');
-insert into seller (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number)
-values('seller-22','1111','홍길동','남','서울','df@df.com','010-1234-1234','true','false','1234-23125');
 
 
-select c_product_id.nextval from dual
+/*
+ * 각 DB selelt
+ */
 
-select * from seller
-select * from product
-select * from buyer
+select * from seller;
+select * from buyer;
+select * from product;
+select * from RECIPIENT;
+select * from cart;
+select * from orders;
+select * from pboard;
+select * from center;
 
-select * from cart
 
-insert into cart values('123456',61,2);
-insert into cart values('123456',62,4);
-insert into cart values('123456',63,15);
-insert into cart values('123456',65,1);
+
+
+/*
+ * 참조 무결성 
+ */
+SELECT CONSTRAINT_NAME, TABLE_NAME, R_CONSTRAINT_NAME FROM USER_CONSTRAINTS
+WHERE CONSTRAINT_NAME = 'table명'
+
+insert into seller (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number,postcode)
+values('admin','admin','콩콩콩','콩','콩콩','admin@taommall.co.kr','010-2222-2222','true','true','2222-22222','222-222');
+
 
 select count(*)from product
 
-
+/*
+ * rownum 개수만큼 랜덤으로 뽑아옴.
+ */
 select product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
 from (
 	select product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
@@ -174,5 +158,3 @@ from (
 	order by DBMS_RANDOM.VALUE
 	)
 where (rownum <= 5)
-
-

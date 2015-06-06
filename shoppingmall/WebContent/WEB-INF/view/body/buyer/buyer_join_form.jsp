@@ -12,7 +12,7 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/buyer_join.js"></script>
 </head>
 <div>
-	<h2>바이어 회원가입</h2>
+	<h2 style="text-align: center">바이어 회원가입</h2>
 	<form id="buyer_form"
 		action="<%=request.getContextPath()%>/buyer/buyerJoin.do"
 		method="post" style="margin-bottom: 20px">

@@ -11,11 +11,6 @@ $(document).ready(function(){
 		$("#tbody tr").css("background-color","white");
 		$(this).css("background-color","#E2B4A9");
 	});
-	$("#tbody tr td:nth-child(4)").on("load",function(){
-		
-	});
-	
-	var date = new Date();
 	
 });
 
@@ -23,17 +18,50 @@ function info(idx){
 	location="productInfo.do?productId="+idx;
 }
 </script>
+
+<style>
+h2{
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 10px
+}
+</style>
+
+
 <div>
+
+
+
 <c:choose>
 	<c:when test="${fn:length(requestScope.productList) != 0 }">
-		<table border='1'  style=" width:800px;margin: 0 auto">
+		<%-- 제목 --%>
+		<c:choose>
+			<c:when test="${param.search =='food'}">
+				<h2>농/수/축산물</h2>
+			</c:when>
+			<c:when test="${param.search =='fruit'}">
+				<h2>과일/채소</h2>
+			</c:when>
+			<c:when test="${param.search =='health'}">
+				<h2>건강식품</h2>
+			</c:when>
+			<c:when test="${param.search =='snack'}">
+				<h2>간식</h2>
+			</c:when>
+			<c:otherwise>
+				<h2>모든 상품</h2>
+			</c:otherwise>
+		</c:choose>
+	
+		<%--테이블 --%>
+		<table border='1'  style=" width:800px;margin: 0 auto;text-align: center">
 			<thead>
-				<tr>
-					<td></td>
-					<td>상품명</td>
-					<td>가격</td>
-					<td>유통기한</td>
-					<td>판매자</td>
+				<tr style="height:40px">
+					<td style="width:120px"></td>
+					<td style="width:380px">상품명</td>
+					<td style="width:140px">가격</td>
+					<td style="width:140px">유통기한</td>
+					<td style="width:120px">판매자</td>
 				</tr>
 			</thead>
 			<tbody id="tbody">

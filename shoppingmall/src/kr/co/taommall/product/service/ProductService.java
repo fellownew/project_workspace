@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 public interface ProductService {
 	public void insertProduct(Product product,MultipartFile upfile);
 	public void updateProduct(Product product,MultipartFile upfile);//imagePath가 없을 경우  updateProductIgnoreImagePath를 불러온다.
+	public void updateProductIgnoreImagePath(Product product);
 	public int deleteProduct(int productId);
 	public List<Product> selectAllProduct(int pageNo,Model model);
 	public List<Product> selectProductById(int productId,int pageNo,Model model) ;

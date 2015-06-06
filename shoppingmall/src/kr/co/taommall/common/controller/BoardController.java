@@ -29,7 +29,7 @@ public class BoardController {
 	@RequestMapping("/auth/deleteBoard.do")
 	public String deleteBoard(@RequestParam int boardNo,Model model){
 		service.deleteBoard(boardNo);
-		return "success";
+		return "redirect:/board/auth/boardList.do";
 	}
 	
 	@RequestMapping("/selectBoardByProductId.do")
