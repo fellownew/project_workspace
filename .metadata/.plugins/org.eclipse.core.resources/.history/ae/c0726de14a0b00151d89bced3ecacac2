@@ -1,0 +1,7 @@
+package kr.co.taommall.recipient.service;
+
+import kr.co.taommall.recipient.vo.Recipient;
+
+public interface RecipientService {
+	public int insertRecipient(Recipient recipient);
+}

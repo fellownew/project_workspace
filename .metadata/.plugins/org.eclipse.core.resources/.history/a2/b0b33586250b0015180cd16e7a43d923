@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="recipient.dao.recipient">
+
+<insert id="insertRecipient" parameterType="recipient">
+<selectKey keyProperty="orderId" order="BEFORE" resultType="_int">select recipient_no_seq.nextval from dual</selectKey>
+   insert into recipient values(#{orderId},#{productId},#{amount},#{status},#{buyerId},#{sellerId})
+</insert>
+
+<insert id="insertOrder" parameterType="order" >						
+<selectKey keyProperty="orderId" order="BEFORE" resultType="_int">select order_no.nextval from dual</selectKey>
+   insert into orders values(#{orderId},#{productId},#{amount},#{status},#{buyerId},#{sellerId})
+</insert>
+
+
+<sql id="select-order-default" >
+	select 	r.recipient_id, r.name, r.address, r.phone, r.detail
+			o.order_id, o.product_id, o.buyer_id, o.amount, o.status, 
+			p.product_id, p.product_name, p.product_price, p.category, p.product_info,p.image_path, p.regi_date,p.exp_date, p.seller_id,
+			b.buyer_id, b.password, b.name, b.address, b.email, b.phone
+	from orders o,product p, buyer b, recipient r
+</sql>
+
+<!-- DefaultOrderResultMap -->
+<resultMap type="recipient" id="resultMap-order-default">
+	<id column="order_id" property="orderId"/>
+	<result column="product_id" property="productId"/>
+	<result column="buyer_id" property="buyerId"/>
+	<result column="amount" property="amount"/>
+	<result column="status" property="status"/>
+	<association property="product" javaType="kr.co.taommall.product.vo.Product" resultMap="kr.co.taommall.product.dao.product-resultMap"/>
+	<association property="buyer" javaType="kr.co.taommall.account.vo.Buyer" resultMap="account.dao.buyer.resultMap-buyer-basic"/>
+</resultMap>
+
+</mapper>

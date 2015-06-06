@@ -1,0 +1,5 @@
+package kr.co.taommall.recipient.vo;
+
+public class recipient {
+
+}
