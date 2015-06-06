@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.co.taommall.account.vo.Address;
 import kr.co.taommall.account.vo.Buyer;
+import kr.co.taommall.cart.service.CartService;
 import kr.co.taommall.cart.vo.Cart;
 import kr.co.taommall.order.service.OrderService;
 import kr.co.taommall.order.vo.Order;
@@ -33,6 +34,9 @@ public class OrderController {
 	ProductService productService;
 	@Autowired
 	RecipientService recipientService;
+	
+	@Autowired
+	CartService cartService;
 	
 	@RequestMapping("/memberOrderForm.do")
 	public String memberOrderForm(@RequestParam("productId") String[] cartList,@RequestParam("amount") String[] amountList,HttpServletRequest request, HttpSession session){
@@ -73,7 +77,7 @@ public class OrderController {
 				if(product == null){
 					continue;
 				}	
-				Order order = new Order(0,productId,amount,"결제완료",buyer.getBuyerId(),product.getSellerId(),recipient.getRecipientId());
+				Order order = new Order(0,productId,amount,"결제완료",buyer.getBuyerId(),product.getSellerId(),recipient.getRecipientId(),null);
 				int count1 = service.insertOrder(order);			
 			}
 			return "redirect:/auth/complete.do?recipientId="+recipient.getRecipientId();
@@ -85,9 +89,19 @@ public class OrderController {
 	};
 
 	@RequestMapping("complete.do")
-	public String complete(int recipientId,HttpServletRequest request){
+	public String complete(int recipientId,HttpServletRequest request,HttpSession session){
 		List<Order> list = service.selectOrderByRecipientId(recipientId);
-
+			for(Order o : list){
+				Product product = productService.selectProductByIdNoPaging(o.getProductId(), null);	
+				if(product !=null){
+					Buyer buyer = (Buyer)session.getAttribute("loginInfo");
+					Cart cart = cartService.selectCartByProductId(new Cart(buyer.getBuyerId(),product.getProductId(),0));
+					if(cart!=null){
+						int count = cartService.deleteCart(cart);
+						
+					}
+				}
+			}
 		request.setAttribute("list", list);		
 		return "member/member_order_complete.form";
 	}
@@ -96,9 +110,7 @@ public class OrderController {
 	public String completeList(HttpSession session,HttpServletRequest request){
 		Buyer buyer = (Buyer) session.getAttribute("loginInfo");
 		List<Order> list = service.selectOrderByBuyerId(buyer.getBuyerId());
-		for(Order o : list){
-			System.out.println(o.getRecipientId() +":"+o);
-		}
+
 		request.setAttribute("list", list);
 		return "member/member_order_complete_list.form";
 	}

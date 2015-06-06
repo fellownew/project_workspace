@@ -124,8 +124,12 @@ create sequence recipient_no_seq;
 create sequence c_product_id;
 create sequence c_board_id;
 create sequence order_no;
-
-
+select * from buyer
+select * from orders
+delete from orders
+where amount between 1 and 20 
+alter table recipient add (postcode varchar2(10) not null)
+alter table orders add (regi_date varchar2(10) not null)
 /*
  * 세팅용 sql문 끝
  */
