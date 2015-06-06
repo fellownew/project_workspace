@@ -87,6 +87,7 @@ public class OrderController {
 	@RequestMapping("complete.do")
 	public String complete(int recipientId,HttpServletRequest request){
 		List<Order> list = service.selectOrderByRecipientId(recipientId);
+
 		request.setAttribute("list", list);		
 		return "member/member_order_complete.form";
 	}
