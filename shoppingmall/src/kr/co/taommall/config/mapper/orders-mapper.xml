@@ -2,8 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="kr.co.taommall.order.dao">
 	
-	
-
 
 <insert id="insertOrder" parameterType="order" >
 <selectKey keyProperty="orderId" order="BEFORE" resultType="_int">select order_no.nextval from dual</selectKey>
@@ -73,6 +71,7 @@ where o.seller_id = s.seller_id and o.product_id = p.product_id and o.buyer_id =
 <select id="selectOrderByBuyerId" parameterType="string" resultMap="resultMap-order-default">
 <include refid="select-order-default"/>
 where o.seller_id = s.seller_id and o.product_id = p.product_id and o.buyer_id = b.buyer_id and o.recipient_id = r.recipient_id and o.buyer_id = #{value}
+order by o.recipient_id
 </select>
 
 <select id="selectOrderByStatus" parameterType="string" resultMap="resultMap-order-default">

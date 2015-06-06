@@ -6,6 +6,7 @@ drop table product;
 drop table seller;
 drop table buyer;
 
+select
 select * from seller
 select * from orders
 select * from buyer

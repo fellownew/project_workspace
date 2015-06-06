@@ -92,5 +92,15 @@ public class OrderController {
 		return "member/member_order_complete.form";
 	}
 	
+	@RequestMapping("completeList.do")
+	public String completeList(HttpSession session,HttpServletRequest request){
+		Buyer buyer = (Buyer) session.getAttribute("loginInfo");
+		List<Order> list = service.selectOrderByBuyerId(buyer.getBuyerId());
+		for(Order o : list){
+			System.out.println(o.getRecipientId() +":"+o);
+		}
+		request.setAttribute("list", list);
+		return "member/member_order_complete_list.form";
+	}
 
 }
