@@ -5,7 +5,6 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import kr.co.taommall.account.vo.Seller;
-import kr.co.taommall.cart.vo.Cart;
 import kr.co.taommall.product.service.ProductService;
 import kr.co.taommall.product.vo.Product;
 
@@ -48,7 +47,11 @@ public class ProductController {
 	//상품 수정 처리
 	@RequestMapping("/modifyProduct.do")
 	public String update(@ModelAttribute Product product ,MultipartFile upfile,Model model,HttpSession session){
-		service.updateProduct(product,upfile);
+		if(upfile.getContentType().equals("image/jpeg")){
+			service.updateProduct(product,upfile);
+		}else{
+			service.updateProductIgnoreImagePath(product);
+		}
 		Product rProduct = service.selectProductByIdNoPaging(product.getProductId(),model);
 		model.addAttribute("product",rProduct);
 		Seller seller = (Seller)session.getAttribute("loginInfo");

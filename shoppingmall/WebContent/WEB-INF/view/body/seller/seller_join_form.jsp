@@ -8,7 +8,7 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/address.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/seller_join.js" ></script>
 <div>
-	<h2>셀러 회원가입</h2>
+	<h2 style="text-align: center">셀러 회원가입</h2>
 	<form id="seller_form" action="<%=request.getContextPath()%>/seller/sellerJoin.do" method="post" style="margin-bottom: 20px">
 		<table>
 			<tr>
