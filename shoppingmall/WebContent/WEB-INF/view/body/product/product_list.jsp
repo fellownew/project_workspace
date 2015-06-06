@@ -11,6 +11,12 @@ $(document).ready(function(){
 		$("#tbody tr").css("background-color","white");
 		$(this).css("background-color","#E2B4A9");
 	});
+	$("#tbody tr td:nth-child(4)").on("load",function(){
+		
+	});
+	
+	var date = new Date();
+	
 });
 
 function info(idx){

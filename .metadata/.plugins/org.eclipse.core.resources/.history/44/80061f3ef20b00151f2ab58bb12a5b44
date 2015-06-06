@@ -1,0 +1,82 @@
+<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	function deleteboard(idx){
+		if(confirm("정말 삭제하시겠습니까?")){
+			$.ajax({
+				url:"deleteProduct.do",
+				type:"POST",
+				data:{boardNo:idx},	
+				dataType:"json",
+				success:function(res){
+					location="boardList.do";
+					alert(res);
+				}
+			});			
+		}else{
+			return false;
+		}	
+	}
+});
+
+
+</script>
+<div>
+	<table border='1'  style=" width:800px;margin: 0 auto">
+		<thead>
+			<tr>
+				<td>No</td>
+				<td>제목</td>
+				<td>상품번호</td>
+				<td>판매자</td>
+			</tr>
+		</thead>
+		<tbody id="tbody">
+			<c:forEach items="${requestScope.boardList }" var="board">
+				<tr>
+					<td>${board.boardNo }</td>
+					<td>${board.title}</td>
+					<td><a href="productInfo.do?productId=${board.productId}">${board.productId}</a></td>
+					<td>${board.buyerId}</td>
+				</tr>
+				<tr>
+					<td colspan="3">${board.content }</td>
+					<td><button id="deleteBoard(${board.boardNo })">삭제</button> </td>
+				</tr> 
+			</c:forEach>
+		</tbody>
+	</table>
+			<c:choose>
+			<c:when test="${pagingBean.previousPageGroup }">
+				<a href="<%=request.getContextPath()%>/list.do?page=${pagingBean.startPageOfPageGroup-1}&search=${requestScope.search }">◀</a>
+			</c:when>
+			<c:otherwise>
+				◀
+			</c:otherwise>
+		</c:choose>	
+		<!-- 페이지 번호 -->
+		<c:forEach begin="${pagingBean.startPageOfPageGroup }" end="${pagingBean.endPageOfPageGroup}" var="pageNum">
+			<c:choose>
+				<c:when test="${pageNum == pagingBean.currentPage }">
+					<b>[${pageNum}]</b>
+				</c:when>
+				<c:otherwise>
+					<a href="<%=request.getContextPath()%>/list.do?page=${pageNum}&search=${requestScope.search }">
+						${pageNum}
+					</a>
+				</c:otherwise>
+			</c:choose>
+			&nbsp;&nbsp;
+		</c:forEach>
+		<!-- 다음 페이지 그룹 -->
+		<c:choose>
+			<c:when test="${pagingBean.nextPageGroup }">
+				<a href="<%=request.getContextPath()%>/list.do?page=${pagingBean.endPageOfPageGroup+1}&search=${requestScope.search }">▶</a>
+			</c:when>
+			<c:otherwise>
+				▶
+			</c:otherwise>
+		</c:choose>	
+</div>

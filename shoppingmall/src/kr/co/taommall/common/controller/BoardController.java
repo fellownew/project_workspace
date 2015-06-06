@@ -20,16 +20,16 @@ public class BoardController {
 	@Autowired
 	BoardService service;
 	
-	@RequestMapping("/auth/insertBoard")
+	@RequestMapping("/auth/insertBoard.do")
 	public String insertBoard(@ModelAttribute Board board,@RequestParam int productId){
-		System.out.println("보드 컨트롤러"+board);
 		service.insertBoard(board);
 		return "redirect:/productInfo.do?productId="+productId;
 	}
 	
-	public String deleteBoard(@RequestParam int boardNo,@RequestParam int productId,Model model){
+	@RequestMapping("/auth/deleteBoard.do")
+	public String deleteBoard(@RequestParam int boardNo,Model model){
 		service.deleteBoard(boardNo);
-		return "redirect:/productInfo.do?productId="+productId;
+		return "success";
 	}
 	
 	@RequestMapping("/selectBoardByProductId.do")
@@ -40,8 +40,10 @@ public class BoardController {
 		return list;
 	}
 	
-	@RequestMapping("/boardList.do")
-	public String selectAllBoard(Model model){
+	@RequestMapping("/auth/boardList.do")
+	public String selectAllBoard(@RequestParam(defaultValue="1")int page,Model model){
+		List<Board> list = service.selectAllBoard(page,model);
+		model.addAttribute("boardList",list);
 		return "product/board_list.form";
 	}
 }

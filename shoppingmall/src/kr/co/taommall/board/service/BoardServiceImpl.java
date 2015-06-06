@@ -34,4 +34,15 @@ public class BoardServiceImpl implements BoardService {
 		return list;
 	}
 
+	@Override
+	public List<Board> selectAllBoard(int pageNo,Model model){
+		int totalContent = dao.selectBoardCount();
+		PagingBean pagingBean = new PagingBean(totalContent, pageNo);
+		int contentsPerPage =PagingBean.CONTENTS_PER_PAGE;
+		model.addAttribute("contentsPerPage", contentsPerPage);
+		model.addAttribute("pageNo", pageNo);
+		model.addAttribute("pagingBean", pagingBean);
+		List<Board> list = dao.selectAllBoard(model);
+		return list;
+	}
 }

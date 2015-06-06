@@ -10,5 +10,5 @@ public interface BoardService {
 	public int insertBoard(Board board);
 	public int deleteBoard(int boardNo);
 	public List<Board> selectBoardByProductId(int productId,Model model);
-	
+	public List<Board> selectAllBoard(int page,Model model);
 }

@@ -17,7 +17,7 @@
 	</insert>
 	
 	<delete id="deleteBoard" parameterType="int">
-		delete from board where board_no=#{boardNo}
+		delete from pboard where board_no=#{boardNo}
 	</delete>
 	
 	<resultMap type="Board" id="board-resultMap">
@@ -35,7 +35,7 @@
 			select ceil(rownum/#{contentsPerPage}) page, board_no,title,content,product_id,buyer_id
 			from (
 				<include refid="board-select"/>
-				order by exp_date asc
+				order by board_no
 			)
 		) 
 		where page = #{pageNo}
@@ -59,12 +59,12 @@
 		where page = #{pageNo}
 	</select>
 	
-	<select id="selectProductCount" resultType="_int">
-		select count(*)from product
+	<select id="selectBoardCount" resultType="_int">
+		select count(*)from pboard
 	</select>
 	
-	<select id="selectProductCountByProductId" resultType="_int" parameterType="int">
-		select count(*)from product where product_id=${productId}
+	<select id="selectBoardCountByProductId" resultType="_int" parameterType="int">
+		select count(*)from pboard where product_id=${productId}
 	</select>
 	
 	

@@ -7,10 +7,12 @@ tbody tr td{
 	text-align: center;
 }
 
+
 tbody div{
 	overflow:auto;
-	width: 800px;
+	width: 1000px;
 	height:150px;
+	text-align: left;
 }
 </style>
 <script type="text/javascript" src="<%=request.getContextPath() %>/script/jquery.js"></script>
@@ -55,6 +57,7 @@ $(document).ready(function(){
 	
 	
 	$("#registerBtn").on("click",function(){
+		
 		window.open("writeBoard.do","글쓰기",'width=500,height=500,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,left=150,top=100');
 		
 	});
@@ -74,23 +77,25 @@ $(document).ready(function(){
 	
 });
 
-function registerBoard(title,content){
-	location = "board/auth/insertBoard.do?title="+title+"&content="+content+"&productId=${product.productId}&buyerId=${sessionScope.loginInfo.buyerId}";
+function registerBoard(title,content,buyerId){
+	location = "board/auth/insertBoard.do?title="+title+"&content="+content+"&productId=${product.productId}&buyerId="+buyerId;
 }
 
 </script>
 
 <div style="width:1000px;margin: 0 auto;">
-			<table border='1'  style=" width:800px;margin: 0 auto">
-					<thead>
-						<tr style="text-align: center">
-							<td width="100px">No.</td>
-							<td width="600px">제목</td>
-							<td width="100px">작성자</td>
-						</tr>
-					</thead>
-					<tbody id="tbody">
-					</tbody>
-				</table>
-	<button id="registerBtn">글쓰기</button>
+		<table border='1'  style=" width:1000px;margin: 0 auto">
+				<thead>
+					<tr style="text-align: center">
+						<td width="100px">No.</td>
+						<td width="750px">제목</td>
+						<td width="150px">작성자</td>
+					</tr>
+				</thead>
+				<tbody id="tbody">
+				</tbody>
+			</table>
+		<c:if test="${sessionScope.user =='buyer' }">
+			<button id="registerBtn">글쓰기</button>
+		</c:if>	
 </div>

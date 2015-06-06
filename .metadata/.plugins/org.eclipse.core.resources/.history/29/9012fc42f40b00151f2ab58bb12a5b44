@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="kr.co.taommall.board.dao">
+	<sql id="board-select">
+		select board_no,title,content,product_id,buyer_id
+		from pboard
+	</sql>
+	
+	<insert id="insertBoard" parameterType="Board">
+		<selectKey resultType="int" keyProperty="boardNo" order="BEFORE">
+			select c_board_id.nextval from dual
+		</selectKey>
+		insert into pboard 
+		(board_no,title,content,product_id,buyer_id)
+		values
+		(#{boardNo}, #{title}, #{content}, #{productId}, #{buyerId})
+	</insert>
+	
+	<delete id="deleteBoard" parameterType="int">
+		delete from board where board_no=#{boardNo}
+	</delete>
+	
+	<resultMap type="Board" id="board-resultMap">
+		<id column="board_no" property="boardNo"/>
+		<result column="title" property="title"/>
+		<result column="content" property="content"/>
+		<result column="product_id" property="productId"/>
+		<result column="buyer_id" property="buyerId"/>
+	</resultMap>
+	
+	
+	<select id="selectAllBoard" parameterType="org.springframework.ui.Model" resultMap="board-resultMap">
+		select board_no,title,content,product_id,buyer_id
+		from (
+			select ceil(rownum/#{contentsPerPage}) page, board_no,title,content,product_id,buyer_id
+			from (
+				<include refid="board-select"/>
+				order by exp_date asc
+			)
+		) 
+		where page = #{pageNo}
+	</select>
+	
+	<select id="selectBoardByProductId" resultMap="board-resultMap" parameterType="int">
+			<include refid="board-select"/>
+				where product_id=#{productId}
+	</select>
+	
+	<select id="selectBoardByProductIdp" resultMap="board-resultMap" parameterType="org.springframework.ui.Model">
+		select board_no,title,content,product_id,buyer_id
+		from (
+			select ceil(rownum/#{contentsPerPage}) page, board_no,title,content,product_id,buyer_id
+			from (
+				<include refid="board-select"/>
+				where product_id=#{productId}
+				order by exp_date asc
+			)
+		) 
+		where page = #{pageNo}
+	</select>
+	
+	<select id="selectBoardCount" resultType="_int">
+		select count(*)from pboard
+	</select>
+	
+	<select id="selectBoardCountByProductId" resultType="_int" parameterType="int">
+		select count(*)from pboard where product_id=${productId}
+	</select>
+	
+	
+</mapper>

@@ -10,4 +10,6 @@ public interface BoardDAO {
 	public int insertBoard(Board board);
 	public int deleteBoard(int boardNo);
 	public List<Board> selectBoardByProductId(int productId,Model model);
+	public List<Board> selectAllBoard(Model model);
+	public int selectBoardCount();
 }

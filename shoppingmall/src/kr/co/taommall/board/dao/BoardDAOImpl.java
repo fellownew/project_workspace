@@ -30,5 +30,14 @@ public class BoardDAOImpl implements BoardDAO {
 	public List<Board> selectBoardByProductId(int productId,Model model) {
 		return session.selectList(nameSpace+"selectBoardByProductId",productId);
 	}
+	@Override
+	public List<Board> selectAllBoard(Model model){
+		return session.selectList(nameSpace+"selectAllBoard",model);
+	}
+	
+	@Override
+	public int selectBoardCount(){
+		return session.selectOne(nameSpace+"selectBoardCount");
+	}
 
 }
