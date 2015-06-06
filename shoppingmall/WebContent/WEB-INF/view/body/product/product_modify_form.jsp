@@ -15,6 +15,22 @@
 				}
 		});
 	});
+
+ function chgText(text_area_id) {
+	  $str1 = $("#" + text_area_id).val().replace(/(\r\n|\n|\n\n)/gi,
+	    '[split]');
+	  $str1 = $str1.replace(/\'/g, "''");
+	  $str1 = $str1.split("[split]");
+	  $result = "";
+	  $.each($str1, function(i) {
+	   if ($str1[i] == "") {
+	    $result += "<p>&nbsp;</p>" + "\r\n";
+	   } else {
+	    $result += "<p>" + $str1[i] + "</p>" + "\r\n";
+	   }
+	  });
+	  return $result;
+	 };
 </script>
 
 <div>
@@ -30,7 +46,7 @@
 		<option value="health">건강식품</option>
 		<option value="snack">간식</option>
 	</select><br>
-	<textarea id="productInfo" name="productInfo" rows="30" cols="100" placeholder="상품 정보"  required="required"></textarea><br>
+	<textarea id="productInfo" name="productInfo" rows="30" cols="100" placeholder="상품 정보"  required="required" >${requestScope.product.productInfo }</textarea><br>
 	<input type="file" id="upfile" name="upfile"/><br>
 	<input type="text" id="expDate" name="expDate" required="required" value="${requestScope.product.expDate }">
 	<input type="button" value="유통기한" onClick="datePicker(event,'expDate')"><br>

@@ -133,4 +133,13 @@ public class BuyerController {
 		return address;
 	}
 	
+	@RequestMapping("/buyerWithdraw.do")
+	public String deleteBuyer(HttpSession session){
+		Buyer buyer = (Buyer) session.getAttribute("loginInfo");
+		String buyerId = buyer.getBuyerId();
+		service.deleteBuyerById(buyerId);
+		session.invalidate();
+		return "redirect:/mainPage.do";
+	}
+	
 }
