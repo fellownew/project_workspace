@@ -23,6 +23,6 @@ p {
 <script type="text/javascript">
 
 </script>
-<div>
+<div style="width:600px;margin: 0 auto">
 <a href="<%=request.getContextPath()%>/buyerJoinForm.do" ><img class="img" id="buyer" src="<%=request.getContextPath()%>/image/buyer.png"></a><a href="<%=request.getContextPath()%>/sellerJoinForm.do"><img class="img" id="seller" src="<%=request.getContextPath()%>/image/seller.png"></a>
 </div>

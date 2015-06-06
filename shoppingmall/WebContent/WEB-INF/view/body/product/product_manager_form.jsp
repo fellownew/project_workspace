@@ -16,16 +16,7 @@ $(document).ready(function(){
 
 function deleteProduct(idx){
 	if(confirm("정말 삭제하시겠습니까?")){
-		$.ajax({
-			url:"deleteProduct.do",
-			type:"POST",
-			data:{productId:idx},	
-			dataType:"json",
-			success:function(res){
-				location="productManager.do?sellerId=${sessionScope.loginInfo.sellerId}";
-				alert(res);
-			}
-		});			
+		location = "deleteProduct.do?productId="+idx;
 	}else{
 		return false;
 	}	

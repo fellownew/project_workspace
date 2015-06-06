@@ -4,19 +4,7 @@
 <script type="text/javascript">
 function deleteBoard(idx){
 	if(confirm("정말 삭제하시겠습니까?")){
-		$.ajax({
-			url:"deleteBoard.do",
-			type:"POST",
-			data:{boardNo:idx},	
-			dataType:"json",
-			success:function(res){
-				location="boardList.do";
-				alert(res);
-			},
-			error:function(a,b,c){
-				alert(a,b,c);
-			}
-		});			
+		location = "deleteBoard.do?boardNo="+idx;
 	}else{
 		return false;
 	}	
@@ -29,9 +17,9 @@ function deleteBoard(idx){
 		<thead>
 			<tr>
 				<td width="100px">No</td>
-				<td width="550px">제목</td>
-				<td width="150px">상품번호</td>
-				<td width="200px">판매자</td>
+				<td width="650px">제목</td>
+				<td width="100px">상품번호</td>
+				<td width="150px">글쓴이</td>
 			</tr>
 		</thead>
 		<tbody id="tbody">
@@ -39,7 +27,7 @@ function deleteBoard(idx){
 				<tr>
 					<td>${board.boardNo }</td>
 					<td>${board.title}</td>
-					<td><a href="productInfo.do?productId=${board.productId}">${board.productId}</a></td>
+					<td><a href="/taommall/productInfo.do?productId=${board.productId}">${board.productId}</a></td>
 					<td>${board.buyerId}</td>
 				</tr>
 				<tr>

@@ -11,6 +11,7 @@
   font-size: 14px;
   padding: 9px 11px;
   background: #CD0000;
+  width:100px;
 }
 
 .cartButton {
@@ -21,6 +22,7 @@
   padding: 9px 11px;
   border: 1px solid #000000;
   background: #FFFFFF;
+  width:100px;
 }
 
 </style>
@@ -62,7 +64,7 @@ function cart(id){
 			</tr> 	
  
 			<tr>
-				<td colspan="2"><button class="buyButton" onclick="order(${product.productId})">주문</button><button class="cartButton" id="cart" onclick="cart(${product.productId})">장바구니 담기</button></td>
+				<td colspan="2"><button class="buyButton" onclick="order(${product.productId})">주문</button><button class="cartButton" id="cart" onclick="cart(${product.productId})">장바구니</button></td>
 				
 			</tr> 
 			<tr>
