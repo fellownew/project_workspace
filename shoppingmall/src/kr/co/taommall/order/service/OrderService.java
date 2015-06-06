@@ -11,5 +11,6 @@ public interface OrderService {
 	public List<Order> selectOrderByBuyerId(String buyerId);
 	public List<Order> selectOrderByProductId(String productId);
 	public Order selectOrderByOrderId(int orderId);
+	public List<Order> selectOrderByRecipientId(int recipientId);
 
 }

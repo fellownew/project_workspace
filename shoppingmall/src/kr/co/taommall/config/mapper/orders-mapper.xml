@@ -85,6 +85,10 @@ where o.seller_id = s.seller_id and o.product_id = p.product_id and o.buyer_id =
 where o.seller_id = s.seller_id and o.product_id = p.product_id and o.buyer_id = b.buyer_id and o.recipient_id = r.recipient_id and o.seller_id = #{value}
 </select>
 
+<select id="selectOrderByRecipientId" parameterType="_int" resultMap="resultMap-order-default">
+<include refid="select-order-default"/>
+where o.seller_id = s.seller_id and o.product_id = p.product_id and o.buyer_id = b.buyer_id and o.recipient_id = r.recipient_id and  o.recipient_id  = #{value}
+</select>
 
 
 </mapper>

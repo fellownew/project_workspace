@@ -6,47 +6,30 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/order.css">
+<style type="text/css">
+
+
+</style>	
 <title>Insert title here</title>
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
 <script type="text/javascript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js" ></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/address.js"></script>
- <script type="text/javascript"> 
- 
- /*   
- private String orderId;
- private int productId;
- private int amount;
- private String status;
- private String buyerId;
- private String sellerId;
- 
-     OrderController에 들어감 @RequestMapping("payment.do") public String payment(){};
-        taommall/auth/payment.do
-     
-        1. orderId - 자동으로 생성되게 seq써서 만들것.
-        2. productId는 내가 ${reqeustScope.product.productId}
-        3. amount는 ${requestScope.amount}
-        4. status default="배송준비";
-        5. buyerId <--sessionScope.loginInfo //Controller HttpSession  Buyer buyer = session.getAttribute("loginInfo");
-                 buyer.getbuyerId();
-        6.          Product product = productService.selectProductNoPaging(productId,null); 
-           String sellerId = product.getSellerId();
 
-          Order order = new Order(orderId,productId,amount,status,buyerId,sellerId);
-          
-          int count = serivce.insertOrder(order);
-       System.out.Println(count);
-       
-       
-       */
-
-
- </script>
 </head>
 
 <script type="text/javascript">
 	$(document).ready(function(){
 
+		$("select").change(function(){
+			if($("select option:selected").attr("id")!="op1"){				
+			$("#detail").val($("select option:selected").val());
+			}else{
+				$("#detail").val('');
+				$("#detail").focus();
+			}
+		});
+		
+		
 		$("#payment").on("click",function(){
 			alert("결제완료");
 			
@@ -57,11 +40,9 @@
 		 		$("#postcode").val($("#postcode1").val()+"-"+$("#postcode2").val());
 				$("#addressDetail").val($("#address").val()+" "+$("#addressDetails").val());
 		 	}
-		 	alert($("#postcode").val()+":"+$("#addressDetail").val());
 			
-			location = "<%=request.getContextPath() %>/auth/payment.do?productId="
-					+${requestScope.product.productId}
-             		+"&amount="+${requestScope.amount}
+			location = "<%=request.getContextPath() %>/auth/payment.do?productId="+'${param.productId}'
+             		+"&amount="+'${param.amount}'
              		+"&name="+$("#name").val()
              		+"&postcode="+($("#postcode").val())
              		+"&addressDetails="+$("#addressDetail").val()
@@ -107,24 +88,34 @@
 <body>
 <!-- 	<fieldset style="height:500px"> -->
 	
-	<table class="center">
+	<table class="center" >
 		<caption style="text-align:left; font-weight:bold; font-size:20px" >주문상품 확인</caption>
 		<thead>
 			<tr>
-				<td>상품 정보</td>
-				<td>수량</td>
+				<td style=" width=150px">상품 정보</td>
 				<td>상품 금액</td>
+				<td>수량</td>
+				<td>합계</td>
 				<td>판매자</td>
 			</tr>
 		</thead>
 
 		<tbody>
+		<c:forEach items="${requestScope.list}" var="cart">
 				<tr>
-					<td><img src="<%=request.getContextPath()%>/${requestScope.product.imagePath }" width="120px" height="120px"/></td>
-					<td>${requestScope.amount}</td>
-					<td>${requestScope.product.productPrice}</td>
-					<td>${requestScope.product.sellerId}</td>
+					<td>
+					<div style="float: left"> 
+					<img src="<%=request.getContextPath()%>/${cart.product.imagePath}" style="width: 80px;height: 80px; "/>
+					</div>
+					<div class="productName">${cart.product.productName }</div><br>
+					<div class="productInfo">${cart.product.productInfo }</div>
+					</td>
+					<td>${cart.product.productPrice}</td>
+					<td >${cart.amount}</td>
+					<td>${cart.product.productPrice*cart.amount}</td>
+					<td>${cart.product.sellerId}</td>
 				</tr> 
+		</c:forEach>
 		</tbody>
 	</table>
 	<br>
@@ -186,15 +177,16 @@
 			<tr>
 				<td>배송 시<br>요구사항</td>
 				<td style="text-align:left">
-					<input type="text" id="detail" name="detail" size="75">
-<!-- 					<select>
-						<option>옥상 문 앞에 보관해주세요. 감사합니다.</option>
-						<option>부재시 경비실에 맡겨주세요.</option>
-						<option>빠른 배송 부탁드립니다.</option>
-						<option>부재시 핸드폰으로 연락바랍니다.</option>
-						<option>배송 전 연락바랍니다.</option>
+					<input type="text" id="detail" name="detail" value="빠른 배송 부탁드립니다." size="75">
+ 					<select>
+	 					<option id="op1">직접입력</option>
+						<option id="op2">옥상 문 앞에 보관해주세요. 감사합니다.</option>
+						<option id="op3">부재시 경비실에 맡겨주세요.</option>
+						<option id="op4" selected="selected">빠른 배송 부탁드립니다.</option>
+						<option id="op5" >부재시 핸드폰으로 연락바랍니다.</option>
+						<option id="op6">배송 전 연락바랍니다.</option>
 						
-					</select> -->
+					</select> 
 				</td>
 			</tr>
 	</table><br>

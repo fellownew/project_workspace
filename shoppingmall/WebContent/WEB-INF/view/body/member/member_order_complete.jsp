@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,13 +8,18 @@
 </head>
 <body>
 
+	
+<c:forEach items="${requestScope.list}" var="list">
+order Id : ${list.orderId }<br><br>
+product Id : ${list.productId }<br><br>
+buyerId :  ${list.buyerId }<br><br>
+sellerId :  ${list.sellerId }<br><br>
+recipientId : ${list.recipientId }<br><br>
+buyer : ${list.buyer}<br><br>
+product : ${list.product}<br><br>
+seller : ${list.seller}<br><br>
+recipient: ${list.recipient}<br><br>
 <hr>
-order Id : ${requestScope.order.orderId }<br><br>
-amount : ${requestScope.order.amount}<br><br>
-status : ${requestScope.order.status}<br><br>
-product : ${requestScope.order.product}<br><br>
-${requestScope.order.recipient}<br><br>
-${requestScope.order.seller}<br><br>
-${requestScope.order.buyer}<br>
+</c:forEach>
 </body>
 </html>

@@ -1,10 +1,14 @@
 package kr.co.taommall.common.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import kr.co.taommall.account.vo.Address;
 import kr.co.taommall.account.vo.Buyer;
+import kr.co.taommall.cart.vo.Cart;
 import kr.co.taommall.order.service.OrderService;
 import kr.co.taommall.order.vo.Order;
 import kr.co.taommall.product.service.ProductService;
@@ -30,88 +34,62 @@ public class OrderController {
 	@Autowired
 	RecipientService recipientService;
 	
-	
-/*   
- private String orderId;
- private int productId;
- private int amount;
- private String status;
- private String buyerId;
- private String sellerId;
- 
-     OrderController에 들어감 @RequestMapping("payment.do") public String payment(){};
-        taommall/auth/payment.do
-     
-        1. orderId - 자동으로 생성되게 seq써서 만들것.
-        2. productId는 내가 ${reqeustScope.product.productId}
-        3. amount는 ${requestScope.amount}
-        4. status default="배송준비";
-        5. buyerId <--sessionScope.loginInfo //Controller HttpSession  Buyer buyer = session.getAttribute("loginInfo");
-                 buyer.getbuyerId();
-        6.          Product product = productService.selectProductNoPaging(productId,null); 
-           String sellerId = product.getSellerId();
-
-          Order order = new Order(orderId,productId,amount,status,buyerId,sellerId);
-          
-          int count = serivce.insertOrder(order);
-       	System.out.Println(count);
-*/
-	
 	@RequestMapping("/memberOrderForm.do")
-	public String orderList(@RequestParam("productId") int productId, int amount, HttpServletRequest request, HttpSession session) {
-		Product product = productService.selectProductByIdNoPaging(productId, null);	//상품번호로 상품 조회
-		if(product!=null){
-			request.setAttribute("product", product);
-			request.setAttribute("amount", amount);
-			return "buyer/buyer_order_form.form";
-		}else{
-			return "redirect:mainPage.do";
+	public String memberOrderForm(@RequestParam("productId") String[] cartList,@RequestParam("amount") String[] amountList,HttpServletRequest request, HttpSession session){
+		List list = new ArrayList();
+		for(int idx = 0 ; idx<cartList.length;idx++){
+			int productId = Integer.parseInt(cartList[idx]);
+			int amount = Integer.parseInt(amountList[idx]);
+			Product product = productService.selectProductByIdNoPaging(productId, null);
+			if(product !=null){
+				Cart cart = new Cart();
+				cart.setProductId(productId);
+				cart.setAmount(amount);
+				cart.setProduct(product);
+				Buyer buyer = (Buyer)session.getAttribute("loginInfo");
+				cart.setBuyerId(buyer.getBuyerId());
+				list.add(cart);
+			}
 		}
+		request.setAttribute("list", list);
+		return "buyer/buyer_order_form.form";
 	}
+
 	
 	@RequestMapping("/payment.do")
-	public String payment(@RequestParam("productId") int productId, int amount, String name,@ModelAttribute Address address, String phone,@RequestParam(defaultValue="빠른 배송 부탁드립니다.") String detail,  HttpServletRequest request, HttpSession session){
-		System.out.println(address);
-		
-		//recipient 객체 생성
-		Recipient recipient = new Recipient(0, name, phone, detail,address);
-		
-		//수취인정보를 가진 객체 생성해서 insert실행
-		int count2 = recipientService.insertRecipient(recipient);
-		
-		Product product = productService.selectProductByIdNoPaging(productId, null);
-		if(product == null){
-			System.out.println("Error 났음!1");
-
-		}
-		
-		//status = "배송준비"
-		String status = "배송준비";		
-		//buyerId
+	public String payment(@RequestParam("productId") String[] pIds,@RequestParam("amount") String[] amounts,@ModelAttribute() Recipient recipient,@ModelAttribute Address address,  HttpServletRequest request, HttpSession session){
+		recipient.setAddress(address);
 		Buyer buyer = (Buyer)session.getAttribute("loginInfo");
-		String buyerId = buyer.getBuyerId();
-		//sellerId
-		
-		String sellerId = product.getSellerId();
-		//orderId		
-		Order order = new Order(0,productId,amount,status,buyerId,sellerId,recipient.getRecipientId());
-		int count1 = service.insertOrder(order);
-		
-		if(count1 == 0){
-			System.out.println("Error 났음!2");
-
+		if(recipient.getDetail()==null){
+			recipient.setDetail("빠른 배송 부탁드립니다");
+		}	
+			recipientService.insertRecipient(recipient);
+			
+		if(pIds!=null && amounts !=null && pIds.length==amounts.length){
+			for(int idx =0; idx<pIds.length;idx++){
+				int productId = Integer.parseInt(pIds[idx]);
+				int amount = Integer.parseInt(amounts[idx]);
+				Product product = productService.selectProductByIdNoPaging(productId, null);
+				if(product == null){
+					continue;
+				}	
+				Order order = new Order(0,productId,amount,"결제완료",buyer.getBuyerId(),product.getSellerId(),recipient.getRecipientId());
+				int count1 = service.insertOrder(order);			
+			}
+			return "redirect:/auth/complete.do?recipientId="+recipient.getRecipientId();
 		}else{
-			System.out.println("완료 페이지 이동!");
+			request.setAttribute("errorMessage", "결제 실패 메인페이지로 이동합니다");
+			return "WEB-INF/view/layout/error.jsp";
 		}
-		//redirect 방식으로 이동 , orderId를 전송해준다.
-		return "redirect:/auth/complete.do?orderId="+order.getOrderId();
+
 	};
 
 	@RequestMapping("complete.do")
-	public String complete(int orderId,HttpServletRequest request){
-		Order order = service.selectOrderByOrderId(orderId);		
-		request.setAttribute("order", order);
-		
+	public String complete(int recipientId,HttpServletRequest request){
+		List<Order> list = service.selectOrderByRecipientId(recipientId);
+		request.setAttribute("list", list);		
 		return "member/member_order_complete.form";
 	}
+	
+
 }

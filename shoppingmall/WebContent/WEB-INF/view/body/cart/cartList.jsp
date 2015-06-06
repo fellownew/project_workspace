@@ -43,10 +43,14 @@ $(document).ready(function(){
 
 	$("#purchase").on("click",function(){
 		var list = new Array();
+		var amountList = new Array();
 	 	  $('.chk').each(function() {
 			  if($(this).is(":checked")){
+				  var temp = $(this).attr("id").split("_chk");
+				  var amount = '#'+temp[0];
 				var value = $(this).attr('value');
 					 list.push(value);
+					 amountList.push($(amount).val());
 			  }
 			
 		   });
@@ -54,10 +58,10 @@ $(document).ready(function(){
 	 		  $("#purchaseErr").show();
 	 		  return false;
 	 	  }
-	 	 var url ='<%=request.getContextPath()%>/auth/buyerOrderForm.do?cart_list='+list;
+	 	 var url ='<%=request.getContextPath()%>/auth/memberOrderForm.do?productId='+list+"&amount="+amountList;
 	 	  alert(url);
-	 	<%--  
-			$(location).attr('href',url); --%>
+
+			$(location).attr('href',url); 
 	 	  
 	 	  
 	});
@@ -120,7 +124,7 @@ $(document).ready(function(){
 			 			  if($(this).is(":checked")){
 			 				  var text = $(this).attr('value');	
 			 				  var sum = '#'+text+"_sum";
-
+								
 			 				  var value2 = $(sum).text();
 			 				  finalValue = finalValue*1+value2*1;
 			 			  }

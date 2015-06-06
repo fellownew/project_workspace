@@ -29,7 +29,6 @@ public class OrderDAOImpl implements OrderDAO{
 	}
 
 	public List<Order> selectOrderByProductId(String productId) {
-		System.out.println("DAOImpl"+productId);
 		return session.selectOne(namespace + "selectOrderByProductId", productId);
 	}
 	
@@ -56,5 +55,11 @@ public class OrderDAOImpl implements OrderDAO{
 
 	public int insertOrder(Order order) {
 		return session.insert(namespace + "insertOrder", order);
+	}
+
+	@Override
+	public List<Order> selectOrderByRecipientId(int recipientId) {
+		
+		return session.selectList(namespace+"selectOrderByRecipientId",recipientId);
 	}
 }

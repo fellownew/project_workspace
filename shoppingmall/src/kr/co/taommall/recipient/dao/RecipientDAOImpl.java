@@ -16,13 +16,12 @@ public class RecipientDAOImpl implements RecipientDAO{
 	@Override
 	public int insertRecipient(Recipient recipient) {
 		int cnt = session.insert(nameSpace+"insertRecipient",recipient);
-		System.out.println("insert 실행됐습니다!!");
 		return cnt;
 	}
 
 	@Override
-	public void updateRecipient(Recipient recipient) {
-		session.update(nameSpace+"upateRecipient",recipient);
+	public int  updateRecipient(Recipient recipient) {
+		return session.update(nameSpace+"upateRecipient",recipient);
 	}
 
 	@Override
