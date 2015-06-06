@@ -95,7 +95,7 @@ create table center(
 
 create table pboard(
 	board_no number primary key,
-	title varchar2(20) not null,
+	title varchar2(200) not null,
 	content varchar2(2000) not null,
 	product_id number not null,
 	buyer_id varchar2(20) not null,
@@ -104,6 +104,7 @@ create table pboard(
 	constraint pboard_buyer_id_fk foreign key(buyer_id) references buyer(buyer_id) ON DELETE CASCADE
 
 );
+
 
 create table recipient(
 	recipient_id number primary key,

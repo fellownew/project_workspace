@@ -1,0 +1,6 @@
+diff a/shoppingmall/WebContent/WEB-INF/view/body/member/member_order_complete.jsp b/shoppingmall/WebContent/WEB-INF/view/body/member/member_order_complete.jsp	(rejected hunks)
+@@ -0,3 +0,4 @@
+ 	<br>
+ </body>
+ </html>
++>>>>>>> project_workspace/pyh

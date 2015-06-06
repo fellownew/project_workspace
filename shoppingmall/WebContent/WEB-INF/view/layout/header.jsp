@@ -48,7 +48,7 @@ a{
 					<%-- 관리자 --%>
 					<c:when test="${sessionScope.loginInfo.admin=='true' }">
 						<a href="<%=request.getContextPath() %>/seller/auth/memberList.do">회원관리</a> |
-						<a href="<%=request.getContextPath() %>/auth/boardList.do">후기관리</a>
+						<a href="<%=request.getContextPath() %>/board/auth/boardList.do">후기관리</a> |
 						<a href="#">고객센터 관리</a> |
 						<a href="<%=request.getContextPath() %>/auth/logout.do">로그아웃</a>	
 					</c:when>

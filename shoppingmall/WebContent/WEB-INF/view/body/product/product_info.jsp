@@ -38,9 +38,7 @@ function cart(id){
 	<h2 style="text-align: center;margin-top:20px">상품정보</h2>
 	<table style="width:1000px;margin: 0 auto;"  border='1'>
 		<tbody>
-			<tr>
-				<td colspan="3">${product.productInfo }</td>
-			</tr>
+
 			<tr>
 				<td  rowspan="6"><img src="<%=request.getContextPath() %>/${requestScope.product.imagePath }"/></td>
 				<td width="200px">상품명</td>	
@@ -48,10 +46,9 @@ function cart(id){
 			</tr>
 			<tr>
 				<td>상품가격</td>
-				<td>${product.productPrice}</td>
+				<td>${product.productPrice}원</td>
 			</tr>
 			<tr>
-
 				<td>유통기한</td>
 				<td>${product.expDate}</td>
 			</tr>
@@ -68,7 +65,9 @@ function cart(id){
 				<td colspan="2"><button class="buyButton" onclick="order(${product.productId})">주문</button><button class="cartButton" id="cart" onclick="cart(${product.productId})">장바구니 담기</button></td>
 				
 			</tr> 
-
+			<tr>
+				<td colspan="3" style="height: 300px;position: relative;">${product.productInfo }</td>
+			</tr>
 		</tbody>
 	</table>
 	<jsp:include page="product_info_board.jsp"></jsp:include>

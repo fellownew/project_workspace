@@ -16,4 +16,5 @@
 <fullyQualifiedTypeName name="org.mybatis.spring.SqlSessionTemplate"/>
 <fullyQualifiedTypeName name="kr.co.taommall.recipient.vo.Recipient"/>
 <fullyQualifiedTypeName name="kr.co.taommall.order.vo.Order"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ModelAttribute"/>
 </qualifiedTypeNameHistroy>
