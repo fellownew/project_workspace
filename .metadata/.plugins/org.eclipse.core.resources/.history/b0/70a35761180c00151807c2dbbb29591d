@@ -176,7 +176,7 @@
 			<tr>
 				<td>배송 시<br>요구사항</td>
 				<td style="text-align:left">
-					<input type="text" id="detail" name="detail" value="빠른 배송 부탁드립니다.">
+					<input type="text" id="detail" name="detail" value="빠른 배송 부탁드립니다." size="75">
  					<select>
 	 					<option id="op1">직접입력</option>
 						<option id="op2">옥상 문 앞에 보관해주세요. 감사합니다.</option>

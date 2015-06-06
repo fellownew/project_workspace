@@ -68,7 +68,9 @@ $("#sumPrice").text(price+"원");
 			</tr>
 			</c:forEach>
 		</table><br>
-	</thead>
+				</td>
+			</tr>
+		</thead>
 
 <%--  		<tbody>
 			<tr>
