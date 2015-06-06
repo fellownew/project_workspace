@@ -18,8 +18,8 @@ public class RecipientServiceImpl implements RecipientService{
 	}
 
 	@Override
-	public void updateRecipient(Recipient recipient) {
-		dao.updateRecipient(recipient);
+	public int updateRecipient(Recipient recipient) {
+		return dao.updateRecipient(recipient);
 	}
 
 	@Override

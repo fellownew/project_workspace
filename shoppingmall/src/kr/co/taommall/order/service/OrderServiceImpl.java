@@ -38,10 +38,14 @@ public class OrderServiceImpl implements OrderService{
 
 	@Override
 	public List<Order> selectOrderByProductId(String productId) {
-		System.out.println("OrderService");
 		return dao.selectOrderByProductId(productId);
 	}
 	public Order selectOrderByOrderId(int orderId){
 		return dao.selectOrderByOrderId(orderId);
+	}
+
+	@Override
+	public List<Order> selectOrderByRecipientId(int recipientId) {
+		return dao.selectOrderByRecipientId(recipientId);
 	}
 }

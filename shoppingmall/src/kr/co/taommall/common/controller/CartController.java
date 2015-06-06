@@ -1,5 +1,6 @@
 package kr.co.taommall.common.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,7 +9,7 @@ import javax.servlet.http.HttpSession;
 import kr.co.taommall.account.vo.Buyer;
 import kr.co.taommall.cart.service.CartService;
 import kr.co.taommall.cart.vo.Cart;
-import kr.co.taommall.product.dao.ProductDAO;
+import kr.co.taommall.product.service.ProductService;
 import kr.co.taommall.product.vo.Product;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -27,7 +29,7 @@ public class CartController {
 	CartService service;
 	
 	@Autowired
-	ProductDAO productDAO;
+	ProductService productService;
 
 	
 	@RequestMapping("/cartInput.do")
@@ -73,4 +75,5 @@ public class CartController {
 			return "cart/cartList.form";
 		}
 	}
+
 }

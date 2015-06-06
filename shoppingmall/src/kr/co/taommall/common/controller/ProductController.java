@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import kr.co.taommall.account.vo.Seller;
+import kr.co.taommall.cart.vo.Cart;
 import kr.co.taommall.product.service.ProductService;
 import kr.co.taommall.product.vo.Product;
 
@@ -60,5 +61,5 @@ public class ProductController {
 			service.deleteProduct(pId);
 			Seller seller = (Seller)session.getAttribute("loginInfo");
 		return "redirect:productManager.do?sellerId="+seller.getSellerId();
-	}
+	}	
 }
