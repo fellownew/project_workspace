@@ -34,7 +34,7 @@ public class OrderDAOImpl implements OrderDAO{
 	}
 	
 	@Override
-	public Order selectOrderByOrderId(String orderId) {
+	public Order selectOrderByOrderId(int orderId) {
 		return session.selectOne(namespace + "selectOrderByOrderId", orderId);
 	}
 

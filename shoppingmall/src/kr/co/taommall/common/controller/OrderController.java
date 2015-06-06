@@ -3,6 +3,7 @@ package kr.co.taommall.common.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import kr.co.taommall.account.vo.Address;
 import kr.co.taommall.account.vo.Buyer;
 import kr.co.taommall.order.service.OrderService;
 import kr.co.taommall.order.vo.Order;
@@ -13,6 +14,7 @@ import kr.co.taommall.recipient.vo.Recipient;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -58,7 +60,6 @@ public class OrderController {
 	@RequestMapping("/memberOrderForm.do")
 	public String orderList(@RequestParam("productId") int productId, int amount, HttpServletRequest request, HttpSession session) {
 		Product product = productService.selectProductByIdNoPaging(productId, null);	//상품번호로 상품 조회
-		System.out.println(product);
 		if(product!=null){
 			request.setAttribute("product", product);
 			request.setAttribute("amount", amount);
@@ -69,31 +70,18 @@ public class OrderController {
 	}
 	
 	@RequestMapping("/payment.do")
-	public String payment(@RequestParam("productId") int productId, int amount, String name, String address, String phone, String detail,  HttpServletRequest request, HttpSession session){
-
-		/**
-		 * 처리 순서
-		 * 0. recipient 객체 생성
-		 * 1. 수취인정보를 가진 객체 생성해서 insert실행 -> recipient객체에 recipientId 생성
-		 * 2. productId로 productById메소드로 해당 Id의 상품정보가 있는지 확인
-		 * 		- 없으면 : error page로 이동
-		 * 3. productId로 찾은 상품정보로 order객체 생성(0,productId,amount,"배송준비",buyer.getBuyerId(),product.getSellerId(),recipient.getRecipientId())
-		 * 4. order 객체 insert 실행
-		 * 		- return 받은 count값이 0 이면 error page로 이동
-		 * 5. count가 1이상이면 결재완료 페이지로 이동
-		 */
+	public String payment(@RequestParam("productId") int productId, int amount, String name,@ModelAttribute Address address, String phone,@RequestParam(defaultValue="빠른 배송 부탁드립니다.") String detail,  HttpServletRequest request, HttpSession session){
+		System.out.println(address);
 		
 		//recipient 객체 생성
-		Recipient recipient = new Recipient(0, name, address, phone, detail);
+		Recipient recipient = new Recipient(0, name, phone, detail,address);
 		
 		//수취인정보를 가진 객체 생성해서 insert실행
 		int count2 = recipientService.insertRecipient(recipient);
 		
-		System.out.println(recipient);
-		
 		Product product = productService.selectProductByIdNoPaging(productId, null);
 		if(product == null){
-			System.out.println("Error 났음!");
+			System.out.println("Error 났음!1");
 
 		}
 		
@@ -105,23 +93,25 @@ public class OrderController {
 		//sellerId
 		
 		String sellerId = product.getSellerId();
-		//orderId
-		
+		//orderId		
 		Order order = new Order(0,productId,amount,status,buyerId,sellerId,recipient.getRecipientId());
-		
-		order.setOrderId(7);
-		order.setStatus("배송완료");
-		int count1 = service.deleteOrderById(7); //service.insertOrder(order);
+		int count1 = service.insertOrder(order);
 		
 		if(count1 == 0){
-			System.out.println("Error 났음!");
+			System.out.println("Error 났음!2");
 
 		}else{
 			System.out.println("완료 페이지 이동!");
 		}
-		
-
-		
-		return "buyer/buyer_order_form.form";
+		//redirect 방식으로 이동 , orderId를 전송해준다.
+		return "redirect:/auth/complete.do?orderId="+order.getOrderId();
 	};
+
+	@RequestMapping("complete.do")
+	public String complete(int orderId,HttpServletRequest request){
+		Order order = service.selectOrderByOrderId(orderId);		
+		request.setAttribute("order", order);
+		
+		return "member/member_order_complete.form";
+	}
 }

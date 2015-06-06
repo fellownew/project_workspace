@@ -42,8 +42,6 @@ public class BoardController {
 	
 	@RequestMapping("/boardList.do")
 	public String selectAllBoard(Model model){
-		
-		
 		return "product/board_list.form";
 	}
 }

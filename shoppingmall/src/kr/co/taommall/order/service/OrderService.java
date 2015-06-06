@@ -10,5 +10,6 @@ public interface OrderService {
 	public int deleteOrderById(int orderId);
 	public List<Order> selectOrderByBuyerId(String buyerId);
 	public List<Order> selectOrderByProductId(String productId);
+	public Order selectOrderByOrderId(int orderId);
 
 }

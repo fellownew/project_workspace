@@ -8,6 +8,8 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/order.css">
 <title>Insert title here</title>
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
+<script type="text/javascript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js" ></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/script/address.js"></script>
  <script type="text/javascript"> 
  
  /*   
@@ -37,29 +39,7 @@
        
        
        */
- $(document).ready(function(){
-	 
-	 $("#payment").on("click",function(){
-		
-		 location = "<%=request.getContextPath() %>/auth/payment.do?productId="+${requestScope.product.productId}
-		 		+"&amount="+ ${requestScope.amount};
 
-	 });
-	 
-	 
-	 
-	 
-	 
-	 
-	 //만약에 상품을 구입하면, 장바구니에서 삭제 되게 해야한당.
-	list = '${param.cart_list}';
-	var varList = list.split(",");
-	var list = new Array();
-	for(var idx =0;idx<varList.length;idx++){
-		list.push(varList[idx]);
-	}
- 
- });
 
  </script>
 </head>
@@ -69,34 +49,53 @@
 
 		$("#payment").on("click",function(){
 			alert("결제완료");
+			
+		 	if($("#test1").is(":checked")){
+		 		$("#postcode").val('${sessionScope.loginInfo.address.postcode}');
+				$("#addressDetail").val('${sessionScope.loginInfo.address.addressDetails}');
+		 	}else{
+		 		$("#postcode").val($("#postcode1").val()+"-"+$("#postcode2").val());
+				$("#addressDetail").val($("#address").val()+" "+$("#addressDetails").val());
+		 	}
+		 	alert($("#postcode").val()+":"+$("#addressDetail").val());
+			
 			location = "<%=request.getContextPath() %>/auth/payment.do?productId="
 					+${requestScope.product.productId}
              		+"&amount="+${requestScope.amount}
              		+"&name="+$("#name").val()
-             		+"&address="+$("#address").val()
+             		+"&postcode="+($("#postcode").val())
+             		+"&addressDetails="+$("#addressDetail").val()
              		+"&phone="+$("#phone").val()
              		+"&detail="+$("#detail").val();
 		});
 	 
 		
 		$("#test1").on("click",function(){
-			//$("#td1").html($("#text1").val());
-			//$("#td2").html($("#text2").val());
-			//$("#td3").html($("#text3").val());
- 			$("#name").prop("readonly", true).val("${sessionScope.loginInfo.name}");
-			$("#address").prop("readonly", true).val("${sessionScope.loginInfo.address}");
-			$("#phone").prop("readonly", true).val("${sessionScope.loginInfo.phone}");
+
+			$("#postcode").val();
+			$("#addressDetail").val($("#address").val()+" "+$("#addressDetails").val());
+			$("#addr1").html($("#oiginalAddr").text());
+			$("#addr1").show();
+			$("#addr2").hide();
+			$("")
+			$("#name").prop("readonly", true).val('${sessionScope.loginInfo.name}');
+			$("#phone").prop("readonly", true).val('${sessionScope.loginInfo.phone}');
+			$("#postcode1").val('');
+			
 		});
 	});
 	
 	$(document).ready(function(){
 		$("#test2").on("click",function(){
+
+			$("#addr2").show();
+			$("#addr1").hide();
  			$("#name").prop("readonly", false).val("");
 			$("#address").prop("readonly", false).val("");
 			$("#phone").prop("readonly", false).val("");
-			//$("#td1").html($("<input id='text1' value='" + $("#td1").html() + "'>"));
-			//$("#td2").html($("<input id='text2' value='" + $("#td2").html() + "'>"));
-			//$("#td3").html($("<input id='text3' value='" + $("#td3").html() + "'>"));
+			$("#postcode1").val('');
+			$("#postcode2").val('');
+			$("#addressDetails").val('');
 		});
 	});
 	
@@ -124,9 +123,6 @@
 					<td><img src="<%=request.getContextPath()%>/${requestScope.product.imagePath }" width="120px" height="120px"/></td>
 					<td>${requestScope.amount}</td>
 					<td>${requestScope.product.productPrice}</td>
-					<td><img src="<%=request.getContextPath() %>/${requestScope.product.imagePath }" width="120px" height="120px"/></td>
-					<td>${requestScope.amount}</td>
-					<td>${requestScope.product.productPrice * requestScope.amount}</td>
 					<td>${requestScope.product.sellerId}</td>
 				</tr> 
 		</tbody>
@@ -142,8 +138,10 @@
 			</tr>
 			<tr>
 				<td>주소</td>
-				<td style="text-align:left">${sessionScope.loginInfo.address}</td>
-			</tr>
+				<td style="text-align:left" id="oiginalAddr">
+				${sessionScope.loginInfo.address.postcode}
+				${sessionScope.loginInfo.address.addressDetails}</td>
+			</tr>	
 			<tr>
 				<td>연락처</td>
 				<td style="text-align:left">${sessionScope.loginInfo.phone}</td>
@@ -155,8 +153,8 @@
 			<tr>
 				<td style="width:80px">배송지</td>
 				<td style="text-align:left">
-					<input type="radio" name="delivery" id="test1" checked="checked">기본주소
-					<input type="radio" name="delivery" id="test2">새로입력
+					<label><input type="radio" name="delivery" id="test1" checked="checked">기본주소</label>
+					<label><input type="radio" name="delivery" id="test2">새로입력</label>
 				</td>
 			</tr>
 			<tr>
@@ -166,7 +164,18 @@
 			</tr>
 			<tr>
 				<td>주소</td>
-				<td style="text-align:left"><input type="text" size="75" name="address" id="address" readonly="readonly" value="${sessionScope.loginInfo.address}"></td>
+				<td style="text-align:left">
+				<div id="addr1">${sessionScope.loginInfo.address.postcode} ${sessionScope.loginInfo.address.addressDetails}</div>
+				<div id="addr2" style="display: none">
+						<input type="text" id="postcode1" readonly="readonly" class="d_form mini" size="4" maxlength="3"> - <input
+							type="text" id="postcode2" readonly="readonly" class="d_form mini" size="4"	maxlength="3"> 
+							<input type="button" id="addressBtn" value="우편번호 찾기" class="d_btn"><br>
+							<input type="text" id="address" class="d_form std" placeholder="주소" readonly="readonly" size="40"> 
+							<input type="text" id="addressDetails" class="d_form" placeholder="상세주소" size="30">	
+							<input type="hidden" id="postcode" name="postcode"><input type="hidden" id="addressDetail" name="addressDetail">							
+							<span id="addressErr" class="error" style="display: none">필수입력 사항입니다.</span>
+				</div>
+				</td>
 				<!-- <td style="text-align:left" id="td2">${sessionScope.loginInfo.address}</td>-->
 			</tr>
 			<tr>

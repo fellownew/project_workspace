@@ -41,4 +41,7 @@ public class OrderServiceImpl implements OrderService{
 		System.out.println("OrderService");
 		return dao.selectOrderByProductId(productId);
 	}
+	public Order selectOrderByOrderId(int orderId){
+		return dao.selectOrderByOrderId(orderId);
+	}
 }

@@ -6,10 +6,13 @@ drop table product;
 drop table seller;
 drop table buyer;
 
+select * from seller
 select * from orders
 select * from buyer
 select * from product
+select * from RECIPIENT
 
+alter table  
 insert into orders (order_id,product_id,amount,status,buyer_id,seller_id)
 values('7',62,6,'배송중','buyer-3','seller-1');
 
