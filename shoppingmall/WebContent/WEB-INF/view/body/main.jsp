@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
+
         <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/demo.css" />
         <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css" />
         <style type="text/css">
@@ -17,6 +18,12 @@
 		<script type="text/javascript">
 			$(function() {			
 				$('#da-slider').cslider();		
+			});
+			
+			$(document).ready(function(){
+				window.onunload=function(){
+					window.locatiobn.replace(self.location);
+				}
 			});
 		</script>	
 

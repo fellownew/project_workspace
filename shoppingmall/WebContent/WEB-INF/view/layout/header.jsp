@@ -1,14 +1,16 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script type="text/javascript" src="<%=request.getContextPath() %>/script/jquery.js"></script>
 <script type="text/javascript">
 
 function home(){
-	location = "<%=request.getContextPath() %>";
+	location = "<%=request.getContextPath()%>"
+	
 }
 
 function note(){
 	window.open("note.do","쪽지",'width=500,height=500,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,left=150,top=100');
-});
+}
 </script>
 <style type="text/css">
 a{
@@ -19,29 +21,38 @@ a{
 .left{
 	float: left;
 	width: 300px;
-	margin-top: 20px;
+	margin-top: 37px;
 	margin-bottom: 20px;
 }
 #search{
 	float: left;
 	width:600px;
 	margin:0 auto;
-	margin-top: 60px;
+	margin-top: 70px;
 	
 }
 .right{
 	float: left;
-	width:350px;
+	width:400px;
+	height:63px;
 	margin-top:80px;
 	text-align: right;
+	vertical-align: text-bottom;
 }
 </style>
+
+
+
+
+
+
+
 <body>
 	<div class="left">
 		<img src="<%=request.getContextPath() %>/image/logo.jpg" alt="Taom" onclick="home()">
 	</div>
 	<form id="search" action="list.do" method="POST">
-		<input type="text" name="search" autofocus="autofocus" style="width:500px;height: 30px" >
+		<input type="text" name="search" autofocus="autofocus" style="width:500px;height: 40px" >
 		<input type="submit" value="검색">
 	</form>
 	<div class="right">
@@ -53,8 +64,8 @@ a{
 					<c:when test="${sessionScope.loginInfo.admin=='true' }">
 						<a href="<%=request.getContextPath() %>/seller/auth/memberList.do">회원관리</a> |
 						<a href="<%=request.getContextPath() %>/board/auth/boardList.do">후기관리</a> |
-						<a href="#">고객센터 관리</a> |
-						<a onclick="note("+${sessionScope.user}+")"></a>
+						<a href="#">고객센터관리</a> |
+						<a onclick="note()">쪽지관리</a>
 						<a href="<%=request.getContextPath() %>/auth/logout.do">로그아웃</a>	
 					</c:when>
 					<c:otherwise>

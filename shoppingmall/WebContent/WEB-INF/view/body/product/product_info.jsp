@@ -38,11 +38,11 @@ function cart(id){
 </script>
 <div>
 	<h2 style="text-align: center;margin-top:20px">상품정보</h2>
-	<table style="width:1000px;margin: 0 auto;"  border='1'>
+	<table style="width:1000px;margin: 0 auto;border-collapse: collapse;"  border='1'>
 		<tbody>
 
 			<tr>
-				<td  rowspan="6"><img src="<%=request.getContextPath() %>/${requestScope.product.imagePath }"/></td>
+				<td rowspan="6" style="width:490px"><img src="<%=request.getContextPath() %>/${requestScope.product.imagePath }"/></td>
 				<td width="200px">상품명</td>	
 			    <td>${product.productName}</td>	
 			</tr>
@@ -73,6 +73,7 @@ function cart(id){
 			
 		</tbody>
 	</table>
-	<jsp:include page="product_info_board.jsp"></jsp:include>
+	<jsp:include page="product_info_board.jsp"></jsp:include>	
+	<a href="#" onclick="javascript:$j(window).scrollTop(0);void(0);" style="text-align: right;">top</a>
 	
 </div>
