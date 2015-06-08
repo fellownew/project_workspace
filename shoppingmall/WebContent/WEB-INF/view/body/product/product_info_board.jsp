@@ -82,7 +82,7 @@ function registerBoard(title,content,buyerId){
 </script>
 
 <div style="width:1000px;margin: 0 auto;">
-		<table border='1'  style=" width:1000px;margin: 0 auto">
+		<table border='1' style=" width:1000px;margin: 0 auto">
 				<thead>
 					<tr style="text-align: center">
 						<td width="100px">No.</td>
@@ -94,6 +94,8 @@ function registerBoard(title,content,buyerId){
 				</tbody>
 			</table>
 		<c:if test="${sessionScope.user =='buyer' }">
-			<button id="registerBtn">글쓰기</button>
+		<div style="width: 1000px;margin: 0 auto;text-align: right">
+			<button id="registerBtn">글쓰기</button>		
+		</div>
 		</c:if>	
 </div>

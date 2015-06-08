@@ -73,8 +73,6 @@ function cart(id){
 			</c:when>
 			</c:choose>
 			
-			
-
 			<tr>
 				<td colspan="3" style="height: 300px;position: relative;"><img src="<%=request.getContextPath() %>/${requestScope.product.infoImagePath }"/></td>
 			</tr>
@@ -82,6 +80,8 @@ function cart(id){
 		</tbody>
 	</table>
 	<jsp:include page="product_info_board.jsp"></jsp:include>	
-	<a href="#" onclick="javascript:$j(window).scrollTop(0);void(0);" style="text-align: right;">top</a>
+	<div style="text-align: right;">
+		<a href="#" onclick="javascript:$j(window).scrollTop(0);void(0);" >top</a>
+	</div>
 	
 </div>

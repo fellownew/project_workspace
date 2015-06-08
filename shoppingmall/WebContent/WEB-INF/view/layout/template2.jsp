@@ -54,9 +54,12 @@ button:hover {
 	padding: 5px;
 	overflow:auto;
 }
+
 #section{
+	text-align:center;
 	float:left;
-	width: 1300px;
+	width: 1270px;
+	padding:15px;
 	margin:0 auto; 
 	
 }
@@ -67,7 +70,7 @@ button:hover {
 	text-align:center;
 	height:50px;
 	clear:both;
-}	
+}
 </style>
 </head>
 <body>

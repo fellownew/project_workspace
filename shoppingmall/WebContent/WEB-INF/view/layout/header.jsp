@@ -20,31 +20,26 @@ a{
 }
 .left{
 	float: left;
-	width: 300px;
-	margin-top: 37px;
+	width: 250px;
+	margin-top: 32px;
 	margin-bottom: 20px;
 }
 #search{
 	float: left;
-	width:600px;
+	width:550px;
 	margin:0 auto;
-	margin-top: 70px;
+	margin-top: 65px;
 	
 }
 .right{
 	float: left;
 	width:400px;
-	height:63px;
-	margin-top:80px;
+	height:60px;
+	margin-top:65px;
 	text-align: right;
 	vertical-align: text-bottom;
 }
 </style>
-
-
-
-
-
 
 
 <body>
@@ -52,7 +47,7 @@ a{
 		<img src="<%=request.getContextPath() %>/image/logo.jpg" alt="Taom" onclick="home()">
 	</div>
 	<form id="search" action="list.do" method="POST">
-		<input type="text" name="search" autofocus="autofocus" style="width:500px;height: 40px" >
+		<input type="text" name="search" autofocus="autofocus" style="width:480px;height: 40px" >
 		<input type="submit" value="검색">
 	</form>
 	<div class="right">
@@ -65,7 +60,7 @@ a{
 						<a href="<%=request.getContextPath() %>/seller/auth/memberList.do">회원관리</a> |
 						<a href="<%=request.getContextPath() %>/board/auth/boardList.do">후기관리</a> |
 						<a href="<%=request.getContextPath() %>/auth/centerList.do">고객센터 관리</a> |
-						<a href="#">쪽지관리</a>
+						<a href="#">쪽지관리</a> |
 						<a href="<%=request.getContextPath() %>/auth/logout.do">로그아웃</a>	
 					</c:when>
 					<c:otherwise>
@@ -74,7 +69,7 @@ a{
 						<a href="<%=request.getContextPath() %>/auth/orderManager.do">주문관리</a> |
 						<a href="<%=request.getContextPath() %>/auth/productManager.do?sellerId=${sessionScope.loginInfo.sellerId}">상품관리</a><br>
 						<a href="<%=request.getContextPath() %>/auth/centerList.do">고객센터</a> |
-						<a href="#">쪽지관리</a>
+						<a href="#">쪽지관리</a> |
 						<a href="<%=request.getContextPath() %>/auth/logout.do">로그아웃</a>	
 					</c:otherwise>
 				</c:choose>	
@@ -84,9 +79,9 @@ a{
 				${sessionScope.loginInfo.buyerId }님 환영합니다. <br>
 				<a href="<%=request.getContextPath()%>/auth/buyerInfoForm.do">회원정보</a> |
 				<a href="<%=request.getContextPath()%>/cart/auth/cartList.do">장바구니</a> |
-				<a href="<%=request.getContextPath()%>/auth/completeList.do">주문내역</a><br>
+				<a href="<%=request.getContextPath()%>/auth/completeList.do">주문내역</a><br> |
 				<a href="<%=request.getContextPath() %>/auth/centerList.do">고객센터</a> |
-				<a href="#">쪽지관리</a>
+				<a href="#">쪽지관리</a> |
 				<a href="<%=request.getContextPath() %>/auth/logout.do">로그아웃</a>	
 
 			</c:when>
