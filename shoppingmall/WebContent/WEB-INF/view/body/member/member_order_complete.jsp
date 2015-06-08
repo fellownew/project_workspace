@@ -8,6 +8,33 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
 <script type="text/javascript">
+$(document).ready(function(){
+	history.pushState(null, null, location.href);
+	window.onpopstate = function(event) {
+		history.go(1);
+	};
+	
+	
+	//뒤로가기 & F5 누르면 alert 창 띄움
+	//window.onbeforeunload = function() { return "이동하시겠습니까?"; };
+	$(document).keydown(function(){
+		 if (event.keyCode == 8 || event.keyCode == 116) {
+		  event.keyCode==0;
+		  event.cancelBubble = true;
+		  event.returnValue = false;
+		  return false;
+		}
+	});
+
+});
+history.navigationMode = 'compatible';
+function cfHistoryNoBack(){
+    if (window.history) {
+    //모든 브라우저에서 호출
+    //window.history.forward(1);
+    window.history.forward(1);
+    }
+}
 	var price = 0;
 </script>
 </head>

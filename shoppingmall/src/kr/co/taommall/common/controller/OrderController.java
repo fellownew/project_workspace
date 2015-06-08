@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.co.taommall.account.vo.Address;
@@ -89,7 +90,7 @@ public class OrderController {
 	};
 
 	@RequestMapping("complete.do")
-	public String complete(@RequestParam(required=true) int recipientId,HttpServletRequest request,HttpSession session){
+	public String complete(@RequestParam(required=true) int recipientId,HttpServletResponse response,HttpServletRequest request,HttpSession session){
 		List<Order> list = service.selectOrderByRecipientId(recipientId);
 			for(Order o : list){
 				Product product = productService.selectProductByIdNoPaging(o.getProductId(), null);	

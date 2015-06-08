@@ -18,8 +18,9 @@
 </head>
 
 <script type="text/javascript">
-	$(document).ready(function(){
 
+	$(document).ready(function(){
+		
 		$("select").change(function(){
 			if($("select option:selected").attr("id")!="op1"){				
 			$("#detail").val($("select option:selected").val());
@@ -86,7 +87,8 @@
 
 <body>
 <!-- 	<fieldset style="height:500px"> -->
-	
+<form onunload="">
+</form>
 	<table class="center" >
 		<caption style="text-align:left; font-weight:bold; font-size:20px" >주문상품 확인</caption>
 		<thead>
