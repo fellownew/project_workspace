@@ -41,7 +41,7 @@ $(document).ready(function(){
 	$("select").change(function(){
 		var id =$(this).attr("id");
 		var status = $("#"+id+" option:selected").val();
-		location="<%=request.getContextPath()%>/auth/orderStatusUpdate.do?id="+id+"&status="+status;
+		location="<%=request.getContextPath()%>/auth/orderStatusUpdate.do?recipientId="+id+"&status="+status;
 	});
 });
 </script>

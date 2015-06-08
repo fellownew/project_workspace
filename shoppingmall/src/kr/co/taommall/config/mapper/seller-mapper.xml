@@ -82,7 +82,7 @@
 <select id="selectAllSellerPaging" parameterType="map" resultMap="resultMap-seller-basic">
 		select seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number,postcode
 		from (
-			select ceil(rownum/#{contentsPerPage}) page, seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number
+			select ceil(rownum/#{contentsPerPage}) page, seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number,postcode
 			from (
 				<include refid="select-seller-basic"/>
 					<choose>

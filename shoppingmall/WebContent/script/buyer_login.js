@@ -69,7 +69,11 @@ function sellerLogin(){
 				}
 		},
 		success:function(res){
-			if(res=='success'){
+			if(res=='auth'){
+				alert('인증 처리중 입니다.고객센터로 문의하세요.');
+				location='/taommall/mainPage.do';
+				return false;
+			}else if(res=='success'){
 				document.getElementById("sellerLogin").submit();
 			}else{
 				$("#sIdErr").hide();
