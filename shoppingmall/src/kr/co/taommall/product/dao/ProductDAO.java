@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 public interface ProductDAO {
 	public int insertProduct(Product product);
 	public int updateProduct(Product product);
+	public int updateProductWithThum(Product product);
+	public int updateProductWithInfo(Product product);
 	public int updateProductIgnoreImagePath(Product product);
 	public int deleteProduct(int productId);
 	public List<Product> selectAllProduct(Model model);

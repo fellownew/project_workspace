@@ -49,6 +49,7 @@ create table product(
    category varchar2(20) not null,
    product_info varchar2(2000) not null,
    image_path varchar2(200) not null,
+   info_image_path varchar2(200) not null,
    regi_date varchar2(10) not null,
    exp_date varchar2(10) not null,
    seller_id varchar2(20),

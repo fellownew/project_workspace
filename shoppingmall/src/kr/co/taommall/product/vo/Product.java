@@ -9,6 +9,7 @@ public class Product implements Serializable{
 	private String category;
 	private String productInfo;
 	private String imagePath;
+	private String infoImagePath;
 	private String regiDate;
 	private String expDate;
 	private String sellerId;
@@ -17,7 +18,8 @@ public class Product implements Serializable{
 
 	public Product(int productId, String productName, int productPrice,
 			String category, String productInfo, String imagePath,
-			String regiDate, String expDate, String sellerId) {
+			String infoImagePath, String regiDate, String expDate,
+			String sellerId) {
 		super();
 		this.productId = productId;
 		this.productName = productName;
@@ -25,33 +27,10 @@ public class Product implements Serializable{
 		this.category = category;
 		this.productInfo = productInfo;
 		this.imagePath = imagePath;
+		this.infoImagePath = infoImagePath;
 		this.regiDate = regiDate;
 		this.expDate = expDate;
 		this.sellerId = sellerId;
-	}
-
-	public Product(int productId, String productName, int productPrice,
-			String category, String productInfo, String imagePath,
-			String expDate) {
-		super();
-		this.productId = productId;
-		this.productName = productName;
-		this.productPrice = productPrice;
-		this.category = category;
-		this.productInfo = productInfo;
-		this.imagePath = imagePath;
-		this.expDate = expDate;
-	}
-
-	public Product(int productId, String productName, int productPrice,
-			String category, String productInfo, String expDate) {
-		super();
-		this.productId = productId;
-		this.productName = productName;
-		this.productPrice = productPrice;
-		this.category = category;
-		this.productInfo = productInfo;
-		this.expDate = expDate;
 	}
 
 	public int getProductId() {
@@ -102,6 +81,14 @@ public class Product implements Serializable{
 		this.imagePath = imagePath;
 	}
 
+	public String getInfoImagePath() {
+		return infoImagePath;
+	}
+
+	public void setInfoImagePath(String infoImagePath) {
+		this.infoImagePath = infoImagePath;
+	}
+
 	public String getRegiDate() {
 		return regiDate;
 	}
@@ -135,6 +122,8 @@ public class Product implements Serializable{
 		result = prime * result + ((expDate == null) ? 0 : expDate.hashCode());
 		result = prime * result
 				+ ((imagePath == null) ? 0 : imagePath.hashCode());
+		result = prime * result
+				+ ((infoImagePath == null) ? 0 : infoImagePath.hashCode());
 		result = prime * result + productId;
 		result = prime * result
 				+ ((productInfo == null) ? 0 : productInfo.hashCode());
@@ -172,6 +161,11 @@ public class Product implements Serializable{
 				return false;
 		} else if (!imagePath.equals(other.imagePath))
 			return false;
+		if (infoImagePath == null) {
+			if (other.infoImagePath != null)
+				return false;
+		} else if (!infoImagePath.equals(other.infoImagePath))
+			return false;
 		if (productId != other.productId)
 			return false;
 		if (productInfo == null) {
@@ -204,10 +198,10 @@ public class Product implements Serializable{
 		return "Product [productId=" + productId + ", productName="
 				+ productName + ", productPrice=" + productPrice
 				+ ", category=" + category + ", productInfo=" + productInfo
-				+ ", imagePath=" + imagePath + ", regiDate=" + regiDate
-				+ ", expDate=" + expDate + ", sellerId=" + sellerId + "]";
+				+ ", imagePath=" + imagePath + ", infoImagePath="
+				+ infoImagePath + ", regiDate=" + regiDate + ", expDate="
+				+ expDate + ", sellerId=" + sellerId + "]";
 	}
-
 
 	
 }

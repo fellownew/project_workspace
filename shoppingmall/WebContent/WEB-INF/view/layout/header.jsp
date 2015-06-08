@@ -5,6 +5,10 @@
 function home(){
 	location = "<%=request.getContextPath() %>";
 }
+
+function note(){
+	window.open("note.do","쪽지",'width=500,height=500,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,left=150,top=100');
+});
 </script>
 <style type="text/css">
 a{
@@ -50,6 +54,7 @@ a{
 						<a href="<%=request.getContextPath() %>/seller/auth/memberList.do">회원관리</a> |
 						<a href="<%=request.getContextPath() %>/board/auth/boardList.do">후기관리</a> |
 						<a href="#">고객센터 관리</a> |
+						<a onclick="note("+${sessionScope.user}+")"></a>
 						<a href="<%=request.getContextPath() %>/auth/logout.do">로그아웃</a>	
 					</c:when>
 					<c:otherwise>

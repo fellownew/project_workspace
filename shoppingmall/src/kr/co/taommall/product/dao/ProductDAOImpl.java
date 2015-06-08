@@ -26,6 +26,18 @@ public class ProductDAOImpl implements ProductDAO {
 			int cnt = session.update(nameSpace+"updateProduct",product);
 			return cnt;
 	}
+	
+	
+	@Override
+	public int updateProductWithThum(Product product) {
+		int cnt = session.update(nameSpace+"updateProductWithThum",product);
+		return cnt;
+	}
+	@Override
+	public int updateProductWithInfo(Product product) {
+		int cnt = session.update(nameSpace+"updateProductWithInfo",product);
+		return cnt;
+	}
 	@Override
 	public int updateProductIgnoreImagePath(Product product){
 		int cnt = session.update(nameSpace+"updateProductIgnoreImagePath",product);
