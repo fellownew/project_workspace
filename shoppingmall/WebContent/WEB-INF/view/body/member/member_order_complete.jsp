@@ -9,37 +9,6 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
 <script type="text/javascript">
 
-<<<<<<< HEAD
-	$(document).ready(function(){
-	   history.pushState(null, null, location.href);
-	   window.onpopstate = function(event) {
-	      history.go(1);
-	   };
-	   
-	   
-	   //뒤로가기 & F5 누르면 alert 창 띄움
-	   //window.onbeforeunload = function() { return "이동하시겠습니까?"; };
-	   $(document).keydown(function(){
-	       if (event.keyCode == 8 || event.keyCode == 116) {
-	        event.keyCode==0;
-	        event.cancelBubble = true;
-	        event.returnValue = false;
-	        return false;
-	      }
-	   });
-
-	});
-	history.navigationMode = 'compatible';
-	function cfHistoryNoBack(){
-	    if (window.history) {
-	    //모든 브라우저에서 호출
-	    //window.history.forward(1);
-	    window.history.forward(1);
-	    }
-	}
-
-
-=======
 $(document).ready(function(){
 	history.pushState(null, null, location.href);
 	window.onpopstate = function(event) {
@@ -66,7 +35,6 @@ function cfHistoryNoBack(){
     window.history.forward(1);
     }
 }
->>>>>>> c082605204a4858f78b75e465b5c61abe9fb6696
 	var price = 0;
 
 	function home(){
@@ -77,25 +45,14 @@ function cfHistoryNoBack(){
 </head>
 <body>
 
-<c:forEach items="${requestScope.list}" var="list">
-<script type="text/javascript">
-price = price + ${list.amount*list.product.productPrice}
-</script>
-</c:forEach>
-<script type="text/javascript">
-$(document).ready(function(){
-$("#orderPrice").text(price+"원");
-$("#sumPrice").text(price+"원");
-});
-</script>
 <hr>
 
 	<table class="center">
 		<caption style="text-align: left; font-weight: bold; font-size: 20px">결제 정보</caption><br>
-		<thead>
+
 			<tr>
 				<td style="width:120px">주문 금액</td>
-				<td style="text-align:right; width:800px" id="orderPrice">원</td>
+				<td style="text-align:right; width:800px" id="orderPrice">${requestScope.price }원</td>
 			</tr>
 			<tr>
 				<td>할인 금액</td>
@@ -103,8 +60,9 @@ $("#sumPrice").text(price+"원");
 			</tr>
 			<tr>
 				<td>총 결제금액</td>
-				<td align="right" id="sumPrice"></td>
+				<td align="right" id="sumPrice">${requestScope.price }원</td>
 			</tr>
+
 	</table>
 
 	<table class="center">

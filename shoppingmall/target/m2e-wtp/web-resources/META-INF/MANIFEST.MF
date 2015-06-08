@@ -1,9 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
-Built-By: pyh
-=======
 Built-By: Administrator
->>>>>>> c082605204a4858f78b75e465b5c61abe9fb6696
 Build-Jdk: 1.8.0_31
 Created-By: Maven Integration for Eclipse
 

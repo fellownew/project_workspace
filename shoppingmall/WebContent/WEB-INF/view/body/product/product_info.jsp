@@ -1,6 +1,9 @@
+<%@page import="java.text.NumberFormat"%>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <meta charset="UTF-8">
 <style type="text/css">
@@ -48,7 +51,7 @@ function cart(id){
 			</tr>
 			<tr>
 				<td>상품가격</td>
-				<td>${product.productPrice}원</td>
+				<td><fmt:formatNumber value="${product.productPrice}"/>원</td>
 			</tr>
 			<tr>
 				<td>유통기한</td>
@@ -72,9 +75,6 @@ function cart(id){
 			<tr></tr>	
 			</c:when>
 			</c:choose>
-			
-			
-
 			<tr>
 				<td colspan="3" style="height: 300px;position: relative;"><img src="<%=request.getContextPath() %>/${requestScope.product.infoImagePath }"/></td>
 			</tr>
