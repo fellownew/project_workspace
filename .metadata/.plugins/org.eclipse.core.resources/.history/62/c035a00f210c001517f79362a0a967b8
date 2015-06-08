@@ -138,7 +138,6 @@ public class BuyerController {
 		Buyer buyer = (Buyer) session.getAttribute("loginInfo");
 		String buyerId = buyer.getBuyerId();
 		service.deleteBuyerById(buyerId);
-		session.invalidate();
 		return "redirect:/mainPage.do";
 	}
 	

@@ -205,26 +205,7 @@ $(document).ready(function(){
 			}
 		});	
 	});
-	$("#withdraw").on("click",function(){
-		if(confirm("정말 탈퇴하시겠습니까?")){
-			if(confirm("진짜 탈퇴하시겠습니까?")){
-				if(confirm("거짓말 하지말고 리얼리?")){
-					if(confirm("탈퇴한다는 거짓말이 사실입니까?")){
-						location = "/taommall/buyer/buyerWithdraw.do";
-					}else{
-						return false;
-					}
-				}else{
-					return false;
-				}
-			}else{
-				return false;
-			}
-		}else{
-			return false;
-		}
-	});
-	
+
 });
 
 	function password(){

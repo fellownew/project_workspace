@@ -46,7 +46,7 @@
 		<option value="health">건강식품</option>
 		<option value="snack">간식</option>
 	</select><br>
-	<textarea id="productInfo" name="productInfo" rows="30" cols="100" placeholder="상품 정보"  required="required" >${requestScope.product.productInfo }</textarea><br>
+	<textarea id="productInfo" name="productInfo" rows="30" cols="100" placeholder="상품 정보"  required="required" ></textarea><br>
 	<input type="file" id="upfile" name="upfile"/><br>
 	<input type="text" id="expDate" name="expDate" required="required" value="${requestScope.product.expDate }">
 	<input type="button" value="유통기한" onClick="datePicker(event,'expDate')"><br>
