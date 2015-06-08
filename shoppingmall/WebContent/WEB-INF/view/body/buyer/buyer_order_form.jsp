@@ -184,14 +184,10 @@
 						<option id="op4" selected="selected">빠른 배송 부탁드립니다.</option>
 						<option id="op5" >부재시 핸드폰으로 연락바랍니다.</option>
 						<option id="op6">배송 전 연락바랍니다.</option>
-						
 					</select> 
 				</td>
 			</tr>
 	</table><br>
-				<button id="payment">결제하기</button>
-		</thead>
-	</table><br>
-	<button id="payment">결제하기</button>
+	<button id="payment" style=" float: right; ">결제하기</button>
 </body>
 </html>

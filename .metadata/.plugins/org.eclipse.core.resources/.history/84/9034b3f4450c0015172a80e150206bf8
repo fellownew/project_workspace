@@ -5,9 +5,11 @@
 
 <insert id="insertOrder" parameterType="order" >
 <selectKey keyProperty="orderId" order="BEFORE" resultType="_int">select order_no.nextval from dual</selectKey>
-
+<<<<<<< HEAD
+   insert into orders values(#{orderId},#{productId},#{amount},#{status},#{buyerId},#{recipientId},#{sellerId})
+=======
    insert into orders values(#{orderId},#{productId},#{amount},#{status},#{buyerId},#{recipientId},#{sellerId}, to_char(sysdate, 'yyyy-mm-dd'))
-
+>>>>>>> 443e24ae7026a8ef15d6992ef0d516c7282c1865
 </insert>
 <update id="updateOrderById" parameterType="order">
 	update orders
