@@ -49,6 +49,10 @@
              		+"&detail="+$("#detail").val();
 		});
 		
+		$('#main').on("click",function()){
+			location = "<%=request.getContextPath() %>/auth/main.do"
+		});
+	 
 		
 		$("#test1").on("click",function(){
 
@@ -188,6 +192,6 @@
 				</td>
 			</tr>
 	</table><br>
-	<button id="payment" style=" float: right; ">결제하기</button>
+	<button id="main" style=" float: right; ">결제하기</button>
 </body>
 </html>

@@ -49,6 +49,10 @@
              		+"&detail="+$("#detail").val();
 		});
 		
+		$('#main').on("click",function()){
+			location = "<%=request.getContextPath() %>/auth/payment.do?productId="+'${param.productId}'
+		});
+	 
 		
 		$("#test1").on("click",function(){
 

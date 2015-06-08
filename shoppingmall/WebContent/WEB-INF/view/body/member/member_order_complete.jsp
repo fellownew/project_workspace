@@ -9,6 +9,12 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
 <script type="text/javascript">
 	var price = 0;
+	
+	$('#main').on("click",function(){
+		alert("test");
+		location = "<%=request.getContextPath() %>/mainPage.do"
+	});
+	
 </script>
 </head>
 <body>
@@ -103,9 +109,11 @@ $("#sumPrice").text(price+"원");
 		</tbody> --%>
 	</table>
 	<caption></caption>
-	</table>
+	</table><br>
+	
+	<button id="main" style=" float: right; ">메인으로</button>
 
-	<hr>
+<%-- 	<hr>
 	order Id : ${requestScope.order.orderId }
 	<br>
 	<br> amount : ${requestScope.order.amount}
@@ -119,7 +127,7 @@ $("#sumPrice").text(price+"원");
 	<br> ${requestScope.order.seller}
 	<br>
 	<br> ${requestScope.order.buyer}
-	<br>
+	<br> --%>
 </body>
 </html>
 

@@ -48,7 +48,7 @@
              		+"&phone="+$("#phone").val()
              		+"&detail="+$("#detail").val();
 		});
-		
+	 
 		
 		$("#test1").on("click",function(){
 

@@ -9,6 +9,11 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
 <script type="text/javascript">
 	var price = 0;
+	
+	$('#main').on("click",function()){
+		location = "<%=request.getContextPath() %>/mainPage.do"
+	});
+	
 </script>
 </head>
 <body>
@@ -72,25 +77,22 @@ $("#sumPrice").text(price+"원");
 		<table class="center">
 		<caption style="text-align: left; font-weight: bold; font-size: 20px">배송지 정보</caption><br>
 			<tr>
-				<td style="width:120px; text-align:center">받는 사람</td>
-				<td style="width:100px; text-align:center">수량</td>
-				<td style="width:150px; text-align:center">상품 금액</td>
-				<td style="width:100px; text-align:center">배송비</td>
-				<td style="width:200px; text-align:center">주문/배송 상태</td>
+				<td style="width:120px; text-align:center" rowspan="2">받는 사람</td>
+
 			</tr>
 			<c:forEach items="${requestScope.list}" var="order">
+			
 			<tr>
-				<td style="text-align:right" rowspan="2">
-					<div style="float: left"> 
-					<img src="<%=request.getContextPath()%>/${order.product.imagePath}" style="width: 80px;height: 80px; "/>
-					</div>
-					<div class="productName">${order.product.productName }</div><br>
-					<div class="productInfo">${order.product.productInfo }</div>
-				</td>
-				<td style="text-align:right">${order.amount}</td>
+	 			<td style="text-align:left">
+					<div class="productName">이름 : ${sessionScope.loginInfo.name}</div>
+					<div class="productName">연락처 : ${sessionScope.loginInfo.phone }</div>
+					<div class="productName">주소 : ${sessionScope.loginInfo.address.addressDetails }</div>
+					
+				</td> 
+<%-- 				<td style="text-align:right">${order.amount}</td>
 				<td style="text-align:right">${order.product.productPrice}원</td>
-				<td style="text-align:right">무료</td>
-				<td style="text-align:right"  collspan="3">${order.status}</td>
+				<!-- <td style="text-align:right">무료</td> -->
+				<td style="text-align:right"  collspan="3">${order.status}</td> --%>
 			</tr>
 			</c:forEach>
 		</table>
@@ -106,9 +108,11 @@ $("#sumPrice").text(price+"원");
 		</tbody> --%>
 	</table>
 	<caption></caption>
-	</table>
+	</table><br>
+	
+	<button id="main" style=" float: right; ">메인으로</button>
 
-	<hr>
+<%-- 	<hr>
 	order Id : ${requestScope.order.orderId }
 	<br>
 	<br> amount : ${requestScope.order.amount}
@@ -122,7 +126,7 @@ $("#sumPrice").text(price+"원");
 	<br> ${requestScope.order.seller}
 	<br>
 	<br> ${requestScope.order.buyer}
-	<br>
+	<br> --%>
 </body>
 </html>
 

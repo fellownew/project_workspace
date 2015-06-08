@@ -117,7 +117,7 @@ public class OrderController {
 	
 	@RequestMapping("main.do")
 	public String main(){
-		return "main.jsp";
+		return return "buyer/buyer_order_form.form";
 	}
 
 }

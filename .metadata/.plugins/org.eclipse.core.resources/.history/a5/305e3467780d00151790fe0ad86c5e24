@@ -114,10 +114,5 @@ public class OrderController {
 		request.setAttribute("list", list);
 		return "member/member_order_complete_list.form";
 	}
-	
-	@RequestMapping("main.do")
-	public String main(){
-		return "main.jsp";
-	}
 
 }
