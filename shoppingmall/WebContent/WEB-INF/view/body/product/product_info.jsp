@@ -38,11 +38,11 @@ function cart(id){
 </script>
 <div>
 	<h2 style="text-align: center;margin-top:20px">상품정보</h2>
-	<table style="width:1000px;margin: 0 auto;"  border='1'>
+	<table style="width:1000px;margin: 0 auto;border-collapse: collapse;"  border='1'>
 		<tbody>
 
 			<tr>
-				<td  rowspan="6"><img src="<%=request.getContextPath() %>/${requestScope.product.imagePath }"/></td>
+				<td rowspan="6" style="width:490px"><img src="<%=request.getContextPath() %>/${requestScope.product.imagePath }"/></td>
 				<td width="200px">상품명</td>	
 			    <td>${product.productName}</td>	
 			</tr>
@@ -62,17 +62,26 @@ function cart(id){
 				<td>수량</td>
 				<td><input type="number" id="amount" value="1" size="1"  max="99" maxlength="2"></td>
 			</tr> 	
- 
+			<c:choose>
+			<c:when test="${sessionScope.user=='buyer'}">
 			<tr>
-				<td colspan="2"><button class="buyButton" onclick="order(${product.productId})">주문</button><button class="cartButton" id="cart" onclick="cart(${product.productId})">장바구니</button></td>
-				
-			</tr> 
+				<td colspan="2"><button class="buyButton" onclick="order(${product.productId})">주문</button><button class="cartButton" id="cart" onclick="cart(${product.productId})">장바구니</button></td>			
+			</tr>
+			</c:when>
+			<c:when test="${sessionScope.user!='buyer'}">
+			<tr></tr>	
+			</c:when>
+			</c:choose>
+			
+			
+
 			<tr>
 				<td colspan="3" style="height: 300px;position: relative;"><img src="<%=request.getContextPath() %>/${requestScope.product.infoImagePath }"/></td>
 			</tr>
 			
 		</tbody>
 	</table>
-	<jsp:include page="product_info_board.jsp"></jsp:include>
+	<jsp:include page="product_info_board.jsp"></jsp:include>	
+	<a href="#" onclick="javascript:$j(window).scrollTop(0);void(0);" style="text-align: right;">top</a>
 	
 </div>
