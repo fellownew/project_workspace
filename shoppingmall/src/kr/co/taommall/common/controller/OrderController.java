@@ -89,7 +89,7 @@ public class OrderController {
 	};
 
 	@RequestMapping("complete.do")
-	public String complete(int recipientId,HttpServletRequest request,HttpSession session){
+	public String complete(@RequestParam(required=true) int recipientId,HttpServletRequest request,HttpSession session){
 		List<Order> list = service.selectOrderByRecipientId(recipientId);
 			for(Order o : list){
 				Product product = productService.selectProductByIdNoPaging(o.getProductId(), null);	
@@ -110,7 +110,6 @@ public class OrderController {
 	public String completeList(HttpSession session,HttpServletRequest request){
 		Buyer buyer = (Buyer) session.getAttribute("loginInfo");
 		List<Order> list = service.selectOrderByBuyerId(buyer.getBuyerId());
-
 		request.setAttribute("list", list);
 		return "member/member_order_complete_list.form";
 	}

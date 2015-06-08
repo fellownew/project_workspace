@@ -1,7 +1,7 @@
 #Tomcat publish data
-#Mon Jun 08 10:08:56 KST 2015
+#Mon Jun 08 10:23:03 KST 2015
 org.eclipse.jst.jee.server\:shoppingmall=C\:\\JAVA\\apache-tomcat-7.0.59\\webapps\\shoppingmall
->>>>>>>=origin/master
+>>>>>>>=93db2b64660c83a58696c448ddb4453d9aed9d40
 org.eclipse.jst.jee.server\:/binary\:C\:\\Users\\KOSTA_03_008\\.m2\\repository\\org\\springframework\\spring-web\\4.1.6.RELEASE\\spring-web-4.1.6.RELEASE.jar=C\:\\JAVA\\apache-tomcat-7.0.59\\webapps\\shoppingmall\\WEB-INF\\lib\\spring-web-4.1.6.RELEASE.jar
 org.eclipse.jst.jee.server\:/binary\:C\:\\Users\\pyh\\.m2\\repository\\org\\springframework\\spring-web\\4.1.6.RELEASE\\spring-web-4.1.6.RELEASE.jar=C\:\\JAVA\\apache-tomcat-7.0.59\\webapps\\shoppingmall\\WEB-INF\\lib\\spring-web-4.1.6.RELEASE.jar
 <<<<<<<=HEAD
