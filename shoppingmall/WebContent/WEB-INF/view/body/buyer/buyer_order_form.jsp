@@ -18,9 +18,8 @@
 </head>
 
 <script type="text/javascript">
-
 	$(document).ready(function(){
-		
+
 		$("select").change(function(){
 			if($("select option:selected").attr("id")!="op1"){				
 			$("#detail").val($("select option:selected").val());

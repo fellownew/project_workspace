@@ -2,15 +2,24 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
+<<<<<<< HEAD
+		<item value="jstl" key="selection"/>
+=======
 		<item value="td" key="selection"/>
+>>>>>>> project_workspace/pyh
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+<<<<<<< HEAD
+			<item value="jstl"/>
+			<item value="tiles"/>
+=======
 			<item value="td"/>
 			<item value="home()"/>
 			<item value="t"/>
+>>>>>>> project_workspace/pyh
 			<item value="deleteProductBtn"/>
 			<item value="main.do"/>
 			<item value="mainPage.do"/>
@@ -22,10 +31,18 @@
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+<<<<<<< HEAD
+		<item value="311" key="DIALOG_WIDTH"/>
+		<item value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕" key="DIALOG_FONT_NAME"/>
+		<item value="444" key="DIALOG_HEIGHT"/>
+		<item value="1347" key="DIALOG_X_ORIGIN"/>
+		<item value="338" key="DIALOG_Y_ORIGIN"/>
+=======
 		<item value="261" key="DIALOG_WIDTH"/>
 		<item value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕" key="DIALOG_FONT_NAME"/>
 		<item value="380" key="DIALOG_HEIGHT"/>
 		<item value="1007" key="DIALOG_X_ORIGIN"/>
 		<item value="219" key="DIALOG_Y_ORIGIN"/>
+>>>>>>> project_workspace/pyh
 	</section>
 </section>

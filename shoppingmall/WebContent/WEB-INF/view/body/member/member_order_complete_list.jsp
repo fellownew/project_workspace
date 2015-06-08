@@ -46,30 +46,30 @@ $("tbody>tr>td:first-child").on("click",function(){
 </script>
 </head>
 <body>
-<table class="tbl_model" >
+<table class="tbl_model" style="width: 1200px;margin: 0 auto">
 <thead>
-<tr>	
-<th>결제일(주문번호)</th>
-<th>상품정보</th>
-<th>상품금액(수량)</th>
-<th>배송비(판매자)</th>
-<th>주문상태</th>
-</tr>
+	<tr>	
+		<th style="width: 200px">결제일(주문번호)</th>
+		<th style="width: 400px">상품정보</th>
+		<th style="width: 200px">상품금액(수량)</th>
+		<th style="width: 150px">배송비(판매자)</th>
+		<th style="width: 150px">주문상태</th>
+	</tr>
 </thead>
 <tbody >
-<c:forEach items="${requestScope.list}" var="order">
-<tr style="text-align: center">
-<td name="${order.recipientId}" >${order.regiDate}(${order.recipientId})</td>
-<td>
-	<div style="float: left;" > <img src='<%=request.getContextPath()%>/${order.product.imagePath}' style="width: 80px;height: 80px; "> </div> 	
-	<div class="title">${order.product.productName }</div>
-	<div class="info">${order.product.productInfo }</div>
-</td>
-<td>${order.product.productPrice * order.amount }원 (${order.amount})</td>
-<td>무료 (${order.sellerId})</td>
-<td>${order.status}</td>
-</tr>
-</c:forEach>
+	<c:forEach items="${requestScope.list}" var="order">
+		<tr style="text-align: center">
+			<td name="${order.recipientId}" >${order.regiDate}(${order.recipientId})</td>
+			<td>
+				<div style="float: left;" > <img src='<%=request.getContextPath()%>/${order.product.imagePath}' style="width: 80px;height: 80px; "> </div> 	
+				<div class="title">${order.product.productName }</div>
+				<div class="info">${order.product.productInfo }</div>
+			</td>
+			<td>${order.product.productPrice * order.amount }원 (${order.amount})</td>
+			<td>무료 (${order.sellerId})</td>
+			<td>${order.status}</td>
+		</tr>
+	</c:forEach>
 </tbody>
 </table>
 </body>
