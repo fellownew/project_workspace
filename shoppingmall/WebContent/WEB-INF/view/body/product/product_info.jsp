@@ -62,11 +62,19 @@ function cart(id){
 				<td>수량</td>
 				<td><input type="number" id="amount" value="1" size="1"  max="99" maxlength="2"></td>
 			</tr> 	
- 
+			<c:choose>
+			<c:when test="${sessionScope.user=='buyer'}">
 			<tr>
-				<td colspan="2"><button class="buyButton" onclick="order(${product.productId})">주문</button><button class="cartButton" id="cart" onclick="cart(${product.productId})">장바구니</button></td>
-				
-			</tr> 
+				<td colspan="2"><button class="buyButton" onclick="order(${product.productId})">주문</button><button class="cartButton" id="cart" onclick="cart(${product.productId})">장바구니</button></td>			
+			</tr>
+			</c:when>
+			<c:when test="${sessionScope.user!='buyer'}">
+			<tr></tr>	
+			</c:when>
+			</c:choose>
+			
+			
+
 			<tr>
 				<td colspan="3" style="height: 300px;position: relative;"><img src="<%=request.getContextPath() %>/${requestScope.product.infoImagePath }"/></td>
 			</tr>
