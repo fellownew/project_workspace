@@ -121,7 +121,7 @@
 					</td>
 					<td style="text-align:right"><fmt:formatNumber value="${cart.product.productPrice}"/></td>
 					<td style="text-align:right">${cart.amount}</td>
-					<td style="text-align:right"><fmt:formatNumber value="${cart.product.productPrice*cart.amount}"/></td>
+					<td style="text-align:right">${cart.product.productPrice*cart.amount}</td>
 					<td style="text-align:right">${cart.product.sellerId}</td>
 				</tr> 
 		</c:forEach>
