@@ -8,6 +8,11 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
 <script type="text/javascript">
+
+<<<<<<< HEAD
+
+=======
+>>>>>>> fe844619bd2bc83a745fdfbba9209916481fb444
 $(document).ready(function(){
 	history.pushState(null, null, location.href);
 	window.onpopstate = function(event) {
@@ -34,6 +39,11 @@ function cfHistoryNoBack(){
     window.history.forward(1);
     }
 }
+<<<<<<< HEAD
+
+=======
+>>>>>>> fe844619bd2bc83a745fdfbba9209916481fb444
+	var price = 0;
 
 	function home(){
 		location = "/taommall";
