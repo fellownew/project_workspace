@@ -14,23 +14,31 @@
 					return false;
 				}
 		});
+		
+		$("#upfile").on("change",function(){
+			var path = $(this).val();			
+			var leng = path.length;
+			var txt = path.substr(leng-3,3);
+			document.e
+			if((txt != "jpg") && (txt != "peg") && (txt != "png") && (txt != "gif") && (txt != "bmp")){
+				alert("jpg, jpeg, png, gif 파일만 등록 가능합니다.");
+				return false;
+			}
+					
+			
+		});
+		
+		$("#infoUpfile").on("change",function(){
+			var path = $(this).val();			
+			var leng = path.length;
+			var txt = path.substr(leng-3,3);
+			if((txt != "jpg") && (txt != "peg") && (txt != "png") && (txt != "gif") && (txt != "bmp")){
+				alert("jpg, jpeg, png, gif 파일만 등록 가능합니다.");
+				return false;
+			}
+		});
 	});
 
- function chgText(text_area_id) {
-	  $str1 = $("#" + text_area_id).val().replace(/(\r\n|\n|\n\n)/gi,
-	    '[split]');
-	  $str1 = $str1.replace(/\'/g, "''");
-	  $str1 = $str1.split("[split]");
-	  $result = "";
-	  $.each($str1, function(i) {
-	   if ($str1[i] == "") {
-	    $result += "<p>&nbsp;</p>" + "\r\n";
-	   } else {
-	    $result += "<p>" + $str1[i] + "</p>" + "\r\n";
-	   }
-	  });
-	  return $result;
-	 };
 </script>
 
 <div>
@@ -46,8 +54,9 @@
 		<option value="health">건강식품</option>
 		<option value="snack">간식</option>
 	</select><br>
-	<textarea id="productInfo" name="productInfo" rows="30" cols="100" placeholder="상품 정보"  required="required" >${requestScope.product.productInfo }</textarea><br>
-	<input type="file" id="upfile" name="upfile"/><br>
+	<input type="text" id="productInfo" name="productInfo" placeholder="상품 요약 정보" required="required" value="${requestScope.product.productInfo }"><br>
+	상품 사진 : <input type="file" id="upfile" name="upfile"/><br>
+	상품 정보 : <input type="file" id="infoUpfile" name="infoUpfile"/><br>
 	<input type="text" id="expDate" name="expDate" required="required" value="${requestScope.product.expDate }">
 	<input type="button" value="유통기한" onClick="datePicker(event,'expDate')"><br>
 	<input type="hidden" name="productId" value="${requestScope.product.productId }"/>

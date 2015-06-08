@@ -48,10 +48,16 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public void updateProduct(Product product,MultipartFile upfile,MultipartFile infoUpfile){
 		product = dao.selectProductByIdNoPaging(product.getProductId());
-		File file = new File(abImagePath,product.getImagePath().substring(8));
-		File infoFile = new File(abImagePath,product.getInfoImagePath().substring(8));
-		file.delete();
-		infoFile.delete();
+		File file = null;
+		File infoFile = null;
+		if(product.getImagePath()!=null){
+			file = new File(abImagePath,product.getImagePath().substring(8));
+			file.delete();			
+		}
+		if(product.getInfoImagePath()!=null){
+			infoFile = new File(abImagePath,product.getInfoImagePath().substring(8));
+			infoFile.delete();
+		}
 		long lFileName = System.currentTimeMillis();
 		String fileName = lFileName+".jpg";
 		file = new File(abImagePath,fileName);
@@ -75,8 +81,11 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public void updateProductWithThum(Product product, MultipartFile upfile) {
 		product = dao.selectProductByIdNoPaging(product.getProductId());
-		File file = new File(abImagePath,product.getImagePath().substring(8));
-		file.delete();
+		File file = null;
+		if(product.getImagePath()!=null){
+			file = new File(abImagePath,product.getImagePath().substring(8));
+			file.delete();			
+		}
 		long lFileName = System.currentTimeMillis();
 		String fileName = lFileName+".jpg";
 		file = new File(abImagePath,fileName);
@@ -96,8 +105,11 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public void updateProductWithInfo(Product product, MultipartFile infoUpfile) {
 		product = dao.selectProductByIdNoPaging(product.getProductId());
-		File infoFile = new File(abImagePath,product.getInfoImagePath().substring(8));
-		infoFile.delete();
+		File infoFile = null;
+		if(product.getInfoImagePath()!=null){
+			infoFile = new File(abImagePath,product.getInfoImagePath().substring(8));
+			infoFile.delete();
+		}
 		long lFileName = System.currentTimeMillis();
 		String infoFileName = lFileName+"i.jpg";
 		infoFile = new File(abImagePath,infoFileName);

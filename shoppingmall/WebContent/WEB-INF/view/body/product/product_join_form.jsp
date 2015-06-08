@@ -61,9 +61,7 @@ input{
 		</select><br>
 		<input type="text" id="productInfo" name="productInfo" placeholder="상품 요약 정보" required="required"><br>
 		상품 사진 : <input type="file" id="upfile" name="upfile"/><br>
-		<div id="thumImg" style="display: none"></div>
 		상품 정보 : <input type="file" id="infoUpfile" name="infoUpfile"/><br>
-		<div id="infoImg" style="display: none"></div>
 		<input type="text" id="expDate" name="expDate" readonly="readonly" required="required">
 		<input type="button" value="유통기한" onClick="datePicker(event,'expDate')"><br>
 		<input type="hidden" name="SellerId" value="${sessionScope.loginInfo.sellerId }"/><p>

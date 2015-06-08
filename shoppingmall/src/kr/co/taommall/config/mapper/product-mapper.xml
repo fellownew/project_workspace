@@ -17,7 +17,7 @@
 	</insert>
 	
 	<update id="updateProduct" parameterType="Product">
-		update product set product_name=#{productName},product_price=#{productPrice},category=#{category},product_info=#{productInfo},image_path=#{imagePath},image_path=#{infoImagePath},exp_date=#{expDate}
+		update product set product_name=#{productName},product_price=#{productPrice},category=#{category},product_info=#{productInfo},image_path=#{imagePath},info_image_path=#{infoImagePath},exp_date=#{expDate}
 		where product_id=#{productId}
 	</update>
 	<update id="updateProductWithThum" parameterType="Product">
