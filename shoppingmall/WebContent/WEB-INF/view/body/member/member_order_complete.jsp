@@ -8,11 +8,42 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
 <script type="text/javascript">
+
+$(document).ready(function(){
+	   history.pushState(null, null, location.href);
+	   window.onpopstate = function(event) {
+	      history.go(1);
+	   };
+	   
+	   
+	   //뒤로가기 & F5 누르면 alert 창 띄움
+	   //window.onbeforeunload = function() { return "이동하시겠습니까?"; };
+	   $(document).keydown(function(){
+	       if (event.keyCode == 8 || event.keyCode == 116) {
+	        event.keyCode==0;
+	        event.cancelBubble = true;
+	        event.returnValue = false;
+	        return false;
+	      }
+	   });
+
+	});
+	history.navigationMode = 'compatible';
+	function cfHistoryNoBack(){
+	    if (window.history) {
+	    //모든 브라우저에서 호출
+	    //window.history.forward(1);
+	    window.history.forward(1);
+	    }
+	}
+
 	var price = 0;
 
 	function home(){
 		location = "/taommall";
 	}
+	
+	
 </script>
 
 </head>
@@ -80,7 +111,7 @@ $("#sumPrice").text(price+"원");
 			</tr>
 			</c:forEach>
 		</table>
-		
+		<div>
 		<table class="center">
 		<colgroup>
 		<col width="30%"> 
@@ -101,12 +132,9 @@ $("#sumPrice").text(price+"원");
 				<div class="productName">배송시 유의사항 : ${requestScope.list[0].recipient.detail }</div>
 				</td>
 			</tr>
-		</table>
-	
-
-	<button onClick="history.back()" style="float:right">이전페이지로</button>
-	<button onClick="home()" style=" float: right; ">메인으로</button>
-
+		</table><br>
+		</div>
+			<button onClick="home()" style="position:relative;left: 1050px;margin-bottom: 10px; ">메인으로</button>
 </body>
 </html>
 
