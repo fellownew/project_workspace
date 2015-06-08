@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.co.taommall.account.vo.Address;
 import kr.co.taommall.account.vo.Buyer;
+import kr.co.taommall.account.vo.Seller;
 import kr.co.taommall.cart.service.CartService;
 import kr.co.taommall.cart.vo.Cart;
 import kr.co.taommall.order.service.OrderService;
@@ -34,7 +35,6 @@ public class OrderController {
 	ProductService productService;
 	@Autowired
 	RecipientService recipientService;
-	
 	@Autowired
 	CartService cartService;
 	
@@ -113,6 +113,31 @@ public class OrderController {
 		request.setAttribute("list", list);
 		return "member/member_order_complete_list.form";
 	}
+	
+	@RequestMapping("orderManager.do")
+	public String orderManager(String sellerId,HttpServletRequest request){
+		List<Order> list = service.selectOrderBySellerId(sellerId);
+		request.setAttribute("list", list);
+		/*
+		 * 필요한 정보 : 
+		 * 1. 바이어 이름 / 바이어 아이디
+		 * 2. 배송 주소
+		 * 3. 배송시 유의사항
+		 * 4. 배송 정보 [결제완료 / 배송준비 / 배송완료 - select로 구현
+		 */
+		return "seller/order_manager_list.form";
+	}
+	
+	@RequestMapping("orderStatusUpdate.do")
+	public String orderStatusUpdate(int id,String status,HttpSession session){
+		Order order = new Order();
+		order.setRecipientId(id);
+		order.setStatus(status);
+		service.updateOrder(order);
+		Seller seller = (Seller)session.getAttribute("loginInfo");
+		return "redirect:orderManager.do?sellerId="+seller.getSellerId();
+	}
+	
 	
 	@RequestMapping("main.do")
 	public String main(){

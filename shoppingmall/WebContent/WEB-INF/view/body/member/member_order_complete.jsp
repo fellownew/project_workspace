@@ -9,12 +9,6 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
 <script type="text/javascript">
 	var price = 0;
-	
-	$('#main').on("click",function(){
-		alert("test");
-		location = "<%=request.getContextPath() %>/mainPage.do"
-	});
-	
 </script>
 </head>
 <body>
@@ -76,30 +70,28 @@ $("#sumPrice").text(price+"원");
 		</table>
 		
 		<table class="center">
-		<colgroup>
-		<col width="30%"> 
-		<col width="70%">
-		</colgroup>
 		<caption style="text-align: left; font-weight: bold; font-size: 20px">배송지 정보</caption><br>
 			<tr>
-				<td style="width:120px; text-align:center" rowspan="1">받는 사람</td>
-				<td style="text-align:left">
+				<td style="width:120px; text-align:center" rowspan="2">받는 사람</td>
+
+			</tr>
+			
+			<tr>
+	 			<td style="text-align:left">
 					<div class="productName">이름 : ${sessionScope.loginInfo.name}</div>
 					<div class="productName">연락처 : ${sessionScope.loginInfo.phone }</div>
-					<div class="productName">주소 : (${sessionScope.loginInfo.address.postcode }) ${sessionScope.loginInfo.address.addressDetails }</div>
+					<div class="productName">우편번호 : ${sessionScope.loginInfo.address.postcode }</div>
+					<div class="productName">주소 : ${sessionScope.loginInfo.address.addressDetails }</div>
+					<div class="productName">배송시 유의사항 : ${requestScope.list[0].recipient.detail }</div>
 				</td>
-			</tr>
-			<tr>
-				<td style="width:120px; text-align:center">배송시 유의사항</td>
-				<td>
-				<div class="productName">배송시 유의사항 : ${requestScope.list[0].recipient.detail }</div>
-				</td>
+<%-- 				<td style="text-align:right">${order.amount}</td>
+				<td style="text-align:right">${order.product.productPrice}원</td>
+				<!-- <td style="text-align:right">무료</td> -->
+				<td style="text-align:right"  collspan="3">${order.status}</td> --%>
 			</tr>
 		</table>
 	
 
-	
-	<button id="main" style=" float: right; ">메인으로</button>
 
 </body>
 </html>

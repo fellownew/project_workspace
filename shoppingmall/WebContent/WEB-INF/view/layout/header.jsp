@@ -56,7 +56,7 @@ a{
 						${sessionScope.loginInfo.sellerId }님 환영합니다. <br>
 						<a href="<%=request.getContextPath() %>/auth/sellerInfoForm.do">회원정보</a> |
 						<a href="<%=request.getContextPath() %>/auth/orderManager.do?sellerId=${sessionScope.loginInfo.sellerId}">주문관리</a> |
-						<a href="<%=request.getContextPath() %>/auth/productManager.do?sellerId=${sessionScope.loginInfo.sellerId}">상품관리</a> |
+						<a href="<%=request.getContextPath() %>/auth/productManager.do?sellerId=${sessionScope.loginInfo.sellerId}">상품관리</a><br>
 						<a href="<%=request.getContextPath() %>/auth/centerList.do">고객센터</a> |
 						<a href="<%=request.getContextPath() %>/auth/logout.do">로그아웃</a>	
 					</c:otherwise>
@@ -67,7 +67,7 @@ a{
 				${sessionScope.loginInfo.buyerId }님 환영합니다. <br>
 				<a href="<%=request.getContextPath()%>/auth/buyerInfoForm.do">회원정보</a> |
 				<a href="<%=request.getContextPath()%>/cart/auth/cartList.do">장바구니</a> |
-				<a href="<%=request.getContextPath()%>/auth/completeList.do">주문내역</a> |
+				<a href="<%=request.getContextPath()%>/auth/completeList.do">주문내역</a><br>
 				<a href="<%=request.getContextPath() %>/auth/centerList.do">고객센터</a> |
 				<a href="<%=request.getContextPath() %>/auth/logout.do">로그아웃</a>	
 
