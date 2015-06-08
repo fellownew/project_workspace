@@ -18,8 +18,9 @@
 </head>
 
 <script type="text/javascript">
-	$(document).ready(function(){
 
+	$(document).ready(function(){
+		
 		$("select").change(function(){
 			if($("select option:selected").attr("id")!="op1"){				
 			$("#detail").val($("select option:selected").val());
@@ -87,7 +88,8 @@
 
 <body>
 <!-- 	<fieldset style="height:500px"> -->
-	
+<form onunload="">
+</form>
 	<table class="center" >
 		<colgroup>
 				<col width="30%"> 

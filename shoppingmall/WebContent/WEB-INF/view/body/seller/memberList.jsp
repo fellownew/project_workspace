@@ -71,7 +71,7 @@
 		<thead>
 			<tr>
 				<td>셀러ID</td>
-				<td>셀러이름</td>
+				<td>이름</td>	
 				<td>성별</td>
 				<td>주소</td>
 				<td>이메일</td>
@@ -87,7 +87,7 @@
 					<td>${test.sellerId}</td>
 					<td>${test.name}</td>
 					<td>${test.gender}</td>
-					<td>${test.address}</td>
+					<td>(${test.address.postcode})<br> ${test.address.addressDetails}</td>
 					<td>${test.email}</td>
 					<td>${test.phone}</td>
 					<td>${test.corporateNumber}</td>

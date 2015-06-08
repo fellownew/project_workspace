@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.co.taommall.account.vo.Address;
@@ -89,7 +90,7 @@ public class OrderController {
 	};
 
 	@RequestMapping("complete.do")
-	public String complete(@RequestParam(required=true) int recipientId,HttpServletRequest request,HttpSession session){
+	public String complete(@RequestParam(required=true) int recipientId,HttpServletResponse response,HttpServletRequest request,HttpSession session){
 		List<Order> list = service.selectOrderByRecipientId(recipientId);
 			for(Order o : list){
 				Product product = productService.selectProductByIdNoPaging(o.getProductId(), null);	
@@ -115,7 +116,8 @@ public class OrderController {
 	}
 	
 	@RequestMapping("orderManager.do")
-	public String orderManager(String sellerId,HttpServletRequest request){
+	public String orderManager(HttpSession session,HttpServletRequest request){
+		String sellerId = ((Seller)session.getAttribute("loginInfo")).getSellerId();
 		List<Order> list = service.selectOrderBySellerId(sellerId);
 		request.setAttribute("list", list);
 		/*
@@ -129,13 +131,13 @@ public class OrderController {
 	}
 	
 	@RequestMapping("orderStatusUpdate.do")
-	public String orderStatusUpdate(int id,String status,HttpSession session){
+	public String orderStatusUpdate(int recipientId,String status,HttpSession session){
 		Order order = new Order();
-		order.setRecipientId(id);
+		order.setRecipientId(recipientId);
 		order.setStatus(status);
 		service.updateOrder(order);
 		Seller seller = (Seller)session.getAttribute("loginInfo");
-		return "redirect:orderManager.do?sellerId="+seller.getSellerId();
+		return "redirect:orderManager.do";
 	}
 	
 	
