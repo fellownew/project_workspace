@@ -42,8 +42,13 @@ public class SellerController {
 	public String LoginSeller(@RequestParam("sId") String id,@RequestParam("sPassword") String password,HttpSession session) {
 		Seller seller = service.selectSellerById(id);
 		if(seller !=null && seller.getPassword().equals(password)){
+			
+			if(seller.getAuth()!="true"){
+				return "auth";
+			}
 			session.setAttribute("loginInfo", seller);
 			session.setAttribute("user","seller");
+			
 			return "success";
 		}else{
 			return "fail";

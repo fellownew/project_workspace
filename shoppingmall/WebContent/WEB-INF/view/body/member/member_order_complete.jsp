@@ -15,7 +15,7 @@
 
 <c:forEach items="${requestScope.list}" var="list">
 <script type="text/javascript">
-price = price +${list.amount*list.product.productPrice}
+price = price + ${list.amount*list.product.productPrice}
 </script>
 </c:forEach>
 <script type="text/javascript">
