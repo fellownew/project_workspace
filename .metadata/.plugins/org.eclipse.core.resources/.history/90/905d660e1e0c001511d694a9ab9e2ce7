@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="kr.co.taommall.order.dao">
+	
+	
+
+
+<insert id="insertOrder" parameterType="order" >
+<selectKey keyProperty="orderId" order="BEFORE" resultType="_int">select order_no.nextval from dual</selectKey>
+   insert into orders values(#{orderId},#{productId},#{amount},#{status},#{buyerId},#{sellerId},#{recipientId})
+</insert>
+
+
+<update id="updateOrderById" parameterType="order">
+	update orders
+	<set>
+		<if test="amount != 0" >
+		amount=#{amount} ,
+		</if>
+		<if test="status != null">
+		status=#{status}
+		</if>
+	</set>
+	where order_id=#{orderId}
+</update>
+
+<delete id="deleteOrderById" parameterType="_int">
+	delete from orders
+	where order_id = #{value}
+</delete>
+
+<sql id="select-order-default" >
+	select 	o.order_id, o.product_id, o.buyer_id, o.amount, o.status, o.recipient_id, o.seller_id,
+			p.product_id, p.product_name, p.product_price, p.category, p.product_info,p.image_path, p.regi_date,p.exp_date, p.seller_id,
+			b.buyer_id, b.password, b.name, b.address, b.email, b.phone,
+			s.seller_id, s.password, s.name, s.gender, s.address, s.email, s.phone, s.auth, s.admin, s.corporate_number,
+			r.recipient_id, r.name, r.address, r.phone, r.detail
+	from orders o,product p, buyer b, recipient r,seller s
+</sql>
+
+<!-- DefaultOrderResultMap -->
+<resultMap type="order" id="resultMap-order-default">
+	<id column="order_id" property="orderId"/>
+	<result column="product_id" property="productId"/>
+	<result column="buyer_id" property="buyerId"/>
+	<result column="seller_id" property="sellerId"/>
+	<result column="recipient_id" property="recipientId"/>
+	<result column="amount" property="amount"/>
+	<result column="status" property="status"/>
+	<association property="product" javaType="kr.co.taommall.product.vo.Product" resultMap="kr.co.taommall.product.dao.product-resultMap"/>
+	<association property="buyer" javaType="kr.co.taommall.account.vo.Buyer" resultMap="account.dao.buyer.resultMap-buyer-basic"/>
+	<association property="seller" javaType="kr.co.taommall.account.vo.Seller" resultMap="account.dao.seller.resultMap-seller-basic"></association>
+	<association property="recipient" javaType="kr.co.taommall.recipient.vo.Recipient" resultMap="kr.co.taommall.recipient.dao.resultMap-recipient-default"/>
+</resultMap>
+
+<select id="selectAllOrder"  resultMap="resultMap-order-default">
+<include refid="select-order-default"/>
+where o.seller_id = s.seller_id and o.product_id = p.product_id and o.buyer_id = b.buyer_id and o.recipient_id = r.recipient_id
+</select>
+
+
+<select id="selectOrderByProductId" parameterType="_int" resultMap="resultMap-order-default">
+<include refid="select-order-default"/>
+where o.seller_id = s.seller_id and o.product_id = p.product_id and o.buyer_id = b.buyer_id and o.recipient_id = r.recipient_id and p.product_id = #{value}
+</select>
+
+<select id="selectOrderByOrderId" parameterType="_int" resultMap="resultMap-order-default">
+<include refid="select-order-default"/>
+
+where o.seller_id = s.seller_id and o.product_id = p.product_id and o.buyer_id = b.buyer_id and o.recipient_id = r.recipient_id and o.order_id = #{value}
+</select>
+
+<select id="selectOrderByBuyerId" parameterType="string" resultMap="resultMap-order-default">
+<include refid="select-order-default"/>
+where o.seller_id = s.seller_id and o.product_id = p.product_id and o.buyer_id = b.buyer_id and o.recipient_id = r.recipient_id and o.buyer_id = #{value}
+</select>
+
+<select id="selectOrderByStatus" parameterType="string" resultMap="resultMap-order-default">
+<include refid="select-order-default"/>
+where o.seller_id = s.seller_id and o.product_id = p.product_id and o.buyer_id = b.buyer_id and o.recipient_id = r.recipient_id and o.status = #{value}
+</select>
+
+<select id="selectOrderBySellerId" parameterType="string" resultMap="resultMap-order-default">
+<include refid="select-order-default"/>
+where o.seller_id = s.seller_id and o.product_id = p.product_id and o.buyer_id = b.buyer_id and o.recipient_id = r.recipient_id and o.seller_id = #{value}
+</select>
+
+<select id="selectOrderByRecipientId" parameterType="_int" resultMap="resultMap-order-default">
+<include refid="select-order-default"/>
+where o.seller_id = s.seller_id and o.product_id = p.product_id and o.buyer_id = b.buyer_id and o.recipient_id = r.recipient_id and  o.recipient_id  = #{value}
+</select>
+
+
+</mapper>
