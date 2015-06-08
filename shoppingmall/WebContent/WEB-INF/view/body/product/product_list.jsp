@@ -52,7 +52,7 @@ h2{
 				<h2>모든 상품</h2>
 			</c:otherwise>
 		</c:choose>
-	
+	<div "style="width:1000px;background-color:#3866A3">
 		<%--테이블 --%>
 		<table border='1'  style=" width:800px;margin: 0 auto;text-align: center">
 			<thead>
@@ -76,6 +76,8 @@ h2{
 				</c:forEach>
 			</tbody>
 		</table>
+	</div>
+		
 			<c:choose>
 				<c:when test="${pagingBean.previousPageGroup }">
 					<a href="<%=request.getContextPath()%>/list.do?page=${pagingBean.startPageOfPageGroup-1}&search=${requestScope.search }">◀</a>
