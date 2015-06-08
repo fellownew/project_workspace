@@ -30,6 +30,7 @@
 		});
 		
 		
+		
 		$("#payment").on("click",function(){
 			
 		 	if($("#test1").is(":checked")){
@@ -39,7 +40,7 @@
 		 		$("#postcode").val($("#postcode1").val()+"-"+$("#postcode2").val());
 				$("#addressDetail").val($("#address").val()+" "+$("#addressDetails").val());
 		 	}
-			
+		 				
 			location = "<%=request.getContextPath() %>/auth/payment.do?productId="+'${param.productId}'
              		+"&amount="+'${param.amount}'
              		+"&name="+$("#name").val()
@@ -88,14 +89,21 @@
 <!-- 	<fieldset style="height:500px"> -->
 	
 	<table class="center" >
+		<colgroup>
+				<col width="30%"> 
+				<col width="15%">
+				<col width="10%"> 
+				<col width="15%">
+				<col width="20%"> 
+		</colgroup>
 		<caption style="text-align:left; font-weight:bold; font-size:20px" >주문상품 확인</caption>
 		<thead>
 			<tr>
-				<td style=" width=150px">상품 정보</td>
-				<td>상품 금액</td>
-				<td>수량</td>
-				<td>합계</td>
-				<td>판매자</td>
+				<th style=" width=150px">상품 정보</th>
+				<th>상품 금액</th>
+				<th>수량</th>
+				<th>합계</th>
+				<th>판매자</th>
 			</tr>
 		</thead>
 
@@ -109,10 +117,10 @@
 					<div class="productName">${cart.product.productName }</div><br>
 					<div class="productInfo">${cart.product.productInfo }</div>
 					</td>
-					<td>${cart.product.productPrice}</td>
-					<td >${cart.amount}</td>
-					<td>${cart.product.productPrice*cart.amount}</td>
-					<td>${cart.product.sellerId}</td>
+					<td style="text-align:right">${cart.product.productPrice}</td>
+					<td style="text-align:right">${cart.amount}</td>
+					<td style="text-align:right">${cart.product.productPrice*cart.amount}</td>
+					<td style="text-align:right">${cart.product.sellerId}</td>
 				</tr> 
 		</c:forEach>
 		</tbody>
@@ -123,37 +131,41 @@
 	<caption style="text-align:left; font-weight:bold; font-size:20px">구매자 정보</caption>
 		<thead>
 			<tr>
-				<td style="width:80px; text-align:left">보내는분</td>
+				<th style="width:80px; text-align:left">보내는분</th>
 				<td style="text-align:left">${sessionScope.loginInfo.name}</td>
 			</tr>
 			<tr>
-				<td>주소</td>
+				<th>주소</th>
 				<td style="text-align:left" id="oiginalAddr">
 				${sessionScope.loginInfo.address.postcode}
 				${sessionScope.loginInfo.address.addressDetails}</td>
 			</tr>	
 			<tr>
-				<td>연락처</td>
+				<th>연락처</th>
 				<td style="text-align:left">${sessionScope.loginInfo.phone}</td>
 			</tr>							
 	</table><br>
 
 	<table class="center">
+		<colgroup>
+				<col width="20%"> 
+				<col width="80%">
+		</colgroup>
 	<caption style="text-align:left; font-weight:bold; font-size:20px">받는사람 정보</caption>
 			<tr>
-				<td style="width:80px">배송지</td>
+				<th style="width:80px">배송지</th>
 				<td style="text-align:left">
 					<label><input type="radio" name="delivery" id="test1" checked="checked">기본주소</label>
 					<label><input type="radio" name="delivery" id="test2">새로입력</label>
 				</td>
 			</tr>
 			<tr>
-				<td>받는분</td>
+				<th>받는분</th>
 				<td style="text-align:left"><input type="text" name="name" id="name" readonly="readonly" value="${sessionScope.loginInfo.name}"></td>
 				<!-- <td style="text-align:left" id="td1">${sessionScope.loginInfo.name}</td>  -->
 			</tr>
 			<tr>
-				<td>주소</td>
+				<th>주소</th>
 				<td style="text-align:left">
 				<div id="addr1">${sessionScope.loginInfo.address.postcode} ${sessionScope.loginInfo.address.addressDetails}</div>
 				<div id="addr2" style="display: none">
@@ -169,14 +181,14 @@
 				<!-- <td style="text-align:left" id="td2">${sessionScope.loginInfo.address}</td>-->
 			</tr>
 			<tr>
-				<td>연락처</td>
+				<th>연락처</th>
 				<td style="text-align:left"><input type="text" name="phone" id="phone" readonly="readonly" value="${sessionScope.loginInfo.phone }"></td>
 				<!-- <td style="text-align:left" id="td3">${sessionScope.loginInfo.phone}</td>-->
 			</tr>
 			<tr>
-				<td>배송 시<br>요구사항</td>
+				<th>배송 시 요구사항</th>
 				<td style="text-align:left">
-					<input type="text" id="detail" name="detail" value="빠른 배송 부탁드립니다." size="75">
+					<input type="text" id="detail" name="detail" value="빠른 배송 부탁드립니다." size="55">
  					<select>
 	 					<option id="op1">직접입력</option>
 						<option id="op2">옥상 문 앞에 보관해주세요. 감사합니다.</option>
