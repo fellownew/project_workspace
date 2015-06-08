@@ -5,13 +5,13 @@
 		<item value="https://github.com/fellownew/project_workspace.git"/>
 	</list>
 	<list key="CommitDialog.authorValues">
-		<item value="pyh &lt;pyh@pyh-PC&gt;"/>
 		<item value="secret8060 &lt;91799897@naver.com&gt;"/>
+		<item value="pyh &lt;pyh@pyh-PC&gt;"/>
 		<item value="fellownew &lt;hotttnew@naver.com&gt;"/>
 	</list>
 	<list key="CommitDialog.committerValues">
-		<item value="pyh &lt;pyh@pyh-PC&gt;"/>
 		<item value="secret8060 &lt;91799897@naver.com&gt;"/>
+		<item value="pyh &lt;pyh@pyh-PC&gt;"/>
 		<item value="fellownew &lt;hotttnew@naver.com&gt;"/>
 	</list>
 	<section name="org.eclipse.egit.ui.COMMIT_DIALOG_SECTION">

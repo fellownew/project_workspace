@@ -18,9 +18,8 @@
 </head>
 
 <script type="text/javascript">
-
 	$(document).ready(function(){
-		
+
 		$("select").change(function(){
 			if($("select option:selected").attr("id")!="op1"){				
 			$("#detail").val($("select option:selected").val());
@@ -41,7 +40,9 @@
 		 		$("#postcode").val($("#postcode1").val()+"-"+$("#postcode2").val());
 				$("#addressDetail").val($("#address").val()+" "+$("#addressDetails").val());
 		 	}
-		 				
+		 	
+
+		 	
 			location = "<%=request.getContextPath() %>/auth/payment.do?productId="+'${param.productId}'
              		+"&amount="+'${param.amount}'
              		+"&name="+$("#name").val()
@@ -88,8 +89,6 @@
 
 <body>
 <!-- 	<fieldset style="height:500px"> -->
-<form onunload="">
-</form>
 	<table class="center" >
 		<colgroup>
 				<col width="30%"> 
@@ -147,7 +146,8 @@
 				<td style="text-align:left">${sessionScope.loginInfo.phone}</td>
 			</tr>							
 	</table><br>
-
+		
+	<div>
 	<table class="center">
 		<colgroup>
 				<col width="20%"> 
@@ -201,7 +201,14 @@
 					</select> 
 				</td>
 			</tr>
-	</table><br>
-	<button id="payment" style=" float: right; ">결제하기</button>
+			<tr>
+				<td colspan="2" >
+					
+				</td>
+			</tr>
+		</table><br>
+		</div>
+		<button id="payment" style="position:relative;left: 1055px;margin-bottom: 10px; ">결제하기</button>
+		
 </body>
 </html>
