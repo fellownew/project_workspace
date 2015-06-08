@@ -53,6 +53,12 @@ public class SellerServiceImpl implements SellerService {
 		PagingBean.CONTENTS_PER_PAGE=count;
 		
 		List<Seller> list = dao.selectAllSellerPaging(pageNo,auth);
+		for(Seller s : list){
+			if(s.getSellerId().equals("admin")){
+				list.remove(s);
+				break;
+			}
+		}
 		// PagingBean 생성
 		int totalContent = dao.selectSellerCount();
 		

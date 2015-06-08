@@ -31,8 +31,7 @@ public class Seller implements Serializable {
 		this.phone = phone;
 		this.corporateNumber = corporateNumber;
 	}
-	
-	
+
 	public Seller(String sellerId, String password, String name, String gender,
 			Address address, String email, String phone, String auth,
 			String admin, String corporateNumber) {
@@ -127,6 +126,88 @@ public class Seller implements Serializable {
 
 	public void setCorporateNumber(String corporateNumber) {
 		this.corporateNumber = corporateNumber;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((address == null) ? 0 : address.hashCode());
+		result = prime * result + ((admin == null) ? 0 : admin.hashCode());
+		result = prime * result + ((auth == null) ? 0 : auth.hashCode());
+		result = prime * result
+				+ ((corporateNumber == null) ? 0 : corporateNumber.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result
+				+ ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
+		result = prime * result
+				+ ((sellerId == null) ? 0 : sellerId.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Seller other = (Seller) obj;
+		if (address == null) {
+			if (other.address != null)
+				return false;
+		} else if (!address.equals(other.address))
+			return false;
+		if (admin == null) {
+			if (other.admin != null)
+				return false;
+		} else if (!admin.equals(other.admin))
+			return false;
+		if (auth == null) {
+			if (other.auth != null)
+				return false;
+		} else if (!auth.equals(other.auth))
+			return false;
+		if (corporateNumber == null) {
+			if (other.corporateNumber != null)
+				return false;
+		} else if (!corporateNumber.equals(other.corporateNumber))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (gender == null) {
+			if (other.gender != null)
+				return false;
+		} else if (!gender.equals(other.gender))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
+		if (phone == null) {
+			if (other.phone != null)
+				return false;
+		} else if (!phone.equals(other.phone))
+			return false;
+		if (sellerId == null) {
+			if (other.sellerId != null)
+				return false;
+		} else if (!sellerId.equals(other.sellerId))
+			return false;
+		return true;
 	}
 
 	@Override

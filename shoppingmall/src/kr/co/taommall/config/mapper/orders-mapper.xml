@@ -71,7 +71,7 @@ where o.seller_id = s.seller_id and o.product_id = p.product_id and o.buyer_id =
 <select id="selectOrderByBuyerId" parameterType="string" resultMap="resultMap-order-default">
 <include refid="select-order-default"/>
 where o.seller_id = s.seller_id and o.product_id = p.product_id and o.buyer_id = b.buyer_id and o.recipient_id = r.recipient_id and o.buyer_id = #{value}
-order by o.recipient_id
+order by o.recipient_id desc
 </select>
 
 <select id="selectOrderByStatus" parameterType="string" resultMap="resultMap-order-default">
