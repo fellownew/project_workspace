@@ -48,4 +48,7 @@ public class OrderServiceImpl implements OrderService{
 	public List<Order> selectOrderByRecipientId(int recipientId) {
 		return dao.selectOrderByRecipientId(recipientId);
 	}
+	public List<Order> selectOrderBySellerId(String sellerId){
+		return dao.selectOrderBySellerId(sellerId);
+	}
 }
