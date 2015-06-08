@@ -1,17 +1,17 @@
 package kr.co.taommall.product.service;
 
-import java.util.HashMap;
 import java.util.List;
 
-import kr.co.taommall.common.PagingBean;
 import kr.co.taommall.product.vo.Product;
 
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface ProductService {
-	public void insertProduct(Product product,MultipartFile upfile);
-	public void updateProduct(Product product,MultipartFile upfile);//imagePath가 없을 경우  updateProductIgnoreImagePath를 불러온다.
+	public void insertProduct(Product product,MultipartFile upfile,MultipartFile infoUpfile);
+	public void updateProduct(Product product,MultipartFile upfile,MultipartFile infoUpfile);
+	public void updateProductWithThum(Product product,MultipartFile upfile);
+	public void updateProductWithInfo(Product product,MultipartFile infoUpfile);
 	public void updateProductIgnoreImagePath(Product product);
 	public int deleteProduct(int productId);
 	public List<Product> selectAllProduct(int pageNo,Model model);

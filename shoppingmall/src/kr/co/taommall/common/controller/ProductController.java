@@ -31,8 +31,8 @@ public class ProductController {
 	}
 	//상품 등록 처리
 	@RequestMapping("/insertProduct.do")
-	public String insert(@ModelAttribute Product product,MultipartFile upfile,Model model,HttpSession session){
-		service.insertProduct(product,upfile);
+	public String insert(@ModelAttribute Product product,@RequestParam MultipartFile upfile,@RequestParam MultipartFile infoUpfile,Model model,HttpSession session){
+		service.insertProduct(product,upfile,infoUpfile);
 		Seller seller = (Seller)session.getAttribute("loginInfo");
 		return "redirect:productManager.do?sellerId="+seller.getSellerId();
 	}
@@ -46,9 +46,17 @@ public class ProductController {
 	
 	//상품 수정 처리
 	@RequestMapping("/modifyProduct.do")
-	public String update(@ModelAttribute Product product ,MultipartFile upfile,Model model,HttpSession session){
-		if(upfile.getContentType().equals("image/jpeg")){
-			service.updateProduct(product,upfile);
+	public String update(@ModelAttribute Product product ,@RequestParam MultipartFile upfile,@RequestParam MultipartFile infoUpfile,Model model,HttpSession session){
+		//사진,정보 파일 둘 다 올렸을 때
+		if(upfile.getContentType().equals("image/jpeg") && infoUpfile.getContentType().equals("image/jpeg")){
+			service.updateProduct(product,upfile,infoUpfile);
+		//사진만 올라왔을때
+		}else if(upfile.getContentType().equals("image/jpeg")){
+			service.updateProductWithThum(product,upfile);
+		//정보만 올라왔을때 
+		}else if(infoUpfile.getContentType().equals("image/jpeg")){
+			service.updateProductWithInfo(product,infoUpfile);
+		//파일을 둘 다 올리지 않았을 때 
 		}else{
 			service.updateProductIgnoreImagePath(product);
 		}
