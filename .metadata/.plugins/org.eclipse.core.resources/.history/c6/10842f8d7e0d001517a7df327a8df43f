@@ -9,12 +9,13 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
 <script type="text/javascript">
 	var price = 0;
-
-	function home(){
-		location = "/taommall";
-	}
+	
+	$('#main').on("click",function(){
+		alert("test");
+		location = "<%=request.getContextPath() %>/mainPage.do"
+	});
+	
 </script>
-
 </head>
 <body>
 
@@ -49,7 +50,7 @@ $("#sumPrice").text(price+"원");
 	</table>
 
 	<table class="center">
-		<colgroup>
+			<colgroup>
 				<col width="30%"> 
 				<col width="10%">
 				<col width="15%"> 
@@ -104,8 +105,8 @@ $("#sumPrice").text(price+"원");
 		</table>
 	
 
-	<button onClick="history.back()" style="float:right">이전페이지로</button>
-	<button onClick="home()" style=" float: right; ">메인으로</button>
+	
+	<button id="main" style=" float: right; ">메인으로</button>
 
 </body>
 </html>

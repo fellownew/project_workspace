@@ -40,7 +40,9 @@
 		 		$("#postcode").val($("#postcode1").val()+"-"+$("#postcode2").val());
 				$("#addressDetail").val($("#address").val()+" "+$("#addressDetails").val());
 		 	}
-		 				
+		 	
+
+			
 			location = "<%=request.getContextPath() %>/auth/payment.do?productId="+'${param.productId}'
              		+"&amount="+'${param.amount}'
              		+"&name="+$("#name").val()

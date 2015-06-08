@@ -49,7 +49,7 @@ $("#sumPrice").text(price+"원");
 	</table>
 
 	<table class="center">
-		<colgroup>
+			<colgroup>
 				<col width="30%"> 
 				<col width="10%">
 				<col width="15%"> 

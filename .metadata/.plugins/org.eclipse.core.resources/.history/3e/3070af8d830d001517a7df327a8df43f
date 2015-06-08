@@ -30,7 +30,6 @@
 		});
 		
 		
-		
 		$("#payment").on("click",function(){
 			
 		 	if($("#test1").is(":checked")){
@@ -40,7 +39,7 @@
 		 		$("#postcode").val($("#postcode1").val()+"-"+$("#postcode2").val());
 				$("#addressDetail").val($("#address").val()+" "+$("#addressDetails").val());
 		 	}
-		 				
+			
 			location = "<%=request.getContextPath() %>/auth/payment.do?productId="+'${param.productId}'
              		+"&amount="+'${param.amount}'
              		+"&name="+$("#name").val()
@@ -148,8 +147,8 @@
 
 	<table class="center">
 		<colgroup>
-				<col width="20%"> 
-				<col width="80%">
+				<col width="17%"> 
+				<col width="83%">
 		</colgroup>
 	<caption style="text-align:left; font-weight:bold; font-size:20px">받는사람 정보</caption>
 			<tr>
@@ -188,7 +187,7 @@
 			<tr>
 				<th>배송 시 요구사항</th>
 				<td style="text-align:left">
-					<input type="text" id="detail" name="detail" value="빠른 배송 부탁드립니다." size="55">
+					<input type="text" id="detail" name="detail" value="빠른 배송 부탁드립니다." size="75">
  					<select>
 	 					<option id="op1">직접입력</option>
 						<option id="op2">옥상 문 앞에 보관해주세요. 감사합니다.</option>

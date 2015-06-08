@@ -30,7 +30,6 @@
 		});
 		
 		
-		
 		$("#payment").on("click",function(){
 			
 		 	if($("#test1").is(":checked")){
@@ -40,7 +39,7 @@
 		 		$("#postcode").val($("#postcode1").val()+"-"+$("#postcode2").val());
 				$("#addressDetail").val($("#address").val()+" "+$("#addressDetails").val());
 		 	}
-		 				
+			
 			location = "<%=request.getContextPath() %>/auth/payment.do?productId="+'${param.productId}'
              		+"&amount="+'${param.amount}'
              		+"&name="+$("#name").val()
@@ -148,8 +147,8 @@
 
 	<table class="center">
 		<colgroup>
-				<col width="20%"> 
-				<col width="80%">
+				<col width="25%"> 
+				<col width="75%">
 		</colgroup>
 	<caption style="text-align:left; font-weight:bold; font-size:20px">받는사람 정보</caption>
 			<tr>

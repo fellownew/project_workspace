@@ -9,12 +9,18 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
 <script type="text/javascript">
 	var price = 0;
-
+	
+	$('#main').on("click",function(){
+		alert("test");//template.jsp
+		location = "<%=request.getContextPath() %>/mainPage.do"
+	});
+	
 	function home(){
 		location = "/taommall";
 	}
-</script>
 
+	
+</script>
 </head>
 <body>
 
@@ -49,7 +55,7 @@ $("#sumPrice").text(price+"원");
 	</table>
 
 	<table class="center">
-		<colgroup>
+			<colgroup>
 				<col width="30%"> 
 				<col width="10%">
 				<col width="15%"> 
