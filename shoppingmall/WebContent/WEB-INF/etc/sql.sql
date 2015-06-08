@@ -12,10 +12,23 @@ drop table seller;
 drop table buyer;
 drop table recipient;
 
+<<<<<<< HEAD
+select
+select * from seller
+select * from orders
+select * from buyer
+select * from product
+select * from RECIPIENT
+
+alter table  
+insert into orders (order_id,product_id,amount,status,buyer_id,seller_id)
+values('7',62,6,'배송중','buyer-3','seller-1');
+=======
 drop sequence recipient_no_seq;
 drop sequence c_product_id;
 drop sequence c_board_id;
 drop sequence order_no;
+>>>>>>> 6fcc69b94dfd9d1121ba56d98cbea1c4ac0f41c4
 
 
 create table buyer(
@@ -112,8 +125,12 @@ create sequence recipient_no_seq;
 create sequence c_product_id;
 create sequence c_board_id;
 create sequence order_no;
-
-
+select * from buyer
+select * from orders
+delete from orders
+where amount between 1 and 20 
+alter table recipient add (postcode varchar2(10) not null)
+alter table orders add (regi_date varchar2(10) not null)
 /*
  * 세팅용 sql문 끝
  */

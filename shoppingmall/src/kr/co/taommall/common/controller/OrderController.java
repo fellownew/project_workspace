@@ -8,6 +8,8 @@ import javax.servlet.http.HttpSession;
 
 import kr.co.taommall.account.vo.Address;
 import kr.co.taommall.account.vo.Buyer;
+import kr.co.taommall.account.vo.Seller;
+import kr.co.taommall.cart.service.CartService;
 import kr.co.taommall.cart.vo.Cart;
 import kr.co.taommall.order.service.OrderService;
 import kr.co.taommall.order.vo.Order;
@@ -33,6 +35,8 @@ public class OrderController {
 	ProductService productService;
 	@Autowired
 	RecipientService recipientService;
+	@Autowired
+	CartService cartService;
 	
 	@RequestMapping("/memberOrderForm.do")
 	public String memberOrderForm(@RequestParam("productId") String[] cartList,@RequestParam("amount") String[] amountList,HttpServletRequest request, HttpSession session){
@@ -73,7 +77,7 @@ public class OrderController {
 				if(product == null){
 					continue;
 				}	
-				Order order = new Order(0,productId,amount,"결제완료",buyer.getBuyerId(),product.getSellerId(),recipient.getRecipientId());
+				Order order = new Order(0,productId,amount,"결제완료",buyer.getBuyerId(),product.getSellerId(),recipient.getRecipientId(),null);
 				int count1 = service.insertOrder(order);			
 			}
 			return "redirect:/auth/complete.do?recipientId="+recipient.getRecipientId();
@@ -85,12 +89,59 @@ public class OrderController {
 	};
 
 	@RequestMapping("complete.do")
-	public String complete(int recipientId,HttpServletRequest request){
+	public String complete(@RequestParam(required=true) int recipientId,HttpServletRequest request,HttpSession session){
 		List<Order> list = service.selectOrderByRecipientId(recipientId);
-
+			for(Order o : list){
+				Product product = productService.selectProductByIdNoPaging(o.getProductId(), null);	
+				if(product !=null){
+					Buyer buyer = (Buyer)session.getAttribute("loginInfo");
+					Cart cart = cartService.selectCartByProductId(new Cart(buyer.getBuyerId(),product.getProductId(),0));
+					if(cart!=null){
+						int count = cartService.deleteCart(cart);
+						
+					}
+				}
+			}
 		request.setAttribute("list", list);		
 		return "member/member_order_complete.form";
 	}
 	
+	@RequestMapping("completeList.do")
+	public String completeList(HttpSession session,HttpServletRequest request){
+		Buyer buyer = (Buyer) session.getAttribute("loginInfo");
+		List<Order> list = service.selectOrderByBuyerId(buyer.getBuyerId());
+		request.setAttribute("list", list);
+		return "member/member_order_complete_list.form";
+	}
+	
+	@RequestMapping("orderManager.do")
+	public String orderManager(String sellerId,HttpServletRequest request){
+		List<Order> list = service.selectOrderBySellerId(sellerId);
+		request.setAttribute("list", list);
+		/*
+		 * 필요한 정보 : 
+		 * 1. 바이어 이름 / 바이어 아이디
+		 * 2. 배송 주소
+		 * 3. 배송시 유의사항
+		 * 4. 배송 정보 [결제완료 / 배송준비 / 배송완료 - select로 구현
+		 */
+		return "seller/order_manager_list.form";
+	}
+	
+	@RequestMapping("orderStatusUpdate.do")
+	public String orderStatusUpdate(int id,String status,HttpSession session){
+		Order order = new Order();
+		order.setRecipientId(id);
+		order.setStatus(status);
+		service.updateOrder(order);
+		Seller seller = (Seller)session.getAttribute("loginInfo");
+		return "redirect:orderManager.do?sellerId="+seller.getSellerId();
+	}
+	
+	
+	@RequestMapping("main.do")
+	public String main(){
+		return "main.jsp";
+	}
 
 }
