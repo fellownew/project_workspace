@@ -75,51 +75,24 @@ $("#sumPrice").text(price+"원");
 				<td style="width:120px; text-align:center" rowspan="2">받는 사람</td>
 
 			</tr>
-			<c:forEach items="${requestScope.list}" var="order">
 			
 			<tr>
 	 			<td style="text-align:left">
 					<div class="productName">이름 : ${sessionScope.loginInfo.name}</div>
 					<div class="productName">연락처 : ${sessionScope.loginInfo.phone }</div>
+					<div class="productName">우편번호 : ${sessionScope.loginInfo.address.postcode }</div>
 					<div class="productName">주소 : ${sessionScope.loginInfo.address.addressDetails }</div>
-					
-				</td> 
+					<div class="productName">배송시 유의사항 : ${requestScope.list[0].recipient.detail }</div>
+				</td>
 <%-- 				<td style="text-align:right">${order.amount}</td>
 				<td style="text-align:right">${order.product.productPrice}원</td>
 				<!-- <td style="text-align:right">무료</td> -->
 				<td style="text-align:right"  collspan="3">${order.status}</td> --%>
 			</tr>
-			</c:forEach>
 		</table>
-	</thead>
+	
 
-<%--  		<tbody>
-			<tr>
-				<td><img src="<%=request.getContextPath()%>/${requestScope.product.imagePath }"	width="120px" height="120px" /></td>
-				<td>${requestScope.amount}</td>
-				<td>${requestScope.product.productPrice}</td>
-				<td>${requestScope.product.sellerId}</td>
-			</tr>
-		</tbody> --%>
-	</table>
-	<caption></caption>
-	</table>
 
-	<hr>
-	order Id : ${requestScope.order.orderId }
-	<br>
-	<br> amount : ${requestScope.order.amount}
-	<br>
-	<br> status : ${requestScope.order.status}
-	<br>
-	<br> product : ${requestScope.order.product}
-	<br>
-	<br> ${requestScope.order.recipient}
-	<br>
-	<br> ${requestScope.order.seller}
-	<br>
-	<br> ${requestScope.order.buyer}
-	<br>
 </body>
 </html>
 

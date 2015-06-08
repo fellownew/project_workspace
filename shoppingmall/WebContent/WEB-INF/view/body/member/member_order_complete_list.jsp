@@ -38,9 +38,8 @@ font-size: 20px;
 $(document).ready(function(){
 	
 $("tbody>tr>td:first-child").on("click",function(){
-	$(this).attr("name");
 	//여기서 해줄 것은, orderId로 넘기면, 받아서 출력해 주는 페이지 만들 것.
-	//location = "<%=request.getContextPath() %>/auth/payment.do?";
+	location = "<%=request.getContextPath() %>/auth/complete.do?recipientId="+$(this).attr('name');
 
 });
 });

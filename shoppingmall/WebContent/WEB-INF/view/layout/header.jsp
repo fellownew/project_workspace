@@ -67,7 +67,7 @@ a{
 				${sessionScope.loginInfo.buyerId }님 환영합니다. <br>
 				<a href="<%=request.getContextPath()%>/auth/buyerInfoForm.do">회원정보</a> |
 				<a href="<%=request.getContextPath()%>/cart/auth/cartList.do">장바구니</a> |
-				<a href="<%=request.getContextPath()%>/order/auth/orderList.do">주문내역</a> |
+				<a href="<%=request.getContextPath()%>/auth/completeList.do">주문내역</a> |
 				<a href="<%=request.getContextPath() %>/auth/centerList.do">고객센터</a> |
 				<a href="<%=request.getContextPath() %>/auth/logout.do">로그아웃</a>	
 
