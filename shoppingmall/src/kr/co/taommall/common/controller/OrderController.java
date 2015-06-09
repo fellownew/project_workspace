@@ -92,9 +92,11 @@ public class OrderController {
 	@RequestMapping("complete.do")
 	public String complete(@RequestParam(required=true) int recipientId,HttpServletResponse response,HttpServletRequest request,HttpSession session){
 		List<Order> list = service.selectOrderByRecipientId(recipientId);
+		int price = 0;
 			for(Order o : list){
 				Product product = productService.selectProductByIdNoPaging(o.getProductId(), null);	
 				if(product !=null){
+					price = price + o.getAmount()*o.getProduct().getProductPrice();
 					Buyer buyer = (Buyer)session.getAttribute("loginInfo");
 					Cart cart = cartService.selectCartByProductId(new Cart(buyer.getBuyerId(),product.getProductId(),0));
 					if(cart!=null){
@@ -103,7 +105,8 @@ public class OrderController {
 					}
 				}
 			}
-		request.setAttribute("list", list);		
+		request.setAttribute("list", list);	
+		request.setAttribute("price", price);
 		return "member/member_order_complete.form";
 	}
 	

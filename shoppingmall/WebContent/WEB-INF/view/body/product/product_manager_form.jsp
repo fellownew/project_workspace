@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <meta charset="UTF-8">
 <script type="text/javascript" src="<%=request.getContextPath() %>/script/jquery.js"></script>
@@ -61,7 +62,7 @@ button{
 						</td>
 						<td>${product.productId }</td>
 						<td>${product.productName}</td>
-						<td>${product.productPrice}</td>
+						<td><fmt:formatNumber value="${product.productPrice}원"/></td>
 						<td>${product.expDate}</td>
 						<td>${product.sellerId}</td>
 						<td><button id="modifyProductBtn" onclick="modifyProduct(${product.productId})">상품수정</button><br>

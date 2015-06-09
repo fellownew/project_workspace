@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +9,6 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
 <script type="text/javascript">
-
 $(document).ready(function(){
 	history.pushState(null, null, location.href);
 	window.onpopstate = function(event) {
@@ -35,7 +35,6 @@ function cfHistoryNoBack(){
     window.history.forward(1);
     }
 }
-	var price = 0;
 
 	function home(){
 		location = "/taommall";
@@ -45,25 +44,14 @@ function cfHistoryNoBack(){
 </head>
 <body>
 
-<c:forEach items="${requestScope.list}" var="list">
-<script type="text/javascript">
-price = price + ${list.amount*list.product.productPrice}
-</script>
-</c:forEach>
-<script type="text/javascript">
-$(document).ready(function(){
-$("#orderPrice").text(price+"원");
-$("#sumPrice").text(price+"원");
-});
-</script>
 <hr>
 
 	<table class="center">
 		<caption style="text-align: left; font-weight: bold; font-size: 20px">결제 정보</caption><br>
-		<thead>
+
 			<tr>
 				<td style="width:120px">주문 금액</td>
-				<td style="text-align:right; width:800px" id="orderPrice">원</td>
+				<td style="text-align:right; width:800px" id="orderPrice"><fmt:formatNumber value="${requestScope.price}"/>원</td>
 			</tr>
 			<tr>
 				<td>할인 금액</td>
@@ -71,17 +59,18 @@ $("#sumPrice").text(price+"원");
 			</tr>
 			<tr>
 				<td>총 결제금액</td>
-				<td align="right" id="sumPrice"></td>
+				<td align="right" id="sumPrice"><fmt:formatNumber value="${requestScope.price}"/>원</td>
 			</tr>
+
 	</table>
 
 	<table class="center">
 		<colgroup>
-				<col width="30%"> 
+				<col width="37%"> 
 				<col width="10%">
-				<col width="15%"> 
-				<col width="15%">
-				<col width="20%"> 
+				<col width="13%"> 
+				<col width="13%">
+				<col width="17%"> 
 		</colgroup>
 		<caption style="text-align: left; font-weight: bold; font-size: 20px">주문 상품 정보</caption><br>
 			<tr>
@@ -93,15 +82,15 @@ $("#sumPrice").text(price+"원");
 			</tr>
 			<c:forEach items="${requestScope.list}" var="order">
 			<tr>
-				<td style="text-align:right">
+				<td>
 					<div style="float: left"> 
-					<img src="<%=request.getContextPath()%>/${order.product.imagePath}" style="width: 80px;height: 80px; "/>
+					<img src="<%=request.getContextPath()%>/${order.product.imagePath}" style="width: 100px;height: 100px; "/>
 					</div>
-					<div class="productName">${order.product.productName }</div><br>
-					<div class="productInfo">${order.product.productInfo }</div>
+					<div class="productName" style="padding-left: 120px"><font size="3">${order.product.productName }</font></div><br>
+					<div class="productInfo" style="padding-left: 120px"><font size="2">${order.product.productInfo }</font></div>
 				</td>
 				<td style="text-align:right">${order.amount}</td>
-				<td style="text-align:right">${order.product.productPrice}원</td>
+				<td style="text-align:right"><fmt:formatNumber value="${order.product.productPrice}"/>원</td>
 				<td style="text-align:right">무료</td>
 				<td style="text-align:right"  collspan="3">${order.status}</td>
 			</tr>
@@ -110,8 +99,8 @@ $("#sumPrice").text(price+"원");
 		<div>
 		<table class="center">
 		<colgroup>
-		<col width="30%"> 
-		<col width="70%">
+		<col width="25%"> 
+		<col width="75%">
 		</colgroup>
 		<caption style="text-align: left; font-weight: bold; font-size: 20px">배송지 정보</caption><br>
 			<tr>
@@ -125,7 +114,7 @@ $("#sumPrice").text(price+"원");
 			<tr>
 				<th style="width:120px; text-align:center">배송시 유의사항</th>
 				<td>
-				<div class="productName">배송시 유의사항 : ${requestScope.list[0].recipient.detail }</div>
+				<div class="productName">${requestScope.list[0].recipient.detail }</div>
 				</td>
 			</tr>
 		</table><br>

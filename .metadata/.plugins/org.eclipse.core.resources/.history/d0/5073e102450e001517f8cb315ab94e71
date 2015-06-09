@@ -1,5 +1,0 @@
-package kr.co.taommall.note.service;
-
-public interface NoteService {
-
-}

@@ -1,6 +1,0 @@
-package kr.co.taommall.recipient.vo;
-
-public interface RecipientService {
-	public int insertRecipient(Recipient recipient);
-	public void update
-}

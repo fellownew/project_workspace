@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,7 +78,7 @@ $(document).ready(function(){
 	<div class="title">${order.product.productName }</div>
 	<div class="info">${order.product.productInfo }</div>
 </td>
-<td>${order.product.productPrice * order.amount }원<br> (${order.amount})</td>
+<td><fmt:formatNumber value="${order.product.productPrice * order.amount }"/>원<br> (${order.amount})</td>
 <td> 이름 : ${order.recipient.name }<br>
 	 phone : ${order.recipient.phone}<br>
 	 유의사항 :<br> ${order.recipient.detail }</td>

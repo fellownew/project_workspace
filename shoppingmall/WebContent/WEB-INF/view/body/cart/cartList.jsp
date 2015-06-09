@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -173,14 +174,16 @@ $(document).ready(function(){
 				<td><input type="checkbox" id="${cart.productId}_chk" value="${cart.productId}"
 						name="chk" class="chk" ></td>
 				<!-- 상품명 임 -->
-				<td class="product_td">
-					<div style="float: left"> <img src='<%=request.getContextPath()%>/${cart.product.imagePath}' style="width: 80px;height: 80px; "> </div> 	
-					<div>${cart.product.productName }</div>
-					<div class="info">${cart.product.productInfo }</div>
+				<td class="product_td" style="text-align:left">
+					<div style="float: left">
+						<img src='<%=request.getContextPath()%>/${cart.product.imagePath}' style="width: 100px;height: 100px; ">
+					</div> 	
+					<div style="padding-left: 120px"><font size="3">${cart.product.productName }</font></div>
+					<div class="info" style="padding-left: 120px"><font size="2">${cart.product.productInfo }</font></div>
 				</td>	
 				<td style="text-align: center;"><span><input type="text" id="${cart.productId}" value="${cart.amount}" size="1"  max="99" maxlength="2"></span><div><span id="${cart.productId}_span" class="error" style="display: none;">숫자를<br>입력하세요.</span></div></td>
-				<td style="text-align: center;"><span id="${cart.productId}_price">${cart.product.productPrice}</span>원</td>
-				<td style="text-align: center;"><span id="${cart.productId}_sum">${cart.product.productPrice * cart.amount}</span>원</td>
+				<td style="text-align: center;"><span id="${cart.productId}_price"><fmt:formatNumber value="${cart.product.productPrice}"/></span>원</td>
+				<td style="text-align: center;"><span id="${cart.productId}_sum"><fmt:formatNumber value="${cart.product.productPrice * cart.amount}"/></span>원</td>
 				<td style="text-align: center;"><span >무료</span></td>
 				<td style="text-align: center;"><a href="<%=request.getContextPath()%>/cart/auth/deleteCartList.do?productId=${cart.productId}&buyerId=${cart.buyerId}">삭제</a></td>
 				</tr>

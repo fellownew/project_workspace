@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -91,11 +92,11 @@
 <!-- 	<fieldset style="height:500px"> -->
 	<table class="center" >
 		<colgroup>
-				<col width="30%"> 
-				<col width="15%">
+				<col width="41%"> 
+				<col width="12%">
 				<col width="10%"> 
-				<col width="15%">
-				<col width="20%"> 
+				<col width="12%">
+				<col width="15%"> 
 		</colgroup>
 		<caption style="text-align:left; font-weight:bold; font-size:20px" >주문상품 확인</caption>
 		<thead>
@@ -111,16 +112,16 @@
 		<tbody>
 		<c:forEach items="${requestScope.list}" var="cart">
 				<tr>
-					<td>
+					<td style="text-align:left">
 					<div style="float: left"> 
-					<img src="<%=request.getContextPath()%>/${cart.product.imagePath}" style="width: 80px;height: 80px; "/>
+					<img src="<%=request.getContextPath()%>/${cart.product.imagePath}" style="width: 100px;height: 100px; "/>
 					</div>
-					<div class="productName">${cart.product.productName }</div><br>
-					<div class="productInfo">${cart.product.productInfo }</div>
+					<div class="productName" style="padding-left: 120px"><font size="3">${cart.product.productName }</font></div><br>
+					<div class="productInfo" style="padding-left: 120px"><font size="2">${cart.product.productInfo }</font></div>
 					</td>
-					<td style="text-align:right">${cart.product.productPrice}</td>
+					<td style="text-align:right"><fmt:formatNumber value="${cart.product.productPrice}"/></td>
 					<td style="text-align:right">${cart.amount}</td>
-					<td style="text-align:right">${cart.product.productPrice*cart.amount}</td>
+					<td style="text-align:right"><fmt:formatNumber value="${cart.product.productPrice*cart.amount}"/></td>
 					<td style="text-align:right">${cart.product.sellerId}</td>
 				</tr> 
 		</c:forEach>

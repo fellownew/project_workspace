@@ -1,7 +1,0 @@
-package kr.co.taommall.recipient.vo;
-
-import java.io.Serializable;
-
-public class recipient implements Serializable{
-
-}
