@@ -66,11 +66,11 @@ function cfHistoryNoBack(){
 
 	<table class="center">
 		<colgroup>
-				<col width="30%"> 
+				<col width="37%"> 
 				<col width="10%">
-				<col width="15%"> 
-				<col width="15%">
-				<col width="20%"> 
+				<col width="13%"> 
+				<col width="13%">
+				<col width="17%"> 
 		</colgroup>
 		<caption style="text-align: left; font-weight: bold; font-size: 20px">주문 상품 정보</caption><br>
 			<tr>
@@ -82,12 +82,12 @@ function cfHistoryNoBack(){
 			</tr>
 			<c:forEach items="${requestScope.list}" var="order">
 			<tr>
-				<td style="text-align:right">
+				<td>
 					<div style="float: left"> 
-					<img src="<%=request.getContextPath()%>/${order.product.imagePath}" style="width: 80px;height: 80px; "/>
+					<img src="<%=request.getContextPath()%>/${order.product.imagePath}" style="width: 100px;height: 100px; "/>
 					</div>
-					<div class="productName">${order.product.productName }</div><br>
-					<div class="productInfo">${order.product.productInfo }</div>
+					<div class="productName" style="padding-left: 120px"><font size="3">${order.product.productName }</font></div><br>
+					<div class="productInfo" style="padding-left: 120px"><font size="2">${order.product.productInfo }</font></div>
 				</td>
 				<td style="text-align:right">${order.amount}</td>
 				<td style="text-align:right"><fmt:formatNumber value="${order.product.productPrice}"/>원</td>
@@ -99,8 +99,8 @@ function cfHistoryNoBack(){
 		<div>
 		<table class="center">
 		<colgroup>
-		<col width="30%"> 
-		<col width="70%">
+		<col width="25%"> 
+		<col width="75%">
 		</colgroup>
 		<caption style="text-align: left; font-weight: bold; font-size: 20px">배송지 정보</caption><br>
 			<tr>
@@ -114,7 +114,7 @@ function cfHistoryNoBack(){
 			<tr>
 				<th style="width:120px; text-align:center">배송시 유의사항</th>
 				<td>
-				<div class="productName">배송시 유의사항 : ${requestScope.list[0].recipient.detail }</div>
+				<div class="productName">${requestScope.list[0].recipient.detail }</div>
 				</td>
 			</tr>
 		</table><br>

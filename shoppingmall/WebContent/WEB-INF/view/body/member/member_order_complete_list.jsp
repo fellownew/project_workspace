@@ -62,9 +62,9 @@ $("tbody>tr>td:first-child").on("click",function(){
 		<tr style="text-align: center">
 			<td name="${order.recipientId}" >${order.regiDate}(${order.recipientId})</td>
 			<td>
-				<div style="float: left;" > <img src='<%=request.getContextPath()%>/${order.product.imagePath}' style="width: 80px;height: 80px; "> </div> 	
-				<div class="title">${order.product.productName }</div>
-				<div class="info">${order.product.productInfo }</div>
+				<div style="float: left;" > <img src='<%=request.getContextPath()%>/${order.product.imagePath}' style="width: 100px;height: 100px; "> </div> 	
+				<div class="title" style="padding-left: 120px">${order.product.productName }</div>
+				<div class="info" style="padding-left: 120px">${order.product.productInfo }</div>
 			</td>
 			<td><fmt:formatNumber value="${order.product.productPrice * order.amount }"/>원 (${order.amount})</td>
 			<td>무료 (${order.sellerId})</td>
