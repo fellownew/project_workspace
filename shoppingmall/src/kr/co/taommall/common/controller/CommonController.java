@@ -44,8 +44,9 @@ public class CommonController {
 	}
 	
 	@RequestMapping("/productInfo.do")
-	public String selectProductById(@RequestParam String productId,Model model){
-		int pId = Integer.parseInt(productId);
+	public String selectProductById(@RequestParam(required=true) int productId,Model model){
+
+		int pId = productId;
 		Product product = service.selectProductByIdNoPaging(pId,model);
 			if(product == null){
 				return "redirect:mainPage.do";

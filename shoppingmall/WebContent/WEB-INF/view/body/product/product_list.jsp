@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/table.css">
@@ -68,7 +69,7 @@ h2{
 					<tr onclick="info(${product.productId})" style="border: 1px; border-bottom-style: solid;">
 						<td style="width:120px"><img src="${product.imagePath }" width="120px" height="120px"/></td>
 						<td style="text-align: left;text-indent: 3px;">${product.productName}</td>
-						<td style="text-align: right; ">${product.productPrice}원</td>
+						<td style="text-align: right; "><fmt:formatNumber value="${product.productPrice}"/>원</td>
 						<td>${product.expDate}</td>
 						<td>${product.sellerId}</td>
 					</tr> 

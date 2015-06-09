@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 
         <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/demo.css" />
@@ -59,7 +60,7 @@
 								<a href="productInfo.do?productId=${product.productId }">${product.productName }</a>
 							</div>
 							<div style="padding-bottom: 3px">
-								${product.productPrice }
+								<fmt:formatNumber value="${product.productPrice}"/>원
 							</div>			
 						</td>
 				<c:if test="${i.index==2 or i.index==5 or i.index==8 }">

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +9,6 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
 <script type="text/javascript">
-
 $(document).ready(function(){
 	history.pushState(null, null, location.href);
 	window.onpopstate = function(event) {
@@ -35,7 +35,6 @@ function cfHistoryNoBack(){
     window.history.forward(1);
     }
 }
-	var price = 0;
 
 	function home(){
 		location = "/taommall";
@@ -52,7 +51,7 @@ function cfHistoryNoBack(){
 
 			<tr>
 				<td style="width:120px">주문 금액</td>
-				<td style="text-align:right; width:800px" id="orderPrice">${requestScope.price }원</td>
+				<td style="text-align:right; width:800px" id="orderPrice"><fmt:formatNumber value="${requestScope.price}"/>원</td>
 			</tr>
 			<tr>
 				<td>할인 금액</td>
@@ -60,7 +59,7 @@ function cfHistoryNoBack(){
 			</tr>
 			<tr>
 				<td>총 결제금액</td>
-				<td align="right" id="sumPrice">${requestScope.price }원</td>
+				<td align="right" id="sumPrice"><fmt:formatNumber value="${requestScope.price}"/>원</td>
 			</tr>
 
 	</table>
@@ -91,7 +90,7 @@ function cfHistoryNoBack(){
 					<div class="productInfo">${order.product.productInfo }</div>
 				</td>
 				<td style="text-align:right">${order.amount}</td>
-				<td style="text-align:right">${order.product.productPrice}원</td>
+				<td style="text-align:right"><fmt:formatNumber value="${order.product.productPrice}"/>원</td>
 				<td style="text-align:right">무료</td>
 				<td style="text-align:right"  collspan="3">${order.status}</td>
 			</tr>

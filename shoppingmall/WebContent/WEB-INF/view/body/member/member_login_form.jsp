@@ -3,7 +3,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/buyer.css">
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/script/buyer_login.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/script/member_login.js"></script>
 
  <div id="container" style="width:300px;margin:0 auto;">
     <ul class="tabs">

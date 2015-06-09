@@ -1,10 +1,17 @@
 
 var re_pw = /^[a-z0-9_-]{6,16}$/; // 비밀번호 검사식
-
+var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+var reg_phone = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
 $(document).ready(function(){
 	var isPassword=false;
 	var isNewPassword = false;	
 	$("#passwordCancel").on("click",function(){
+		$("#currentPassword").val('');
+		$("#newPasswordConfirm").val('');
+		$("#newPassword").val('');
+		$("#pconfirmErr").hide();
+		$("#passwordErr").hide();
+		$("#cpasswordErr").hide();
 		$("#passwordDetail").hide();
 	});
 	
@@ -67,7 +74,7 @@ $(document).ready(function(){
 		}
 	});
 		
-	
+	var passwordOk=false;
 	//비밀번호
 	$("#newPassword").blur(function(){		
 		if($("#newPassword").val().trim()==''){
@@ -80,6 +87,7 @@ $(document).ready(function(){
 			 $("#passwordErr").show().html("영어/숫자 6~16자로 입력하세요").attr('style', "color:red");
 			 return false;
 		}else{
+			passwordOk=true;
 			$("#passwordErr").html('').hide();
 		}
 	});
@@ -101,11 +109,14 @@ $(document).ready(function(){
 			 $("#newPasswordConfirm").val('');
 			 return false;
 			}else{
-				 if(re_pw.test($("#newPassword").val())){
+				 if(passwordOk && re_pw.test($("#newPassword").val())){
 					 isNewPassword=true;
 					$("#pconfirmErr").html('').hide();
-				 }else{
+				 }else if(!re_pw.test($("#newPassword").val())){
 					 $("#passwordErr").show().html("영어/숫자 6~16자로 입력하세요").attr('style', "color:red");
+					 $("#newPasswordConfirm").val('');
+				 }else{
+					 $("#passwordErr").show().html("비밀번호를 확인해주세요.").attr('style', "color:red");
 					 $("#newPasswordConfirm").val('');
 				 }
 			}
@@ -134,6 +145,9 @@ $(document).ready(function(){
 				if($("#phone").val().trim()==''){
 					$("#phoneErr").show().html("필수 정보입니다").attr('style', "color:red");
 					$("#phone").val('');
+					return false;
+				}else if(!reg_phone.test($("#phone").val())){
+					$("#phoneErr").show().html("형식에 맞게 입력하세요.").attr('style', "color:red");
 					return false;
 				}
 			},
@@ -166,6 +180,9 @@ $(document).ready(function(){
 				if($("#email").val().trim()==''){
 					$("#emailErr").show().html("필수 정보입니다").attr('style', "color:red");
 					$("#email").val('');
+					return false;
+				}else if(!regex.test($("#email").val())){
+					$("#emailErr").show().html("형식에 맞게 입력하세요.").attr('style', "color:red");
 					return false;
 				}
 			},
