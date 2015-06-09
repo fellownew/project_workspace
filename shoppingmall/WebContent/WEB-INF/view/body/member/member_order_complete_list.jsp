@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,7 +66,7 @@ $("tbody>tr>td:first-child").on("click",function(){
 				<div class="title">${order.product.productName }</div>
 				<div class="info">${order.product.productInfo }</div>
 			</td>
-			<td>${order.product.productPrice * order.amount }원 (${order.amount})</td>
+			<td><fmt:formatNumber value="${order.product.productPrice * order.amount }"/>원 (${order.amount})</td>
 			<td>무료 (${order.sellerId})</td>
 			<td>${order.status}</td>
 		</tr>
