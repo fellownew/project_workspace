@@ -1,0 +1,70 @@
+package kr.co.taommall.note.service;
+
+import java.util.List;
+
+import kr.co.taommall.note.dao.NoteDAO;
+import kr.co.taommall.note.vo.Note;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+
+@Service
+public class NoteServiceImpl implements NoteService {
+	
+	@Autowired
+	private NoteDAO dao;
+
+	@Override
+	public void insertNote(Note note) {
+			dao.insertNote(note);
+	}
+
+	@Override
+	public void deleteNote(int noteNo) {
+		dao.deleteNote(noteNo);
+	}
+
+	@Override
+	public void updateNoteStore(int noteNo) {
+		dao.updateNoteStore(noteNo);
+	}
+
+	@Override
+	public void updateNoteUnStore(int noteNo) {
+		dao.updateNoteUnStore(noteNo);
+	}
+
+	@Override
+	public List<Note> selectReceiveNoteBuyer(Model model) {
+		return dao.selectReceiveNoteBuyer(model);
+	}
+
+	@Override
+	public List<Note> selectReceiveNoteSeller(Model model) {
+		return dao.selectReceiveNoteSeller(model);
+	}
+
+	@Override
+	public List<Note> selectSendNoteBuyer(Model model) {
+		return dao.selectSendNoteBuyer(model);
+	}
+
+	@Override
+	public List<Note> selectSendNoteSeller(Model model) {
+		return dao.selectStoreNoteSeller(model);
+	}
+
+	@Override
+	public List<Note> selectStoreNoteBuyer(Model model) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Note> selectStoreNoteSeller(Model model) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

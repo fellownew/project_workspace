@@ -2,7 +2,7 @@
  * 세팅용 sql문.
  */
 
-
+drop table note;
 drop table cart;
 drop table orders;
 drop table center;
@@ -12,11 +12,23 @@ drop table seller;
 drop table buyer;
 drop table recipient;
 
+drop sequence c_note_no;
 drop sequence recipient_no_seq;
 drop sequence c_product_id;
 drop sequence c_board_id;
 drop sequence order_no;
 
+
+create table note(
+	note_no number primary key,
+	title varchar2(50) not null,
+	content varchar2(2000) not null,
+	send_id varchar2(20) not null,
+	receive_id varchar2(20) not null,
+	send_date varchar2(20) not null,
+	read varchar2(10),
+	store varchar2(10)
+);
 
 create table buyer(
    buyer_id varchar2(20) primary key,
@@ -108,6 +120,9 @@ create table pboard(
 );
 
 
+
+
+create sequence c_note_no;
 create sequence recipient_no_seq;
 create sequence c_product_id;
 create sequence c_board_id;
@@ -137,6 +152,7 @@ select * from cart;
 select * from orders;
 select * from pboard;
 select * from center;
+select * from note;
 
 
 

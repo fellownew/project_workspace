@@ -1,0 +1,10 @@
+<%@ page contentType="text/html;charset=UTF-8"%>
+<div>
+	${requestScope.note.noteNo }
+	${requestScope.note.title }
+	${requestScope.note.content }
+	${requestScope.note.sendId }
+	${requestScope.note.sendDate }
+	
+
+</div>

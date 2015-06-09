@@ -9,7 +9,7 @@ function home(){
 }
 
 function note(){
-	window.open("note.do","쪽지",'width=500,height=500,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,left=150,top=100');
+	window.open("auth/note.do?folder=receive","쪽지",'width=700,height=500,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,left=150,top=100');
 }
 </script>
 <style type="text/css">
@@ -60,7 +60,7 @@ a{
 						<a href="<%=request.getContextPath() %>/seller/auth/memberList.do">회원관리</a> |
 						<a href="<%=request.getContextPath() %>/board/auth/boardList.do">후기관리</a> |
 						<a href="<%=request.getContextPath() %>/auth/centerList.do">고객센터 관리</a> |
-						<a href="#">쪽지관리</a> |
+						<a href="#" onclick="note()">쪽지관리</a> |
 						<a href="<%=request.getContextPath() %>/auth/logout.do">로그아웃</a>	
 					</c:when>
 					<c:otherwise>
@@ -69,7 +69,7 @@ a{
 						<a href="<%=request.getContextPath() %>/auth/orderManager.do">주문관리</a> |
 						<a href="<%=request.getContextPath() %>/auth/productManager.do?sellerId=${sessionScope.loginInfo.sellerId}">상품관리</a><br>
 						<a href="<%=request.getContextPath() %>/auth/centerList.do">고객센터</a> |
-						<a href="#">쪽지관리</a> |
+						<a href="#" onclick="note()">쪽지관리</a> |
 						<a href="<%=request.getContextPath() %>/auth/logout.do">로그아웃</a>	
 					</c:otherwise>
 				</c:choose>	
@@ -81,7 +81,7 @@ a{
 				<a href="<%=request.getContextPath()%>/cart/auth/cartList.do">장바구니</a> |
 				<a href="<%=request.getContextPath()%>/auth/completeList.do">주문내역</a><br> |
 				<a href="<%=request.getContextPath() %>/auth/centerList.do">고객센터</a> |
-				<a href="#">쪽지관리</a> |
+				<a href="#" onclick="note()">쪽지관리</a> |
 				<a href="<%=request.getContextPath() %>/auth/logout.do">로그아웃</a>	
 
 			</c:when>

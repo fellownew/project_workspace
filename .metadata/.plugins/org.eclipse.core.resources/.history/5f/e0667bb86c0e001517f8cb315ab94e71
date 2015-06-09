@@ -1,0 +1,43 @@
+<%@ page contentType="text/html;charset=UTF-8"%>
+<script type="text/javascript" src="<%=request.getContextPath() %>/script/jquery.js"></script>
+<script type="text/javascript">
+<!--
+
+//-->
+
+$(document).ready(function(){
+	$("#cancel").on("click",function(){
+		alert("이것은 취소버튼.")
+		location="note.do?folder=receive";
+	});
+	$("#sendMessage").on("click",function(){
+		alert($(this));
+		location="sendMessage.do";
+	}
+});
+</script>
+
+<div>
+	<form>
+		<div>
+			<table>
+				<tr>
+					<td>받는사람</td>
+					<td><input type="text" id="receiveId" name="receiveId"></td>
+				</tr>
+				<tr>
+					<td>제목</td>
+					<td><input type="text" id="title" name="title"></td>
+				</tr>
+				<tr>
+					<td>내용</td>
+					<td><textarea id="content" name="content" rows="10" cols="40"></textarea></td>
+				</tr>		
+			</table>
+		</div>
+		<div>
+			<button id="cancel">취소</button>
+			<button id="sendMessage">보내기</button>
+		</div>
+	</form>
+</div>

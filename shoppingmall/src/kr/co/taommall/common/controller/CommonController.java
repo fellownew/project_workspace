@@ -64,6 +64,7 @@ public class CommonController {
 		return "main.do";
 	}
 	
+	//로그아웃
 	@RequestMapping("/auth/logout.do")
 	   public String logout(HttpSession session){
 	      session.invalidate();

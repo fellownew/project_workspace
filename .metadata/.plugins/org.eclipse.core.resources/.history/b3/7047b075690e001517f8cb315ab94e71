@@ -1,0 +1,20 @@
+package kr.co.taommall.note.service;
+
+import java.util.List;
+
+import org.springframework.ui.Model;
+
+import kr.co.taommall.note.vo.Note;
+
+public interface NoteService {
+
+	void insertNote(Note note);
+	void deleteNote(int noteNo);
+	void updateNoteStore(int noteNo);
+	void updateNoteUnStore(int noteNo);
+	void updateNoteRead(int noteNo);
+	List<Note> selectReceiveNote(int pageNo,Model model);
+	List<Note> selectSendNote(int pageNo,Model model);
+	List<Note> selectStoreNote(int pageNo,Model model);
+
+}

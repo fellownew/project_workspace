@@ -1,0 +1,84 @@
+package kr.co.taommall.note.service;
+
+import java.util.List;
+
+import kr.co.taommall.common.PagingBean;
+import kr.co.taommall.note.dao.NoteDAO;
+import kr.co.taommall.note.vo.Note;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+
+@Service
+public class NoteServiceImpl implements NoteService {
+	
+	@Autowired
+	private NoteDAO dao;
+
+	@Override
+	public void insertNote(Note note) {
+			dao.insertNote(note);
+	}
+
+	@Override
+	public void deleteNote(int noteNo) {
+		dao.deleteNote(noteNo);
+	}
+
+	@Override
+	public void updateNoteStore(int noteNo) {
+		dao.updateNoteStore(noteNo);
+	}
+
+	@Override
+	public void updateNoteUnStore(int noteNo) {
+		dao.updateNoteUnStore(noteNo);
+	}
+	
+	@Override
+	public void updateNoteRead(int noteNo){
+		dao.updateNoteRead(noteNo);
+	}
+
+	@Override
+	public List<Note> selectReceiveNote(int pageNo,String receiveId,Model model) {
+		System.out.println("selectReceiveNote service 1");
+		
+		int totalContent = dao.selectNoteCountReceive(receiveId);
+		
+		System.out.println("selectReceiveNote service 2");
+		
+		PagingBean pagingBean = new PagingBean(totalContent, pageNo);
+		int contentsPerPage =PagingBean.CONTENTS_PER_PAGE;
+		model.addAttribute("contentsPerPage", contentsPerPage);
+		model.addAttribute("pageNo", pageNo);
+		model.addAttribute("pagingBean", pagingBean);
+		return dao.selectReceiveNote(model);
+	}
+
+
+	@Override
+	public List<Note> selectSendNote(int pageNo,String sendId,Model model) {
+		int totalContent = dao.selectNoteCountSend(sendId);
+		PagingBean pagingBean = new PagingBean(totalContent, pageNo);
+		int contentsPerPage =PagingBean.CONTENTS_PER_PAGE;
+		model.addAttribute("contentsPerPage", contentsPerPage);
+		model.addAttribute("pageNo", pageNo);
+		model.addAttribute("pagingBean", pagingBean);
+		return dao.selectStoreNote(model);
+	}
+
+
+	@Override
+	public List<Note> selectStoreNote(int pageNo,String receiveId,Model model) {
+		int totalContent = dao.selectNoteCountStore(receiveId);
+		PagingBean pagingBean = new PagingBean(totalContent, pageNo);
+		int contentsPerPage =PagingBean.CONTENTS_PER_PAGE;
+		model.addAttribute("contentsPerPage", contentsPerPage);
+		model.addAttribute("pageNo", pageNo);
+		model.addAttribute("pagingBean", pagingBean);
+		return dao.selectStoreNote(model);
+	}
+
+}

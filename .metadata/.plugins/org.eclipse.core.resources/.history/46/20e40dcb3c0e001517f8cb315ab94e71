@@ -1,0 +1,5 @@
+package kr.co.taommall.note.vo;
+
+public class Note {
+
+}
