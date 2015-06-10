@@ -17,7 +17,6 @@ drop sequence c_product_id;
 drop sequence c_board_id;
 drop sequence order_no;
 
-
 create table buyer(
    buyer_id varchar2(20) primary key,
    password varchar2(50) not null,
@@ -69,8 +68,8 @@ create table recipient(
 	name varchar2(20) not null,
 	address varchar2(100) not null,
 	phone varchar2(13) not null,
-	detail varchar2(200) not null
-	
+	detail varchar2(200) not null,
+	postcode varchar2(10) not null
 );
 
 create table cart(
@@ -82,17 +81,20 @@ create table cart(
    constraint cart_product_id_fk foreign key(product_id) references product(product_id) ON DELETE CASCADE
 );
 
+
 create table orders(
    order_id number primary key,
    product_id number,
-   amount number,
+   amount number not null,
    status varchar2(20),
    buyer_id varchar2(20),
    recipient_id number,
-   
-   constraint order_product_id_fk foreign key(product_id) references product(product_id) ON DELETE CASCADE,
-   constraint order_buyer_id_fk foreign key(buyer_id) references buyer(buyer_id) ON DELETE CASCADE,
-   constraint recipient_id_fk foreign key (recipient_id) references recipient(recipient_id) ON DELETE CASCADE
+   seller_id varchar2(20),
+   regi_date varchar2(10) not null,
+   constraint orders_seller_id_fk foreign key(seller_id) references seller(seller_id) ON DELETE CASCADE,
+   constraint orders_product_id_fk foreign key(product_id) references product(product_id) ON DELETE CASCADE,
+   constraint orders_buyer_id_fk foreign key(buyer_id) references buyer(buyer_id) ON DELETE CASCADE,
+   constraint orders_recipient_id_fk foreign key (recipient_id) references recipient(recipient_id) ON DELETE CASCADE
 );
 
 create table pboard(
@@ -114,6 +116,7 @@ create sequence c_board_id;
 create sequence order_no;
 select * from buyer
 select * from orders
+select * from product
 delete from orders
 where amount between 1 and 20 
 alter table recipient add (postcode varchar2(10) not null)
