@@ -5,31 +5,67 @@
 		select note_no,title,content,send_id,receive_id,send_date,read,store
 		from note
 	</sql>
+	<sql id="rnote-select">
+		select note_no,title,content,send_id,receive_id,send_date,read,store
+		from rnote
+	</sql>
 	
-	
+	<!-- send insert-->
 	<insert id="insertNote" parameterType="Note">
 		<selectKey resultType="int" keyProperty="noteNo" order="BEFORE">
 			select c_note_no.nextval from dual
 		</selectKey>
-		insert into note 
+		insert all
+		into note 
 		(note_no,title,content,send_id,receive_id,send_date,read,store)
 		values
-		(#{noteNo}, #{title}, #{content}, #{sendId}, #{receiveId}, to_char(sysdate, 'yyyy-mm-dd-hh24-mi'),#{read,jdbcType=VARCHAR} ,#{store,jdbcType=VARCHAR})
+		(#{noteNo}, #{title}, #{content}, #{sendId}, #{receiveId}, to_char(sysdate, 'yyyy-mm-dd-hh24-mi-ss'),#{read,jdbcType=VARCHAR} ,#{store,jdbcType=VARCHAR})
+		into rnote 
+		(note_no,title,content,send_id,receive_id,send_date,read,store)
+		values
+		(#{noteNo}, #{title}, #{content}, #{sendId}, #{receiveId}, to_char(sysdate, 'yyyy-mm-dd-hh24-mi-ss'),#{read,jdbcType=VARCHAR} ,#{store,jdbcType=VARCHAR})
+		select * from dual
 	</insert>
 	
+	<!-- send delete-->
 	<delete id="deleteNote" parameterType="int">
 		delete from note where note_no=#{noteNo}
 	</delete>
+	<!-- receive delete-->
+	<delete id="deleteRNote" parameterType="int">
+		delete from rnote where note_no=#{noteNo}
+	</delete>
 	
+	<delete id="deleteSendNote" parameterType="org.springframework.ui.Model">
+		delete from note where note_no=#{noteNo} and send_id=#{sendId}
+	</delete>	
+	
+	<delete id="deleteReceiveNote" parameterType="org.springframework.ui.Model">
+		delete from rnote where note_no=#{noteNo} and receive_id=#{receiveId}
+	</delete>
+	
+	<!-- send updateStore-->
 	<update id="updateNoteStore" parameterType="int">
 		update note set store='true'
 		where note_no=#{noteNo}
 	</update>
+	<!-- receive updateStore-->
+	<update id="updateRNoteStore" parameterType="int">
+		update rnote set store='true'
+		where note_no=#{noteNo}
+	</update>
 	
+	<!-- send updateRead-->
 	<update id="updateNoteRead" parameterType="int">
 		update note set read='true'
 		where note_no=#{noteNo}
 	</update>
+	<!-- receive updateRead-->
+	<update id="updateRNoteRead" parameterType="int">
+		update rnote set read='true'
+		where note_no=#{noteNo}
+	</update>
+	
 	
 	<resultMap type="note" id="note-resultMap">
 		<id column="note_no" property="noteNo"/>
@@ -42,19 +78,28 @@
 		<result column="store" property="store"/>
 	</resultMap>
 	
+	<!-- send view-->
 	<select id="selectNoteByNo" parameterType="int" resultMap="note-resultMap">
 		select title,content,send_id,receive_id,send_date,read,store
 		from note
 		where note_no = #{noteNo}
 	</select>
 	
+	<!-- receive view-->
+	<select id="selectRNoteByNo" parameterType="int" resultMap="note-resultMap">
+		select title,content,send_id,receive_id,send_date,read,store
+		from rnote
+		where note_no = #{noteNo}
+	</select>
+	
+		
 	<!-- 받은 쪽지함 - receiveId 기준.  -->
 	<select id="selectReceiveNote" parameterType="org.springframework.ui.Model" resultMap="note-resultMap">
 		select note_no,title,content,send_id,receive_id,send_date,read,store
 		from(
 			select ceil(rownum/#{contentsPerPage}) page, note_no,title,content,send_id,receive_id,send_date,read,store
 			from(
-				<include refid="note-select"/>
+				<include refid="rnote-select"/>
 				where receive_id=#{receiveId} and (store!='true' or store is null)
 				order by send_date desc
 			)
@@ -70,7 +115,7 @@
 			select ceil(rownum/#{contentsPerPage}) page, note_no,title,content,send_id,receive_id,send_date,read,store
 			from(
 				<include refid="note-select"/>
-				where send_id=#{sendId}
+				where send_id=#{sendId} and (store!='true' or store is null)
 				order by send_date desc
 			)
 		)			
@@ -85,7 +130,21 @@
 		from(
 			select ceil(rownum/#{contentsPerPage}) page, note_no,title,content,send_id,receive_id,send_date,read,store
 			from(
-				<include refid="note-select"/>
+				select note_no,title,content,send_id,receive_id,send_date,read,store
+				from note
+				where send_id=#{sendId} and store='true'
+				order by send_date desc
+			)
+		)			
+		where page = #{pageNo}
+	</select>
+		<select id="selectStoreRNote" parameterType="org.springframework.ui.Model" resultMap="note-resultMap">
+		select note_no,title,content,send_id,receive_id,send_date,read,store
+		from(
+			select ceil(rownum/#{contentsPerPage}) page, note_no,title,content,send_id,receive_id,send_date,read,store
+			from(
+				select note_no,title,content,send_id,receive_id,send_date,read,store
+				from rnote
 				where receive_id=#{receiveId} and store='true'
 				order by send_date desc
 			)
@@ -95,7 +154,7 @@
 	
 	
 	<select id="selectNoteCountReceive" resultType="_int" parameterType="String">
-		select count(*)from note where receive_id=#{receiveId} and (store!='true' or store is null)
+		select count(*)from rnote where receive_id=#{receiveId} and (store!='true' or store is null)
 	</select>
 	
 	<select id="selectNoteCountSend" resultType="_int" parameterType="String">
@@ -103,11 +162,14 @@
 	</select>
 	
 	<select id="selectNoteCountStore" resultType="_int" parameterType="String">
-		select count(*)from note where receive_id=#{receiveId} and store='true'
+		select count(*)from note natural join note where receive_id=#{receiveId} and store='true'
+	</select>
+	<select id="selectRNoteCountStore" resultType="_int" parameterType="String">
+		select count(*)from rnote natural join rnote where receive_id=#{receiveId} and store='true'
 	</select>
 	
 	<select id="selectNoteCountReceiveNoRead" resultType="_int" parameterType="String">
-		select count(*)from note where receive_id=#{receiveId} and (read!='true' or read is null)
+		select count(*)from rnote where receive_id=#{receiveId} and (read!='true' or read is null)
 	</select>
 	
 </mapper>

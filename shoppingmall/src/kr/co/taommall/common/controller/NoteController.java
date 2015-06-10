@@ -44,15 +44,29 @@ public class NoteController {
 	//쪽지 삭제
 	@RequestMapping("/deleteNote.do")
 	@ResponseBody
-	public String deleteNote(@RequestParam ArrayList<Integer> list){
-		service.deleteNote(list);
+	public String deleteNote(@RequestParam ArrayList<Integer> list,@RequestParam String folder,HttpSession session,Model model){
+		String receiveId = null;
+		String sendId = null;
+		String user = (String)session.getAttribute("user");
+		if(user.equals("buyer")){
+			Buyer buyer = (Buyer)session.getAttribute("loginInfo");
+			receiveId = buyer.getBuyerId();
+			sendId = buyer.getBuyerId();
+		}else{
+			Seller seller = (Seller)session.getAttribute("loginInfo");
+			receiveId = seller.getSellerId();	
+			sendId = seller.getSellerId();	
+		}
+		model.addAttribute("receiveId", receiveId);
+		model.addAttribute("sendId", sendId);
+		service.deleteNote(list,folder,model);
 		return "success";
 	}
 	//보관처리-등록
 	@RequestMapping("/storeNote.do")
 	@ResponseBody
-	public String updateNoteStore(@RequestParam ArrayList<Integer> list){
-		service.updateNoteStore(list);
+	public String updateNoteStore(@RequestParam ArrayList<Integer> list,@RequestParam String folder){
+		service.updateNoteStore(list,folder);
 		return "success";
 	}
 	
@@ -99,16 +113,20 @@ public class NoteController {
 	@RequestMapping("/storeNoteList.do")
 	public String selectStoreNote(@RequestParam(defaultValue="1")int pageNo,Model model,HttpSession session){
 		String receiveId = null;
+		String sendId = null;
 		String user = (String)session.getAttribute("user");
 		if(user.equals("buyer")){
 			Buyer buyer = (Buyer)session.getAttribute("loginInfo");
 			receiveId = buyer.getBuyerId();
+			sendId = buyer.getBuyerId();
 		}else{
 			Seller seller = (Seller)session.getAttribute("loginInfo");
 			receiveId = seller.getSellerId();	
+			sendId = seller.getSellerId();	
 		}
+		model.addAttribute("sendId", sendId);
 		model.addAttribute("receiveId", receiveId);
-		List<Note> list = service.selectStoreNote(pageNo,receiveId,model);
+		List<Note> list = service.selectStoreNote(pageNo,sendId,receiveId,model);
 		model.addAttribute("noteList", list);
 		return "note.do?folder=store";
 	}
@@ -135,7 +153,6 @@ public class NoteController {
 			receiveId = seller.getSellerId();	
 		}
 		int count = service.selectNoteCountReceiveNoRead(receiveId);
-		System.out.println("selectNoteCountReceiveNoRead : "+count);
 		return count;
 	}
 }

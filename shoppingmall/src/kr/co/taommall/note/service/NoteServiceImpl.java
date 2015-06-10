@@ -29,20 +29,40 @@ public class NoteServiceImpl implements NoteService {
 
 	@Override
 	@Transactional
-	public void deleteNote(ArrayList<Integer> list) {
-		for(int noteNo : list){
-			dao.deleteNote(noteNo);			
+	public void deleteNote(ArrayList<Integer> list,String folder,Model model) {
+		System.out.println(list);
+		System.out.println(folder);
+		System.out.println(model);
+		if(folder.equals("store")){
+			for(int noteNo : list){
+				model.addAttribute("noteNo",noteNo);
+				dao.deleteSendNote(model);
+				dao.deleteReceiveNote(model);
+			}
+		}else if(folder.equals("send")){
+			for(int noteNo : list){
+				dao.deleteNote(noteNo);
+			}			
+		}else{
+			for(int noteNo : list){
+				dao.deleteRNote(noteNo);
+			}
 		}
 	}
-
+	
 	@Override
 	@Transactional
-	public void updateNoteStore(ArrayList<Integer> list) {
-		for(int noteNo : list){
-		dao.updateNoteStore(noteNo);
+	public void updateNoteStore(ArrayList<Integer> list,String folder) {
+		if(folder.equals("send")){
+			for(int noteNo : list){
+				dao.updateNoteStore(noteNo);
+			}			
+		}else{
+			for(int noteNo : list){
+				dao.updateRNoteStore(noteNo);
+			}
 		}
 	}
-
 
 	@Override
 	public List<Note> selectReceiveNote(int pageNo,String receiveId,Model model) {		
@@ -69,17 +89,23 @@ public class NoteServiceImpl implements NoteService {
 
 
 	@Override
-	public List<Note> selectStoreNote(int pageNo,String receiveId,Model model) {
-		int totalContent = dao.selectNoteCountStore(receiveId);
+	@Transactional
+	public List<Note> selectStoreNote(int pageNo,String sendId,String receiveId,Model model) {
+		int totalContent = dao.selectNoteCountStore(sendId)+dao.selectRNoteCountStore(receiveId);
 		PagingBean pagingBean = new PagingBean(totalContent, pageNo);
 		int contentsPerPage =PagingBean.CONTENTS_PER_PAGE;
 		model.addAttribute("contentsPerPage", contentsPerPage);
 		model.addAttribute("pageNo", pageNo);
 		model.addAttribute("pagingBean", pagingBean);
-		return dao.selectStoreNote(model);
+		List<Note> list = dao.selectStoreNote(model);
+		List<Note> rlist = dao.selectStoreRNote(model);
+		for(Note note:rlist){
+			list.add(note);
+		}
+		return list;
 	}
 	
-	//읽기를 시행했기 때문에 읽기 처리도 함.
+	//읽기시행 및 읽기 처리
 	@Override
 	@Transactional
 	public Note selectNoteByNo(int noteNo,HttpSession session){
@@ -94,18 +120,31 @@ public class NoteServiceImpl implements NoteService {
 		}
 		
 		Note note = dao.selectNoteByNo(noteNo);
-		
-		if(note.getReceiveId().equals(id)){
-			dao.updateNoteRead(noteNo);		
-			note = dao.selectNoteByNo(noteNo);
+		Note rnote = dao.selectRNoteByNo(noteNo);
+		//송수신자 둘 다 삭제를 안했다면.
+		if(note!=null && rnote!=null){
+			//읽은 사람이 수신자라면 읽기처리 후 리턴.
+			if(note.getReceiveId().equals(id)){
+				dao.updateNoteRead(noteNo);
+				dao.updateRNoteRead(noteNo);
+				note = dao.selectRNoteByNo(noteNo);
+			}
+			//읽은 사람이 송신자라면 바로 리턴.
+			return note;
+			
+		//보내놓고 송신자가 삭제했다면 - 수신자가 열람. 읽기처리 후 리턴.
+		}else if(rnote!=null){
+			dao.updateRNoteRead(noteNo);
+			note = dao.selectRNoteByNo(noteNo);
+			return note;
+		//보지도 않고 수신자가 삭제했다면 - 송신자가 열람.
+		}else{
+			return note;
 		}
-		return note;
 	}
 
 	@Override
 	public int selectNoteCountReceiveNoRead(String receiveId) {
-		// TODO Auto-generated method stub
 		return dao.selectNoteCountReceiveNoRead(receiveId);
 	}
-	
 }
