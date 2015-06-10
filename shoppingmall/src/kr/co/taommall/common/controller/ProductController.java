@@ -48,7 +48,6 @@ public class ProductController {
 	//상품 수정 처리
 	@RequestMapping("/modifyProduct.do")
 	public String update(@ModelAttribute Product product ,@RequestParam MultipartFile upfile,@RequestParam MultipartFile infoUpfile,Model model,HttpSession session){
-		System.out.println("update = upfile : "+upfile.getContentType()+" - infoUpfile : "+infoUpfile.getContentType());
 		//사진,정보 파일 둘 다 올렸을 때
 		if(upfile.getContentType().equals("image/jpeg") && infoUpfile.getContentType().equals("image/jpeg")){
 			service.updateProduct(product,upfile,infoUpfile);

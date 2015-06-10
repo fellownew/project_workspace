@@ -1,5 +1,8 @@
 eclipse.preferences.version=1
+encoding//WebContent/WEB-INF/etc/sql.sql=UTF-8
 encoding//WebContent/WEB-INF/view/layout/aside.jsp=UTF-8
 encoding//WebContent/error/error404.jsp=UTF-8
 encoding//WebContent/error/error500.jsp=UTF-8
 encoding//WebContent/test.jsp=UTF-8
+encoding//src/kr/co/taommall/common/controller/NoteController.java=UTF-8
+encoding//src/kr/co/taommall/note/service/NoteServiceImpl.java=UTF-8

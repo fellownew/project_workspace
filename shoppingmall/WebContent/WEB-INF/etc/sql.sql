@@ -2,7 +2,7 @@
  * 세팅용 sql문.
  */
 
-
+drop table note;
 drop table cart;
 drop table orders;
 drop table center;
@@ -12,10 +12,23 @@ drop table seller;
 drop table buyer;
 drop table recipient;
 
+drop sequence c_note_no;
 drop sequence recipient_no_seq;
 drop sequence c_product_id;
 drop sequence c_board_id;
 drop sequence order_no;
+
+
+create table note(
+	note_no number primary key,
+	title varchar2(50) not null,
+	content varchar2(2000) not null,
+	send_id varchar2(20) not null,
+	receive_id varchar2(20) not null,
+	send_date varchar2(20) not null,
+	read varchar2(10),
+	store varchar2(10)
+);
 
 create table buyer(
    buyer_id varchar2(20) primary key,
@@ -68,8 +81,8 @@ create table recipient(
 	name varchar2(20) not null,
 	address varchar2(100) not null,
 	phone varchar2(13) not null,
-	detail varchar2(200) not null,
-	postcode varchar2(10) not null
+	detail varchar2(200) not null
+	
 );
 
 create table cart(
@@ -81,20 +94,17 @@ create table cart(
    constraint cart_product_id_fk foreign key(product_id) references product(product_id) ON DELETE CASCADE
 );
 
-
 create table orders(
    order_id number primary key,
    product_id number,
-   amount number not null,
+   amount number,
    status varchar2(20),
    buyer_id varchar2(20),
    recipient_id number,
-   seller_id varchar2(20),
-   regi_date varchar2(10) not null,
-   constraint orders_seller_id_fk foreign key(seller_id) references seller(seller_id) ON DELETE CASCADE,
-   constraint orders_product_id_fk foreign key(product_id) references product(product_id) ON DELETE CASCADE,
-   constraint orders_buyer_id_fk foreign key(buyer_id) references buyer(buyer_id) ON DELETE CASCADE,
-   constraint orders_recipient_id_fk foreign key (recipient_id) references recipient(recipient_id) ON DELETE CASCADE
+   
+   constraint order_product_id_fk foreign key(product_id) references product(product_id) ON DELETE CASCADE,
+   constraint order_buyer_id_fk foreign key(buyer_id) references buyer(buyer_id) ON DELETE CASCADE,
+   constraint recipient_id_fk foreign key (recipient_id) references recipient(recipient_id) ON DELETE CASCADE
 );
 
 create table pboard(
@@ -121,6 +131,9 @@ create table note(
 );
 
 
+
+
+create sequence c_note_no;
 create sequence recipient_no_seq;
 create sequence c_product_id;
 create sequence c_board_id;
@@ -128,7 +141,6 @@ create sequence order_no;
 create sequence c_note_no;
 select * from buyer
 select * from orders
-select * from product
 delete from orders
 where amount between 1 and 20 
 alter table recipient add (postcode varchar2(10) not null)
@@ -152,6 +164,7 @@ select * from cart;
 select * from orders;
 select * from pboard;
 select * from center;
+select * from note;
 
 
 
