@@ -62,7 +62,7 @@ button{
 						</td>
 						<td>${product.productId }</td>
 						<td>${product.productName}</td>
-						<td><fmt:formatNumber value="${product.productPrice}원"/></td>
+						<td><fmt:formatNumber value="${product.productPrice}"/>원</td>
 						<td>${product.expDate}</td>
 						<td>${product.sellerId}</td>
 						<td><button id="modifyProductBtn" onclick="modifyProduct(${product.productId})">상품수정</button><br>

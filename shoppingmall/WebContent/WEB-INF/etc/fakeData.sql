@@ -6,7 +6,7 @@ values
 insert into seller 
 (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number)
 values
-('admin','admin','홍길동','남','서울','df@df.com','010-1234-1234','true','true','1111-11111');
+('admin','admin','홍길동','male','서울','df@df.com','010-1234-1234','true','true','1111-11111');
 
 select  * from orders 
 
@@ -80,51 +80,6 @@ from (
 			)    
 	)    
 where page = 2
-		
-		
-			<id column="oa" property="orderId"/>
-	<result column="ob" property="productId"/>
-	<result column="oc" property="buyerId"/>
-	<result column="oh" property="sellerId"/>
-	<result column="og" property="recipientId"/>
-	<result column="od" property="amount"/>
-	<result column="oe" property="status"/>
-	<result column="oi" property="regiDate"/>
-	<association property="product" javaType="kr.co.taommall.product.vo.Product">
-		<id column="pa" property="productId"/>
-		<result column="pb" property="productName"/>
-		<result column="pc" property="productPrice"/>
-		<result column="pd" property="category"/>
-		<result column="pe" property="productInfo"/>
-		<result column="pf" property="imagePath"/>
-		<result column="pg" property="regiDate"/>
-		<result column="ph" property="expDate"/>
-		<result column="pi" property="sellerId"/>
-	</association>
-	<association property="buyer" javaType="kr.co.taommall.account.vo.Buyer">
-	<id column="ba" property="buyerId"/>	
-	<result column="bb" property="password"/>
-	<result column="bc" property="name"/>
-	<result column="bd" property="email"/>
-	<result column="be" property="phone"/>
-	</association>
-	<association property="seller" javaType="kr.co.taommall.account.vo.Seller" >
-	<id column="sa" property="sellerId"/>	
-	<result column="sb" property="password"/>
-	<result column="sc" property="name"/>
-	<result column="sd" property="gender"/>
-	<result column="se" property="email"/>
-	<result column="sf" property="phone"/>
-	<result column="sg" property="auth"/>
-	<result column="sh" property="admin"/>
-	<result column="si" property="corporateNumber"/>
-	</association>
-	<association property="recipient" javaType="kr.co.taommall.recipient.vo.Recipient" >
-	<id column="ra" property="recipientId"/>
-	<result column="rb" property="name"/>
-	<result column="rc" property="phone"/>
-	<result column="rd" property="detail"/>
-		
 		
 		
 		
