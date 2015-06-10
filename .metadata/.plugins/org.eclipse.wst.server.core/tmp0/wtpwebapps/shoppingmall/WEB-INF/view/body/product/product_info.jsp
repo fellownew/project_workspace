@@ -59,7 +59,7 @@ function cart(id){
 			</tr>
 			<tr>
 				<td>판매자 정보</td>
-				<td>${product.sellerId}</td>
+				<td><a href="#" onclick="note('${product.sellerId }')">${product.sellerId}</a></td>
 			</tr> 
 			<tr>
 				<td>수량</td>

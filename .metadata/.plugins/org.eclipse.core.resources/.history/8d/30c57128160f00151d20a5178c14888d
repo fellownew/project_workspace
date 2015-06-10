@@ -1,0 +1,23 @@
+package kr.co.taommall.note.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import kr.co.taommall.note.vo.Note;
+
+import org.springframework.ui.Model;
+
+public interface NoteService {
+
+	void insertNote(Note note);
+	void deleteNote(ArrayList<Integer> list);
+	void updateNoteStore(ArrayList<Integer> list);
+	List<Note> selectReceiveNote(int pageNo,String receiveId,Model model);
+	List<Note> selectSendNote(int pageNo,String sendId,Model model);
+	List<Note> selectStoreNote(int pageNo,String receiveId,Model model);
+	Note selectNoteByNo(int noteNo,HttpSession session);
+	void selectNoteCountReceiveNoRead(String receiveId);
+
+}

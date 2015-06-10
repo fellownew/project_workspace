@@ -28,32 +28,32 @@ function getBoardList(){
 
 //-->
 $(document).ready(function(){
+	<% if(session.getAttribute("loginInfo")!=null || session.getAttribute("loginInfo")!=""){  %>
+		$.ajax({
+			url:"/taommall/board/selectBoardByProductId.do",
+			type:"POST",
+			data:{"productId":"${product.productId}"},
+			dataType:"JSON",
+			success:function(jdata){
+				boardList = jdata;			
+				$("#tbody").empty();
+				for(var i = 0;i<jdata.length;i++){
+					$("#tbody").append(
+							$("<tr>").append($("<td>").text(i+1)).append($("</td>"))
+							.append($("<td>").text(jdata[i].title)).append($("</td>"))
+							.append($("<td>").text(jdata[i].buyerId)).append($("</td>")).append($("</tr>")))
+							.append($("<tr id="+(i+1)+">").append($("<td colspan='3'>").append($("<div>").text(jdata[i].content)
+									.append($("</div>"))).append($("</td>"))).append($("</tr>")))
+										
+				}
+				$("#tbody tr:odd").hide();
 	
-	$.ajax({
-		url:"/taommall/board/selectBoardByProductId.do",
-		type:"POST",
-		data:{"productId":"${product.productId}"},
-		dataType:"JSON",
-		success:function(jdata){
-			boardList = jdata;			
-			$("#tbody").empty();
-			for(var i = 0;i<jdata.length;i++){
-				$("#tbody").append(
-						$("<tr>").append($("<td>").text(i+1)).append($("</td>"))
-						.append($("<td>").text(jdata[i].title)).append($("</td>"))
-						.append($("<td>").text(jdata[i].buyerId)).append($("</td>")).append($("</tr>")))
-						.append($("<tr id="+(i+1)+">").append($("<td colspan='3'>").append($("<div>").text(jdata[i].content)
-								.append($("</div>"))).append($("</td>"))).append($("</tr>")))
-									
+			},
+			error:function(a,b,c){
+				alert(a+"-"+b+"-"+c);
 			}
-			$("#tbody tr:odd").hide();
-
-		},
-		error:function(a,b,c){
-			alert(a+"-"+b+"-"+c);
-		}
-	});
-	
+		});
+	<% }  %>
 	
 	
 	$("#registerBtn").on("click",function(){

@@ -102,4 +102,10 @@ public class NoteServiceImpl implements NoteService {
 		return note;
 	}
 
+	@Override
+	public int selectNoteCountReceiveNoRead(String receiveId) {
+		// TODO Auto-generated method stub
+		return dao.selectNoteCountReceiveNoRead(receiveId);
+	}
+	
 }

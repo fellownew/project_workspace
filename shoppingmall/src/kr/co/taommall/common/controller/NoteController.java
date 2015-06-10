@@ -121,4 +121,21 @@ public class NoteController {
 		return "note.do?folder=view";
 	}
 	
+	//읽지 않은 쪽지
+	@RequestMapping("/noReadNote.do")
+	@ResponseBody
+	public int selectNoteCountReceiveNoRead(HttpSession session){
+		String receiveId = null;
+		String user = (String)session.getAttribute("user");
+		if(user.equals("buyer")){
+			Buyer buyer = (Buyer)session.getAttribute("loginInfo");
+			receiveId = buyer.getBuyerId();
+		}else{
+			Seller seller = (Seller)session.getAttribute("loginInfo");
+			receiveId = seller.getSellerId();	
+		}
+		int count = service.selectNoteCountReceiveNoRead(receiveId);
+		System.out.println("selectNoteCountReceiveNoRead : "+count);
+		return count;
+	}
 }

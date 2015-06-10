@@ -95,7 +95,7 @@
 	
 	
 	<select id="selectNoteCountReceive" resultType="_int" parameterType="String">
-		select count(*)from note where receive_id=#{receiveId} and store!='true'
+		select count(*)from note where receive_id=#{receiveId} and (store!='true' or store is null)
 	</select>
 	
 	<select id="selectNoteCountSend" resultType="_int" parameterType="String">
@@ -104,6 +104,10 @@
 	
 	<select id="selectNoteCountStore" resultType="_int" parameterType="String">
 		select count(*)from note where receive_id=#{receiveId} and store='true'
+	</select>
+	
+	<select id="selectNoteCountReceiveNoRead" resultType="_int" parameterType="String">
+		select count(*)from note where receive_id=#{receiveId} and (read!='true' or read is null)
 	</select>
 	
 </mapper>

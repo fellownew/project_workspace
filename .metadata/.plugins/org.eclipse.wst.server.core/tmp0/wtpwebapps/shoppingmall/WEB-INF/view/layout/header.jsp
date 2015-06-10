@@ -2,6 +2,28 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript" src="<%=request.getContextPath() %>/script/jquery.js"></script>
 <script type="text/javascript">
+$(document).ready(function(){
+	<% if(session.getAttribute("loginInfo")!=null ){ %>
+	$.ajax({
+		url:"/taommall/auth/noReadNote.do",
+		type:"POST",
+		dataType:"text",
+		success:function(res){
+			if(res!=0){
+			$("#menu div").show();
+			$("#menu div").text("("+res+")");
+			}else{
+				$("#menu div").hide();	
+			}
+				
+		},
+		error:function(a,b,c){
+			alert(a+" - "+b+" - "+c);
+		}
+	});
+	<% } %>
+});
+
 
 function home(){
 	location = "<%=request.getContextPath()%>"
@@ -10,6 +32,9 @@ function home(){
 
 function note(){
 	window.open("<%=request.getContextPath() %>/auth/note.do?folder=receive","쪽지",'width=700,height=500,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,left=150,top=100');
+}
+function note(txt){
+	window.open("<%=request.getContextPath() %>/auth/note.do?folder=write&receiveId="+txt,"쪽지",'width=700,height=500,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,left=150,top=100');
 }
 </script>
 <style type="text/css">
@@ -33,7 +58,7 @@ a{
 }
 .right{
 	float: left;
-	width:400px;
+	width:500px;
 	height:60px;
 	margin-top:65px;
 	text-align: right;
@@ -50,7 +75,7 @@ a{
 		<input type="text" name="search" autofocus="autofocus" style="width:480px;height: 40px" >
 		<input type="submit" value="검색">
 	</form>
-	<div class="right">
+	<div id="menu" class="right">
 		<c:choose>
 			<%-- 판매자 확인 --%>
 			<c:when test="${sessionScope.user=='seller'}">
@@ -60,7 +85,8 @@ a{
 						<a href="<%=request.getContextPath() %>/seller/auth/memberList.do">회원관리</a> |
 						<a href="<%=request.getContextPath() %>/board/auth/boardList.do">후기관리</a> |
 						<a href="<%=request.getContextPath() %>/auth/centerList.do">고객센터 관리</a> |
-						<a href="#" onclick="note()">쪽지관리</a> |
+						<a href="#" onclick="note()">쪽지관리
+						<div style="display: none"></div></a> |
 						<a href="<%=request.getContextPath() %>/auth/logout.do">로그아웃</a>	
 					</c:when>
 					<c:otherwise>
@@ -69,7 +95,8 @@ a{
 						<a href="<%=request.getContextPath() %>/auth/orderManager.do">주문관리</a> |
 						<a href="<%=request.getContextPath() %>/auth/productManager.do?sellerId=${sessionScope.loginInfo.sellerId}">상품관리</a><br>
 						<a href="<%=request.getContextPath() %>/auth/centerList.do">고객센터</a> |
-						<a href="#" onclick="note()">쪽지관리</a> |
+						<a href="#" onclick="note()">쪽지관리
+						<div style="display: none"></div></a> |
 						<a href="<%=request.getContextPath() %>/auth/logout.do">로그아웃</a>	
 					</c:otherwise>
 				</c:choose>	
@@ -81,7 +108,8 @@ a{
 				<a href="<%=request.getContextPath()%>/cart/auth/cartList.do">장바구니</a> |
 				<a href="<%=request.getContextPath()%>/auth/completeList.do">주문내역</a><br> |
 				<a href="<%=request.getContextPath() %>/auth/centerList.do">고객센터</a> |
-				<a href="#" onclick="note()">쪽지관리</a> |
+				<a href="#" onclick="note()">쪽지관리
+				<div style="display: none"></div></a> |
 				<a href="<%=request.getContextPath() %>/auth/logout.do">로그아웃</a>	
 
 			</c:when>
