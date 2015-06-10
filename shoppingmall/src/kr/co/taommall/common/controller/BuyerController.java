@@ -26,7 +26,7 @@ public class BuyerController {
 	BuyerService service;
 
 	@RequestMapping("/buyerJoin.do")
-	public String joinBuyer(@ModelAttribute Address address,@ModelAttribute Buyer buyer,Error error) {
+	public String joinBuyer(@ModelAttribute Address address,@ModelAttribute Buyer buyer) {
 		buyer.setAddress(address);
 			int count = service.insertBuyer(buyer);
 		return "redirect:/mainPage.do";
@@ -34,7 +34,7 @@ public class BuyerController {
 
 	@RequestMapping("/identifyId.do")
 	@ResponseBody
-	public String identifyId(String id) {
+	public String identifyId(@RequestParam(required=true) String id) {
 		Buyer buyer = service.selectBuyerById(id);
 		if (buyer == null) {
 			return null;
@@ -44,7 +44,7 @@ public class BuyerController {
 
 	@RequestMapping("/identifyEmail.do")
 	@ResponseBody
-	public String identifyEmail(@RequestParam String email) {
+	public String identifyEmail(@RequestParam(required=true) String email) {
 		 SendMail send =new SendMail();
 		String number = null;
 		try {
@@ -59,7 +59,7 @@ public class BuyerController {
 	
 	@RequestMapping("/buyerLogin.do")
 	@ResponseBody
-	public String LoginBuyer(@RequestParam("bId") String id,@RequestParam("bPassword") String password,HttpSession session) {
+	public String LoginBuyer(@RequestParam(value="bId",required=true) String id,@RequestParam(required=true,value="bPassword") String password,HttpSession session) {
 		Buyer buyer = service.selectBuyerById(id);
 		if(buyer !=null && buyer.getPassword().equals(password)){
 			session.setAttribute("loginInfo", buyer);
@@ -72,7 +72,7 @@ public class BuyerController {
 	
 	@RequestMapping("/passwordModify.do")
 	@ResponseBody
-	public String buyerPasswordModify(String password,@RequestParam("currPassword") String currPassword, HttpSession session){
+	public String buyerPasswordModify(@RequestParam(required=true)String password,@RequestParam(required=true,value="currPassword") String currPassword, HttpSession session){
 		Buyer buyer = (Buyer) session.getAttribute("loginInfo");
 		if(currPassword !=null && buyer.getPassword().equals(currPassword)){
 			buyer.setPassword(password);
@@ -89,7 +89,7 @@ public class BuyerController {
 	
 	@RequestMapping("/phoneModify.do")
 	@ResponseBody
-	public String buyerPhoneModify(String phone, HttpSession session){
+	public String buyerPhoneModify(@RequestParam(required=true)String phone, HttpSession session){
 		Buyer buyer = (Buyer) session.getAttribute("loginInfo");		
 		buyer.setPhone(phone);
 		int count = service.updateBuyerById(buyer);
@@ -104,7 +104,7 @@ public class BuyerController {
 	
 	@RequestMapping("/emailModify.do")
 	@ResponseBody
-	public String buyerEmailModify(String email, HttpSession session){
+	public String buyerEmailModify(@RequestParam(required=true)String email, HttpSession session){
 		Buyer buyer = (Buyer) session.getAttribute("loginInfo");		
 		buyer.setEmail(email);
 		int count = service.updateBuyerById(buyer);
@@ -120,7 +120,7 @@ public class BuyerController {
 	
 	@RequestMapping("/addressModify.do")
 	@ResponseBody
-	public Address buyerAddressModify(Address address, HttpSession session){
+	public Address buyerAddressModify(@ModelAttribute Address address, HttpSession session){
 		Buyer buyer = (Buyer) session.getAttribute("loginInfo");		
 		buyer.setAddress(address);
 		int count = service.updateBuyerById(buyer);

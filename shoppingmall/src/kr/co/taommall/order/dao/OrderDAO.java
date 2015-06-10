@@ -2,6 +2,7 @@ package kr.co.taommall.order.dao;
 
 import java.util.List;
 
+import kr.co.taommall.account.vo.Seller;
 import kr.co.taommall.order.vo.Order;
 
 public interface OrderDAO {
@@ -17,5 +18,7 @@ public interface OrderDAO {
 	public List<Order> selectOrderByStatus(String status);
 	public List<Order> selectOrderByRecipientId(int recipientId);
 	public List<Order> selectOrderBySellerId(String sellerId);
+	public List<Order> selectOrderByStatusPaging(int page, String status);
+	public int selectOrderCount(String status);
 
 }
