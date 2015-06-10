@@ -75,9 +75,11 @@ function cart(id){
 			<tr></tr>	
 			</c:when>
 			</c:choose>
+			<c:if test="${not empty requestScope.product.infoImagePath}">			
 			<tr>
 				<td colspan="3" style="height: 300px;position: relative;"><img src="<%=request.getContextPath() %>/${requestScope.product.infoImagePath }"/></td>
 			</tr>
+			</c:if>
 			
 		</tbody>
 	</table>
