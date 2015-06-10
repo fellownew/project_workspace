@@ -30,7 +30,7 @@ public class SellerController {
 	SellerService service;
 	
 	@RequestMapping("/sellerJoin.do")
-	public String joinSeller(@ModelAttribute Seller seller,@ModelAttribute Address address,Error error) {
+	public String joinSeller(@ModelAttribute Seller seller,@ModelAttribute Address address) {
 		seller.setAddress(address);
 		int count = service.insertSeller(seller);
 		return "redirect:/mainPage.do";
@@ -39,7 +39,7 @@ public class SellerController {
 	
 	@RequestMapping("/sellerLogin.do")
 	@ResponseBody
-	public String LoginSeller(@RequestParam("sId") String id,@RequestParam("sPassword") String password,HttpSession session) {
+	public String LoginSeller(@RequestParam(required=true, value="sId") String id,@RequestParam(required=true, value="sPassword") String password,HttpSession session) {
 		Seller seller = service.selectSellerById(id);
 		if(seller !=null && seller.getPassword().equals(password)){
 			
@@ -57,7 +57,7 @@ public class SellerController {
 	
 	@RequestMapping("/identifyId.do")
 	@ResponseBody
-	public String identifyId(String id) {
+	public String identifyId(@RequestParam(required=true) String id) {
 		Seller seller = service.selectSellerById(id);
 		if (seller == null) {
 			return null;
@@ -67,7 +67,7 @@ public class SellerController {
 
 	@RequestMapping("/identifyEmail.do")
 	@ResponseBody
-	public String identifyEmail(@RequestParam String email) {
+	public String identifyEmail(@RequestParam(required=true) String email) {
 		 SendMail send =new SendMail();
 		String number = null;
 		try {
@@ -82,7 +82,7 @@ public class SellerController {
 	
 	@RequestMapping("/passwordModify.do")
 	@ResponseBody
-	public String sellerPasswordModify(String password,@RequestParam("currPassword") String currPassword, HttpSession session){
+	public String sellerPasswordModify(@RequestParam(required=true) String password,@RequestParam(required=true,value="currPassword") String currPassword, HttpSession session){
 		Seller seller = (Seller) session.getAttribute("loginInfo");
 		if(currPassword !=null && seller.getPassword().equals(currPassword)){
 			seller.setPassword(password);
@@ -98,7 +98,7 @@ public class SellerController {
 	
 	@RequestMapping("/phoneModify.do")
 	@ResponseBody
-	public String sellerPhoneModify(String phone, HttpSession session){
+	public String sellerPhoneModify(@RequestParam(required=true) String phone, HttpSession session){
 		Seller buyer = (Seller) session.getAttribute("loginInfo");		
 		buyer.setPhone(phone);
 		int count = service.updateSeller(buyer);
@@ -112,7 +112,7 @@ public class SellerController {
 	
 	@RequestMapping("/emailModify.do")
 	@ResponseBody
-	public String sellerEmailModify(String email, HttpSession session){
+	public String sellerEmailModify(@RequestParam(required=true) String email, HttpSession session){
 		Seller buyer = (Seller) session.getAttribute("loginInfo");		
 		buyer.setEmail(email);
 		int count = service.updateSeller(buyer);
@@ -127,7 +127,7 @@ public class SellerController {
 	
 	@RequestMapping("/addressModify.do")
 	@ResponseBody
-	public Address buyerAddressModify(Address address, HttpSession session){
+	public Address buyerAddressModify(@RequestParam(required=true)Address address, HttpSession session){
 		Seller seller = (Seller) session.getAttribute("loginInfo");		
 		seller.setAddress(address);
 		int count = service.updateSeller(seller);
@@ -165,8 +165,8 @@ public class SellerController {
 	
 	@RequestMapping("/auth/updateAuth.do")
 	@ResponseBody 
-	public String updateAuth(	@RequestParam(value="auth")ArrayList<String> list,
-								@RequestParam(value="unchecked")ArrayList<String> unchecked){
+	public String updateAuth(	@RequestParam(required=true,value="auth")ArrayList<String> list,
+								@RequestParam(required=true,value="unchecked")ArrayList<String> unchecked){
 		System.out.println(list.size());
 		System.out.println(unchecked.size());
 		if(list ==null && unchecked ==null){

@@ -1,5 +1,6 @@
 package kr.co.taommall.order.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import kr.co.taommall.order.vo.Order;
@@ -13,5 +14,7 @@ public interface OrderService {
 	public Order selectOrderByOrderId(int orderId);
 	public List<Order> selectOrderByRecipientId(int recipientId);
 	public List<Order> selectOrderBySellerId(String sellerId);
+	public List<Order> selectOrderByStatus(String status);
+	public HashMap selectOrderByStatusPaging(int page,String status);
 
 }

@@ -21,20 +21,20 @@ public class BoardController {
 	BoardService service;
 	
 	@RequestMapping("/auth/insertBoard.do")
-	public String insertBoard(@ModelAttribute Board board,@RequestParam int productId){
+	public String insertBoard(@ModelAttribute Board board,@RequestParam(required=true) int productId){
 		service.insertBoard(board);
 		return "redirect:/productInfo.do?productId="+productId;
 	}
 	
 	@RequestMapping("/auth/deleteBoard.do")
-	public String deleteBoard(@RequestParam int boardNo,Model model){
+	public String deleteBoard(@RequestParam(required=true) int boardNo,Model model){
 		service.deleteBoard(boardNo);
 		return "redirect:/board/auth/boardList.do";
 	}
 	
 	@RequestMapping("/selectBoardByProductId.do")
 	@ResponseBody
-	public List<Board> selectBoardByProductId(@RequestParam int productId,Model model){
+	public List<Board> selectBoardByProductId(@RequestParam(required=true) int productId,Model model){
 		List<Board> list = service.selectBoardByProductId(productId,model);
 		model.addAttribute("boardList",list);
 		return list;

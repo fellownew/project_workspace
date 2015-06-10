@@ -1,7 +1,11 @@
 package kr.co.taommall.order.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import kr.co.taommall.account.vo.Seller;
+import kr.co.taommall.common.PagingBean;
 import kr.co.taommall.order.vo.Order;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -42,7 +46,9 @@ public class OrderDAOImpl implements OrderDAO{
 	}
 
 	public List<Order> selectOrderByStatus(String status) {
-		return session.selectList(namespace + "selectOrderByStatus", status);
+		Map map = new HashMap();
+		map.put("status",status);
+		return session.selectList(namespace + "selectOrderByStatus", map);
 	}
 
 	public int deleteOrderById(int id) {
@@ -64,5 +70,18 @@ public class OrderDAOImpl implements OrderDAO{
 	}
 	public List<Order> selectOrderBySellerId(String sellerId){
 		return session.selectList(namespace+"selectOrderBySellerId",sellerId);
+	}
+
+	public List<Order> selectOrderByStatusPaging(int page, String status) {
+		Map map = new HashMap();
+		map.put("page", page);
+		map.put("status", status);
+		map.put("contentsPerPage",PagingBean.CONTENTS_PER_PAGE);
+		return session.selectList(namespace+"selectOrderByStatusPaging",map);
+	}
+
+	public int selectOrderCount(String status) {
+		Map map = new HashMap();
+		return session.selectOne(namespace+"selectOrderCount",status);
 	}
 }

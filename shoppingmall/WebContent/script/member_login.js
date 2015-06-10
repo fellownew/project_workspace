@@ -20,7 +20,7 @@ $(document).ready(function(){
 	//바이어 로그인 처리
 		$("#bButton").on("click",buyerLogin);		
 		
-		//셀러 로그인 처리
+	//셀러 로그인 처리
 		$("#sButton").on("click",sellerLogin);
 		
 		
@@ -33,9 +33,20 @@ $(document).ready(function(){
 		        $("ul.tabs li").removeClass("active").css("color", "#333");
 		        //$(this).addClass("active").css({"color": "darkred","font-weight": "bolder"});
 		        $(this).addClass("active").css("color", "darkred");
-		        $(".tab_content").hide()
+		        $(".tab_content").hide();
 		        var activeTab = $(this).attr("rel");
-		        $("#" + activeTab).fadeIn()
+		        $("#" + activeTab).fadeIn();
+		        $("#sIdErr").hide();
+				$("#sPasswordErr").hide();
+				$("#bIdErr").hide();
+				$("#bPasswordErr").hide();
+				$("#bLoginError").hide();
+				$("#sLoginError").hide();
+				$("#sId").val('');
+				$("#sPassword").val('');
+				$("#bId").val('');
+				$("#bPassword").val('');
+		     
 		    });
 		});
 });

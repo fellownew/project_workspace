@@ -38,7 +38,7 @@ public class ProductController {
 	}
 	//상품 수정 폼
 	@RequestMapping("/productModifyForm.do")
-	public String updateForm(@RequestParam int productId,Model model){
+	public String updateForm(@RequestParam(required=true) int productId,Model model){
 		Product product = service.selectProductByIdNoPaging(productId,model);
 		model.addAttribute("product", product);
 		return "product/product_modify_form.form";
@@ -67,7 +67,7 @@ public class ProductController {
 	}
 	//상품 삭제 처리
 	@RequestMapping("/deleteProduct.do")
-	public String delete(@RequestParam String productId, HttpSession session){
+	public String delete(@RequestParam(required=true) String productId, HttpSession session){
 			int pId = Integer.parseInt(productId); 
 			service.deleteProduct(pId);
 			Seller seller = (Seller)session.getAttribute("loginInfo");

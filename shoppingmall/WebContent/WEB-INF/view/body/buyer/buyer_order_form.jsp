@@ -119,9 +119,9 @@
 					<div class="productName" style="padding-left: 120px"><font size="3">${cart.product.productName }</font></div><br>
 					<div class="productInfo" style="padding-left: 120px"><font size="2">${cart.product.productInfo }</font></div>
 					</td>
-					<td style="text-align:right"><fmt:formatNumber value="${cart.product.productPrice}"/></td>
+					<td style="text-align:right"><fmt:formatNumber value="${cart.product.productPrice}"/>원</td>
 					<td style="text-align:right">${cart.amount}</td>
-					<td style="text-align:right"><fmt:formatNumber value="${cart.product.productPrice*cart.amount}"/></td>
+					<td style="text-align:right"><fmt:formatNumber value="${cart.product.productPrice*cart.amount}"/>원</td>
 					<td style="text-align:right">${cart.product.sellerId}</td>
 				</tr> 
 		</c:forEach>

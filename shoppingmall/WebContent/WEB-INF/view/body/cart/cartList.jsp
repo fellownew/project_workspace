@@ -34,13 +34,13 @@ $(document).ready(function(){
 	 	  $('.chk').each(function() {
 			  if($(this).is(":checked")){
 				  var text = $(this).attr('value');	
-				  var sum = '#'+text+"_sum";
+				  var sum = '#'+text+"_sum2";
 
-				  var value2 = $(sum).text();
+				  var value2 = $(sum).val();
 				  finalValue = finalValue*1+value2*1;
 			  }
 		   });
-	 		 $("#result").val(finalValue);
+	 	 $("#result").val((finalValue).toLocaleString()+"원");
 
 	$("#purchase").on("click",function(){
 		var list = new Array();
@@ -87,13 +87,14 @@ $(document).ready(function(){
  	  $('.chk').each(function() {
 		  if($(this).is(":checked")){
 			  var text = $(this).attr('value');	
-			  var sum = '#'+text+"_sum";
+			  var sum = '#'+text+"_sum2";
 
-			  var value2 = $(sum).text();
+			  var value2 = $(sum).val();
+
 			  finalValue = finalValue*1+value2*1;
 		  }
 	   });
- 		 $("#result").val(finalValue);
+ 	 $("#result").val((finalValue).toLocaleString()+"원");
 	});
 
 	
@@ -101,8 +102,9 @@ $(document).ready(function(){
 		var amount = $(this).val();
 		var id = '#'+$(this).attr('id');
 		var err = id+"_span";
-		var sum = id+"_sum";
-		var price =id+"_price";
+		var sum = id+"_sum2";
+		var sumOri = id+"_sum";
+		var price =id+"_price2";
 		if(isNaN($(id).val())){
 			$(err).show();
 			$(id).val('1');
@@ -118,18 +120,18 @@ $(document).ready(function(){
 			dataType:"text",
 			success:function(res){
 				if(res=='success'){
-					$(sum).text($(price).text()*amount);
+					$(sum).val($(price).val()*amount);
+					$(sumOri).text(($(price).val()*amount).toLocaleString());
 			 		 var finalValue=0;
 			 	 	  $('.chk').each(function() {
 			 			  if($(this).is(":checked")){
 			 				  var text = $(this).attr('value');	
-			 				  var sum = '#'+text+"_sum";
-								
-			 				  var value2 = $(sum).text();
+			 				  var sum = '#'+text+"_sum2";
+			 				  var value2 = $(sum).val();
 			 				  finalValue = finalValue*1+value2*1;
 			 			  }
 			 		   });
-			 	 		 $("#result").val(finalValue);
+			 	 		 $("#result").val((finalValue).toLocaleString()+"원");
 					
 				}
 			}
@@ -182,9 +184,9 @@ $(document).ready(function(){
 					<div class="info" style="padding-left: 120px"><font size="2">${cart.product.productInfo }</font></div>
 				</td>	
 				<td style="text-align: center;"><span><input type="text" id="${cart.productId}" value="${cart.amount}" size="1"  max="99" maxlength="2"></span><div><span id="${cart.productId}_span" class="error" style="display: none;">숫자를<br>입력하세요.</span></div></td>
-				<td style="text-align: center;"><span id="${cart.productId}_price"><fmt:formatNumber value="${cart.product.productPrice}"/></span>원</td>
-				<td style="text-align: center;"><span id="${cart.productId}_sum"><fmt:formatNumber value="${cart.product.productPrice * cart.amount}"/></span>원</td>
-				<td style="text-align: center;"><span >무료</span></td>
+				<td style="text-align: center;"><input type="hidden" id="${cart.productId}_price2" value="${cart.product.productPrice}" ><span id="${cart.productId}_price"><fmt:formatNumber value="${cart.product.productPrice}"/></span>원</td>
+				<td style="text-align: center;"><input type="hidden" id="${cart.productId}_sum2" value="${cart.product.productPrice * cart.amount}" ><span id="${cart.productId}_sum"><fmt:formatNumber value="${cart.product.productPrice * cart.amount}"/></span>원</td>
+				<td style="text-align: center;"><span >무료</span></td> 
 				<td style="text-align: center;"><a href="<%=request.getContextPath()%>/cart/auth/deleteCartList.do?productId=${cart.productId}&buyerId=${cart.buyerId}">삭제</a></td>
 				</tr>
 			</c:forEach>
@@ -197,7 +199,9 @@ $(document).ready(function(){
 			</c:choose>
 			</tbody>
 		</table>
-		<input type="text" id="result" ><input type="button" id="purchase" value="구매하기" ><span id="purchaseErr" style="display: none;" class="error">상품을 1개이상 선택해주세요.</span>
+	</div>
+	<div style="position:relative;left: 770px;margin-bottom: 10px; ">
+		<input type="text" id="result" readonly="readonly" ><input type="button" id="purchase" value="구매하기" ><span id="purchaseErr" style="display: none;" class="error">상품을 1개이상 선택해주세요.</span>
 	</div>
 </body>
 </html>
