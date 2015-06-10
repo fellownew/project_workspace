@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="kr.co.taommall.cart.dao">
+
+
+	<insert id="insertCart" parameterType="cart">
+		insert into cart values(#{buyerId},#{productId},#{amount})
+	</insert>
+
+	<delete id="deleteCartByProductId" parameterType="cart">
+		delete from cart
+		where buyer_id = #{buyerId} and product_id = #{productId}
+	</delete>
+
+	<update id="updateCartByProductId" parameterType="cart">
+	update cart
+	set amount = #{amount}
+	where product_id = #{productId} and buyer_id = #{buyerId}
+	</update>
+
+  <sql id="select-cart-basic">
+  select 	c.amount, c.buyer_id, c.product_id,
+  			p.product_id, p.product_name, p.product_price, p.category, p.product_info,p.image_path, p.regi_date,p.exp_date, p.seller_id
+  from 		cart c,product p
+  </sql>
+  <resultMap type="cart" id="resultMap-cart-default">
+  	<id column="product_id" property="productId"/>
+  	<result column="buyer_id" property="buyerId"/>
+  	<result column="amount" property="amount"/>
+  	<association property="product" javaType="kr.co.taommall.product.vo.Product"  resultMap="kr.co.taommall.product.dao.product-resultMap"></association>
+  </resultMap>
+  
+  <select id="selectCartByBuyerId" parameterType="string" resultMap="resultMap-cart-default">
+  <include refid="select-cart-basic" />
+   where c.product_id = p.product_id and c.buyer_id = #{value}
+  </select>
+  
+    <select id="selectCartByProductId" parameterType="cart" resultMap="resultMap-cart-default">
+  <include refid="select-cart-basic" />
+   where c.product_id = p.product_id and c.product_id = #{productId} and c.buyer_id = #{buyerId}
+  </select>
+</mapper>
