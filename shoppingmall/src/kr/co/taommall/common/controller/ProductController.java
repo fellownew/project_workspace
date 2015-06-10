@@ -32,6 +32,7 @@ public class ProductController {
 	//상품 등록 처리
 	@RequestMapping("/insertProduct.do")
 	public String insert(@ModelAttribute Product product,@RequestParam MultipartFile upfile,@RequestParam MultipartFile infoUpfile,Model model,HttpSession session){
+		System.out.println(product);
 		service.insertProduct(product,upfile,infoUpfile);
 		Seller seller = (Seller)session.getAttribute("loginInfo");
 		return "redirect:productManager.do?sellerId="+seller.getSellerId();

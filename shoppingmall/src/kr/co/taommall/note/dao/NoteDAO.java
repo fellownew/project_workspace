@@ -19,5 +19,6 @@ public interface NoteDAO {
 	int selectNoteCountSend(String sendId);
 	int selectNoteCountStore(String receiveId);
 	Note selectNoteByNo(int noteNo);
+	int selectNoteCountReceiveNoRead(String receiveId);
 	
 }

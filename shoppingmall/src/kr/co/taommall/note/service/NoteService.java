@@ -18,5 +18,6 @@ public interface NoteService {
 	List<Note> selectSendNote(int pageNo,String sendId,Model model);
 	List<Note> selectStoreNote(int pageNo,String receiveId,Model model);
 	Note selectNoteByNo(int noteNo,HttpSession session);
+	int selectNoteCountReceiveNoRead(String receiveId);
 
 }

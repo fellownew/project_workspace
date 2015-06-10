@@ -70,4 +70,12 @@ public class NoteDAOImpl implements NoteDAO {
 	public Note selectNoteByNo(int noteNo){
 		return session.selectOne(nameSpace+"selectNoteByNo",noteNo);
 	}
+
+	@Override
+	public int selectNoteCountReceiveNoRead(String receiveId) {
+		
+		return session.selectOne(nameSpace+"selectNoteCountReceiveNoRead",receiveId);
+	}
+	
+	
 }

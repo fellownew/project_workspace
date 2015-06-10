@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/auth")
@@ -42,13 +43,15 @@ public class NoteController {
 	}
 	//쪽지 삭제
 	@RequestMapping("/deleteNote.do")
-	public String deleteNote(@RequestParam(value="noteNoList") ArrayList<Integer> list){
+	@ResponseBody
+	public String deleteNote(@RequestParam ArrayList<Integer> list){
 		service.deleteNote(list);
 		return "success";
 	}
 	//보관처리-등록
 	@RequestMapping("/storeNote.do")
-	public String updateNoteStore(@RequestParam(value="noteNoList") ArrayList<Integer> list){
+	@ResponseBody
+	public String updateNoteStore(@RequestParam ArrayList<Integer> list){
 		service.updateNoteStore(list);
 		return "success";
 	}
@@ -118,4 +121,21 @@ public class NoteController {
 		return "note.do?folder=view";
 	}
 	
+	//읽지 않은 쪽지
+	@RequestMapping("/noReadNote.do")
+	@ResponseBody
+	public int selectNoteCountReceiveNoRead(HttpSession session){
+		String receiveId = null;
+		String user = (String)session.getAttribute("user");
+		if(user.equals("buyer")){
+			Buyer buyer = (Buyer)session.getAttribute("loginInfo");
+			receiveId = buyer.getBuyerId();
+		}else{
+			Seller seller = (Seller)session.getAttribute("loginInfo");
+			receiveId = seller.getSellerId();	
+		}
+		int count = service.selectNoteCountReceiveNoRead(receiveId);
+		System.out.println("selectNoteCountReceiveNoRead : "+count);
+		return count;
+	}
 }

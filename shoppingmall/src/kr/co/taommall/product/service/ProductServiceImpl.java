@@ -42,6 +42,8 @@ public class ProductServiceImpl implements ProductService {
 		product.setImagePath(imagePath);
 		String infoImagePath = deImagePath+infoFileName;
 		product.setInfoImagePath(infoImagePath);
+		
+		System.out.println("product : "+product);
 		dao.insertProduct(product);
 	}
 	

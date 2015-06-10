@@ -91,7 +91,7 @@ create table pboard(
 );
 
 insert into seller (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number,postcode)
-values('admin','admin','ÄáÄáÄá','Äá','ÄáÄá','admin@taommall.co.kr','010-2222-2222','true','true','2222-22222','222-222');
+values('admin','admin','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½','admin@taommall.co.kr','010-2222-2222','true','true','2222-22222','222-222');
 
 create sequence recipient_no_seq;
 create sequence c_product_id;
