@@ -131,6 +131,17 @@ create table pboard(
 
 );
 
+create table note(
+   note_no number primary key,
+   title varchar2(50) not null,
+   content varchar2(2000) not null,
+   send_id varchar2(20) not null,
+   receive_id varchar2(20) not null,
+   send_date varchar2(20) not null,
+   read varchar2(10),
+   store varchar2(10)
+);
+
 
 
 
@@ -140,6 +151,7 @@ create sequence recipient_no_seq;
 create sequence c_product_id;
 create sequence c_board_id;
 create sequence order_no;
+create sequence c_note_no;
 select * from buyer
 select * from orders
 delete from orders
