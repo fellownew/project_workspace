@@ -20,7 +20,7 @@ public class ProductServiceImpl implements ProductService {
 	private String deImagePath = "upimage/";
 	@Autowired
 	private ProductDAO dao;
-	static int a = 0;
+
 	@Override
 	public void insertProduct(Product product,MultipartFile upfile,MultipartFile infoUpfile){
 		//파일명은 현재 시간으로 가져옴.
