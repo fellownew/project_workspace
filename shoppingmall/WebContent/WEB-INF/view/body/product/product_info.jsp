@@ -63,7 +63,7 @@ function cart(id){
 			</tr> 
 			<tr>
 				<td>수량</td>
-				<td><input type="number" id="amount" value="1" size="1"  max="99" maxlength="2"></td>
+				<td><input type="number" id="amount" value="1" size="1"  max="99" maxlength="2" style="width:50px "></td>
 			</tr> 	
 			<c:choose>
 			<c:when test="${sessionScope.user=='buyer'}">

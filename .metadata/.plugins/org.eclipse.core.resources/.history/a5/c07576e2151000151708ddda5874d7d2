@@ -10,10 +10,10 @@ $(document).ready(function(){
 		dataType:"text",
 		success:function(res){
 			if(res!=0){
-			$("#menu div").show();
-			$("#menu div").text("("+res+")");
+			$("#menu span").show();
+			$("#menu span").text("("+res+")");
 			}else{
-				$("#menu div").hide();	
+				$("#menu span").hide();	
 			}
 				
 		},
@@ -31,19 +31,31 @@ function home(){
 }
 
 function note(){
+
 	window.open("<%=request.getContextPath() %>/auth/note.do?folder=receive","쪽지",'width=800,height=500,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,left=150,top=100');
+
+
 }
 function note(txt){
+	<% if(session.getAttribute("loginInfo")!=null ){ %>
 	window.open("<%=request.getContextPath() %>/auth/note.do?folder=write&receiveId="+txt,"쪽지",'width=800,height=500,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,left=150,top=100');
+	<% }else{ %>
+	alert("로그인 먼저 하세요");
+	<% } %>
 }
 </script>
 <style type="text/css">
-@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
-@import url(http://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
-@import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
-html{
-	font-family: 'nanum pen script';
-	font-size: x-large;
+@font-face { 
+font-family:ngttf; 
+src:url(/taommall/css/NanumGothic.ttf); 
+}
+@font-face { 
+font-family:ngeot; 
+src:url(/taommall/css/NanumGothic.eot); 
+}
+
+html,body{
+	font-family: NanumGothic,"나눔고딕",ngttf,ngeot,dotum,"돋음",sans-serif;
 	}
 }
 a{
@@ -53,22 +65,22 @@ a{
 }
 .left{
 	float: left;
-	width: 250px;
+	width: 400px;
 	margin-top: 32px;
 	margin-bottom: 20px;
 }
 #search{
 	float: left;
-	width:550px;
+	width:600px;
 	margin:0 auto;
 	margin-top: 65px;
 	
 }
 .right{
 	float: left;
-	width:500px;
+	width:300px;
 	height:60px;
-	margin-top:50px;
+	margin-top:60px;
 	text-align: right;
 	vertical-align: text-bottom;
 	
@@ -93,30 +105,30 @@ a{
 					<c:when test="${sessionScope.loginInfo.admin=='true' }">
 						<a href="<%=request.getContextPath() %>/seller/auth/memberList.do">회원관리</a> |
 						<a href="<%=request.getContextPath() %>/board/auth/boardList.do">후기관리</a> |
-						<a href="<%=request.getContextPath() %>/auth/centerList.do">고객센터 관리</a> |
+						<a href="<%=request.getContextPath() %>/auth/centerList.do">고객센터 관리</a><br>
 						<a href="#" onclick="note()">쪽지관리
-						<div style="display: none"></div></a> |
+						<span style="display: none"></span></a> |
 						<a href="<%=request.getContextPath() %>/auth/logout.do">로그아웃</a>	
 					</c:when>
 					<c:otherwise>
-						${sessionScope.loginInfo.sellerId }님 환영합니다. <br>
-						<a href="<%=request.getContextPath() %>/auth/sellerInfoForm.do">회원정보</a> |
+						<il>${sessionScope.loginInfo.sellerId }님 환영합니다.</il><br>
 						<a href="<%=request.getContextPath() %>/auth/orderManager.do">주문관리</a> |
-						<a href="<%=request.getContextPath() %>/auth/productManager.do?sellerId=${sessionScope.loginInfo.sellerId}">상품관리</a><br>
-						<a href="<%=request.getContextPath() %>/auth/centerList.do">고객센터</a> |
+						<a href="<%=request.getContextPath() %>/auth/productManager.do?sellerId=${sessionScope.loginInfo.sellerId}">상품관리</a> |
+						<a href="<%=request.getContextPath() %>/auth/centerList.do">고객센터</a><br>
+						<a href="<%=request.getContextPath() %>/auth/sellerInfoForm.do">회원정보</a> |
 						<a href="#" onclick="note()">쪽지관리
-						<div style="display: none"></div></a> |
+						<span style="display: none"></span></a> |
 						<a href="<%=request.getContextPath() %>/auth/logout.do">로그아웃</a>	
 					</c:otherwise>
 				</c:choose>	
 			</c:when>
 			<%-- 구매자 확인 --%>
 			<c:when test="${sessionScope.user=='buyer'}">
-				${sessionScope.loginInfo.buyerId }님 환영합니다. <br>
-				<a href="<%=request.getContextPath()%>/auth/buyerInfoForm.do">회원정보</a> |
+				<il>${sessionScope.loginInfo.buyerId }님 환영합니다.</il><br>
 				<a href="<%=request.getContextPath()%>/cart/auth/cartList.do">장바구니</a> |
-				<a href="<%=request.getContextPath()%>/auth/completeList.do">주문내역</a><br> |
-				<a href="<%=request.getContextPath() %>/auth/centerList.do">고객센터</a> |
+				<a href="<%=request.getContextPath()%>/auth/completeList.do">주문내역</a> |
+				<a href="<%=request.getContextPath() %>/auth/centerList.do">고객센터</a><br>
+				<a href="<%=request.getContextPath()%>/auth/buyerInfoForm.do">회원정보</a> |
 				<a href="#" onclick="note()">쪽지관리
 				<div style="display: none"></div></a> |
 				<a href="<%=request.getContextPath() %>/auth/logout.do">로그아웃</a>	
@@ -126,7 +138,7 @@ a{
 			<c:otherwise>
 					<a href="<%=request.getContextPath() %>/memberJoinForm.do">회원가입</a> |
 					<a href="<%=request.getContextPath() %>/memberLoginForm.do">로그인</a>
-			</c:otherwise>	
+			</c:otherwise>
 		</c:choose>
 	</div>
 </body>

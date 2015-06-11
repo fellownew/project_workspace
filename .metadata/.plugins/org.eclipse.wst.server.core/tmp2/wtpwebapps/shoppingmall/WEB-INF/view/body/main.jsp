@@ -17,7 +17,6 @@
 		<script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
 		<script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.cslider.js"></script>
 		<script type="text/javascript">
-		
 			$(function() {			
 				$('#da-slider').cslider();		
 			});
@@ -26,6 +25,7 @@
 				window.onunload=function(){
 					window.locatiobn.replace(self.location);
 				}
+
 			});
 		</script>	
 

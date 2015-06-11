@@ -31,10 +31,17 @@ function home(){
 }
 
 function note(){
+
 	window.open("<%=request.getContextPath() %>/auth/note.do?folder=receive","쪽지",'width=800,height=500,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,left=150,top=100');
+
+
 }
 function note(txt){
-	window.open("<%=request.getContextPath() %>/auth/note.do?folder=write&receiveId="+txt,"쪽지",'width=800,height=500,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,left=150,top=100');
+	<% if(session.getAttribute("loginInfo")!=null ){ %>
+		window.open("<%=request.getContextPath() %>/auth/note.do?folder=write&receiveId="+txt,"쪽지",'width=800,height=500,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,left=150,top=100');
+	<% }else{ %>
+		alert("로그인 먼저 하세요");
+	<% } %>
 }
 </script>
 <style type="text/css">
