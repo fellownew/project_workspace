@@ -82,7 +82,7 @@ function cfHistoryNoBack(){
 			</tr>
 			<c:forEach items="${requestScope.list}" var="order">
 			<tr>
-				<td>
+				<td style="text-align:left">
 					<div style="float: left"> 
 					<img src="<%=request.getContextPath()%>/${order.product.imagePath}" style="width: 100px;height: 100px; "/>
 					</div>
@@ -96,7 +96,7 @@ function cfHistoryNoBack(){
 			</tr>
 			</c:forEach>
 		</table>
-		<div>
+
 		<table class="center">
 		<colgroup>
 		<col width="25%"> 
@@ -113,13 +113,14 @@ function cfHistoryNoBack(){
 			</tr>
 			<tr>
 				<th style="width:120px; text-align:center">배송시 유의사항</th>
-				<td>
+				<td style="text-align:left">
 				<div class="productName">${requestScope.list[0].recipient.detail }</div>
 				</td>
 			</tr>
+			<caption style="text-align:right" align="bottom">
+				<button onClick="home()">메인으로</button>
+			</caption>
 		</table><br>
-		</div>
-			<button onClick="home()" style="position:relative;left: 1050px;margin-bottom: 10px; ">메인으로</button>
 </body>
 </html>
 

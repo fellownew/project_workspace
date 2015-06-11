@@ -1,3 +1,6 @@
+select * from buyer
+
+
 insert into seller 
 (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number)
 values
@@ -20,7 +23,8 @@ from (
 				where status='배송대기'
 				order by  recipient_id desc     
 		)   
-	)    
+	)   
+	
 where page = 1
 
 		select   oa,ob,oc,od,oe,og,oh,oi,

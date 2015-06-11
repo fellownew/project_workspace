@@ -198,10 +198,10 @@ $(document).ready(function(){
 			</c:when>
 			</c:choose>
 			</tbody>
+			<caption style="text-align:right" align="bottom">
+				<input type="text" id="result" readonly="readonly" ><input type="button" id="purchase" value="구매하기" ><span id="purchaseErr" style="display: none;" class="error">상품을 1개이상 선택해주세요.</span>
+			</caption>
 		</table>
-	</div>
-	<div style="position:relative;left: 770px;margin-bottom: 10px; ">
-		<input type="text" id="result" readonly="readonly" ><input type="button" id="purchase" value="구매하기" ><span id="purchaseErr" style="display: none;" class="error">상품을 1개이상 선택해주세요.</span>
 	</div>
 </body>
 </html>
