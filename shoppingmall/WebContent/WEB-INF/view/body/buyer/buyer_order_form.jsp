@@ -92,8 +92,8 @@
 <!-- 	<fieldset style="height:500px"> -->
 	<table class="center" >
 		<colgroup>
-				<col width="41%"> 
-				<col width="12%">
+				<col width="40%"> 
+				<col width="13%">
 				<col width="10%"> 
 				<col width="12%">
 				<col width="15%"> 
@@ -148,7 +148,6 @@
 			</tr>							
 	</table><br>
 		
-	<div>
 	<table class="center">
 		<colgroup>
 				<col width="20%"> 
@@ -202,14 +201,9 @@
 					</select> 
 				</td>
 			</tr>
-			<tr>
-				<td colspan="2" >
-					
-				</td>
-			</tr>
+			<caption style="text-align:right" align="bottom">
+				<button id="payment">결제하기</button>
+			</caption>
 		</table><br>
-		</div>
-		<button id="payment" style="position:relative;left: 1055px;margin-bottom: 10px; ">결제하기</button>
-		
 </body>
 </html>
