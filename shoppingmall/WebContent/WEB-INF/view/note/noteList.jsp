@@ -18,7 +18,7 @@ $(document).ready(function(){
         	$.ajax({
         		url:"/taommall/auth/deleteNote.do",
         		type:"POST",
-        		data:{list:checkList},	
+        		data:{list:checkList,folder:"${param.folder }"},
         		dataType:"text",
         		beforeSend:function(){
         				if(!checkList){
@@ -48,7 +48,7 @@ $(document).ready(function(){
     	$.ajax({
     		url:"/taommall/auth/storeNote.do",
     		type:"POST",
-    		data:{list:checkList},	
+    		data:{list:checkList,folder:"${param.folder }"},	
     		dataType:"text",
     		beforeSend:function(){
     				if(!checkList){

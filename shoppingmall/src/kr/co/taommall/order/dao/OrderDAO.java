@@ -20,5 +20,6 @@ public interface OrderDAO {
 	public List<Order> selectOrderBySellerId(String sellerId);
 	public List<Order> selectOrderByStatusPaging(int page, String status);
 	public int selectOrderCount(String status);
+	public List<Order> selectOrderListByStatus(Order order);
 
 }

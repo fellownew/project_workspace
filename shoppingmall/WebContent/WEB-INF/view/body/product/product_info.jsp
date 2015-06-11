@@ -45,7 +45,7 @@ function cart(id){
 		<tbody>
 
 			<tr>
-				<td rowspan="6" style="width:490px"><img src="<%=request.getContextPath() %>/${requestScope.product.imagePath }"/></td>
+				<td rowspan="6" style="width:490px"><img width="490px" height="490px" src="<%=request.getContextPath() %>/${requestScope.product.imagePath }"/></td>
 				<td width="200px">상품명</td>	
 			    <td>${product.productName}</td>	
 			</tr>

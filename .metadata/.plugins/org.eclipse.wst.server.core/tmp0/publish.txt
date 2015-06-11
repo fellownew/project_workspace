@@ -1,9 +1,13 @@
 #Tomcat publish data
 <<<<<<< HEAD
+<<<<<<< HEAD
 #Wed Jun 10 09:33:10 KST 2015
 =======
 #Wed Jun 10 13:22:31 KST 2015
 >>>>>>> 264b5e859613acd67bba61da4d3bff8e29427f1d
+=======
+#Wed Jun 10 17:49:12 KST 2015
+>>>>>>> 6143c8fbb15f2849eed6e2b2deba5372afa2c979
 org.eclipse.jst.jee.server\:shoppingmall=C\:\\JAVA\\apache-tomcat-7.0.59\\webapps\\shoppingmall
 >>>>>>>=origin/master
 org.eclipse.jst.jee.server\:/binary\:C\:\\Users\\KOSTA_03_008\\.m2\\repository\\org\\springframework\\spring-web\\4.1.6.RELEASE\\spring-web-4.1.6.RELEASE.jar=C\:\\JAVA\\apache-tomcat-7.0.59\\webapps\\shoppingmall\\WEB-INF\\lib\\spring-web-4.1.6.RELEASE.jar

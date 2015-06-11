@@ -138,14 +138,19 @@ public class OrderController {
 	}
 
 	@RequestMapping("orderManager.do")
-	public String orderManager(HttpSession session, HttpServletRequest request) {
+	public String orderManager(@RequestParam(defaultValue="모두보기") String status,HttpSession session, HttpServletRequest request) {
 		String sellerId = ((Seller) session.getAttribute("loginInfo"))
 				.getSellerId();
-		List<Order> list = service.selectOrderBySellerId(sellerId);
+		Order order = new Order();
+		order.setSellerId(sellerId);
+		order.setStatus(status);
+		List<Order> list = service.selectOrderListByStatus(order);
 		request.setAttribute("list", list);
+		request.setAttribute("status", status);
+
 		return "seller/order_manager_list.form";
 	}
-
+	
 	@RequestMapping("orderStatusUpdate.do")
 	public String orderStatusUpdate(
 			@RequestParam(required = true) int recipientId,

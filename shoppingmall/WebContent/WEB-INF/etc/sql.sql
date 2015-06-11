@@ -3,6 +3,7 @@
  */
 
 drop table note;
+drop table rnote;
 drop table cart;
 drop table orders;
 drop table center;
@@ -20,6 +21,17 @@ drop sequence order_no;
 
 
 create table note(
+	note_no number primary key,
+	title varchar2(50) not null,
+	content varchar2(2000) not null,
+	send_id varchar2(20) not null,
+	receive_id varchar2(20) not null,
+	send_date varchar2(20) not null,
+	read varchar2(10),
+	store varchar2(10)
+);
+
+create table rnote(
 	note_no number primary key,
 	title varchar2(50) not null,
 	content varchar2(2000) not null,
@@ -134,6 +146,7 @@ create table note(
 
 
 create sequence c_note_no;
+create sequence c_rnote_no;
 create sequence recipient_no_seq;
 create sequence c_product_id;
 create sequence c_board_id;
@@ -165,6 +178,7 @@ select * from orders;
 select * from pboard;
 select * from center;
 select * from note;
+select * from rnote;
 
 
 
@@ -191,3 +205,23 @@ from (
 	order by DBMS_RANDOM.VALUE
 	)
 where (rownum <= 5)
+
+
+
+
+/*
+ * test
+ */
+		select note_no,title,content,send_id,receive_id,send_date,read,store
+		from(
+			select ceil(rownum/10) page, note_no,title,content,send_id,receive_id,send_date,read,store
+			from(
+				select n.note_no,n.title,n.content,n.send_id,n.receive_id,n.send_date,n.read,n.store
+				,r.note_no,r.title,r.content,r.send_id,r.receive_id,r.send_date,r.read,r.store
+				from note n, rnote r
+				where receive_id='seller' and n.store='true'
+				order by send_date desc
+			)
+		)			
+		where page = 1
+
