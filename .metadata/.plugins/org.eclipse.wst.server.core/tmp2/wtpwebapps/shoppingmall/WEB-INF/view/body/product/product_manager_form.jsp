@@ -42,9 +42,9 @@ button{
 	<div>
 	<button id="registerProductBtn" style="position:relative;left: 450px;margin-bottom: 10px; ">상품등록</button>
 	<c:if test="${fn:length(requestScope.productList) != 0 }">
-		<table style="width: 1000px;margin:0 auto" border='1'>
+		<table style="width: 1000px;margin:0 auto;border-collapse: collapse;" border='1'>
 			<thead>
-				<tr>
+				<tr style="background-color: #F1F1F1">
 					<td></td>
 					<td>상품번호</td>
 					<td>상품명</td>

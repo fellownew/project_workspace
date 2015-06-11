@@ -17,6 +17,7 @@
 		<script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
 		<script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.cslider.js"></script>
 		<script type="text/javascript">
+		
 			$(function() {			
 				$('#da-slider').cslider();		
 			});
@@ -47,7 +48,7 @@
         </div>
         
        <table style="width: 33.3%;vertical-align: top;">
-       	<tbody>
+       	<tbody id="tbody">
        		<c:forEach items="${requestScope.bottomList }" var="product" varStatus="i">
 				<c:if test="${i.index==0 or i.index==3 or i.index==6 }">
 					<tr>

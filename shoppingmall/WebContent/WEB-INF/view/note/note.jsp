@@ -7,6 +7,34 @@
 <title>우편함</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/sidemenu.css">
 <script type="text/javascript" src="<%=request.getContextPath() %>/script/jquery.js"></script>
+<style>
+<!--
+
+-->
+button {
+  font-family: arial;
+  font-weight: bold;
+  color: #FFFFFF !important;
+  font-size: 12px;
+  padding: 9px 11px;
+  -moz-border-radius: 13px;
+  -webkit-border-radius: 13px;
+  border-radius: 15px;
+  background: #CD0000;
+  background: linear-gradient(top,  #5C5C5C,  #A6A6A6);
+  background: -ms-linear-gradient(top,  #5C5C5C,  #A6A6A6);
+  background: -webkit-gradient(linear, left top, left bottom, from(#5C5C5C), to(#A6A6A6));
+  background: -moz-linear-gradient(top,  #5C5C5C,  #A6A6A6);
+}
+button:hover {
+  color: #000000 !important;
+  background: #FFFFFF;
+  background: linear-gradient(top,  #A6A6A6,  #5C5C5C);
+  background: -ms-linear-gradient(top,  #A6A6A6,  #5C5C5C);
+  background: -webkit-gradient(linear, left top, left bottom, from(#A6A6A6), to(#5C5C5C));
+  background: -moz-linear-gradient(top,  #A6A6A6,  #5C5C5C);
+}
+</style>
 </head>
 <body>
 	<div id="noteWrap">

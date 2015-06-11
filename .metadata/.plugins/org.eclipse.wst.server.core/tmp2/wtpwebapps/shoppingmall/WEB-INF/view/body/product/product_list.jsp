@@ -10,7 +10,7 @@
 $(document).ready(function(){
 	$("#tbody").on("mouseover","tr",function(){
 		$("#tbody tr").css("background-color","white");
-		$(this).css("background-color","#E2B4A9");
+		$(this).css("background-color","#FFF1F1");
 	});
 	
 });

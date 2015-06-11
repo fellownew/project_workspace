@@ -6,7 +6,12 @@
 <style type="text/css">
 .explain{
 	display: none;
+	
+}
 
+.explain pre{
+	text-align: left;
+	padding-left: 40px;
 }
 
 pre {
@@ -14,6 +19,11 @@ pre {
   white-space: -moz-pre-wrap;
   white-space: pre-wrap;
 }
+
+#tbody tr{
+	height: 30px;
+}
+
 </style>
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
 <script type="text/javascript">
@@ -32,22 +42,27 @@ $(document).ready(function(){
 		}
 	
 	});
+	$("#tbody").on("mouseover","tr",function(){
+		$("#tbody tr").css("background-color","white");
+		$(this).css("background-color","#FFF1F1");
+	});
+		
 		
 		
 		
 });
 </script>
 
-<table style="width: 500px; table-layout:fixed; margin:0 auto;padding-top: 30px;padding-bottom: 30px" border="1">
+<table style="width: 600px; table-layout:fixed; margin:0 auto;padding-top: 30px;padding-bottom: 30px;border-collapse: collapse;" border="1">
 <colgroup>
 				<col style="width: 8px;" />
 				<col style="width: 100px;" />
 	
 </colgroup>
-<tr><th>No</th><th>글제목</th></tr>
-<tbody>
+<tr style="background-color: #F1F1F1"><th>No</th><th>글제목</th></tr>
+<tbody id="tbody">
 <tr id="1" value="1"><th>1</th>
-	<td style="cursor: pointer" onmouseover="this.style.backgroundColor='#e2b4a9'" onmouseout="this.style.backgroundColor=''">
+	<td>
 		사이트 이용 시 오류가 발생합니다. 어떻게 하나요?
 	</td>
 </tr>
@@ -58,7 +73,7 @@ $(document).ready(function(){
 자체적인 해결이 어렵다면 자세한 사유와 해결방안을 알아보실 수 있도록
 따옴몰 고객센터로 문의 주신다면 최선을 다해 상담해드리겠습니다.</pre></td></tr>
 <tr id="2" value="1"><th>2</th>
-	<td style="cursor: pointer" onmouseover="this.style.backgroundColor='#e2b4a9'" onmouseout="this.style.backgroundColor=''">
+	<td ">
 		개인 구매회원의 회원가입 절차는 어떻게 되나요?
 	</td>
 </tr>
@@ -82,7 +97,7 @@ $(document).ready(function(){
 </div>
 </td></tr>
 <tr id="3" value="1" ><th>3</th>
-	<td style="cursor: pointer" onmouseover="this.style.backgroundColor='#e2b4a9'" onmouseout="this.style.backgroundColor=''">
+<td>
 		사업자 판매회원의 회원가입 절차는 어떻게 되나요?
 	</td>
 </tr>
