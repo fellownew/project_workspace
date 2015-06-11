@@ -31,10 +31,10 @@ function home(){
 }
 
 function note(){
-	window.open("<%=request.getContextPath() %>/auth/note.do?folder=receive","쪽지",'width=700,height=500,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,left=150,top=100');
+	window.open("<%=request.getContextPath() %>/auth/note.do?folder=receive","쪽지",'width=800,height=500,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,left=150,top=100');
 }
 function note(txt){
-	window.open("<%=request.getContextPath() %>/auth/note.do?folder=write&receiveId="+txt,"쪽지",'width=700,height=500,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,left=150,top=100');
+	window.open("<%=request.getContextPath() %>/auth/note.do?folder=write&receiveId="+txt,"쪽지",'width=800,height=500,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,left=150,top=100');
 }
 </script>
 <style type="text/css">
@@ -60,9 +60,10 @@ a{
 	float: left;
 	width:500px;
 	height:60px;
-	margin-top:65px;
+	margin-top:50px;
 	text-align: right;
 	vertical-align: text-bottom;
+	
 }
 </style>
 

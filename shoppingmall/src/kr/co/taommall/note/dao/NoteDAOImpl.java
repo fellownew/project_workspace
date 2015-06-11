@@ -1,5 +1,6 @@
 package kr.co.taommall.note.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import kr.co.taommall.note.vo.Note;
@@ -22,8 +23,8 @@ public class NoteDAOImpl implements NoteDAO {
 	}
 
 	@Override
-	public void deleteNote(int noteNo) {
-		session.delete(nameSpace+"deleteNote", noteNo);
+	public void deleteNote(ArrayList<Integer> list) {
+		session.delete(nameSpace+"deleteNote", list);
 	}
 
 	@Override
@@ -39,8 +40,8 @@ public class NoteDAOImpl implements NoteDAO {
 	}
 
 	@Override
-	public void updateNoteStore(int noteNo) {
-		session.update(nameSpace+"updateNoteStore",noteNo);
+	public void updateNoteStore(ArrayList<Integer> list) {
+		session.update(nameSpace+"updateNoteStore",list);
 	}
 	
 	@Override
@@ -99,13 +100,13 @@ public class NoteDAOImpl implements NoteDAO {
 
 
 	@Override
-	public void deleteRNote(int noteNo) {
-		session.delete(nameSpace+"deleteRNote", noteNo);
+	public void deleteRNote(ArrayList<Integer> list) {
+		session.delete(nameSpace+"deleteRNote", list);
 	}
 
 	@Override
-	public void updateRNoteStore(int noteNo) {
-		session.update(nameSpace+"updateRNoteStore",noteNo);
+	public void updateRNoteStore(ArrayList<Integer> list) {
+		session.update(nameSpace+"updateRNoteStore",list);
 		
 	}
 

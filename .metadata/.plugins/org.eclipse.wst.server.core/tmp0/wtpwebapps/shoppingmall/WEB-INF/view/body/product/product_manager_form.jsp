@@ -58,7 +58,7 @@ button{
 				<c:forEach items="${requestScope.productList }" var="product" >
 					<tr>
 						<td>
-						<img src="<%=request.getContextPath() %>/${product.imagePath}" width="60px" height="60px"/>
+						<img src="<%=request.getContextPath()%>/${product.imagePath}" width="60px" height="60px"/> 
 						</td>
 						<td>${product.productId }</td>
 						<td>${product.productName}</td>

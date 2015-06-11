@@ -1,5 +1,6 @@
 package kr.co.taommall.note.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import kr.co.taommall.note.vo.Note;
@@ -9,12 +10,12 @@ import org.springframework.ui.Model;
 public interface NoteDAO {
 
 	void insertNote(Note note);
-	void deleteNote(int noteNo);
-	void deleteRNote(int noteNo);
+	void deleteNote(ArrayList<Integer> list);
+	void deleteRNote(ArrayList<Integer> list);
 	void deleteSendNote(Model model);
 	void deleteReceiveNote(Model model);
-	void updateNoteStore(int noteNo);
-	void updateRNoteStore(int noteNo);
+	void updateNoteStore(ArrayList<Integer> list);
+	void updateRNoteStore(ArrayList<Integer> list);
 	void updateNoteRead(int noteNo);
 	void updateRNoteRead(int noteNo);
 	Note selectNoteByNo(int noteNo);

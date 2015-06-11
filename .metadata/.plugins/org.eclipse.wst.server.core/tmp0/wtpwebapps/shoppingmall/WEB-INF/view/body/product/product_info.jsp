@@ -45,7 +45,7 @@ function cart(id){
 		<tbody>
 
 			<tr>
-				<td rowspan="6" style="width:490px"><img src="<%=request.getContextPath() %>/${requestScope.product.imagePath }"/></td>
+				<td rowspan="6" style="width:490px"><img src="<%=request.getContextPath() %>/${requestScope.product.imagePath }" style="width:489px"/></td>
 				<td width="200px">상품명</td>	
 			    <td>${product.productName}</td>	
 			</tr>
@@ -71,13 +71,15 @@ function cart(id){
 				<td colspan="2"><button class="buyButton" onclick="order(${product.productId})">주문</button><button class="cartButton" id="cart" onclick="cart(${product.productId})">장바구니</button></td>			
 			</tr>
 			</c:when>
-			<c:when test="${sessionScope.user!='buyer'}">
-			<tr></tr>	
-			</c:when>
+			<c:otherwise>
+				<tr></tr>	
+			</c:otherwise>
 			</c:choose>
+			<c:if test="${not empty requestScope.product.infoImagePath}">			
 			<tr>
 				<td colspan="3" style="height: 300px;position: relative;"><img src="<%=request.getContextPath() %>/${requestScope.product.infoImagePath }"/></td>
 			</tr>
+			</c:if>
 			
 		</tbody>
 	</table>
