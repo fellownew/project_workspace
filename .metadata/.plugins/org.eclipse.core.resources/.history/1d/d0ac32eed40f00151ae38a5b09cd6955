@@ -1,0 +1,148 @@
+package kr.co.taommall.note.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import kr.co.taommall.account.vo.Buyer;
+import kr.co.taommall.account.vo.Seller;
+import kr.co.taommall.common.PagingBean;
+import kr.co.taommall.note.dao.NoteDAO;
+import kr.co.taommall.note.vo.Note;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
+
+@Service
+public class NoteServiceImpl implements NoteService {
+	
+	@Autowired
+	private NoteDAO dao;
+
+	@Override
+	public void insertNote(Note note) {
+			dao.insertNote(note);
+	}
+
+	@Override
+	@Transactional
+	public void deleteNote(ArrayList<Integer> list,String folder,Model model) {
+		System.out.println(list);
+		System.out.println(folder);
+		System.out.println(model);
+		if(folder.equals("store")){
+			model.addAttribute("noteNoList",list);
+				dao.deleteSendNote(model);
+				dao.deleteReceiveNote(model);
+		}else if(folder.equals("send")){
+			for(int noteNo : list){
+				dao.deleteNote(noteNo);
+			}			
+		}else{
+			for(int noteNo : list){
+				dao.deleteRNote(noteNo);
+			}
+		}
+	}
+	
+	@Override
+	@Transactional
+	public void updateNoteStore(ArrayList<Integer> list,String folder) {
+		if(folder.equals("send")){
+			for(int noteNo : list){
+				dao.updateNoteStore(noteNo);
+			}			
+		}else{
+			for(int noteNo : list){
+				dao.updateRNoteStore(noteNo);
+			}
+		}
+	}
+
+	@Override
+	public List<Note> selectReceiveNote(int pageNo,String receiveId,Model model) {		
+		int totalContent = dao.selectNoteCountReceive(receiveId);
+		PagingBean pagingBean = new PagingBean(totalContent, pageNo);
+		int contentsPerPage =PagingBean.CONTENTS_PER_PAGE;
+		model.addAttribute("contentsPerPage", contentsPerPage);
+		model.addAttribute("pageNo", pageNo);
+		model.addAttribute("pagingBean", pagingBean);
+		return dao.selectReceiveNote(model);
+	}
+
+
+	@Override
+	public List<Note> selectSendNote(int pageNo,String sendId,Model model) {
+		int totalContent = dao.selectNoteCountSend(sendId);
+		PagingBean pagingBean = new PagingBean(totalContent, pageNo);
+		int contentsPerPage =PagingBean.CONTENTS_PER_PAGE;
+		model.addAttribute("contentsPerPage", contentsPerPage);
+		model.addAttribute("pageNo", pageNo);
+		model.addAttribute("pagingBean", pagingBean);
+		return dao.selectSendNote(model);
+	}
+
+
+	@Override
+	@Transactional
+	public List<Note> selectStoreNote(int pageNo,String sendId,String receiveId,Model model) {
+		int totalContent = dao.selectNoteCountStore(sendId)+dao.selectRNoteCountStore(receiveId);
+		PagingBean pagingBean = new PagingBean(totalContent, pageNo);
+		int contentsPerPage =PagingBean.CONTENTS_PER_PAGE;
+		model.addAttribute("contentsPerPage", contentsPerPage);
+		model.addAttribute("pageNo", pageNo);
+		model.addAttribute("pagingBean", pagingBean);
+		List<Note> list = dao.selectStoreNote(model);
+		List<Note> rlist = dao.selectStoreRNote(model);
+		for(Note note:rlist){
+			list.add(note);
+		}
+		return list;
+	}
+	
+	//읽기시행 및 읽기 처리
+	@Override
+	@Transactional
+	public Note selectNoteByNo(int noteNo,HttpSession session){
+		String id=null;
+		String user = (String)session.getAttribute("user");
+		if(user.equals("buyer")){
+			Buyer buyer = (Buyer)session.getAttribute("loginInfo");
+			id = buyer.getBuyerId();
+		}else{
+			Seller seller = (Seller)session.getAttribute("loginInfo");
+			id = seller.getSellerId();	
+		}
+		
+		Note note = dao.selectNoteByNo(noteNo);
+		Note rnote = dao.selectRNoteByNo(noteNo);
+		//송수신자 둘 다 삭제를 안했다면.
+		if(note!=null && rnote!=null){
+			//읽은 사람이 수신자라면 읽기처리 후 리턴.
+			if(note.getReceiveId().equals(id)){
+				dao.updateNoteRead(noteNo);
+				dao.updateRNoteRead(noteNo);
+				note = dao.selectRNoteByNo(noteNo);
+			}
+			//읽은 사람이 송신자라면 바로 리턴.
+			return note;
+			
+		//보내놓고 송신자가 삭제했다면 - 수신자가 열람. 읽기처리 후 리턴.
+		}else if(rnote!=null){
+			dao.updateRNoteRead(noteNo);
+			note = dao.selectRNoteByNo(noteNo);
+			return note;
+		//보지도 않고 수신자가 삭제했다면 - 송신자가 열람.
+		}else{
+			return note;
+		}
+	}
+
+	@Override
+	public int selectNoteCountReceiveNoRead(String receiveId) {
+		return dao.selectNoteCountReceiveNoRead(receiveId);
+	}
+}

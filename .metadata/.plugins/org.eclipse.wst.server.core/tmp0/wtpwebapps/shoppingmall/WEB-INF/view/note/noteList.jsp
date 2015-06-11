@@ -18,7 +18,7 @@ $(document).ready(function(){
         	$.ajax({
         		url:"/taommall/auth/deleteNote.do",
         		type:"POST",
-        		data:{list:checkList},	
+        		data:{list:checkList,folder:"${param.folder }"},
         		dataType:"text",
         		beforeSend:function(){
         				if(!checkList){
@@ -48,7 +48,7 @@ $(document).ready(function(){
     	$.ajax({
     		url:"/taommall/auth/storeNote.do",
     		type:"POST",
-    		data:{list:checkList},	
+    		data:{list:checkList,folder:"${param.folder }"},	
     		dataType:"text",
     		beforeSend:function(){
     				if(!checkList){
@@ -91,18 +91,18 @@ function viewNote(no){
 	</c:if>
 	<div>
 		<%--테이블 --%>
-		<table style="width:450px;margin: 0 auto;text-align: center;border:1px;border-collapse:collapse;">
+		<table style="width:490px;margin: 0 auto;text-align: center;border:1px;border-collapse:collapse;">
 			<thead style="background-color: #FAFAFA">
 				<tr style="height:40px;border-bottom-style: solid;">
 					<td><input type="checkbox" id="allCheck"></td>
-					<td style="width:280px">제목</td>
+					<td style="width:300px">제목</td>
 					<c:if test="${param.folder=='receive' or param.folder=='store' }">
 						<td style="width:80px">보낸사람</td>
 						</c:if>
 					<c:if test="${param.folder=='send' }">
 						<td style="width:80px">받는사람</td>
 					</c:if>
-					<td style="width:80px">날짜</td>
+					<td style="width:100px">날짜</td>
 				</tr>
 			</thead>
 			<tbody id="tbody">
@@ -116,7 +116,7 @@ function viewNote(no){
 						</td>
 						
 						<c:if test="${param.folder=='receive' or param.folder=='store' }">
-							<td style="text-align: right; ">${note.sendId}</td>
+							<td style="text-align: center; ">${note.sendId}</td>
 						</c:if>
 						<c:if test="${param.folder=='send' }">
 							<td style="text-align: right; ">${note.receiveId}</td>

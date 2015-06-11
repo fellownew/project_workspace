@@ -60,14 +60,17 @@
 </script>
 	
 <div>
-<select id="selectList">
-<option >게시글 보기</option>
-<option value="5">5개</option>
-<option value="10">10개</option>
-<option value="15">15개</option>
-<option value="20">20개</option>
-</select>
-	<table>
+
+	<table style="width:100%">
+		<caption style="text-align:right">
+			<select id="selectList">
+				<option>게시글 보기</option>
+				<option value="5">5개</option>
+				<option value="10">10개</option>
+				<option value="15">15개</option>
+				<option value="20">20개</option>
+			</select>
+		</caption>
 		<thead>
 			<tr>
 				<td>셀러ID</td>
@@ -108,6 +111,9 @@
 			</c:choose>	
 			</c:forEach>
 		</tbody>
+		<caption style="text-align:right" align="bottom">
+		<input type="button" id="updateAuth" value="변경">
+		</caption>
 	</table>
 				<!-- 페이징 처리 -->
 		<!-- 이전 페이지 그룹 -->
@@ -142,5 +148,5 @@
 				▶
 			</c:otherwise>
 		</c:choose>	
-		<input type="button" id="updateAuth" value="변경">
+		
 </div>

@@ -1,0 +1,21 @@
+<%@ page contentType="text/html;charset=UTF-8"%>
+<div>
+	<table style="width: 450px;height: 400px ">
+		<thead>
+			<tr>
+				<td colspan ="2"> <font>${requestScope.note.sendId } → ${requestScope.note.receiveId }</font><font>${requestScope.note.sendDate }</font></td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>제목</td>
+				<td>${requestScope.note.title }</td>
+			</tr>
+			<tr>
+				<td>내용</td>
+				<td>${requestScope.note.content }</td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>

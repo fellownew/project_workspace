@@ -16,10 +16,11 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class ProductServiceImpl implements ProductService {
 	private String abImagePath = "C:\\JAVA\\eclipse\\project_workspace\\shoppingmall\\WebContent\\upimage";
+//	private String abImagePath = "C:\\JAVA\\apache-tomcat-7.0.59\\webapps\\shoppingmall\\upimage";
 	private String deImagePath = "upimage/";
 	@Autowired
 	private ProductDAO dao;
-	
+
 	@Override
 	public void insertProduct(Product product,MultipartFile upfile,MultipartFile infoUpfile){
 		//파일명은 현재 시간으로 가져옴.
@@ -42,9 +43,8 @@ public class ProductServiceImpl implements ProductService {
 		product.setImagePath(imagePath);
 		String infoImagePath = deImagePath+infoFileName;
 		product.setInfoImagePath(infoImagePath);
-		
-		System.out.println("product : "+product);
 		dao.insertProduct(product);
+		Product p = dao.selectProductByIdNoPaging(product.getProductId());
 	}
 	
 	@Override

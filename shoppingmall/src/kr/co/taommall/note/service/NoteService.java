@@ -12,11 +12,11 @@ import org.springframework.ui.Model;
 public interface NoteService {
 
 	void insertNote(Note note);
-	void deleteNote(ArrayList<Integer> list);
-	void updateNoteStore(ArrayList<Integer> list);
+	void deleteNote(ArrayList<Integer> list,String folder,Model model);
+	void updateNoteStore(ArrayList<Integer> list,String folder);
 	List<Note> selectReceiveNote(int pageNo,String receiveId,Model model);
 	List<Note> selectSendNote(int pageNo,String sendId,Model model);
-	List<Note> selectStoreNote(int pageNo,String receiveId,Model model);
+	List<Note> selectStoreNote(int pageNo,String sendId,String receiveId,Model model);
 	Note selectNoteByNo(int noteNo,HttpSession session);
 	int selectNoteCountReceiveNoRead(String receiveId);
 
