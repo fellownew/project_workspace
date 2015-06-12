@@ -22,6 +22,7 @@
 			});
 			
 			$(document).ready(function(){
+			i=0;
 				window.onunload=function(){
 					window.locatiobn.replace(self.location);
 				}
@@ -38,7 +39,7 @@
 						<a href="productInfo.do?productId=${product.productId }" class="da-link">상품가기</a>
 						<div class="da-img"><img src="${product.imagePath }" alt="image01" width="320px" height="320px"/></div>
 					</div>
-	  		 	</c:forEach>
+	  		 	</c:forEach> 
 				<nav class="da-arrows">
 					<span class="da-arrows-prev"></span>
 					<span class="da-arrows-next"></span>
@@ -52,9 +53,9 @@
 				<c:if test="${i.index==0 or i.index==3 or i.index==6 }">
 					<tr>
 				</c:if>
-		       			<td>
+		       			<td  id="${product.productId }" value="${product.productName}" title="">
 							<div>
-								<a href="productInfo.do?productId=${product.productId }" onmouseover='this.style.filter="alpha(opacity=20)"' onmouseout='this.style.filter=""' class="el-main_list_03"><img src="${product.imagePath }" width="320"></a>
+								<a href="productInfo.do?productId=${product.productId }" onmouseover='this.style.filter="alpha(opacity=20)"' onmouseout='this.style.filter=""' class="el-main_list_03"><img id="${product.productName}"  src="${product.imagePath }" width="320"></a>
 							</div>
 							<div style="padding: 5px">
 								<a href="productInfo.do?productId=${product.productId }">${product.productName }</a>

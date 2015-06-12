@@ -19,7 +19,7 @@ function info(idx){
 	location="productInfo.do?productId="+idx;
 }
 </script>
-
+	
 <style>
 h2{
 	text-align: center;
