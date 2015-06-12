@@ -122,6 +122,7 @@ public class OrderController {
 				}
 			}
 		}
+		System.out.println(list);
 		request.setAttribute("list", list);
 		request.setAttribute("price", price);
 		return "member/member_order_complete.form";

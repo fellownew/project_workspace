@@ -106,9 +106,9 @@ function cfHistoryNoBack(){
 			<tr>
 				<th style="width:120px; text-align:center" rowspan="1">받는 사람</th>
 				<th style="text-align:left">
-					<div class="productName">이름 : ${sessionScope.loginInfo.name}</div>
-					<div class="productName">연락처 : ${sessionScope.loginInfo.phone }</div>
-					<div class="productName">주소 : (${sessionScope.loginInfo.address.postcode }) ${sessionScope.loginInfo.address.addressDetails }</div>
+					<div class="productName">이름 : ${requestScope.list[0].recipient.name}</div>
+					<div class="productName">연락처 : ${requestScope.list[0].recipient.phone }</div>
+					<div class="productName">주소 : (${requestScope.list[0].recipient.address.postcode }) ${requestScope.list[0].recipient.address.addressDetails }</div>
 				</th>
 			</tr>
 			<tr>
