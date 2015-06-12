@@ -34,19 +34,13 @@ public class NoteServiceImpl implements NoteService {
 		System.out.println(folder);
 		System.out.println(model);
 		if(folder.equals("store")){
-			for(int noteNo : list){
-				model.addAttribute("noteNo",noteNo);
-				dao.deleteSendNote(model);
-				dao.deleteReceiveNote(model);
-			}
+			model.addAttribute("noteNoList",list);
+			dao.deleteSendNote(model);
+			dao.deleteReceiveNote(model);
 		}else if(folder.equals("send")){
-			for(int noteNo : list){
-				dao.deleteNote(noteNo);
-			}			
+				dao.deleteNote(list);
 		}else{
-			for(int noteNo : list){
-				dao.deleteRNote(noteNo);
-			}
+				dao.deleteRNote(list);
 		}
 	}
 	
@@ -54,13 +48,9 @@ public class NoteServiceImpl implements NoteService {
 	@Transactional
 	public void updateNoteStore(ArrayList<Integer> list,String folder) {
 		if(folder.equals("send")){
-			for(int noteNo : list){
-				dao.updateNoteStore(noteNo);
-			}			
+				dao.updateNoteStore(list);
 		}else{
-			for(int noteNo : list){
-				dao.updateRNoteStore(noteNo);
-			}
+				dao.updateRNoteStore(list);
 		}
 	}
 

@@ -4,6 +4,13 @@ browsers=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<web-browsers current\="0">
 eclipse.preferences.version=1
 internalWebBrowserHistory=http\://127.0.0.1\:8088/taommall/WEB-INF/etc/fakeData.sql|*|
 =======
+<<<<<<< HEAD
+browser-choice=1
+browsers=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<web-browsers current\="0">\r\n<system/>\r\n<external location\="C\:\\Program Files\\Internet Explorer\\iexplore.exe" name\="Internet Explorer"/>\r\n</web-browsers>
+eclipse.preferences.version=1
+internalWebBrowserHistory=http\://127.0.0.1\:8088/taommall/WEB-INF/etc/fakeData.sql|*|
+=======
 browsers=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<web-browsers current\="0">\r\n<system/>\r\n<external location\="C\:\\Program Files\\Internet Explorer\\iexplore.exe" name\="Internet Explorer"/>\r\n</web-browsers>
 eclipse.preferences.version=1
 >>>>>>> 6143c8fbb15f2849eed6e2b2deba5372afa2c979
+>>>>>>> project_workspace/cjhm

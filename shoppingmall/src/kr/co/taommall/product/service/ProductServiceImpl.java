@@ -15,12 +15,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class ProductServiceImpl implements ProductService {
-	private String abImagePath = "C:\\JAVA\\git\\project_workspace\\shoppingmall\\WebContent\\upimage";
-//	private String abImagePath = "C:\\JAVA\\eclipse\\project_workspace\\shoppingmall\\WebContent\\upimage";
+	private String abImagePath = "C:\\JAVA\\eclipse\\project_workspace\\shoppingmall\\WebContent\\upimage";
+//	private String abImagePath = "C:\\JAVA\\apache-tomcat-7.0.59\\webapps\\shoppingmall\\upimage";
 	private String deImagePath = "upimage/";
 	@Autowired
 	private ProductDAO dao;
-	static int a = 0;
+
 	@Override
 	public void insertProduct(Product product,MultipartFile upfile,MultipartFile infoUpfile){
 		//파일명은 현재 시간으로 가져옴.
@@ -33,10 +33,8 @@ public class ProductServiceImpl implements ProductService {
 			upfile.transferTo(file);
 			infoUpfile.transferTo(infoFile);
 		} catch (IllegalStateException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		String imagePath = deImagePath+fileName;
@@ -45,7 +43,6 @@ public class ProductServiceImpl implements ProductService {
 		product.setInfoImagePath(infoImagePath);
 		dao.insertProduct(product);
 		Product p = dao.selectProductByIdNoPaging(product.getProductId());
-		System.out.println(p);
 	}
 	
 	@Override
