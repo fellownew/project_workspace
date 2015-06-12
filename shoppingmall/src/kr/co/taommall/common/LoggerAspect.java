@@ -14,11 +14,13 @@ public class LoggerAspect {
 	//정상 처리 후 핵심 메소드가 return 한 경우.
 	@AfterReturning(pointcut="execution(public * kr.co.taommall..*Service*..*(..))", returning="returnValue")
 	public void afterReturn(Object returnValue){
+		System.out.println("afterReturn");
 		logger.info("return Info : "+returnValue);
 	}
-	@AfterThrowing(pointcut="within(kr.co.taommall..*)", throwing="ex")
 	//핵심 로직에서 오류 발생한 후 호출.
+	@AfterThrowing(pointcut="within(kr.co.taommall..*)", throwing="ex")
 	public void afterThrow(Throwable ex){
+		System.out.println("afterThrow");
 		logger.error("Exception : ",ex);
 	}
 	

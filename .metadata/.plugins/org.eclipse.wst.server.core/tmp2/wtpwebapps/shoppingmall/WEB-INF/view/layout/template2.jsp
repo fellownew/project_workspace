@@ -1,11 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>따옴몰</title>
+<script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
 <style type="text/css" >
 #remoCon {
 	position: fixed;
@@ -79,55 +80,7 @@ button:hover {
 	clear:both;
 }
 </style>
-<script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
-<script type="text/javascript">
-//쿠키 생성
-function setCookie(cName, cValue, cDay){
-       var expire = new Date();
-       expire.setDate(expire.getDate() + cDay);
-       cookies = cName + '=' + escape(cValue) + '; path=/ '; // 한글 깨짐을 막기위해 escape(cValue)를 합니다.
-       if(typeof cDay != 'undefined') cookies += ';expires=' + expire.toGMTString() + ';';
-       document.cookie = cookies;
-   }
-
-//쿠키 가져오기
-function getCookie(cName) {
-   cName = cName + '=';
-   var cookieData = document.cookie;
-   var start = cookieData.indexOf(cName);
-   var cValue = '';
-   if(start != -1){
-       start += cName.length;
-       var end = cookieData.indexOf(';', start);
-       if(end == -1)end = cookieData.length;
-       cValue = cookieData.substring(start, end);
-   }
-   return unescape(cValue);
-}
-$("#remoCon").click(function(){	
-	$("html, body").animate({scrollTop: 0}, 1000);
-});
-
-/* alert(getCookie('productId'+idx));
-alert(getCookie('productName'+idx));
-alert(getCookie('imagePath'+idx)); */
-$(document).ready(function(){
-	var str = "";4
-	
-	/*
-	str = str + "<div><a href=/taommall/productInfo.do?productId="+getCookie('productId'+idx)+"><img width='120px' height='120px' src='/taommall/"+getCookie('imagePath'+idx)+"><br><span>"+
-				getCookie('productName'+idx)+"</span></a></div>";
-	*/
-	for(var idx = 4;idx>=0;idx--){
-		$("#a"+idx).attr("href","<%=request.getContextPath()%>/productInfo.do?productId="+getCookie('productId'+idx));
-		$("#img"+idx).attr("src","<%=request.getContextPath()%>/"+getCookie('imagePath'+idx));
-		$("#span"+idx).html(getCookie('productName'+idx));
-	}
-	
-	
-	
-});
-</script>
+<jsp:include page="/WEB-INF/view/layout/remote.jsp"/>
 </head>
 <body>
 	<div id="header">
@@ -140,26 +93,13 @@ $(document).ready(function(){
 	
 	<div id="section">
 		<tiles:insertAttribute name="body"/>
-	<div id="remoCon" style=" background-color: yellow;" >
-     <div style="text-align: center;" ><b>오늘 본 상품</b></div>
-     <div id="remote">
-     <c:forEach begin="0" end="<%=(((request.getCookies().length-1)/3 -1)<0?0:((request.getCookies().length-1)/3 -1)) %>" var="cnt" >
-		  <div>
-			  <a id="a${cnt}">
-				  	<img style="width: 120px;height: 120px;" id="img${cnt}">
-				  	<br>
-				  	<span id="span${cnt}"></span>
-			  </a>
-		  </div>
-     </c:forEach>
-     </div>    
-	</div>	
 	</div>
 	
 	<div id="footer">
 		<tiles:insertAttribute name="footer"/>
 	</div>
-	
+
+
 </body>
 </html>
 
