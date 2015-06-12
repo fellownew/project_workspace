@@ -11,7 +11,7 @@
 
 .explain pre{
 	text-align: left;
-	padding-left: 40px;
+	padding-left: 20px;
 }
 
 pre {
@@ -69,13 +69,13 @@ $(document).ready(function(){
 	</tr>
 	<tr id="1_ex" class="explain">
 		<td colspan="2" style="text-align: center;">
-			<pre>
-			사용 중인 PC의 문제 또는 네트워크연결, 서버 점검 등의 이유로
-			일시적인 오류가 발생할 수 있습니다.
-			 
-			자체적인 해결이 어렵다면 자세한 사유와 해결방안을 알아보실 수 있도록
-			따옴몰 고객센터로 문의 주신다면 최선을 다해 상담해드리겠습니다.
-			</pre>
+	<pre>
+	사용 중인 PC의 문제 또는 네트워크연결, 서버 점검 등의 이유로
+	일시적인 오류가 발생할 수 있습니다.
+	 
+	자체적인 해결이 어렵다면 자세한 사유와 해결방안을 알아보실 수 있도록
+	따옴몰 고객센터로 문의 주신다면 최선을 다해 상담해드리겠습니다.
+	</pre>
 		</td>
 	</tr>
 	<tr id="2" value="1">
@@ -86,21 +86,21 @@ $(document).ready(function(){
 	</tr>
 	<tr id="2_ex" class="explain">
 		<td colspan="2" style="text-align: center;">
-			<pre >
-			개인 구매회원 : 
-			1. id 정보 입력 
-				o id 중복확인
-				o 비밀번호 입력/확인
-			
-			2. 개인정보 입력 :
-				o 이름 입력
-				o 주소 입력
-				o 핸드폰번호 입력
-			
-			3. 인증정보 확인 : 
-				o 이메일 입력
-				o 인증번호 확인
-			</pre>
+	<pre >
+	개인 구매회원 : 
+	1. id 정보 입력 
+		o id 중복확인
+		o 비밀번호 입력/확인
+	
+	2. 개인정보 입력 :
+		o 이름 입력
+		o 주소 입력
+		o 핸드폰번호 입력
+	
+	3. 인증정보 확인 : 
+		o 이메일 입력
+		o 인증번호 확인
+	</pre>
 		</td>
 	</tr>
 	<tr id="3" value="1" >
@@ -110,29 +110,29 @@ $(document).ready(function(){
 		</td>
 	</tr>
 	<tr id="3_ex"  class="explain"><td colspan="2" style="text-align: center;">
-		<pre >
-			사업자 판매회원 : 
-			1. id 정보 입력 
-				o id 중복확인
-				o 비밀번호 입력/확인
-			
-			2. 개인정보 입력 :
-				o 이름 입력
-				o 성별 입력
-				o 주소 입력
-				o 핸드폰번호 입력
-			
-			3. 사업자 등록번호 :
-				o 사업자 등록번호 입력
-				
-			4. 인증정보 확인 : 
-				o 이메일 입력
-				o 인증번호 확인
-			5. 승인 대기 :
-				o 관리자 인증 대기
-			6. 회원가입 완료 :
-				o 회원가입
-		</pre>
+<pre >
+	사업자 판매회원 : 
+	1. id 정보 입력 
+		o id 중복확인
+		o 비밀번호 입력/확인
+	
+	2. 개인정보 입력 :
+		o 이름 입력
+		o 성별 입력
+		o 주소 입력
+		o 핸드폰번호 입력
+	
+	3. 사업자 등록번호 :
+		o 사업자 등록번호 입력
+		
+	4. 인증정보 확인 : 
+		o 이메일 입력
+		o 인증번호 확인
+	5. 승인 대기 :
+		o 관리자 인증 대기
+	6. 회원가입 완료 :
+		o 회원가입
+</pre>
 	</td>
 	</tr>
 	<tr id="4" value="1">
@@ -143,10 +143,10 @@ $(document).ready(function(){
 	</tr>
 	<tr id="4_ex" class="explain">
 		<td colspan="2" style="text-align: center;">
-			<pre>
-				관리자와의 1:1 문의는 쪽지를 이용하여 문의할 수 있습니다.
-				'admin'으로 쪽지 문의해주세요.
-			</pre>
+	<pre>
+		관리자와의 1:1 문의는 쪽지를 이용하여 문의할 수 있습니다.
+		'admin'으로 쪽지 문의해주세요.
+	</pre>
 		</td>
 	</tr>
 	<tr id="5" value="1" >

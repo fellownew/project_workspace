@@ -11,6 +11,62 @@
 		.da-arrows span:after{
 			background: transparent url('<%=request.getContextPath() %>/image/arrows.png') no-repeat top left;	
 			}
+		.pic {
+		    opacity: 1;
+		    filter: alpha(opacity=100);
+			}
+
+		.pic:hover{
+			    opacity: 0.3;
+			    filter: alpha(opacity=30);
+			}
+		.box {
+		  position: relative;
+		  border: 1px solid #BBB;
+		  background: #EEE;
+		}
+		.ribbon {
+		  position: absolute;
+		  right: -5px; top: -5px;
+		  z-index: 1;
+		  overflow: hidden;
+		  width: 75px; height: 75px;
+		  text-align: right;
+		}
+		.ribbon span {
+		  font-size: 10px;
+		  font-weight: bold;
+		  color: #FFF;
+		  text-transform: uppercase;
+		  text-align: center;
+		  line-height: 20px;
+		  transform: rotate(45deg);
+		  width: 100px;
+		  display: block;
+		  background: #79A70A;
+		  background: linear-gradient(#F70505 0%, #8F0808 100%);
+		  box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+		  position: absolute;
+		  top: 19px; right: -21px;
+		}
+		.ribbon span::before {
+		  content: "";
+		  position: absolute; left: 0px; top: 100%;
+		  z-index: -1;
+		  border-left: 3px solid #8F0808;
+		  border-right: 3px solid transparent;
+		  border-bottom: 3px solid transparent;
+		  border-top: 3px solid #8F0808;
+		}
+		.ribbon span::after {
+		  content: "";
+		  position: absolute; right: 0px; top: 100%;
+		  z-index: -1;
+		  border-left: 3px solid transparent;
+		  border-right: 3px solid #8F0808;
+		  border-bottom: 3px solid transparent;
+		  border-top: 3px solid #8F0808;
+		}
 	</style>
 	<script type="text/javascript" src="<%=request.getContextPath()%>/script/modernizr.custom.28468.js"></script>
 	<script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
@@ -51,9 +107,13 @@
 			<c:if test="${i.index==0 or i.index==3 or i.index==6 }">
 				<tr>
 			</c:if>
-	       			<td  id="${product.productId }" value="${product.productName}" title="">
-						<div>
-							<a href="productInfo.do?productId=${product.productId }" onmouseover='this.style.filter="alpha(opacity=20)"' onmouseout='this.style.filter=""' class="el-main_list_03"><img id="${product.productName}"  src="${product.imagePath }" width="320"></a>
+	       			<td id="${product.productId }" value="${product.productName}" class="pic">
+						<div class="box">
+							<a href="productInfo.do?productId=${product.productId }"><img id="${product.productName}"  src="${product.imagePath }" width="320">
+							<c:if test="${i.index <= 2 }">
+								<div class="ribbon"><span>PRIMIUM</span></div>
+							</c:if>
+							</a>
 						</div>
 						<div style="padding: 5px">
 							<a href="productInfo.do?productId=${product.productId }">${product.productName }</a>

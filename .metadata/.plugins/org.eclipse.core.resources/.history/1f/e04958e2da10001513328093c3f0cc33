@@ -1,0 +1,131 @@
+<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!DOCTYPE html>
+       <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/demo.css" />
+       <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css" />
+       <style type="text/css">
+		.da-slider{
+			background: transparent url('<%=request.getContextPath() %>/image/waves.gif') repeat 0% 0%;
+			}
+		.da-arrows span:after{
+			background: transparent url('<%=request.getContextPath() %>/image/arrows.png') no-repeat top left;	
+			}
+		.pic {
+		    opacity: 1;
+		    filter: alpha(opacity=100);
+			}
+
+		.pic:hover{
+			    opacity: 0.3;
+			    filter: alpha(opacity=30);
+			}
+.box {
+  position: relative;
+  border: 1px solid #BBB;
+  background: #EEE;
+}
+.ribbon {
+  position: absolute;
+  right: -5px; top: -5px;
+  z-index: 1;
+  overflow: hidden;
+  width: 75px; height: 75px;
+  text-align: right;
+}
+.ribbon span {
+  font-size: 10px;
+  font-weight: bold;
+  color: #FFF;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 20px;
+  transform: rotate(45deg);
+  width: 100px;
+  display: block;
+  background: #79A70A;
+  background: linear-gradient(#F70505 0%, #8F0808 100%);
+  box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+  position: absolute;
+  top: 19px; right: -21px;
+}
+.ribbon span::before {
+  content: "";
+  position: absolute; left: 0px; top: 100%;
+  z-index: -1;
+  border-left: 3px solid #8F0808;
+  border-right: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid #8F0808;
+}
+.ribbon span::after {
+  content: "";
+  position: absolute; right: 0px; top: 100%;
+  z-index: -1;
+  border-left: 3px solid transparent;
+  border-right: 3px solid #8F0808;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid #8F0808;
+}
+	</style>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/script/modernizr.custom.28468.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.cslider.js"></script>
+	<script type="text/javascript">
+		$(function() {			
+			$("#da-slider").cslider();
+		});
+		
+		$(document).ready(function(){
+			window.onunload=function(){
+				window.locatiobn.replace(self.location);
+			}
+
+		});
+	</script>	
+<div>
+	<div class="container">
+		<div id="da-slider" class="da-slider">
+		   <c:forEach items="${requestScope.productList }" var="product">
+				<div class="da-slide">
+					<h2>${product.productName }</h2>
+					<p>${product.productInfo }</p>
+					<a href="productInfo.do?productId=${product.productId }" class="da-link">상품가기</a>
+					<div class="da-img"><img src="${product.imagePath }" alt="image01" width="320px" height="320px"/></div>
+				</div>
+  		 	</c:forEach> 
+			<nav class="da-arrows">
+				<span class="da-arrows-prev"></span>
+				<span class="da-arrows-next"></span>
+			</nav>
+		</div>
+       </div>
+       
+      <table style="width: 33.3%;vertical-align: top;">
+      	<tbody id="tbody">
+      		<c:forEach items="${requestScope.bottomList }" var="product" varStatus="i">
+			<c:if test="${i.index==0 or i.index==3 or i.index==6 }">
+				<tr>
+			</c:if>
+	       			<td id="${product.productId }" value="${product.productName}" class="pic">
+						<div class="box">
+							<a href="productInfo.do?productId=${product.productId }"><img id="${product.productName}"  src="${product.imagePath }" width="320">
+							<c:if test="${i.index <= 2 }">
+								<div class="ribbon"><span>PRIMIUM</span></div>
+							</c:if>
+							</a>
+						</div>
+						<div style="padding: 5px">
+							<a href="productInfo.do?productId=${product.productId }">${product.productName }</a>
+						</div>
+						<div style="padding-bottom: 3px">
+							<fmt:formatNumber value="${product.productPrice}"/>원
+						</div>			
+					</td>
+			<c:if test="${i.index==2 or i.index==5 or i.index==8 }">
+				</tr>
+			</c:if>
+      	</c:forEach>
+      	</tbody>
+      </table>        		
+</div>

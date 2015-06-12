@@ -34,9 +34,7 @@
 
 </style>
 		<script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
-		<script type="text/javascript" src="<%=request.getContextPath() %>/script/jquery.cookie.js"></script>
 <script type="text/javascript">
-i=0;
 
 // 쿠키 생성
  function setCookie(cName, cValue, cDay){
@@ -153,7 +151,7 @@ var ro;
 				<tr></tr>	
 			</c:otherwise>
 			</c:choose>
-			<c:if test="${not empty requestScope.product.infoImagePath}">			
+			<c:if test="${requestScope.product.infoImagePath != null}">			
 			<tr>
 				<td colspan="3" style="height: 300px;position: relative;"><img src="<%=request.getContextPath() %>/${requestScope.product.infoImagePath }"/></td>
 			</tr>
