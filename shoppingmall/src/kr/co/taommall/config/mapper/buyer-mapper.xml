@@ -42,6 +42,11 @@
 		<result column="address" property="addressDetails"/>
 </resultMap>
 
+<resultMap type="address" id="address-default-update">
+		<result column="postcode" property="postcode"/>
+		<result column="address" property="addressDetails"/>
+</resultMap>
+
 <resultMap type="buyer" id="resultMap-buyer-basic">
 	<id column="buyer_id" property="buyerId"/>	
 	<result column="password" property="password"/>
@@ -50,6 +55,16 @@
 	<result column="phone" property="phone"/>
 	<association  property="address" javaType="kr.co.taommall.account.vo.Address" resultMap="address-default"/>
 </resultMap>
+
+<resultMap type="buyer" id="resultMap-buyer-update">
+	<id column="buyer_id" property="buyerId"/>	
+	<result column="password" property="password"/>
+	<result column="name" property="name"/>
+	<result column="email" property="email"/>
+	<result column="phone" property="phone"/>
+	<association  property="address" javaType="kr.co.taommall.account.vo.Address" resultMap="address-default-update"/>
+</resultMap>
+
 <select id="selectBuyerAllMember" resultMap="resultMap-buyer-basic">
 	<include refid="select-buyer-basic"/>
 </select>

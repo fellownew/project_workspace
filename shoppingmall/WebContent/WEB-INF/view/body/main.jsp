@@ -6,13 +6,27 @@
         <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/demo.css" />
         <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css" />
         <style type="text/css">
-\
+        
+        .pic {
+          opacity: 1;
+          filter: alpha(opacity=100);
+          border:1px solid black;
+         }
+
+      	.pic:hover{
+		  border:1px solid blue;
+		  opacity : 0.4;
+		  filter: alpha(opacity=40);	
+         }
+         
+         
          .da-slider{
             background: transparent url('<%=request.getContextPath() %>/image/waves.gif') repeat 0% 0%;
             }
          .da-arrows span:after{
             background: transparent url('<%=request.getContextPath() %>/image/arrows.png') no-repeat top left;   
             }
+            
       </style>
       <script type="text/javascript" src="<%=request.getContextPath()%>/script/modernizr.custom.28468.js"></script>
       <script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
@@ -23,6 +37,7 @@
          });
          
          $(document).ready(function(){
+        	 
             window.onunload=function(){
                window.locatiobn.replace(self.location);
             }
@@ -46,23 +61,29 @@
          </div>
         </div>
         
-       <table style="width: 33.3%;vertical-align: top;">
+       <table style="width: 33.3%;vertical-align: top;" >
 
        	<tbody id="tbody">
        		<c:forEach items="${requestScope.bottomList }" var="product" varStatus="i">
 				<c:if test="${i.index==0 or i.index==3 or i.index==6 }">
 					<tr>
 				</c:if>
-		       			<td  id="${product.productId }" value="${product.productName}" title="">
-							<div>
-								<a href="productInfo.do?productId=${product.productId }" onmouseover='this.style.filter="alpha(opacity=20)"' onmouseout='this.style.filter=""' class="el-main_list_03"><img id="${product.productName}"  src="${product.imagePath }" width="320"></a>
+		       			<td style="border-collapse; border:5px solid white; margin-right: 10px;" id="${product.productId}" value="${product.productName}" title="">
+
+							<div  class="pic" >
+							<div style="border-bottom:1px solid gray;">
+								<a href="productInfo.do?productId=${product.productId }" onmouseover='this.style.filter="alpha(opacity=20)"' onmouseout='this.style.filter=""' class="el-main_list_03"><img style=" margin: 8px 8px 8px 8px;" id="${product.productName}"  src="${product.imagePath }" width="300"></a>
 							</div>
+							<div>
 							<div style="padding: 5px">
 								<a href="productInfo.do?productId=${product.productId }">${product.productName }</a>
 							</div>
 							<div style="padding-bottom: 3px">
 								<fmt:formatNumber value="${product.productPrice}"/>원
 							</div>			
+							</div>
+							</div>
+							
 						</td>
 				<c:if test="${i.index==2 or i.index==5 or i.index==8 }">
 					</tr>

@@ -69,7 +69,7 @@ $(document).ready(function(){
 			<table>
 				<tr>
 					<td>받는사람</td>
-					<td><input type="text" id="receiveId" name="receiveId" value="${param.receiveId ? param.receiveId : '' }"></td>
+					<td><input type="text" id="receiveId" name="receiveId" value="${param.receiveId }"></td>
 				</tr>
 				<tr>
 					<td>제목</td>

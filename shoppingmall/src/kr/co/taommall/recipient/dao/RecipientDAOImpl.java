@@ -26,8 +26,10 @@ public class RecipientDAOImpl implements RecipientDAO{
 
 	@Override
 	public int deleteRecipient(Recipient recipient) {
-		int cnt = session.delete(nameSpace+"deleteRecipient",recipient);
-		return cnt;
+		return session.delete(nameSpace+"deleteRecipient",recipient);
+	}
+	public Recipient selectRecipientById(int recipientId){
+		return session.selectOne(nameSpace+"selectRecipientById", recipientId);
 	}
 	
 	

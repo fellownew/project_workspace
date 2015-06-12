@@ -82,5 +82,6 @@
 	
 	<!-- aop - annotation으로 연결함. -->
 	<aop:aspectj-autoproxy/>
+	<bean class="kr.co.taommall.common.LoggerAspect" name="logger"/>
 	
 </beans>
