@@ -1,3 +1,12 @@
 #Tomcat publish data
+<<<<<<< .merge_file_a07228
 #Thu Jun 11 17:48:03 KST 2015
+=======
+#Thu Jun 11 17:43:11 KST 2015
+org.eclipse.jst.jee.server\:shoppingmall=C\:\\JAVA\\apache-tomcat-7.0.59\\webapps\\shoppingmall
+>>>>>>>=b526ca8591f9dd08ffec59c89d42ffd920b878a3
+org.eclipse.jst.jee.server\:/binary\:C\:\\Users\\pyh\\.m2\\repository\\org\\springframework\\spring-web\\4.1.6.RELEASE\\spring-web-4.1.6.RELEASE.jar=WEB-INF/lib/spring-web-4.1.6.RELEASE.jar
+>>>>>>> .merge_file_a05464
 org.eclipse.jst.jee.server\:/binary\:C\:\\Users\\KOSTA_03_011\\.m2\\repository\\org\\springframework\\spring-web\\4.1.6.RELEASE\\spring-web-4.1.6.RELEASE.jar=WEB-INF/lib/spring-web-4.1.6.RELEASE.jar
+=\=\=\=\=\=\=
+<<<<<<<=HEAD

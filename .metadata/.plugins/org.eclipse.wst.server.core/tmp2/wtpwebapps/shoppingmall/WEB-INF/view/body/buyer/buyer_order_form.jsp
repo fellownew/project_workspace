@@ -19,6 +19,25 @@
 </head>
 
 <script type="text/javascript">
+
+	function payment(){
+	 	if($("#test1").is(":checked")){
+	 		$("#postcode").val('${sessionScope.loginInfo.address.postcode}');
+			$("#addressDetail").val('${sessionScope.loginInfo.address.addressDetails}');
+	 	}else{
+	 		$("#postcode").val($("#postcode1").val()+"-"+$("#postcode2").val());
+			$("#addressDetail").val($("#address").val()+" "+$("#addressDetails").val());
+	 	}
+	 	
+		location = "<%=request.getContextPath() %>/auth/payment.do?productId="+'${param.productId}'
+         		+"&amount="+'${param.amount}'
+         		+"&name="+$("#name").val()
+         		+"&postcode="+($("#postcode").val())
+         		+"&addressDetails="+$("#addressDetail").val()
+         		+"&phone="+$("#phone").val()
+         		+"&detail="+$("#detail").val();
+	}
+
 	$(document).ready(function(){
 
 		$("select").change(function(){
@@ -29,30 +48,21 @@
 				$("#detail").focus();
 			}
 		});
-		
-		
-		
-		$("#payment").on("click",function(){
-			
-		 	if($("#test1").is(":checked")){
-		 		$("#postcode").val('${sessionScope.loginInfo.address.postcode}');
-				$("#addressDetail").val('${sessionScope.loginInfo.address.addressDetails}');
-		 	}else{
-		 		$("#postcode").val($("#postcode1").val()+"-"+$("#postcode2").val());
-				$("#addressDetail").val($("#address").val()+" "+$("#addressDetails").val());
-		 	}
-		 	
+	
+		//결제시 결제팝업창 추가
+		$("#popuptest").on("click",function(){
+		 	//팝업start
+		 	cw=screen.availWidth;     //화면 넓이
+	          ch=screen.availHeight;    //화면 높이
 
-		 	
-			location = "<%=request.getContextPath() %>/auth/payment.do?productId="+'${param.productId}'
-             		+"&amount="+'${param.amount}'
-             		+"&name="+$("#name").val()
-             		+"&postcode="+($("#postcode").val())
-             		+"&addressDetails="+$("#addressDetail").val()
-             		+"&phone="+$("#phone").val()
-             		+"&detail="+$("#detail").val();
-		});
-		
+	          sw=650;    //띄울 창의 넓이
+	          sh=650;    //띄울 창의 높이
+
+	          ml=(cw-sw)/2;        //가운데 띄우기위한 창의 x위치
+	          mt=(ch-sh)/2;         //가운데 띄우기위한 창의 y위치
+
+	          test=window.open('<%=request.getContextPath() %>/orderPopup.do','tst','width='+sw+',height='+sh+',top='+mt+',left='+ml+',resizable=no,scrollbars=yes');
+		});		
 		
 		$("#test1").on("click",function(){
 
@@ -202,7 +212,8 @@
 				</td>
 			</tr>
 			<caption style="text-align:right" align="bottom">
-				<button id="payment">결제하기</button>
+				<!-- <button id="payment">결제하기</button> -->
+				<button id="popuptest">결제하기</button>
 			</caption>
 		</table><br>
 </body>
