@@ -84,4 +84,9 @@ public class OrderServiceImpl implements OrderService {
 		return map;
 	}
 
+	@Override
+	public List<Order> selectOrderListByStatus(Order order) {
+		return dao.selectOrderListByStatus(order);
+	}
+
 }

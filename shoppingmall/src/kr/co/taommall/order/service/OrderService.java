@@ -16,5 +16,6 @@ public interface OrderService {
 	public List<Order> selectOrderBySellerId(String sellerId);
 	public List<Order> selectOrderByStatus(String status);
 	public HashMap selectOrderByStatusPaging(int page,String status);
+	public List<Order> selectOrderListByStatus(Order order);
 
 }

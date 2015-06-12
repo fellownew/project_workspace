@@ -84,4 +84,12 @@ public class OrderDAOImpl implements OrderDAO{
 		Map map = new HashMap();
 		return session.selectOne(namespace+"selectOrderCount",status);
 	}
+
+	@Override
+	public List<Order> selectOrderListByStatus(Order order) {
+//		Map map = new HashMap();
+//		map.put("status", order.getStatus());
+//		map.put("sellerId",order.getSellerId());
+		return session.selectList(namespace+"selectOrderListByStatus",order);
+	}
 }
