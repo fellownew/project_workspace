@@ -9,4 +9,9 @@
 1434005755972	Rename resource 'note.jsp'
 1434007419410	Copy file
 1434008418428	Delete element
+<<<<<<< HEAD
+1434069525956	Rename resource 'note.jsp'
+1434069758175	Rename resource 'buyer_popup.jsp'
+=======
 >>>>>>> .merge_file_a06772
+>>>>>>> 9358c79d6def365636452d0959bff1c6f0fba335

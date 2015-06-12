@@ -24,7 +24,8 @@
 	 	if($("#test1").is(":checked")){
 	 		$("#postcode").val('${sessionScope.loginInfo.address.postcode}');
 			$("#addressDetail").val('${sessionScope.loginInfo.address.addressDetails}');
-	 	}else{
+	 	}else if($("#test2").is(":checked")){
+	 		alert("sdffds");
 	 		$("#postcode").val($("#postcode1").val()+"-"+$("#postcode2").val());
 			$("#addressDetail").val($("#address").val()+" "+$("#addressDetails").val());
 	 	}
@@ -50,18 +51,45 @@
 		});
 	
 		//결제시 결제팝업창 추가
-		$("#popuptest").on("click",function(){
+		$("#orderpopup").on("click",function(){
 		 	//팝업start
-		 	cw=screen.availWidth;     //화면 넓이
+		 	  cw=screen.availWidth;     //화면 넓이
 	          ch=screen.availHeight;    //화면 높이
-
-	          sw=650;    //띄울 창의 넓이
-	          sh=650;    //띄울 창의 높이
+	          
+	          card = $("#scard").val();
+	          bank = $("#sbank").val();
+	          installment = $("#installment").val();
+	          
+	          sw=500;    //띄울 창의 넓이
+	          sh=450;    //띄울 창의 높이
 
 	          ml=(cw-sw)/2;        //가운데 띄우기위한 창의 x위치
 	          mt=(ch-sh)/2;         //가운데 띄우기위한 창의 y위치
-
-	          test=window.open('<%=request.getContextPath() %>/orderPopup.do','tst','width='+sw+',height='+sh+',top='+mt+',left='+ml+',resizable=no,scrollbars=yes');
+			  
+	          //alert($(':radio[name="pay"]:checked').val());
+	          
+	          //결제방식 [신용카드] 선택한 경우 카드선택을 했는지 체크 후 팝업창 open!!
+	          if($(':radio[name="pay"]:checked').val() == "신용카드"){
+	        	  
+	        	  
+	        	  
+	 	          if($("#scard").val() == "카드선택"){
+		        	  alert("카드를 선택하세요");
+		        	  return false;       
+	 	          }else{
+	 	        	 window.open('<%=request.getContextPath() %>/orderPopup.do?card='+card+'&bank='+bank+'&installment='+installment,'tst','width='+sw+',height='+sh+',top='+mt+',left='+ml+',resizable=no,scrollbars=yes');
+	 	          }
+			  }
+	          
+	        //결제방식 [무통장입금] 선택한 경우 은행선택을 했는지 체크 후 팝업창 open!!
+	          if($(':radio[name="pay"]:checked').val() == "무통장입금"){
+	 	          if($("#sbank").val() == "은행선택"){
+		        	  alert("은행 선택하세요");
+		        	  return false;       
+	 	          }else{
+	 	        	 window.open('<%=request.getContextPath() %>/orderPopup.do?card='+card+'&bank='+bank+'&installment='+installment,'tst','width='+sw+',height='+sh+',top='+mt+',left='+ml+',resizable=no,scrollbars=yes');
+	 	          }
+			  }
 		});		
 		
 		$("#test1").on("click",function(){
@@ -76,6 +104,25 @@
 			$("#phone").prop("readonly", true).val('${sessionScope.loginInfo.phone}');
 			$("#postcode1").val('');
 			
+		});
+		
+		//주문 상세내역 페이지 열릴때 onload()
+		$(window).load(function(){
+			$("#payType1").show();
+			$("#payType2").hide();
+		});
+		
+		//결제방식 : 신용카드
+		$(':radio[name="pay"]').on("click",function(){
+			if($(this).val()=="신용카드"){
+				$("#payType1").show();
+				$("#payType2").hide();
+				$("#sbank").val('은행선택');
+			}else if($(this).val()=="무통장입금"){
+				$("#payType2").show();
+				$("#payType1").hide();
+				$("#scard").val('카드선택');
+			}
 		});
 	});
 	
@@ -129,10 +176,10 @@
 					<div class="productName" style="padding-left: 120px"><font size="3">${cart.product.productName }</font></div><br>
 					<div class="productInfo" style="padding-left: 120px"><font size="2">${cart.product.productInfo }</font></div>
 					</td>
-					<td style="text-align:right"><fmt:formatNumber value="${cart.product.productPrice}"/>원</td>
-					<td style="text-align:right">${cart.amount}</td>
-					<td style="text-align:right"><fmt:formatNumber value="${cart.product.productPrice*cart.amount}"/>원</td>
-					<td style="text-align:right">${cart.product.sellerId}</td>
+					<td style="text-align:center"><fmt:formatNumber value="${cart.product.productPrice}"/>원</td>
+					<td style="text-align:center">${cart.amount}</td>
+					<td style="text-align:center"><fmt:formatNumber value="${cart.product.productPrice*cart.amount}"/>원</td>
+					<td style="text-align:center">${cart.product.sellerId}</td>
 				</tr> 
 		</c:forEach>
 		</tbody>
@@ -211,10 +258,59 @@
 					</select> 
 				</td>
 			</tr>
-			<caption style="text-align:right" align="bottom">
-				<!-- <button id="payment">결제하기</button> -->
-				<button id="popuptest">결제하기</button>
-			</caption>
 		</table><br>
+		
+			<table class="center">
+	<caption style="text-align:left; font-weight:bold; font-size:20px">결제 정보 입력</caption>
+		<thead>
+			<tr>
+				<th style="width:80px; text-align:left">결제 방식</th>
+				<td style="text-align:left">
+					<label><input type="radio" name="pay" id="pay" value="신용카드" checked="checked">신용카드</label>
+					<label><input type="radio" name="pay" id="pay" value="무통장입금">무통장입금</label>
+				</td>
+			</tr>
+			<tr id="payType1">
+				<th>신용카드/할부 방식</th>
+				<td align="left">
+					<select id="scard">
+						<option>카드선택</option>
+						<option>신한카드</option>
+						<option>비씨카드</option>
+						<option>우리카드</option>
+						<option>국민카드</option>
+						<option>삼성카드</option>
+						<option>현대카드</option>
+					</select>
+					
+					<select id="installment">
+						<option>일시불</option>
+						<option>2개월 무이자</option>
+						<option>3개월 무이자</option>
+						<option>4개월 무이자</option>
+						<option>5개월 무이자</option>
+						<option>6개월 무이자</option>
+						<option>7개월 무이자</option>
+					</select>
+				</td>
+			</tr>	
+			<tr id="payType2">
+				<th>입금은행</th>
+				<td align="left">
+					<select id="sbank">
+						<option>은행선택</option>
+						<option>신한은행</option>
+						<option>우리은행</option>
+						<option>국민은행</option>
+						<option>기업은행</option>
+						<option>하나은행</option>
+						<option>외환은행</option>
+					</select>
+				</td>
+			</tr>		
+			<caption style="text-align:right" align="bottom">
+				<button id="orderpopup">결제하기</button>
+			</caption>					
+	</table><br>
 </body>
 </html>
