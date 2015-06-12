@@ -1,11 +1,15 @@
+<%@page import="kr.co.taommall.product.vo.Product"%>
 <%@page import="java.text.NumberFormat"%>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@page import="java.net.URLEncoder"%>
+<%@page import="java.net.URLDecoder"%>
 
 <!DOCTYPE html>
 <meta charset="UTF-8">
+
 <style type="text/css">
 .buyButton {
   font-family: arial;
@@ -29,15 +33,89 @@
 }
 
 </style>
-<script type="text/javascript" src="<%=request.getContextPath() %>/script/jquery.js"></script>
+		<script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
+		<script type="text/javascript" src="<%=request.getContextPath() %>/script/jquery.cookie.js"></script>
 <script type="text/javascript">
+i=0;
+
+// 쿠키 생성
+ function setCookie(cName, cValue, cDay){
+        var expire = new Date();
+        expire.setDate(expire.getDate() + cDay);
+        cookies = cName + '=' + escape(cValue) + '; path=/ '; // 한글 깨짐을 막기위해 escape(cValue)를 합니다.
+        if(typeof cDay != 'undefined') cookies += ';expires=' + expire.toGMTString() + ';';
+        document.cookie = cookies;
+    }
+
+// 쿠키 가져오기
+function getCookie(cName) {
+   cName = cName + '=';
+   var cookieData = document.cookie;
+   var start = cookieData.indexOf(cName);
+   var cValue = '';
+   if(start != -1){
+       start += cName.length;
+       var end = cookieData.indexOf(';', start);
+       if(end == -1)end = cookieData.length;
+       cValue = cookieData.substring(start, end);
+   }
+   return unescape(cValue);
+}
+
+$(document).ready(function(){
+	var id = '${product.productId}';
+	var name = '${product.productName}';
+	var image = '${product.imagePath}';
+	var i=0;
+	var flag = false;
+	while(true){
+		//쿠키중에서 value가 같은 쿠키 찾는다.
+		<%Cookie[] list = request.getCookies();
+		for(Cookie c : list){%>
+		//찾으면 break;
+		if(id == '<%=c.getValue()%>'){
+			 flag = true;
+			break;
+		}
+		<%}%>
+		//value 같은거 있으면 바로 빠져나온다.
+		if(flag){
+			break;
+		}
+		if(i==5){
+			for(var idx = 3; idx>=0;idx--){
+				setCookie('productId'+(idx*1+1*1),getCookie('productId'+idx),1);
+				setCookie('productName'+(idx*1+1*1),getCookie('productName'+idx),1);
+				setCookie('imagePath'+(idx*1+1*1),getCookie('imagePath'+idx),1);
+			}
+			setCookie('productId0',id,1);
+			setCookie('productName0',name,1);
+			setCookie('imagePath0',image,1);
+			break;
+		}else if(getCookie('imagePath'+i).trim().length!=0){
+			i++;
+		}else{
+			setCookie('productId'+i,id,1);
+			setCookie('productName'+i,name,1);
+			setCookie('imagePath'+i,image,1); 
+			break;
+		}
+	}
+
+	
+	
+	 
+	 
+});
 function order(id){
-		location = "<%=request.getContextPath() %>/auth/memberOrderForm.do?productId="+id+"&amount="+$("#amount").val();
+	location = "<%=request.getContextPath()%>/auth/memberOrderForm.do?productId="+id+"&amount="+$("#amount").val();
 }
 function cart(id){
 	var amount = $("#amount").val();
 	location = "<%=request.getContextPath() %>/cart/auth/cartInput.do?productId="+id+"&amount="+amount;	
 }
+var ro;
+
 </script>
 <div>
 	<h2 style="text-align: center;margin-top:20px">상품정보</h2>
@@ -45,7 +123,7 @@ function cart(id){
 		<tbody>
 
 			<tr>
-				<td rowspan="6" style="width:490px"><img src="<%=request.getContextPath() %>/${requestScope.product.imagePath }" style="width:489px"/></td>
+				<td rowspan="6" style="width:490px"><img width="490px" height="490px" src="<%=request.getContextPath() %>/${requestScope.product.imagePath }"/></td>
 				<td width="200px">상품명</td>	
 			    <td>${product.productName}</td>	
 			</tr>

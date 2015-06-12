@@ -1,0 +1,15 @@
+package kr.co.taommall.common;
+
+import org.apache.log4j.Logger;	
+import org.aspectj.lang.ProceedingJoinPoint;
+
+
+
+//공통로직 모음 클래스.
+public class LoggerAspect {
+	private static Logger logger = Logger.getLogger(LoggerAspect.class);
+	//핵심 로직에서 오류 발생한 후 호출.
+	public void afterThrow(Throwable ex){
+		logger.error("LoggerAspect.afterThrow()실행",ex);
+	}
+}

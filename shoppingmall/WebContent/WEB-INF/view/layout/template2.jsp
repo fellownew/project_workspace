@@ -143,7 +143,7 @@ $(document).ready(function(){
 	<div id="remoCon" style=" background-color: yellow;" >
      <div style="text-align: center;" ><b>오늘 본 상품</b></div>
      <div id="remote">
-     <c:forEach begin="0" end="<%=(request.getCookies().length-1)/3 -1 %>" var="cnt" >
+     <c:forEach begin="0" end="<%=(((request.getCookies().length-1)/3 -1)<0?0:((request.getCookies().length-1)/3 -1)) %>" var="cnt" >
 		  <div>
 			  <a id="a${cnt}">
 				  	<img style="width: 120px;height: 120px;" id="img${cnt}">

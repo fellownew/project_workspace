@@ -189,4 +189,13 @@ status = #{value}
 </if>
 </where>
 </select>
+
+<select id="selectOrderListByStatus" resultType="order" resultMap="resultMap-order-default">
+<include refid="select-order-default"/>
+where o.seller_id = s.seller_id and o.product_id = p.product_id and o.buyer_id = b.buyer_id and o.recipient_id = r.recipient_id and o.seller_id = #{sellerId}
+<if test="status !='모두보기'">
+ and status = #{status}
+</if>
+order by o.recipient_id desc
+</select>
 </mapper>

@@ -3,6 +3,7 @@ package kr.co.taommall.recipient.service;
 import kr.co.taommall.recipient.dao.RecipientDAO;
 import kr.co.taommall.recipient.vo.Recipient;
 
+import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

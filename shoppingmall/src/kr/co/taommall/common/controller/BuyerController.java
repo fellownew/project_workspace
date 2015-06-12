@@ -50,7 +50,6 @@ public class BuyerController {
 		try {
 			number = send.sendMail(email);
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

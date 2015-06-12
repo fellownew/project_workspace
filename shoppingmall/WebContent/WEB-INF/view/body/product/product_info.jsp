@@ -123,11 +123,7 @@ var ro;
 		<tbody>
 
 			<tr>
-<<<<<<< HEAD
-				<td rowspan="6" style="width:490px"><img src="<%=request.getContextPath() %>/${requestScope.product.imagePath }" style="width:489px"/></td>
-=======
 				<td rowspan="6" style="width:490px"><img width="490px" height="490px" src="<%=request.getContextPath() %>/${requestScope.product.imagePath }"/></td>
->>>>>>> project_workspace/cjhm
 				<td width="200px">상품명</td>	
 			    <td>${product.productName}</td>	
 			</tr>
