@@ -1,5 +1,10 @@
 log4j.rootLogger = info, stdout, dailyfile
 
+log4j.category.java.sql.Connection=DEBUG, stdout
+log4j.additivity.java.sql.Connection=false
+log4j.category.java.sql.Statement=DEBUG, stdout
+log4j.additivity.java.sql.Statement=false
+
 log4j.appender.stdout = org.apache.log4j.ConsoleAppender
 log4j.appender.stdout.layout = org.apache.log4j.PatternLayout
 log4j.appender.stdout.layout.ConversionPattern=[%p] [%d] %m %n

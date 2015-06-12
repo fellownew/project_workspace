@@ -127,7 +127,7 @@ a{
 				<a href="<%=request.getContextPath() %>/auth/centerList.do">고객센터</a><br>
 				<a href="<%=request.getContextPath()%>/auth/buyerInfoForm.do">회원정보</a> |
 				<a href="#" onclick="mnote()">쪽지관리
-				<div style="display: none"></div></a> |
+				<span style="display: none"></span></a> |
 				<a href="<%=request.getContextPath() %>/auth/logout.do">로그아웃</a>	
 
 			</c:when>
