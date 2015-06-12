@@ -22,7 +22,6 @@
 			});
 			
 			$(document).ready(function(){
-			i=0;
 				window.onunload=function(){
 					window.locatiobn.replace(self.location);
 				}
