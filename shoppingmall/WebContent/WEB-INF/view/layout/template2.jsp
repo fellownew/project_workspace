@@ -80,7 +80,9 @@ button:hover {
 	clear:both;
 }
 </style>
-<jsp:include page="/WEB-INF/view/layout/remote.jsp"/>
+
+	<jsp:include page="/WEB-INF/view/layout/remote.jsp"/>
+
 </head>
 <body>
 	<div id="header">
@@ -98,7 +100,6 @@ button:hover {
 	<div id="footer">
 		<tiles:insertAttribute name="footer"/>
 	</div>
-
 
 </body>
 </html>

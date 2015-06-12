@@ -27,6 +27,11 @@ public class RecipientServiceImpl implements RecipientService{
 	public int deleteRecipient(Recipient recipient) {
 		return dao.deleteRecipient(recipient);
 	}
+
+	@Override
+	public Recipient selectRecipientById(int recipientId) {
+		return dao.selectRecipientById(recipientId);
+	}
 	
 	
 	

@@ -121,6 +121,8 @@ public class OrderController {
 					int count = cartService.deleteCart(cart);
 				}
 			}
+			Recipient recipient = recipientService.selectRecipientById(o.getRecipientId());
+			o.setRecipient(recipient);
 		}
 		request.setAttribute("list", list);
 		request.setAttribute("price", price);
