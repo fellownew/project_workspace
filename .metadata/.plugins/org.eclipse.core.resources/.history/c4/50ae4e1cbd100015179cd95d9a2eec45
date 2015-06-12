@@ -1,0 +1,65 @@
+<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style type="text/css">
+
+.center {
+ background:url(4.png) no-repeat;
+ width:400px;
+ height:400px;
+ margin:0 auto;
+ border: 1;
+}
+
+</style>	
+<title>결제창</title>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/sidemenu.css">
+<script type="text/javascript" src="<%=request.getContextPath() %>/script/jquery.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+	$("#test").on("click",function(){
+		opener.parent.payment();
+		window.self.close();
+	});
+});
+
+
+</script>
+</head>
+<body>
+	<table class="center">
+	<caption style="text-align:left; font-weight:bold; font-size:20px">구매자 정보</caption>
+		<thead>
+			<tr>
+				<th style="width:80px; text-align:left">보내는분</th>
+				<td style="text-align:left">${sessionScope.loginInfo.name}</td>
+			</tr>
+			<tr>
+				<th>주소</th>
+				<td style="text-align:left" id="oiginalAddr">
+				${sessionScope.loginInfo.address.postcode}
+				${sessionScope.loginInfo.address.addressDetails}</td>
+			</tr>	
+			<tr>
+				<th>연락처</th>
+				<td style="text-align:left">${sessionScope.loginInfo.phone}</td>
+			</tr>							
+	</table><br>
+	<table class="center">
+		<tr>
+			<td>dsf</td>
+			<td>sdf</td>
+			<td>sf</td>
+		</tr>
+		<caption style="text-align:right" align="bottom">
+			<button id="test">결제</button><button onclick="window.close()">취소</button>
+		</caption>		
+	</table>
+</body>
+</html>

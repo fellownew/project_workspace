@@ -7,7 +7,7 @@ create table buyer(
    phone varchar2(30) not null,
    postcode varchar2(10) not null
 );
-
+select * from buyer
 create table seller(
    seller_id varchar2(20) primary key,
    password varchar2(50) not null,
