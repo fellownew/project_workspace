@@ -25,6 +25,10 @@ $(document).ready(function(){
 		  return false;
 		}
 	});
+	
+	$("#order").on("click",function(){
+		location = "/taommall/auth/meberList.do";
+	});
 
 });
 history.navigationMode = 'compatible';
@@ -118,6 +122,7 @@ function cfHistoryNoBack(){
 				</td>
 			</tr>
 			<caption style="text-align:right" align="bottom">
+				<button id="order" >주문내역</button>
 				<button onClick="home()">메인으로</button>
 			</caption>
 		</table><br>

@@ -39,7 +39,13 @@ font-size: 20px;
 <script type="text/javascript">
 $(document).ready(function(){
 	
-	$("select").change(function(){
+	$("#sel").change(function(){
+		var id =$(this).attr("id");
+		var status = $("#"+id+" option:selected").val();
+		location="<%=request.getContextPath()%>/auth/orderManager.do?status="+status;
+	});
+	
+	$("td > select").change(function(){
 		var id =$(this).attr("id");
 		var status = $("#"+id+" option:selected").val();
 		location="<%=request.getContextPath()%>/auth/orderStatusUpdate.do?recipientId="+id+"&status="+status;
@@ -49,6 +55,16 @@ $(document).ready(function(){
 </head>
 <body>
 <table class="tbl_model">
+<caption  style="text-align:right">
+	<select id="sel">
+			<option id="op0" selected="selected" disabled="disabled">${requestScope.status}</option>
+			<option id="op1" >모두보기	</option>
+			<option id="op2" >결제완료	</option>
+			<option id="op3" >배송준비	</option>
+			<option id="op4" >배송중	</option>
+			<option id="op5" >배송완료	</option>
+	</select>
+</caption>
 <colgroup>
 <col width="10%">
 <col width="10%">

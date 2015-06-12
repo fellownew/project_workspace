@@ -54,7 +54,6 @@
 	text-align:left;
 	padding:10px;
 	font-size:10px;
-	font-family:Arial;
 	font-weight:normal;
 	color:#000000;
 }.myTable tr:last-child td{
@@ -74,7 +73,6 @@
 	text-align:center;
 	border-width:0px 0px 1px 1px;
 	font-size:14px;
-	font-family:Arial;
 	font-weight:bold;
 	color:#000000;
 }

@@ -1,23 +1,22 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>따옴몰</title>
-
+<script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
 <style type="text/css" >
-
 body{
 	width:1300px;
 	margin:0 auto;
-}
+} 
 
 table{
 	border: 1px none #DCD8D0;
 
 }
-
 
 button {
   font-family: arial;
@@ -44,7 +43,6 @@ button:hover {
 }
 
 #header{
-	
 	background-color:white;
 	overflow:auto;
 }
@@ -82,6 +80,9 @@ button:hover {
 }
 
 </style>
+
+	<jsp:include page="/WEB-INF/view/layout/remote.jsp"/>
+
 </head>
 <body>
 	<div id="header">
@@ -103,8 +104,6 @@ button:hover {
 	<div id="footer">
 		<tiles:insertAttribute name="footer"/>
 	</div>
-	
+
 </body>
 </html>
-
-

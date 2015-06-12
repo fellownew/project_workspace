@@ -33,10 +33,8 @@ public class ProductServiceImpl implements ProductService {
 			upfile.transferTo(file);
 			infoUpfile.transferTo(infoFile);
 		} catch (IllegalStateException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		String imagePath = deImagePath+fileName;

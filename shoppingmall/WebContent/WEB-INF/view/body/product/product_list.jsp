@@ -10,7 +10,7 @@
 $(document).ready(function(){
 	$("#tbody").on("mouseover","tr",function(){
 		$("#tbody tr").css("background-color","white");
-		$(this).css("background-color","#E2B4A9");
+		$(this).css("background-color","#FFF1F1");
 	});
 	
 });
@@ -19,7 +19,7 @@ function info(idx){
 	location="productInfo.do?productId="+idx;
 }
 </script>
-
+	
 <style>
 h2{
 	text-align: center;

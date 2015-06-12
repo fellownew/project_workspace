@@ -23,7 +23,7 @@ font-size: 10px;
 
 $(document).ready(function(){
 	
-	if(${requestScope.error != null}){
+	if(${requestScope.error != null }){
 		alert('${requestScope.error}');
 		return false;
 	}

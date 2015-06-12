@@ -30,9 +30,6 @@ public class NoteServiceImpl implements NoteService {
 	@Override
 	@Transactional
 	public void deleteNote(ArrayList<Integer> list,String folder,Model model) {
-		System.out.println(list);
-		System.out.println(folder);
-		System.out.println(model);
 		if(folder.equals("store")){
 			model.addAttribute("noteNoList",list);
 			dao.deleteSendNote(model);

@@ -159,8 +159,11 @@ var phoneNum = '<c:out value="${message}"/>';
 					</td>
 				</tr>
 				</tbody>
+				<caption style="text-align:right" align="bottom">
+						<button id="withdraw">회원탈퇴</button>
+				</caption>
 				</table>
 				
 		</fieldset>		
-		<button id="withdraw">회원탈퇴</button>
+
 </div>

@@ -2,7 +2,6 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/topmenu.css">
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
 
-
 <div>
 	<div id='cssmenu'>
 	<ul>

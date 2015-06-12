@@ -35,12 +35,12 @@
 					placeholder="이름" class="int">
 					<div id="nameErr" class="error"  style="display: none">필수 정보입니다.</div></td>
 			</tr>
-			<tr>
-				<td>성별 	
+			<tr style="text-align: left">
+				<td>성별 : 	
 				<label>남성<input type="radio" id="male" name="gender" value="male" checked="checked"></label> <label>여성<input type="radio" id="female" name="gender" value="female"></label>
 					<div id="genderErr" class="error"  style="display: none">필수 정보입니다.</div></td>
 			</tr>
-			<tr>
+			<tr style="text-align: left">
 				<td><input type="text" id="postcode1" readonly="readonly"
 					class="d_form mini" size="4" maxlength="3"> - <input
 					type="text" id="postcode2" readonly="readonly" class="d_form mini" size="4"

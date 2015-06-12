@@ -1,12 +1,20 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>따옴몰</title>
+<script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
 <style type="text/css" >
-
+#remoCon {
+	position: fixed;
+	width: 200px;
+	height: auto;
+	right: 40px;
+	top: 230px;
+ } 
 body{
 	width:1300px;
 	margin:0 auto;
@@ -72,6 +80,9 @@ button:hover {
 	clear:both;
 }
 </style>
+
+	<jsp:include page="/WEB-INF/view/layout/remote.jsp"/>
+
 </head>
 <body>
 	<div id="header">
@@ -89,7 +100,7 @@ button:hover {
 	<div id="footer">
 		<tiles:insertAttribute name="footer"/>
 	</div>
-	
+
 </body>
 </html>
 
