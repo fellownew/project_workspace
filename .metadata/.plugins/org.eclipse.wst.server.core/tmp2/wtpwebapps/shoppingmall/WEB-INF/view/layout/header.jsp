@@ -30,11 +30,8 @@ function home(){
 	
 }
 
-function note(){
-
+function mnote(){
 	window.open("<%=request.getContextPath() %>/auth/note.do?folder=receive","쪽지",'width=800,height=500,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,left=150,top=100');
-
-
 }
 function note(txt){
 	<% if(session.getAttribute("loginInfo")!=null ){ %>
@@ -106,7 +103,7 @@ a{
 						<a href="<%=request.getContextPath() %>/seller/auth/memberList.do">회원관리</a> |
 						<a href="<%=request.getContextPath() %>/board/auth/boardList.do">후기관리</a> |
 						<a href="<%=request.getContextPath() %>/auth/centerList.do">고객센터 관리</a><br>
-						<a href="#" onclick="note()">쪽지관리
+						<a href="#" onclick="mnote()">쪽지관리
 						<span style="display: none"></span></a> |
 						<a href="<%=request.getContextPath() %>/auth/logout.do">로그아웃</a>	
 					</c:when>
@@ -116,7 +113,7 @@ a{
 						<a href="<%=request.getContextPath() %>/auth/productManager.do?sellerId=${sessionScope.loginInfo.sellerId}">상품관리</a> |
 						<a href="<%=request.getContextPath() %>/auth/centerList.do">고객센터</a><br>
 						<a href="<%=request.getContextPath() %>/auth/sellerInfoForm.do">회원정보</a> |
-						<a href="#" onclick="note()">쪽지관리
+						<a href="#" onclick="mnote()">쪽지관리
 						<span style="display: none"></span></a> |
 						<a href="<%=request.getContextPath() %>/auth/logout.do">로그아웃</a>	
 					</c:otherwise>
@@ -129,7 +126,7 @@ a{
 				<a href="<%=request.getContextPath()%>/auth/completeList.do">주문내역</a> |
 				<a href="<%=request.getContextPath() %>/auth/centerList.do">고객센터</a><br>
 				<a href="<%=request.getContextPath()%>/auth/buyerInfoForm.do">회원정보</a> |
-				<a href="#" onclick="note()">쪽지관리
+				<a href="#" onclick="mnote()">쪽지관리
 				<div style="display: none"></div></a> |
 				<a href="<%=request.getContextPath() %>/auth/logout.do">로그아웃</a>	
 
