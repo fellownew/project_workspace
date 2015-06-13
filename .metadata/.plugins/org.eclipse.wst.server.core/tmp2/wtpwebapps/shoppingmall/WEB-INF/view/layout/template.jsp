@@ -81,7 +81,7 @@ button:hover {
 
 </style>
 
-	<jsp:include page="/WEB-INF/view/layout/remote.jsp"/>
+<%@ include file="/WEB-INF/view/layout/remote.jsp" %>
 
 </head>
 <body>
@@ -106,4 +106,5 @@ button:hover {
 	</div>
 
 </body>
+
 </html>
