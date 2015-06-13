@@ -9,6 +9,11 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/order.css">
 <style type="text/css">
 
+.error {
+	margin: 3px 0 3px 1px;
+	font-size: 12px;
+	color: #f00
+}
 
 </style>	
 <title>Insert title here</title>
@@ -25,7 +30,6 @@
 	 		$("#postcode").val('${sessionScope.loginInfo.address.postcode}');
 			$("#addressDetail").val('${sessionScope.loginInfo.address.addressDetails}');
 	 	}else if($("#test2").is(":checked")){
-	 		alert("sdffds");
 	 		$("#postcode").val($("#postcode1").val()+"-"+$("#postcode2").val());
 			$("#addressDetail").val($("#address").val()+" "+$("#addressDetails").val());
 	 	}
@@ -42,8 +46,9 @@
 	$(document).ready(function(){
 
 		$("select").change(function(){
+		
 			if($("select option:selected").attr("id")!="op1"){				
-			$("#detail").val($("select option:selected").val());
+				$("#detail").val($("select option:selected").val());
 			}else{
 				$("#detail").val('');
 				$("#detail").focus();
@@ -52,6 +57,15 @@
 	
 		//결제시 결제팝업창 추가
 		$("#orderpopup").on("click",function(){
+			
+		 	if($("#test1").is(":checked")){
+		 		$("#postcode").val('${sessionScope.loginInfo.address.postcode}');
+				$("#addressDetail").val('${sessionScope.loginInfo.address.addressDetails}');
+		 	}else if($("#test2").is(":checked")){
+		 		$("#postcode").val($("#postcode1").val()+"-"+$("#postcode2").val());
+				$("#addressDetail").val($("#address").val()+" "+$("#addressDetails").val());
+		 	}
+			
 		 	//팝업start
 		 	  cw=screen.availWidth;     //화면 넓이
 	          ch=screen.availHeight;    //화면 높이
@@ -65,19 +79,30 @@
 
 	          ml=(cw-sw)/2;        //가운데 띄우기위한 창의 x위치
 	          mt=(ch-sh)/2;         //가운데 띄우기위한 창의 y위치
-			  
+	          
+	          
+	          addtype = $(':radio[name="delivery"]:checked').val();	//배송지 선택여부(기본주소 or 새로입력)
+	          name = $("#name").val();		//받는사람 이름!
+	          phone = $("#phone").val();	//연락처
+	          
+	          //alert($(':radio[name="delivery"]:checked').val());
 	          //alert($(':radio[name="pay"]:checked').val());
+	          
 	          
 	          //결제방식 [신용카드] 선택한 경우 카드선택을 했는지 체크 후 팝업창 open!!
 	          if($(':radio[name="pay"]:checked').val() == "신용카드"){
-	        	  
-	        	  
-	        	  
 	 	          if($("#scard").val() == "카드선택"){
 		        	  alert("카드를 선택하세요");
 		        	  return false;       
 	 	          }else{
-	 	        	 window.open('<%=request.getContextPath() %>/orderPopup.do?card='+card+'&bank='+bank+'&installment='+installment,'tst','width='+sw+',height='+sh+',top='+mt+',left='+ml+',resizable=no,scrollbars=yes');
+	 	        	 window.open('<%=request.getContextPath() %>/orderPopup.do?card='+card+
+	 	        			 		'&bank='+bank+
+	 	        			 		'&addtype='+addtype+
+	 	        			 		'&installment='+installment+
+	 	        			 		'&name='+$("#name").val()+
+	 	        			 		'&phone='+$("#phone").val()+
+	 	        			 		'&postcode='+($("#postcode").val())+
+	 	        			 		'&addressDetails='+$("#addressDetail").val(),'tst','width='+sw+',height='+sh+',top='+mt+',left='+ml+',resizable=no,scrollbars=yes');
 	 	          }
 			  }
 	          
@@ -87,7 +112,15 @@
 		        	  alert("은행 선택하세요");
 		        	  return false;       
 	 	          }else{
-	 	        	 window.open('<%=request.getContextPath() %>/orderPopup.do?card='+card+'&bank='+bank+'&installment='+installment,'tst','width='+sw+',height='+sh+',top='+mt+',left='+ml+',resizable=no,scrollbars=yes');
+		 	        	 window.open('<%=request.getContextPath() %>/orderPopup.do?card='+card+
+									 '&bank='+bank+
+									 '&addtype='+addtype+
+									 '&installment='+installment+
+									 '&name='+$("#name").val()+
+									 '&phone='+$("#phone").val()+
+									 '&postcode='+($("#postcode").val())+
+									 '&addressDetails='+$("#addressDetail").val(),'tst','width='+sw+',height='+sh+',top='+mt+',left='+ml+',resizable=no,scrollbars=yes');
+	 	        	 //window.open('<%=request.getContextPath() %>/orderPopup.do?card='+card+'&bank='+bank+'&installment='+installment,'tst','width='+sw+',height='+sh+',top='+mt+',left='+ml+',resizable=no,scrollbars=yes');
 	 	          }
 			  }
 		});		
@@ -214,8 +247,8 @@
 			<tr>
 				<th style="width:80px">배송지</th>
 				<td style="text-align:left">
-					<label><input type="radio" name="delivery" id="test1" checked="checked">기본주소</label>
-					<label><input type="radio" name="delivery" id="test2">새로입력</label>
+					<label><input type="radio" name="delivery" id="test1" value="기본주소" checked="checked">기본주소</label>
+					<label><input type="radio" name="delivery" id="test2" value="새로입력">새로입력</label>
 				</td>
 			</tr>
 			<tr>

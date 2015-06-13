@@ -37,14 +37,14 @@ table, td, th {
 </head>
 <body>
 	<table>
-<%-- 		<colgroup>
+ 		<colgroup>
 				<col width="30%"> 
 				<col width="70%">
 			</colgroup>
- --%>
+
 		<caption style="text-align:center; font-weight:bold; font-size:20px" >결제정보 확인</caption>
 		<thead>
-			<tr><br>
+<%-- 			<tr><br>
 				<th>받는분</th>
 				<td style="text-align: left" colspan="2">${sessionScope.loginInfo.name}</td>
 			</tr>
@@ -56,16 +56,59 @@ table, td, th {
 			<tr>
 				<th>연락처</th>
 				<td style="text-align: left" colspan="2">${sessionScope.loginInfo.phone}</td>
-			</tr>
+			</tr> --%>
+
 			<tr>
-				<th>결제방식</th>
+				<c:if test="${param.addtype=='기본주소' }">
+					<tr>
+						<th>받는분</th>
+						<td style="padding-left:10px">${sessionScope.loginInfo.name}</td>
+					</tr>
+					<tr>
+						<th>연락처</th>
+						<td style="padding-left:10px">${sessionScope.loginInfo.phone}</td>
+					</tr>
+					<tr>
+						<th>주소</th>
+						<td style="padding-left:10px">(${sessionScope.loginInfo.address.postcode }) ${sessionScope.loginInfo.address.addressDetails }</td>
+					</tr>
+				</c:if>
+				<c:if test="${param.addtype=='새로입력' }">
+					<tr>
+						<th>받는분</th>
+						<td style="padding-left:10px">${param.name}</td>
+					</tr>
+					<tr>
+						<th>연락처</th>
+						<td style="padding-left:10px">${param.phone}</td>
+					</tr>
+					<tr>
+						<th>주소</th>
+						<td style="padding-left:10px">${param.addressDetails}</td>
+					</tr>
+				</c:if>
+			</tr>
+			
+						<tr>
 				<c:if test="${param.card!='카드선택' }">
-					<td>카드 : ${param.card }</td>
-					<td>할부방식 : ${param.installment }</td>
+					<tr>
+						<th>결제방식</th>
+						<td style="padding-left:10px">${param.card }</td>
+					</tr>
+					<tr>
+						<th>할부방식</th>
+						<td style="padding-left:10px">${param.installment }</td>
+					</tr>
 				</c:if>
 				<c:if test="${param.bank!='은행선택' }">
-					<td>입금은행 : ${param.bank }</td>
-					<td>계좌번호 : 3562-01-2343</td>
+					<tr>
+						<th>무통장 입금</th>
+						<td style="padding-left:10px">${param.bank }</td>
+					</tr>
+					<tr>
+						<th>계좌번호</th>
+						<td style="padding-left:10px">3562-01-2343</td>
+					</tr>
 				</c:if>
 			</tr>
 		<caption style="text-align: right" align="bottom">

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [ERROR] [2015-06-12 17:56:25,398]  occur error  - [kr.co.taommall.common.LoggerAspect.afterThrow(LoggerAspect.java:22)] 
 org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.PersistenceException: 
 ### Error querying database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Could not get JDBC Connection; nested exception is org.apache.commons.dbcp.SQLNestedException: Cannot create PoolableConnectionFactory (IO 오류: The Network Adapter could not establish the connection)
@@ -12,6 +13,12 @@ org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis
 	at kr.co.taommall.product.dao.ProductDAOImpl.selectProductToRandom(ProductDAOImpl.java:111)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+=======
+﻿[ERROR] [2015-06-12 15:11:13,208]  occur error  - [kr.co.taommall.common.LoggerAspect.afterThrow(LoggerAspect.java:23)] 
+org.springframework.web.servlet.ModelAndViewDefiningException
+	at kr.co.taommall.common.interceptor.LoginCheckInterceptor.preHandle(LoginCheckInterceptor.java:25)
+	at sun.reflect.GeneratedMethodAccessor93.invoke(Unknown Source)
+>>>>>>> fafb74dd4c3fb906ae858d90c845b85192ff8a0a
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.lang.reflect.Method.invoke(Method.java:483)
 	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:317)
@@ -22,6 +29,7 @@ org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis
 	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:92)
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
 	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:207)
+<<<<<<< HEAD
 	at com.sun.proxy.$Proxy26.selectProductToRandom(Unknown Source)
 	at kr.co.taommall.product.service.ProductServiceImpl.selectProductToRandom(ProductServiceImpl.java:248)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -1181,6 +1189,11 @@ org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis
 	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:705)
 	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)
 	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:959)
+=======
+	at com.sun.proxy.$Proxy152.preHandle(Unknown Source)
+	at org.springframework.web.servlet.HandlerExecutionChain.applyPreHandle(HandlerExecutionChain.java:134)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:954)
+>>>>>>> fafb74dd4c3fb906ae858d90c845b85192ff8a0a
 	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:893)
 	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:966)
 	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:857)
@@ -1206,11 +1219,16 @@ org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis
 	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:421)
 	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1074)
 	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:611)
+<<<<<<< HEAD
 	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:314)
+=======
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:316)
+>>>>>>> fafb74dd4c3fb906ae858d90c845b85192ff8a0a
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.lang.Thread.run(Thread.java:745)
+<<<<<<< HEAD
 Caused by: org.apache.ibatis.exceptions.PersistenceException: 
 ### Error querying database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Could not get JDBC Connection; nested exception is org.apache.commons.dbcp.SQLNestedException: Cannot create PoolableConnectionFactory (IO 오류: The Network Adapter could not establish the connection)
 ### The error may exist in kr/co/taommall/config/mapper/product-mapper.xml
@@ -1438,3 +1456,5 @@ Caused by: java.net.ConnectException: Connection timed out: connect
 	at oracle.net.nt.ConnOption.connect(ConnOption.java:123)
 	at oracle.net.nt.ConnStrategy.execute(ConnStrategy.java:353)
 	... 117 more
+=======
+>>>>>>> fafb74dd4c3fb906ae858d90c845b85192ff8a0a

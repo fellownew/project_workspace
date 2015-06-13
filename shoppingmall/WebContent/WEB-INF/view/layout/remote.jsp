@@ -62,9 +62,9 @@ $(document).ready(function(){
 		<b><font size="2px">오늘 본 상품</font></b>
 	</div>
 	<div id="remote">
-	<c:if test="<%=(request.getCookies().length)/3 !=0%>">
+	<c:if test="<%=request.getCookies() !=null%>">
 			<div id="remote" style="text-align: center;">
-				<c:forEach begin="1" end="<%=(request.getCookies().length)/3%>" var="cnt">
+				<c:forEach begin="1" end="<%=request.getCookies().length/3 %>" var="cnt">
 					<div style="border-bottom: 1px solid gray;">
 						<a id="a${cnt-1}" style="color: gray; text-decoration: none; "> 
 						<img style="width: 80px; height: 80px; margin-top: 2px;" id="img${cnt-1}"/><br> 
