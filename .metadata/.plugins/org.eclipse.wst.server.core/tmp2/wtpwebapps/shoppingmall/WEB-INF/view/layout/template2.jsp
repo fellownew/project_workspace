@@ -80,6 +80,7 @@ button:hover {
 	clear:both;
 }
 </style>
+
 </head>
 <body>
 	<%@ include file="/WEB-INF/view/layout/remote.jsp" %>
@@ -100,6 +101,7 @@ button:hover {
 	</div>
 
 </body>
+
 </html>
 
 

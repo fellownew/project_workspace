@@ -1,5 +1,8 @@
 INDEX VERSION 1.127+C:\JAVA\eclipse\project_workspace\.metadata\.plugins\org.eclipse.jdt.core
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 477e1b155eee536234217b2b6696041f70b68f31
 103341040.index
 932328578.index
 1943742470.index
@@ -33,6 +36,7 @@ INDEX VERSION 1.127+C:\JAVA\eclipse\project_workspace\.metadata\.plugins\org.ecl
 3257204412.index
 1656155473.index
 3774334301.index
+<<<<<<< HEAD
 =======
 2540092945.index
 1630274323.index
@@ -73,12 +77,17 @@ INDEX VERSION 1.127+C:\JAVA\eclipse\project_workspace\.metadata\.plugins\org.ecl
 1765828877.index
 2440696389.index
 >>>>>>> fafb74dd4c3fb906ae858d90c845b85192ff8a0a
+=======
+>>>>>>> 477e1b155eee536234217b2b6696041f70b68f31
 2961793328.index
 696914934.index
 3097711138.index
 3955382155.index
 14507210.index
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 477e1b155eee536234217b2b6696041f70b68f31
 1651313819.index
 3958529174.index
 2518246714.index
@@ -103,6 +112,7 @@ INDEX VERSION 1.127+C:\JAVA\eclipse\project_workspace\.metadata\.plugins\org.ecl
 1199985085.index
 2453125105.index
 1530861385.index
+<<<<<<< HEAD
 =======
 2102447933.index
 2518246714.index
@@ -130,3 +140,5 @@ INDEX VERSION 1.127+C:\JAVA\eclipse\project_workspace\.metadata\.plugins\org.ecl
 2476013324.index
 3282253800.index
 >>>>>>> fafb74dd4c3fb906ae858d90c845b85192ff8a0a
+=======
+>>>>>>> 477e1b155eee536234217b2b6696041f70b68f31
