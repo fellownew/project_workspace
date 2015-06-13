@@ -8,11 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface ProductService {
-	public void insertProduct(Product product,MultipartFile upfile,MultipartFile infoUpfile);
-	public void updateProduct(Product product,MultipartFile upfile,MultipartFile infoUpfile);
-	public void updateProductWithThum(Product product,MultipartFile upfile);
-	public void updateProductWithInfo(Product product,MultipartFile infoUpfile);
-	public void updateProductIgnoreImagePath(Product product);
+	public int insertProduct(Product product,MultipartFile upfile,MultipartFile infoUpfile);
+	public int updateProduct(Product product,MultipartFile upfile,MultipartFile infoUpfile);
+	public int updateProductWithThum(Product product,MultipartFile upfile);
+	public int updateProductWithInfo(Product product,MultipartFile infoUpfile);
+	public int updateProductIgnoreImagePath(Product product);
 	public int deleteProduct(int productId);
 	public List<Product> selectAllProduct(int pageNo,Model model);
 	public List<Product> selectProductById(int productId,int pageNo,Model model) ;

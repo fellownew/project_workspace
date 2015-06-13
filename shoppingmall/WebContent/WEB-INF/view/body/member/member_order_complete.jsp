@@ -29,8 +29,9 @@ $(document).ready(function(){
 	$("#order").on("click",function(){
 		location = "/taommall/auth/completeList.do";
 	});
-
 });
+
+
 history.navigationMode = 'compatible';
 function cfHistoryNoBack(){
     if (window.history) {

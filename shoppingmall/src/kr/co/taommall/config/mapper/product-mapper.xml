@@ -16,7 +16,30 @@
 	</insert>
 	
 	<update id="updateProduct" parameterType="Product">
-		update product set product_name=#{productName},product_price=#{productPrice},category=#{category},product_info=#{productInfo},image_path=#{imagePath},info_image_path=#{infoImagePath},exp_date=#{expDate}
+		update product 
+		<set>
+			<if test="productName !=null">
+				product_name=#{productName},
+			</if>
+			<if test="productPrice !=null">
+			product_price=#{productPrice},
+			</if>
+			<if test="category !=null">
+			category=#{category},
+			</if>
+			<if test="productInfo !=null">
+			product_info=#{productInfo},
+			</if>
+			<if test="imagePath !=null">
+			image_path=#{imagePath},
+			</if>
+			<if test="infoImagePath !=null">
+			info_image_path=#{infoImagePath},
+			</if>
+			<if test="expDate !=null">
+			exp_date=#{expDate}
+			</if>
+		</set>
 		where product_id=#{productId}
 	</update>
 	<update id="updateProductWithThum" parameterType="Product">

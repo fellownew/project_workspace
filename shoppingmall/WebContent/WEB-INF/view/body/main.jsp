@@ -8,9 +8,9 @@
         <style type="text/css">
         
         .pic {
+          border:1px solid #e3e3e3;
           opacity: 1;
           filter: alpha(opacity=100);
-          border:1px solid black;
          }
 
       	.pic:hover{
@@ -71,7 +71,7 @@
 		       			<td style="border-collapse; border:5px solid white; margin-right: 10px;" id="${product.productId}" value="${product.productName}" title="">
 
 							<div  class="pic" >
-							<div style="border-bottom:1px solid gray;">
+							<div style="border-bottom:1px solid #e3e3e3;">
 								<a href="productInfo.do?productId=${product.productId }" onmouseover='this.style.filter="alpha(opacity=20)"' onmouseout='this.style.filter=""' class="el-main_list_03"><img style=" margin: 8px 8px 8px 8px;" id="${product.productName}"  src="${product.imagePath }" width="300"></a>
 							</div>
 							<div>

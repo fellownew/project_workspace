@@ -2,6 +2,7 @@ package kr.co.taommall.common.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import kr.co.taommall.account.vo.Seller;
@@ -46,20 +47,28 @@ public class ProductController {
 	
 	//상품 수정 처리
 	@RequestMapping("/modifyProduct.do")
-	public String update(@ModelAttribute Product product ,@RequestParam MultipartFile upfile,@RequestParam MultipartFile infoUpfile,Model model,HttpSession session){
-		//사진,정보 파일 둘 다 올렸을 때
-		if(upfile.getContentType().equals("image/jpeg") && infoUpfile.getContentType().equals("image/jpeg")){
-			service.updateProduct(product,upfile,infoUpfile);
-		//사진만 올라왔을때
-		}else if(upfile.getContentType().equals("image/jpeg")){
-			service.updateProductWithThum(product,upfile);
-		//정보만 올라왔을때 
-		}else if(infoUpfile.getContentType().equals("image/jpeg")){
-			service.updateProductWithInfo(product,infoUpfile);
-		//파일을 둘 다 올리지 않았을 때 
-		}else{
-			service.updateProductIgnoreImagePath(product);
+	public String update(@ModelAttribute Product product ,@RequestParam MultipartFile upfile,@RequestParam MultipartFile infoUpfile,Model model,HttpSession session,HttpServletRequest request){
+		System.out.println("이거 잘 실행되나??");
+		System.out.println(upfile.getName());
+		System.out.println(infoUpfile);
+		if(upfile !=null ){
+			System.out.println(upfile.getName());
 		}
+		if(infoUpfile != null){
+			System.out.println(infoUpfile.getName());
+		}
+		//사진,정보 파일 둘 다 올렸을 때
+		int count = 0;
+		System.out.println(product);
+				if(	(upfile.getContentType().equals("image/jpeg") && infoUpfile.getContentType().equals("image/jpeg")) ||
+					(upfile.getContentType().equals("image/jpeg") && infoUpfile.getSize()==0) || 
+					(infoUpfile.getContentType().equals("image/jpeg") && upfile.getSize()==0) ||
+					(infoUpfile.getSize()==0 && upfile.getSize()==0)){
+					count = service.updateProduct(product,upfile,infoUpfile);
+				}else{
+					request.setAttribute("errorMessage", "상품 수정 실패 ! 이미지 파일이 아닙니다. 메인페이지로 이동합니다.");
+					return "/WEB-INF/view/layout/error.jsp";
+				}
 		Product rProduct = service.selectProductByIdNoPaging(product.getProductId(),model);
 		model.addAttribute("product",rProduct);
 		Seller seller = (Seller)session.getAttribute("loginInfo");

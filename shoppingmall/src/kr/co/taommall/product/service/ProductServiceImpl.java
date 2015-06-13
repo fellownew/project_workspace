@@ -22,7 +22,7 @@ public class ProductServiceImpl implements ProductService {
 	private ProductDAO dao;
 
 	@Override
-	public void insertProduct(Product product,MultipartFile upfile,MultipartFile infoUpfile){
+	public int insertProduct(Product product,MultipartFile upfile,MultipartFile infoUpfile){
 		//파일명은 현재 시간으로 가져옴.
 		long lFileName = System.currentTimeMillis();
 		String fileName = lFileName+".jpg";
@@ -41,31 +41,66 @@ public class ProductServiceImpl implements ProductService {
 		product.setImagePath(imagePath);
 		String infoImagePath = deImagePath+infoFileName;
 		product.setInfoImagePath(infoImagePath);
-		dao.insertProduct(product);
-		Product p = dao.selectProductByIdNoPaging(product.getProductId());
+		return dao.insertProduct(product);
+		//Product p = dao.selectProductByIdNoPaging(product.getProductId());
 	}
 	
 	@Override
-	public void updateProduct(Product product,MultipartFile upfile,MultipartFile infoUpfile){
+	public int updateProduct(Product product,MultipartFile upfile,MultipartFile infoUpfile){
+		product = dao.selectProductByIdNoPaging(product.getProductId());
+		
+		long lFileName = System.currentTimeMillis();
+		
+		// upfile size가 !=0이면 삭제  
+		if(upfile.getSize()!=0){
+			File file = null;
+			file = new File(abImagePath,product.getImagePath().substring(8));
+			file.delete();			
+			
+			String fileName = lFileName+".jpg";
+			file = new File(abImagePath,fileName);
+			try {
+				upfile.transferTo(file);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			String imagePath = deImagePath+fileName;
+			product.setImagePath(imagePath);
+		}
+		// infofile size가 !=0이면 삭제 
+		if(infoUpfile.getSize()!=0){
+			File infoFile = null;
+			infoFile = new File(abImagePath,product.getInfoImagePath().substring(8));
+			infoFile.delete();			
+			 String infoFileName = lFileName+"i.jpg";
+			infoFile = new File(abImagePath,infoFileName);
+			try {
+				infoUpfile.transferTo(infoFile);
+			}catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			String infoImagePath = deImagePath+infoFileName;
+			product.setInfoImagePath(infoImagePath);
+		}
+		System.out.println("수정할 상품 : "+product);
+		return dao.updateProduct(product);
+	}
+	
+	@Override
+	public int updateProductWithThum(Product product, MultipartFile upfile) {
 		product = dao.selectProductByIdNoPaging(product.getProductId());
 		File file = null;
-		File infoFile = null;
 		if(product.getImagePath()!=null){
 			file = new File(abImagePath,product.getImagePath().substring(8));
 			file.delete();			
 		}
-		if(product.getInfoImagePath()!=null){
-			infoFile = new File(abImagePath,product.getInfoImagePath().substring(8));
-			infoFile.delete();
-		}
 		long lFileName = System.currentTimeMillis();
 		String fileName = lFileName+".jpg";
 		file = new File(abImagePath,fileName);
-		String infoFileName = lFileName+"i.jpg";
-		infoFile = new File(abImagePath,infoFileName);
 		try {
 			upfile.transferTo(file);
-			infoUpfile.transferTo(infoFile);
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -73,37 +108,12 @@ public class ProductServiceImpl implements ProductService {
 		}
 		String imagePath = deImagePath+fileName;
 		product.setImagePath(imagePath);
-		String infoImagePath = deImagePath+infoFileName;
-		product.setInfoImagePath(infoImagePath);
-		dao.updateProduct(product);
-	}
-	
-	@Override
-	public void updateProductWithThum(Product product, MultipartFile upfile) {
-		product = dao.selectProductByIdNoPaging(product.getProductId());
-		File file = null;
-		if(product.getImagePath()!=null){
-			file = new File(abImagePath,product.getImagePath().substring(8));
-			file.delete();			
-		}
-		long lFileName = System.currentTimeMillis();
-		String fileName = lFileName+".jpg";
-		file = new File(abImagePath,fileName);
-		try {
-			upfile.transferTo(file);
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		String imagePath = deImagePath+fileName;
-		product.setImagePath(imagePath);
-		dao.updateProduct(product);
+		return dao.updateProduct(product);
 		
 	}
 
 	@Override
-	public void updateProductWithInfo(Product product, MultipartFile infoUpfile) {
+	public int updateProductWithInfo(Product product, MultipartFile infoUpfile) {
 		product = dao.selectProductByIdNoPaging(product.getProductId());
 		File infoFile = null;
 		if(product.getInfoImagePath()!=null){
@@ -122,13 +132,13 @@ public class ProductServiceImpl implements ProductService {
 		}
 		String infoImagePath = deImagePath+infoFileName;
 		product.setInfoImagePath(infoImagePath);
-		dao.updateProduct(product);
+		return dao.updateProduct(product);
 		
 	}
 
 	@Override
-	public void updateProductIgnoreImagePath(Product product){
-		dao.updateProductIgnoreImagePath(product);
+	public int updateProductIgnoreImagePath(Product product){
+		return dao.updateProductIgnoreImagePath(product);
 	}
 
 	@Override

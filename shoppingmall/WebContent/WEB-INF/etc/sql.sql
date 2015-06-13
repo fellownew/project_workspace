@@ -2,8 +2,9 @@
  * 세팅용 sql문.
  */
 select * from orders where recipient_id = 308
-select * from buyer
+select * from product
 
+delete from PRODUCT
 drop table note;
 drop table rnote;
 drop table cart;
