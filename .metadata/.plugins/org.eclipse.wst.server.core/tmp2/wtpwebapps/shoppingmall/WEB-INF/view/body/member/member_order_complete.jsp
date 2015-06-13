@@ -27,7 +27,7 @@ $(document).ready(function(){
 	});
 	
 	$("#order").on("click",function(){
-		location = "/taommall/auth/meberList.do";
+		location = "/taommall/auth/completeList.do";
 	});
 
 });
