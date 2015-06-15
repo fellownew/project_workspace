@@ -70,8 +70,11 @@
 
 	<!-- 회원관련 view controller -->
 	<mvc:view-controller path="buyerJoinForm.do" view-name="buyer/buyer_join_form.form"/>
-	<mvc:view-controller path="auth/buyerInfoForm.do" view-name="buyer/buyer_info.form"/>	
-
+	<mvc:view-controller path="auth/buyerInfoForm.do" view-name="buyer/buyer_info.form"/>
+	<mvc:view-controller path="buyer/idCheck.do" 	   view-name="/WEB-INF/view/body/buyer/buyer_id_check.jsp"/>
+	<mvc:view-controller path="buyer/pCheck.do" view-name="/WEB-INF/view/body/buyer/buyer_password_check.jsp"/>
+	<mvc:view-controller path="buyer/passwordConfirm.do" view-name="/WEB-INF/view/body/buyer/password.jsp"/>
+	
 	<mvc:view-controller path="sellerJoinForm.do" view-name="seller/seller_join_form.form"/>
 	<mvc:view-controller path="auth/sellerInfoForm.do" view-name="seller/seller_info.form"/>
 	
@@ -80,7 +83,7 @@
 	
 	<mvc:view-controller path="auth/note.do" view-name="/WEB-INF/view/note/note.jsp"/>
 	
-	<!-- aop - annotation으로 연결함. -->
+<!-- 	aop - annotation으로 연결함. -->
 	<aop:aspectj-autoproxy/>
 	<bean class="kr.co.taommall.common.LoggerAspect" name="logger"/>
 	

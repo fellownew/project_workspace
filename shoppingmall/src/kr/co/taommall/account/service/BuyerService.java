@@ -17,5 +17,6 @@ public interface BuyerService {
 	public int updateBuyerById(Buyer buyer);
 	public List selectBuyerAllMember();
 	public Buyer selectBuyerById(String id);
+	public Buyer selectBuyerByemail(Buyer buyer);
 	
 }

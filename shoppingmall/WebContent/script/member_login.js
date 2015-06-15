@@ -1,5 +1,14 @@
 $(document).ready(function(){
 	
+	$("#bIdCheck").on("click",function(){
+		window.open("buyer/idCheck.do","check","width=300 height=180 top=100 left =300");
+	});
+	
+	$("#bPasswordCheck").on("click",function(){
+		window.open("buyer/pCheck.do","check","width=300 height=180 top=100 left =300");
+	});
+	
+	
 	$("#bPassword").keydown(function(){
 		
 		if(event.keyCode == 13)

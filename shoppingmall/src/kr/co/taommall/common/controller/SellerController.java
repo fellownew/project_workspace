@@ -67,12 +67,14 @@ public class SellerController {
 
 	@RequestMapping("/identifyEmail.do")
 	@ResponseBody
-	public String identifyEmail(@RequestParam(required=true) String email) {
+	public String identifyEmail(@RequestParam(required=true) String email,HttpSession session) {
+		String jsessionid = session.getId();
+		System.out.println(jsessionid);
 		 SendMail send =new SendMail();
 		String number = null;
 		try {
-			number = send.sendMail(email);
-		} catch (UnsupportedEncodingException e) {
+			number = send.sendMail(email,jsessionid);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 

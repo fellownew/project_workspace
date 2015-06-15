@@ -37,4 +37,9 @@ public class BuyerServiceImpl implements BuyerService {
 		return dao.selectBuyerById(id);
 	}
 
+	@Override
+	public Buyer selectBuyerByemail(Buyer buyer) {
+		return dao.selectBuyerByemail(buyer);
+	}
+
 }

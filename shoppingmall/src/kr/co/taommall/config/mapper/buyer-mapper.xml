@@ -8,10 +8,10 @@
 <update id="updateBuyerById" parameterType="buyer">
 	update buyer
 	<set>
-		<if test="password !=null">
+		<if test="password != null">
 		 password=#{password},
 		</if>
-		<if test="address.addressDetails !=null">
+		<if test="address !=null and address.addressDetails !=null">
 		 address=#{address.addressDetails},
 		</if>		
 		<if test="email !=null">
@@ -20,7 +20,7 @@
 		<if test="phone !=null">
 		 phone=#{phone},
 		</if>
-		<if test="address.postcode !=null">
+		<if test="address !=null and address.postcode !=null">
 		 postcode=#{address.postcode}
 		</if>			
 	</set>
@@ -69,6 +69,11 @@
 	<include refid="select-buyer-basic"/>
 </select>
 
+<select id="selectBuyerByemail" parameterType="buyer" resultMap="resultMap-buyer-basic">
+	<include refid="select-buyer-basic"/>
+	where name = #{name} and email = #{email}
+</select>
+	
 <select id="selectBuyerById" parameterType="string" resultMap="resultMap-buyer-basic">
 	<include refid="select-buyer-basic"/>
 	where buyer_id = #{value}

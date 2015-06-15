@@ -2,6 +2,7 @@ package kr.co.taommall.common.controller;
 
 import java.io.UnsupportedEncodingException;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import kr.co.taommall.account.service.BuyerService;
@@ -44,16 +45,65 @@ public class BuyerController {
 
 	@RequestMapping("/identifyEmail.do")
 	@ResponseBody
-	public String identifyEmail(@RequestParam(required=true) String email) {
+	public String identifyEmail(@RequestParam(required=true) String email,HttpSession session) {
+		String jsessionid = session.getId();
 		 SendMail send =new SendMail();
 		String number = null;
 		try {
-			number = send.sendMail(email);
-		} catch (UnsupportedEncodingException e) {
+			number = send.sendMail(email,jsessionid);
+		} catch (Exception e) {
 			e.printStackTrace();
+		}finally{
+			session.invalidate();
 		}
-
 		return number;
+	}
+	@RequestMapping("/identifyEmailCheck.do")
+	@ResponseBody
+	public String identifyEmailCheck(@RequestParam(required=true) String email,@RequestParam(required=true) String id,HttpSession session) {
+		String jsessionid = session.getId();
+		 SendMail send =new SendMail();
+		String number = null;
+		Buyer buyer = service.selectBuyerById(id);
+		if(buyer.getEmail().equals(email)){
+			
+		try {
+			number = send.sendMail(email,jsessionid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			session.invalidate();
+		}
+		return number;
+		}else{
+			return "";
+		}
+	}
+	@RequestMapping("/idConfirm.do")
+	public String idCheck(@RequestParam("id") String name, @RequestParam String email,HttpServletRequest request){
+		Buyer buyer = new Buyer();
+		buyer.setName(name);
+		buyer.setEmail(email);
+		buyer = service.selectBuyerByemail(buyer);
+		if(buyer ==null){
+			request.setAttribute("errorMessage", "아이디가 없습니다.");
+			return "/error/error_check.jsp";
+		}
+		request.setAttribute("success", "id : "+buyer.getBuyerId());
+		return "/error/complete.jsp";
+	}
+	@RequestMapping("/passwordCheck.do")
+	public String PasswordCheck(HttpServletRequest request , @RequestParam(value="newPassword",required=true) String newPassword ,@RequestParam(required=true,value="id") String id) {
+		Buyer buyer = new Buyer();
+		buyer.setPassword(newPassword);
+		buyer.setBuyerId(id);
+		int count = service.updateBuyerById(buyer);
+		if(count ==0){
+			request.setAttribute("errorMessage", "비밀번호 변경 실패");
+			return "/error/error_check.jsp";
+		}
+		request.setAttribute("success", "변경완료");
+		return "/error/complete.jsp";
 	}
 	
 	@RequestMapping("/buyerLogin.do")

@@ -2,6 +2,7 @@ package kr.co.taommall.mail;
 
 
 import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
 import java.util.Properties;
 import java.util.Random;
 
@@ -16,22 +17,27 @@ import javax.mail.internet.MimeMessage;
 
 public class SendMail {
 	
-	public String sendMail(String email) throws UnsupportedEncodingException{
-		String num = null;
+	public String sendMail(String email,String plainText) throws Exception{
+		int number = 0;
         try {
-        	num = String.valueOf(2000000-new Random().nextInt(1000000));
+        	MessageDigest md5 = MessageDigest.getInstance("MD5");
+			md5.update(plainText.getBytes());
+			byte[] digest01 = md5.digest();
+			for(int i=0;i<digest01.length;i=i+2){
+				number= number +Math.abs(digest01[i])*Math.abs(digest01[i+1]);
+			}
         	System.out.println(email);
             String[] emailList = {email};
             String emailFromAddress = "taomall";// 메일 보내는 사람
-            String emailMsgTxt = "인증번호는"+num+" 입니다."; // 내용
+            String emailMsgTxt = "인증번호는"+number+" 입니다."; // 내용
             String emailSubjectTxt = "따옴몰 인증번호";// 제목
             // 메일보내기 
             postMail(emailList, emailSubjectTxt, emailMsgTxt, emailFromAddress);
-            System.out.println("메일전송 완료"+num);
-        } catch (MessagingException e) {
+            System.out.println("메일전송 완료 \n"+number);
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return num;
+        return String.valueOf(number);
     }
      
     //https://www.google.com/settings/security/lesssecureapps 
