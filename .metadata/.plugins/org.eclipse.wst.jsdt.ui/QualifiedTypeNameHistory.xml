@@ -2,4 +2,5 @@
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="Function"/>
 <fullyQualifiedTypeName name="CharacterData"/>
+<fullyQualifiedTypeName name="URIError"/>
 </qualifiedTypeNameHistroy>

@@ -44,6 +44,21 @@ function cfHistoryNoBack(){
 	function home(){
 		location = "/taommall";
 	}	
+	
+	function volumeorder(productId,amount){
+		$.ajax({
+			url:"/taommall/auth/updateVolumeOfOrder.do",
+			type:"POST",
+			data:{"productId":productId,"amount":amount},	
+			dataType:"text",
+			success:function(res){
+				alert("주문이 정상처리 되었습니다.");
+			},
+			error:function(a,b,c){
+				alert("주문 처리중 문제가 생겼습니다. 관리자에게 문의해주세요.");
+			}
+		});
+	}
 </script>
 
 </head>
@@ -89,6 +104,9 @@ function cfHistoryNoBack(){
 			<tr>
 				<td style="text-align:left">
 					<div style="float: left"> 
+						<script type="text/javascript">
+							volumeorder("${order.product.productId }","${order.amount}");
+						</script>
 					<img src="<%=request.getContextPath()%>/${order.product.imagePath}" style="width: 100px;height: 100px; "/>
 					</div>
 					<div class="productName" style="padding-left: 120px"><font size="3">${order.product.productName }</font></div><br>

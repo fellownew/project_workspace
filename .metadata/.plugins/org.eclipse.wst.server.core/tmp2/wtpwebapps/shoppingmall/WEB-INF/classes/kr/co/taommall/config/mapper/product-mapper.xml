@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="kr.co.taommall.product.dao">
 	<sql id="product-select">
-		select product_id,product_name,product_price,category,product_info,image_path,info_image_path,regi_date,exp_date,seller_id
+		select product_id,product_name,product_price,category,product_info,image_path,info_image_path,regi_date,exp_date,seller_id,volume_order
 		from product
 	</sql>
 	
@@ -11,26 +11,40 @@
 			select c_product_id.nextval from dual
 		</selectKey>
 		insert into product 
-		(product_id,product_name,product_price,category,product_info,image_path,info_image_path,regi_date,exp_date,seller_id)
-		values (#{productId}, #{productName}, #{productPrice}, #{category}, #{productInfo}, #{imagePath},#{infoImagePath} ,to_char(sysdate, 'yyyy-mm-dd'),#{expDate}, #{sellerId})
+		(product_id,product_name,product_price,category,product_info,image_path,info_image_path,regi_date,exp_date,seller_id,volumeOrder)
+		values (#{productId}, #{productName}, #{productPrice}, #{category}, #{productInfo}, #{imagePath},#{infoImagePath} ,to_char(sysdate, 'yyyy-mm-dd'),#{expDate}, #{sellerId},0)
 	</insert>
 	
 	<update id="updateProduct" parameterType="Product">
-		update product set product_name=#{productName},product_price=#{productPrice},category=#{category},product_info=#{productInfo},image_path=#{imagePath},info_image_path=#{infoImagePath},exp_date=#{expDate}
+		update product 
+		<set>
+			<if test="productName !=null">
+				product_name=#{productName},
+			</if>
+			<if test="productPrice !=null">
+				product_price=#{productPrice},
+			</if>
+			<if test="category !=null">
+				category=#{category},
+			</if>
+			<if test="productInfo !=null">
+				product_info=#{productInfo},
+			</if>
+			<if test="imagePath !=null">
+				image_path=#{imagePath},
+			</if>
+			<if test="infoImagePath !=null">
+				info_image_path=#{infoImagePath},
+			</if>
+			<if test="expDate !=null">
+				exp_date=#{expDate}
+			</if>
+		</set>
 		where product_id=#{productId}
 	</update>
-	<update id="updateProductWithThum" parameterType="Product">
-		update product set product_name=#{productName},product_price=#{productPrice},category=#{category},product_info=#{productInfo},image_path=#{imagePath},exp_date=#{expDate}
-		where product_id=#{productId}
-	</update>
-	<update id="updateProductWithInfo" parameterType="Product">
-		update product set product_name=#{productName},product_price=#{productPrice},category=#{category},product_info=#{productInfo},image_path=#{infoImagePath},exp_date=#{expDate}
-		where product_id=#{productId}
-	</update>
-	
-	<update id="updateProductIgnoreImagePath" parameterType="Product">
-		update product set product_name=#{productName},product_price=#{productPrice},category=#{category},product_info=#{productInfo},exp_date=#{expDate}
-		where product_id=#{productId}
+		
+	<update id="updateProductVolumeOrder" parameterType="org.springframework.ui.Model">
+		update product set volume_order= (select volume_order from product where product_id=#{productId})+#{amount} where product_id=#{productId}
 	</update>
 	
 	<delete id="deleteProduct" parameterType="int">
@@ -48,6 +62,7 @@
 		<result column="regi_date" property="regiDate"/>
 		<result column="exp_date" property="expDate"/>
 		<result column="seller_id" property="sellerId"/>
+		<result column="volume_order" property="volumeOrder"/>
 	</resultMap>
 	
 	
@@ -64,9 +79,9 @@
 	</select>	
 	
 	<select id="selectAllProduct" parameterType="org.springframework.ui.Model" resultMap="product-resultMap">
-		select product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
+		select product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id,volume_order
 		from (
-			select ceil(rownum/#{contentsPerPage}) page, product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
+			select ceil(rownum/#{contentsPerPage}) page, product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id,volume_order
 			from (
 				<include refid="product-select"/>
 				order by exp_date asc
@@ -76,9 +91,9 @@
 	</select>
 	
 	<select id="selectProductById" resultMap="product-resultMap" parameterType="org.springframework.ui.Model">
-		select product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
+		select product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id,volume_order
 		from (
-			select ceil(rownum/#{contentsPerPage}) page, product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
+			select ceil(rownum/#{contentsPerPage}) page, product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id,volume_order
 			from (
 				<include refid="product-select"/>
 				where product_id=#{productId}
@@ -89,9 +104,9 @@
 	</select>
 	
 	<select id="selectProductlIKEName" resultMap="product-resultMap" parameterType="org.springframework.ui.Model">
-		select product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
+		select product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id,volume_order
 		from (
-			select ceil(rownum/#{contentsPerPage}) page, product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
+			select ceil(rownum/#{contentsPerPage}) page, product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id,volume_order
 			from (
 				<include refid="product-select"/>
 				where product_name like '%'||#{productName}||'%'
@@ -102,9 +117,9 @@
 	</select>
 	
 	<select id="selectProductByCategory" resultMap="product-resultMap" parameterType="org.springframework.ui.Model">
-		select product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
+		select product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id,volume_order
 		from (
-			select ceil(rownum/#{contentsPerPage}) page, product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
+			select ceil(rownum/#{contentsPerPage}) page, product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id,volume_order
 			from (
 				<include refid="product-select"/>
 				where category=#{category}
@@ -115,9 +130,9 @@
 	</select>
 	
 	<select id="selectProductByexpDate" resultMap="product-resultMap" parameterType="org.springframework.ui.Model">
-		select product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
+		select product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id,volume_order
 		from (
-			select ceil(rownum/#{contentsPerPage}) page, product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
+			select ceil(rownum/#{contentsPerPage}) page, product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id,volume_order
 			from (
 				<include refid="product-select"/>
 				where expDate=#{expDate}
@@ -128,9 +143,9 @@
 	</select>
 	
 	<select id="selectProductBySellerId" resultMap="product-resultMap" parameterType="org.springframework.ui.Model">
-		select product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
+		select product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id,volume_order
 		from (
-			select ceil(rownum/#{contentsPerPage}) page, product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
+			select ceil(rownum/#{contentsPerPage}) page, product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id,volume_order
 			from (
 				<include refid="product-select"/>
 				where seller_id=#{sellerId}
@@ -141,9 +156,9 @@
 	</select>
 	
 	<select id="selectProductBetweenPrice" resultMap="product-resultMap" parameterType="org.springframework.ui.Model">
-		select product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
+		select product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id,volume_order
 		from (
-			select ceil(rownum/#{contentsPerPage}) page, product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
+			select ceil(rownum/#{contentsPerPage}) page, product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id,volume_order
 			from (
 				<include refid="product-select"/>
 				where between price #{min} and #{max}
@@ -153,9 +168,9 @@
 		where page = #{pageNo}
 	</select>
 	<select id="selectProductMinPrice" resultMap="product-resultMap" parameterType="org.springframework.ui.Model">
-		select product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
+		select product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id,volume_order
 		from (
-			select ceil(rownum/#{contentsPerPage}) page, product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
+			select ceil(rownum/#{contentsPerPage}) page, product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id,volume_order
 			from (
 				<include refid="product-select"/>
 				where price &gt;= #{price}
@@ -165,9 +180,9 @@
 		where page = #{pageNo}
 	</select>
 	<select id="selectProductMaxPrice" resultMap="product-resultMap" parameterType="org.springframework.ui.Model">
-		select product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
+		select product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id,volume_order
 		from (
-			select ceil(rownum/#{contentsPerPage}) page, product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id
+			select ceil(rownum/#{contentsPerPage}) page, product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id,volume_order
 			from (
 				<include refid="product-select"/>
 				where price &lt;= #{price}
@@ -190,8 +205,8 @@
 	</select>
 	
 	<select id="selectProductToRandom" resultMap="product-resultMap" parameterType="int">
-		select product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id from (
-			select product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id from product
+		select product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id,volume_order from (
+			select product_id,product_name,product_price,category,product_info,image_path,regi_date,exp_date,seller_id,volume_order from product
 			order by DBMS_RANDOM.VALUE
 			)
 		where <![CDATA[(rownum <= #{num})]]>
