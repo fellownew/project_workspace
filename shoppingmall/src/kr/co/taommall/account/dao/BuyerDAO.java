@@ -8,9 +8,10 @@ import kr.co.taommall.account.vo.Seller;
 public interface BuyerDAO {
 	
 	public int insertBuyer(Buyer buyer);
-	public List<Seller> selectBuyerAllMember();
+	public List<Buyer> selectBuyerAllMember();
 	public int deleteBuyerById(String id);
 	public int updateBuyerById(Buyer buyer);
 	public Buyer selectBuyerById(String id);
+	public Buyer selectBuyerByemail(Buyer buyer);
 
 }

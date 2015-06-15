@@ -31,7 +31,7 @@ public class BuyerDAOImpl implements BuyerDAO{
 
 	}
 
-	public List<Seller> selectBuyerAllMember() {
+	public List<Buyer> selectBuyerAllMember() {
 			return session.selectList(namespace + "selectBuyerAllMember");
 
 	}
@@ -50,6 +50,12 @@ public class BuyerDAOImpl implements BuyerDAO{
 	public Buyer selectBuyerById(String id) {
 			return session.selectOne(namespace+"selectBuyerById",id);			
 
+	}
+
+
+	@Override
+	public Buyer selectBuyerByemail(Buyer buyer) {
+		return session.selectOne(namespace+"selectBuyerByemail",buyer);
 	}
 
 }
