@@ -10,6 +10,8 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+	var abcd = '${requestScope.list}';
+	
 	history.pushState(null, null, location.href);
 	window.onpopstate = function(event) {
 		history.go(1);
@@ -27,8 +29,10 @@ $(document).ready(function(){
 	});
 	
 	$("#order").on("click",function(){
+
 		location = "/taommall/auth/completeList.do";
 	});
+
 });
 
 

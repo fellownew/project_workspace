@@ -43,6 +43,7 @@ table, td, th {
 			</colgroup>
 
 		<caption style="text-align:center; font-weight:bold; font-size:20px" >결제정보 확인</caption>
+		
 		<thead>
 <%-- 			<tr><br>
 				<th>받는분</th>

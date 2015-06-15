@@ -44,7 +44,8 @@
 	}
 
 	$(document).ready(function(){
-
+		
+		
 		$("select").change(function(){
 		
 			if($("select option:selected").attr("id")!="op1"){				
@@ -56,8 +57,7 @@
 		});
 	
 		//결제시 결제팝업창 추가
-		$("#orderpopup").on("click",function(){
-			
+		$("#orderpopup").on("click",function(){	
 		 	if($("#test1").is(":checked")){
 		 		$("#postcode").val('${sessionScope.loginInfo.address.postcode}');
 				$("#addressDetail").val('${sessionScope.loginInfo.address.addressDetails}');
