@@ -147,11 +147,15 @@
           <tags>persp.newWizSC:org.springsource.ide.eclipse.commons.gettingstarted.wizard.boot.NewSpringBootWizard</tags>
           <tags>persp.newWizSC:org.springsource.ide.eclipse.gettingstarted.wizards.import.generic.newalias</tags>
           <children xsi:type="basic:PartSashContainer" xmi:id="_kHflEhFfEeWL34WnTU-hEg" selectedElement="_kHflExFfEeWL34WnTU-hEg" horizontal="true">
+<<<<<<< HEAD
             <children xsi:type="basic:PartStack" xmi:id="_kHflExFfEeWL34WnTU-hEg" elementId="topLeft" containerData="2500" selectedElement="_kHflFBFfEeWL34WnTU-hEg">
 =======
           <children xsi:type="basic:PartSashContainer" xmi:id="_s4pO0RGlEeWhg4rf6m_poA" selectedElement="_s4pO1xGlEeWhg4rf6m_poA" horizontal="true">
             <children xsi:type="basic:PartStack" xmi:id="_s4pO0hGlEeWhg4rf6m_poA" elementId="topLeft" containerData="2500" selectedElement="_s4pO0xGlEeWhg4rf6m_poA">
 >>>>>>> 477e1b155eee536234217b2b6696041f70b68f31
+=======
+            <children xsi:type="basic:PartStack" xmi:id="_kHflExFfEeWL34WnTU-hEg" elementId="topLeft" containerData="1844" selectedElement="_kHflFBFfEeWL34WnTU-hEg">
+>>>>>>> cjhm2
               <tags>newtablook</tags>
               <tags>active</tags>
               <children xsi:type="advanced:Placeholder" xmi:id="_s4pO0xGlEeWhg4rf6m_poA" elementId="org.eclipse.ui.navigator.ProjectExplorer" ref="_swpJYBGlEeWhg4rf6m_poA"/>
@@ -160,7 +164,11 @@
               <children xsi:type="advanced:Placeholder" xmi:id="_s4pO1hGlEeWhg4rf6m_poA" elementId="org.eclipse.jdt.ui.PackagesView" toBeRendered="false" ref="_s4SCcBGlEeWhg4rf6m_poA"/>
             </children>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <children xsi:type="basic:PartSashContainer" xmi:id="_kHflGBFfEeWL34WnTU-hEg" containerData="7500" selectedElement="_kHflGRFfEeWL34WnTU-hEg">
+=======
+            <children xsi:type="basic:PartSashContainer" xmi:id="_kHflGBFfEeWL34WnTU-hEg" containerData="8156" selectedElement="_kHflGRFfEeWL34WnTU-hEg">
+>>>>>>> cjhm2
               <children xsi:type="basic:PartSashContainer" xmi:id="_kHflGRFfEeWL34WnTU-hEg" containerData="6932" selectedElement="_kHflGhFfEeWL34WnTU-hEg" horizontal="true">
                 <children xsi:type="advanced:Placeholder" xmi:id="_kHflGhFfEeWL34WnTU-hEg" elementId="org.eclipse.ui.editorss" containerData="7000" ref="_kGTSQBFfEeWL34WnTU-hEg"/>
                 <children xsi:type="basic:PartStack" xmi:id="_kHflGxFfEeWL34WnTU-hEg" elementId="topRight" containerData="3000" selectedElement="_kHflHBFfEeWL34WnTU-hEg">
@@ -258,10 +266,11 @@
       <tags>categoryTag:Help</tags>
     </sharedElements>
     <sharedElements xsi:type="advanced:Area" xmi:id="_kGTSQBFfEeWL34WnTU-hEg" elementId="org.eclipse.ui.editorss" selectedElement="_kGTSQRFfEeWL34WnTU-hEg">
-      <children xsi:type="basic:PartStack" xmi:id="_kGTSQRFfEeWL34WnTU-hEg" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_akB7sBFoEeWc640jaPfdNQ">
+      <children xsi:type="basic:PartStack" xmi:id="_kGTSQRFfEeWL34WnTU-hEg" elementId="org.eclipse.e4.primaryDataStack">
         <tags>newtablook</tags>
         <tags>org.eclipse.e4.primaryDataStack</tags>
         <tags>EditorStack</tags>
+<<<<<<< HEAD
         <children xsi:type="basic:Part" xmi:id="_AklQwBFgEeWHDMoK_U4MhQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="aside.jsp" iconURI="platform:/plugin/org.eclipse.jst.jsp.ui/icons/full/obj16/sourceEditor.gif" closeable="true">
           <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jst.jsp.core.jspsource.source&quot; name=&quot;aside.jsp&quot; partName=&quot;aside.jsp&quot; title=&quot;aside.jsp&quot; tooltip=&quot;shoppingmall/WebContent/WEB-INF/view/layout/aside.jsp&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/shoppingmall/WebContent/WEB-INF/view/layout/aside.jsp&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;616&quot; selectionTopPixel=&quot;0&quot;/>&#xD;&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
@@ -505,6 +514,8 @@
         <children xsi:type="advanced:Placeholder" xmi:id="_rxxGUxGlEeWhg4rf6m_poA" elementId="org.eclipse.help.ui.HelpView" toBeRendered="false" ref="_rxsN0BGlEeWhg4rf6m_poA"/>
         <children xsi:type="advanced:Placeholder" xmi:id="_rxxGVBGlEeWhg4rf6m_poA" elementId="org.eclipse.ui.internal.introview" toBeRendered="false" ref="_rxwfQBGlEeWhg4rf6m_poA"/>
         <children xsi:type="advanced:Placeholder" xmi:id="_rxxGVRGlEeWhg4rf6m_poA" elementId="org.eclipse.ui.cheatsheets.views.CheatSheetView" toBeRendered="false" ref="_rxwfQRGlEeWhg4rf6m_poA"/>
+=======
+>>>>>>> cjhm2
       </children>
     </children>
     <sharedElements xsi:type="basic:Part" xmi:id="_rxsN0BGlEeWhg4rf6m_poA" elementId="org.eclipse.help.ui.HelpView" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Help" iconURI="platform:/plugin/org.eclipse.help.ui/icons/view16/help_view.gif" closeable="true">
@@ -574,6 +585,10 @@
       <tags>View</tags>
       <tags>categoryTag:Server</tags>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+      <tags>highlighted</tags>
+>>>>>>> cjhm2
       <menus xmi:id="_Nr9WsBFgEeWHDMoK_U4MhQ" elementId="org.eclipse.wst.server.ui.ServersView">
 =======
       <menus xmi:id="_xdFDUBGlEeWhg4rf6m_poA" elementId="org.eclipse.wst.server.ui.ServersView">
@@ -655,10 +670,14 @@
       <children xsi:type="menu:ToolBar" xmi:id="_r-xnkBGlEeWhg4rf6m_poA" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <children xsi:type="menu:HandledToolItem" xmi:id="_2Nl85xFhEeWc640jaPfdNQ" elementId="print" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" enabled="false" command="_jNTQJhFfEeWL34WnTU-hEg"/>
 =======
         <children xsi:type="menu:HandledToolItem" xmi:id="_r_TMABGlEeWhg4rf6m_poA" elementId="print" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" enabled="false" command="_qlF3-hGlEeWhg4rf6m_poA"/>
 >>>>>>> 477e1b155eee536234217b2b6696041f70b68f31
+=======
+        <children xsi:type="menu:HandledToolItem" xmi:id="_JQc69xLwEeWgQ_W0IDDO2w" elementId="print" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" enabled="false" command="_jNTQJhFfEeWL34WnTU-hEg"/>
+>>>>>>> cjhm2
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_r-yOoBGlEeWhg4rf6m_poA" elementId="additions" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -686,7 +705,11 @@
       <children xsi:type="menu:ToolBar" xmi:id="_r-y1sBGlEeWhg4rf6m_poA" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <children xsi:type="menu:HandledToolItem" xmi:id="_2NvG0BFhEeWc640jaPfdNQ" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_jNTPzRFfEeWL34WnTU-hEg"/>
+=======
+        <children xsi:type="menu:HandledToolItem" xmi:id="_JQmr-RLwEeWgQ_W0IDDO2w" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_jNTPzRFfEeWL34WnTU-hEg"/>
+>>>>>>> cjhm2
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_j7voFhFfEeWL34WnTU-hEg" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>
