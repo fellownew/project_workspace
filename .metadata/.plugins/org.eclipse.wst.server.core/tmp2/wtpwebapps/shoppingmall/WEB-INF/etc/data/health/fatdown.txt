@@ -1,9 +1,0 @@
-fruit_08
-FatDown
-28000
-health
-팻다운 파워번 마스터 100ml * 20병 + 팻다운 아웃도어 430ml 5병
-fatdown.jpg
-2015-09-20
-2015-10-05
-taom_id08

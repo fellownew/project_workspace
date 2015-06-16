@@ -5,8 +5,8 @@
 		<item value="9" key="DIALOG_Y_ORIGIN"/>
 	</section>
 	<section name="org.eclipse.ui.internal.QuickAccess">
-		<item value="594" key="dialogHeight"/>
-		<item value="1152" key="dialogWidth"/>
+		<item value="625" key="dialogHeight"/>
+		<item value="1200" key="dialogWidth"/>
 		<list key="textEntries">
 		</list>
 		<list key="orderedElements">
@@ -38,11 +38,11 @@
 		<item value="true" key="WizardZipFileResourceExportPage1.STORE_COMPRESS_CONTENTS_ID"/>
 		<item value="true" key="WizardZipFileResourceExportPage1.STORE_CREATE_STRUCTURE_ID"/>
 		<list key="WizardZipFileResourceExportPage1.STORE_DESTINATION_NAMES_ID">
+			<item value="C:\Users\pyh\Desktop\taimmall back\Seller id pw 찾기 테스트 완료 0616.zip"/>
+			<item value="C:\Users\pyh\Desktop\taimmall back\Seller id pw 확인 추가 백업2 0616.zip"/>
 			<item value="C:\Users\pyh\Desktop\taimmall back\결제팝업창 수정 후 커밋 전 백업 0616.zip"/>
 			<item value="C:\Users\pyh\Desktop\taimmall back\결제팝업페이지 수정0613.zip"/>
 			<item value="C:\Users\pyh\Desktop\taimmall back\taom_결제페이지 수정0612.zip"/>
-			<item value="C:\Users\pyh\Desktop\taimmall back\taom0612.zip"/>
-			<item value="C:\Users\pyh\Desktop\taimmall back\taom0611.zip"/>
 		</list>
 	</section>
 </section>

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import kr.co.taommall.account.dao.SellerDAO;
+import kr.co.taommall.account.vo.Buyer;
 import kr.co.taommall.account.vo.Seller;
 import kr.co.taommall.common.PagingBean;
 
@@ -70,5 +71,13 @@ public class SellerServiceImpl implements SellerService {
 		return map;
 	}
 
+	@Override
+	public Seller selectSellerByemail(Seller seller) {
+		return dao.selectSellerByemail(seller);
+	}
 
+	@Override
+	public int updateSellerById(Seller seller) {
+		return dao.updateSellerById(seller);
+	}
 }

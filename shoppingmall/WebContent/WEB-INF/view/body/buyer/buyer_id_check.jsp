@@ -74,11 +74,11 @@ $(document).ready(function(){
 					$("#emailErr").html('email을 다시확인해 주세요.').attr('style', "color:red");
 					return false;
 				}
+				$("#emailErr").html('인증번호가 발송되었습니다.').attr('style', "color:blue");
 			},
 			success:function(res){
 				if(res.trim()!='' ){
 					msg = res;
-				$("#emailErr").html('인증번호가 발송되었습니다.').attr('style', "color:blue");
 				}else{
 					$("#emailErr").html('이메일을 확인해주세요.').attr('style', "color:red");
 				}
