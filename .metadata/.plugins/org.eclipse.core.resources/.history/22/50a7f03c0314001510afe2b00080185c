@@ -5,26 +5,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="icon" href="<%=request.getContextPath()%>/image/taomfavicon.ico" type="image/x-icon">
 <title>따옴몰</title>
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
 <style type="text/css" >
-#remoCon {
-	position: fixed;
-	width: 200px;
-	height: auto;
-	right: 40px;
-	top: 230px;
- } 
 body{
 	width:1300px;
 	margin:0 auto;
-}
+} 
 
 table{
-		border: 1px none #DCD8D0;
-}
+	border: 1px none #DCD8D0;
 
+}
 
 button {
   font-family: arial;
@@ -51,7 +43,6 @@ button:hover {
 }
 
 #header{
-	
 	background-color:white;
 	overflow:auto;
 }
@@ -63,11 +54,18 @@ button:hover {
 	padding: 5px;
 	overflow:auto;
 }
-
+#aside{
+	line-height: 50px;
+	background-color:white;
+	float:right;
+	width:300px;
+	text-align:right;
+	margin:0 auto;
+}
 #section{
 	text-align:center;
 	float:left;
-	width: 1270px;
+	width: 970px;
 	padding:15px;
 	margin:0 auto; 
 	
@@ -80,6 +78,7 @@ button:hover {
 	height:50px;
 	clear:both;
 }
+
 </style>
 
 </head>
@@ -91,6 +90,10 @@ button:hover {
 	
 	<div id="nav">
 		<tiles:insertAttribute name="nav"/>
+	</div>
+
+	<div id="aside">
+		<tiles:insertAttribute name="aside"/>
 	</div>
 	
 	<div id="section">
@@ -104,5 +107,3 @@ button:hover {
 </body>
 
 </html>
-
-
