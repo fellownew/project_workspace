@@ -63,9 +63,9 @@ table, td, th {
 		<c:forEach begin="1" end="${fn:length(requestScope.productList)}" var="cnt">
 			<tr>
 				<td style="padding-left: 30px">${requestScope.productList[cnt-1].productName }</td>
-				<td style="text-align:center">${requestScope.productList[cnt-1].productPrice }</td>
+				<td style="text-align:center"><fmt:formatNumber value="${requestScope.productList[cnt-1].productPrice }"/>원 </td>
 				<td style="text-align:center">${requestScope.amountList[cnt-1]}</td>
-				<td style="text-align:center">${requestScope.productList[cnt-1].productPrice * requestScope.amountList[cnt-1]}</td>
+				<td style="text-align:center"><fmt:formatNumber value="${requestScope.productList[cnt-1].productPrice * requestScope.amountList[cnt-1]}"/>원 </td>
 			</tr>	
 		</c:forEach>
 		</tbody>
