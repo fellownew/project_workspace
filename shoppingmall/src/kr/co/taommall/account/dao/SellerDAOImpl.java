@@ -77,6 +77,16 @@ public class SellerDAOImpl implements SellerDAO {
 		return  session.selectList(namespace+"selectAllSellerPaging",map);
 		
 	}
+
+	@Override
+	public int updateSellerById(Seller seller) {
+		return session.update(namespace + "updateSellerById", seller);
+	}
+
+	@Override
+	public Seller selectSellerByemail(Seller seller) {
+		return session.selectOne(namespace+"selectSellerByemail",seller);
+	}
 	
 	
 }

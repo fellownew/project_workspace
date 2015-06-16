@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import kr.co.taommall.account.service.SellerService;
@@ -196,4 +197,54 @@ public class SellerController {
 		return "success";
 		
 	}
+	
+	@RequestMapping("/identifyEmailCheck.do")
+	@ResponseBody
+	public String identifyEmailCheck(@RequestParam(required=true) String email,@RequestParam(required=true) String id,HttpSession session) {
+		String jsessionid = session.getId();
+		 SendMail send =new SendMail();
+		String number = null;
+		Seller seller = service.selectSellerById(id);
+		if(seller.getEmail().equals(email)){
+			
+		try {
+			number = send.sendMail(email,jsessionid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			session.invalidate();
+		}
+		return number;
+		}else{
+			return "";
+		}
+	}
+	@RequestMapping("/idConfirm.do")
+	public String idCheck(@RequestParam("id") String name, @RequestParam String email,HttpServletRequest request){
+		Seller seller = new Seller();
+		seller.setName(name);
+		seller.setEmail(email);
+		seller = service.selectSellerByemail(seller);
+		if(seller ==null){
+			request.setAttribute("errorMessage", "아이디가 없습니다.");
+			return "/error/error_check.jsp";
+		}
+		request.setAttribute("success", "id : "+seller.getSellerId());
+		return "/error/complete.jsp";
+	}
+	
+	@RequestMapping("/passwordCheck.do")
+	public String PasswordCheck(HttpServletRequest request , @RequestParam(value="newPassword",required=true) String newPassword ,@RequestParam(required=true,value="id") String id) {
+		Seller seller = new Seller();
+		seller.setPassword(newPassword);
+		seller.setSellerId(id);
+		int count = service.updateSellerById(seller);
+		if(count ==0){
+			request.setAttribute("errorMessage", "비밀번호 변경 실패");
+			return "/error/error_check.jsp";
+		}
+		request.setAttribute("success", "변경완료");
+		return "/error/complete.jsp";
+	}
+	
 }

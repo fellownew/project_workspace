@@ -77,7 +77,9 @@
 	
 	<mvc:view-controller path="sellerJoinForm.do" view-name="seller/seller_join_form.form"/>
 	<mvc:view-controller path="auth/sellerInfoForm.do" view-name="seller/seller_info.form"/>
-	
+	<mvc:view-controller path="seller/idCheck.do" view-name="/WEB-INF/view/body/seller/seller_id_check.jsp"/>
+	<mvc:view-controller path="seller/pCheck.do" view-name="/WEB-INF/view/body/seller/seller_password_check.jsp"/>
+	<mvc:view-controller path="seller/passwordConfirm.do" view-name="/WEB-INF/view/body/seller/password.jsp"/>
 	<mvc:view-controller path="memberLoginForm.do" view-name="member/member_login_form.form"/>
 	<mvc:view-controller path="memberJoinForm.do" view-name="member/member_join_form.form"/>
 	
