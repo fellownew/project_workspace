@@ -11,7 +11,7 @@
 			select c_product_id.nextval from dual
 		</selectKey>
 		insert into product 
-		(product_id,product_name,product_price,category,product_info,image_path,info_image_path,regi_date,exp_date,seller_id,volumeOrder)
+		(product_id,product_name,product_price,category,product_info,image_path,info_image_path,regi_date,exp_date,seller_id,volume_order)
 		values (#{productId}, #{productName}, #{productPrice}, #{category}, #{productInfo}, #{imagePath},#{infoImagePath} ,to_char(sysdate, 'yyyy-mm-dd'),#{expDate}, #{sellerId},0)
 	</insert>
 	
