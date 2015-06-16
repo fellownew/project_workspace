@@ -22,6 +22,7 @@ import kr.co.taommall.recipient.vo.Recipient;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,6 +41,24 @@ public class OrderController {
 	@Autowired
 	CartService cartService;
 
+	
+	@RequestMapping("/orderInfo.do")
+	public String orderInfo(@RequestParam int[] productId,@RequestParam int[] amount,Model model){
+
+		List productList = new ArrayList();
+		List amountList = new ArrayList();
+	for(int  i=0; i<productId.length;i++){
+		Product product = productService.selectProductByIdNoPaging(productId[i],null);
+		int amnt = amount[i];
+		productList.add(product);
+		amountList.add(amnt);
+	}
+	System.out.println(amountList);
+	model.addAttribute("productList",productList);
+	model.addAttribute("amountList", amountList);
+	return "/WEB-INF/view/body/buyer/buyer_order_popup.jsp";
+	}
+	
 	@RequestMapping("/memberOrderForm.do")
 	public String memberOrderForm(
 			@RequestParam(value = "productId", required = true) String[] cartList,
@@ -124,7 +143,9 @@ public class OrderController {
 			Recipient recipient = recipientService.selectRecipientById(o.getRecipientId());
 			o.setRecipient(recipient);
 		}
-		System.out.println(list);
+		if(list.get(0).getRecipient().getContext().contains("은행")){
+			request.setAttribute("name", "(예금주 : 따옴몰)");
+		}
 		request.setAttribute("list", list);
 		request.setAttribute("price", price);
 		return "member/member_order_complete.form";

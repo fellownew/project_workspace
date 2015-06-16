@@ -9,9 +9,6 @@ import org.springframework.ui.Model;
 public interface ProductDAO {
 	public int insertProduct(Product product);
 	public int updateProduct(Product product);
-	public int updateProductWithThum(Product product);
-	public int updateProductWithInfo(Product product);
-	public int updateProductIgnoreImagePath(Product product);
 	public int deleteProduct(int productId);
 	public List<Product> selectAllProduct(Model model);
 	public List<Product> selectProductById( Model model);
@@ -23,8 +20,10 @@ public interface ProductDAO {
 	public List<Product> selectProductMinPrice(Model model);
 	public List<Product> selectProductMaxPrice(Model model);
 	public int selectProductCount();
+	public int selectProductLikeNameCount(String productName);
 	public int selectProductCountByCategory(String category);
 	public Product selectProductByIdNoPaging(int productId);
 	public List<Product> selectProductBySellerIdNoPaging(String sellerId);
 	public List<Product> selectProductToRandom(int num);
+	public int updateProductVolumeOfOrder(Model model);
 }

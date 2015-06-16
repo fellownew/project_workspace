@@ -10,19 +10,23 @@ public class Recipient implements Serializable {
 	private String phone;
 	private String detail;
 	private Address address;
+	private String context;
+	private String result;
 
 	public Recipient() {
 		super();
 	}
 
-	public Recipient(int recipientId, String name,
-			String phone, String detail, Address address) {
+	public Recipient(int recipientId, String name, String phone, String detail,
+			Address address, String context, String result) {
 		super();
 		this.recipientId = recipientId;
 		this.name = name;
 		this.phone = phone;
 		this.detail = detail;
 		this.address = address;
+		this.context = context;
+		this.result = result;
 	}
 
 	public int getRecipientId() {
@@ -40,8 +44,6 @@ public class Recipient implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-
 
 	public String getPhone() {
 		return phone;
@@ -67,11 +69,27 @@ public class Recipient implements Serializable {
 		this.address = address;
 	}
 
+	public String getContext() {
+		return context;
+	}
+
+	public void setContext(String context) {
+		this.context = context;
+	}
+
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
+	}
+
 	@Override
 	public String toString() {
 		return "Recipient [recipientId=" + recipientId + ", name=" + name
-				+ ", phone=" + phone + ", detail="
-				+ detail + ", address=" + address + "]";
+				+ ", phone=" + phone + ", detail=" + detail + ", address="
+				+ address + ", context=" + context + ", result=" + result + "]";
 	}
 
 }

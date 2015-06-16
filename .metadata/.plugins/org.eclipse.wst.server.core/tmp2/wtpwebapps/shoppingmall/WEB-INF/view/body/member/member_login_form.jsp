@@ -23,7 +23,8 @@
 		</div>
 		<div>
 		<span id="bLoginError" class="error" style="display:none">아이디 또는 비밀번호를 다시 확인하세요.<br> 등록되지 않은 아이디이거나, 아이디 또는 비밀번호를 잘못 입력하셨습니다.<br></span> 
-		<input type="button" id="bButton" value="전송">
+		<img id="bButton" style="padding-left: 1px;" src="<%=request.getContextPath()%>/image/submit.png">
+		<div style="text-align: right;" ><a id="bIdCheck" href="">아이디 찾기</a> <a id="bPasswordCheck" href="">비밀번호 찾기</a></div>
 		</div>
 	</form>
         </div>
@@ -40,7 +41,8 @@
 		</div>
 		<div>
 		<span id="sLoginError" class="error" style="display:none">아이디 또는 비밀번호를 다시 확인하세요.<br> 등록되지 않은 아이디이거나, 아이디 또는 비밀번호를 잘못 입력하셨습니다.<br></span>
-		<input type="button" id="sButton" value="전송">
+		<img id="sButton"  src="<%=request.getContextPath()%>/image/submit.png">
+		<div style="text-align: right;" ><a id="sIdCheck" href="" >아이디 찾기</a> <a id="sPasswordCheck" href="">비밀번호 찾기</a></div>
 		</div>
 	</form>    
       

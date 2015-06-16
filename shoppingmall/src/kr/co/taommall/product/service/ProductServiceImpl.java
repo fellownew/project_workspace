@@ -84,61 +84,7 @@ public class ProductServiceImpl implements ProductService {
 			String infoImagePath = deImagePath+infoFileName;
 			product.setInfoImagePath(infoImagePath);
 		}
-		System.out.println("수정할 상품 : "+product);
 		return dao.updateProduct(product);
-	}
-	
-	@Override
-	public int updateProductWithThum(Product product, MultipartFile upfile) {
-		product = dao.selectProductByIdNoPaging(product.getProductId());
-		File file = null;
-		if(product.getImagePath()!=null){
-			file = new File(abImagePath,product.getImagePath().substring(8));
-			file.delete();			
-		}
-		long lFileName = System.currentTimeMillis();
-		String fileName = lFileName+".jpg";
-		file = new File(abImagePath,fileName);
-		try {
-			upfile.transferTo(file);
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		String imagePath = deImagePath+fileName;
-		product.setImagePath(imagePath);
-		return dao.updateProduct(product);
-		
-	}
-
-	@Override
-	public int updateProductWithInfo(Product product, MultipartFile infoUpfile) {
-		product = dao.selectProductByIdNoPaging(product.getProductId());
-		File infoFile = null;
-		if(product.getInfoImagePath()!=null){
-			infoFile = new File(abImagePath,product.getInfoImagePath().substring(8));
-			infoFile.delete();
-		}
-		long lFileName = System.currentTimeMillis();
-		String infoFileName = lFileName+"i.jpg";
-		infoFile = new File(abImagePath,infoFileName);
-		try {
-			infoUpfile.transferTo(infoFile);
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		String infoImagePath = deImagePath+infoFileName;
-		product.setInfoImagePath(infoImagePath);
-		return dao.updateProduct(product);
-		
-	}
-
-	@Override
-	public int updateProductIgnoreImagePath(Product product){
-		return dao.updateProductIgnoreImagePath(product);
 	}
 
 	@Override
@@ -176,7 +122,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public List<Product> selectProductLikeName(String productName,int pageNo,Model model) {
-		int totalContent = dao.selectProductCount();
+		int totalContent = dao.selectProductLikeNameCount(productName);
 		PagingBean pagingBean = new PagingBean(totalContent, pageNo);
 		int contentsPerPage =PagingBean.CONTENTS_PER_PAGE;
 		model.addAttribute("contentsPerPage", contentsPerPage);
@@ -233,14 +179,7 @@ public class ProductServiceImpl implements ProductService {
 		model.addAttribute("pagingBean", pagingBean);
 		model.addAttribute("min", lPrice);
 		model.addAttribute("max",Hprice);
-		if(true){
-			List<Product> list = dao.selectProductBetweenPrice(model);
-			List<Product> list1 = dao.selectProductMinPrice(model);
-			List<Product> list2 = dao.selectProductMaxPrice(model);
-		}
-		
-		
-		return null;
+		return dao.selectProductBetweenPrice(model);
 	}
 	
 	@Override
@@ -256,5 +195,11 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<Product> selectProductToRandom(int num){
 		return dao.selectProductToRandom(num);
+	}
+	
+	@Override
+	public int updateProductVolumeOfOrder(Model model){
+		int cnt = dao.updateProductVolumeOfOrder(model);
+		return cnt;
 	}
 }

@@ -13,13 +13,15 @@ public class Product implements Serializable{
 	private String regiDate;
 	private String expDate;
 	private String sellerId;
+	private int volumeOrder;
+	private String premium;
 	
-		public Product(){}
+	public Product(){}
 
 	public Product(int productId, String productName, int productPrice,
 			String category, String productInfo, String imagePath,
 			String infoImagePath, String regiDate, String expDate,
-			String sellerId) {
+			String sellerId, int volumeOrder, String premium) {
 		super();
 		this.productId = productId;
 		this.productName = productName;
@@ -31,6 +33,8 @@ public class Product implements Serializable{
 		this.regiDate = regiDate;
 		this.expDate = expDate;
 		this.sellerId = sellerId;
+		this.volumeOrder = volumeOrder;
+		this.premium = premium;
 	}
 
 	public int getProductId() {
@@ -113,6 +117,22 @@ public class Product implements Serializable{
 		this.sellerId = sellerId;
 	}
 
+	public int getVolumeOrder() {
+		return volumeOrder;
+	}
+
+	public void setVolumeOrder(int volumeOrder) {
+		this.volumeOrder = volumeOrder;
+	}
+
+	public String getPremium() {
+		return premium;
+	}
+
+	public void setPremium(String premium) {
+		this.premium = premium;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -124,6 +144,7 @@ public class Product implements Serializable{
 				+ ((imagePath == null) ? 0 : imagePath.hashCode());
 		result = prime * result
 				+ ((infoImagePath == null) ? 0 : infoImagePath.hashCode());
+		result = prime * result + ((premium == null) ? 0 : premium.hashCode());
 		result = prime * result + productId;
 		result = prime * result
 				+ ((productInfo == null) ? 0 : productInfo.hashCode());
@@ -134,6 +155,7 @@ public class Product implements Serializable{
 				+ ((regiDate == null) ? 0 : regiDate.hashCode());
 		result = prime * result
 				+ ((sellerId == null) ? 0 : sellerId.hashCode());
+		result = prime * result + volumeOrder;
 		return result;
 	}
 
@@ -166,6 +188,11 @@ public class Product implements Serializable{
 				return false;
 		} else if (!infoImagePath.equals(other.infoImagePath))
 			return false;
+		if (premium == null) {
+			if (other.premium != null)
+				return false;
+		} else if (!premium.equals(other.premium))
+			return false;
 		if (productId != other.productId)
 			return false;
 		if (productInfo == null) {
@@ -190,6 +217,8 @@ public class Product implements Serializable{
 				return false;
 		} else if (!sellerId.equals(other.sellerId))
 			return false;
+		if (volumeOrder != other.volumeOrder)
+			return false;
 		return true;
 	}
 
@@ -200,7 +229,8 @@ public class Product implements Serializable{
 				+ ", category=" + category + ", productInfo=" + productInfo
 				+ ", imagePath=" + imagePath + ", infoImagePath="
 				+ infoImagePath + ", regiDate=" + regiDate + ", expDate="
-				+ expDate + ", sellerId=" + sellerId + "]";
+				+ expDate + ", sellerId=" + sellerId + ", volumeOrder="
+				+ volumeOrder + ", premium=" + premium + "]";
 	}
 
 	

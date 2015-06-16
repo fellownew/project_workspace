@@ -23,24 +23,7 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 	@Override
 	public int updateProduct(Product product){
-			int cnt = session.update(nameSpace+"updateProduct",product);
-			return cnt;
-	}
-	
-	
-	@Override
-	public int updateProductWithThum(Product product) {
-		int cnt = session.update(nameSpace+"updateProductWithThum",product);
-		return cnt;
-	}
-	@Override
-	public int updateProductWithInfo(Product product) {
-		int cnt = session.update(nameSpace+"updateProductWithInfo",product);
-		return cnt;
-	}
-	@Override
-	public int updateProductIgnoreImagePath(Product product){
-		int cnt = session.update(nameSpace+"updateProductIgnoreImagePath",product);
+		int cnt = session.update(nameSpace+"updateProduct",product);
 		return cnt;
 	}
 	
@@ -49,8 +32,14 @@ public class ProductDAOImpl implements ProductDAO {
 		int cnt = session.delete(nameSpace+"deleteProduct",productId);
 		return cnt;
 	}
-	//Select
 	
+	@Override
+	public int updateProductVolumeOfOrder(Model model){
+		int cnt = session.delete(nameSpace+"updateProductVolumeOrder",model);
+		return cnt;
+	}
+	
+	//Select
 	@Override
 	public List<Product> selectAllProduct(Model model){
 		return  session.selectList(nameSpace+"selectAllProduct",model);
@@ -113,6 +102,11 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	public int selectProductCount(){
 		return session.selectOne(nameSpace+"selectProductCount");
+	}
+	
+	@Override
+	public int selectProductLikeNameCount(String productName){
+		return session.selectOne(nameSpace+"selectProductCountlIKEName",productName);
 	}
 	
 	@Override

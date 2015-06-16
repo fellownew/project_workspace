@@ -44,7 +44,7 @@
 					<div id="nameErr" class="error" style="display: none">필수
 						정보입니다.</div></td>
 			</tr>
-			<tr>
+			<tr style="text-align: left;">
 				<td><input type="text" id="postcode1" readonly="readonly"
 					class="d_form mini" size="4" maxlength="3"> - <input
 					type="text" id="postcode2" readonly="readonly" class="d_form mini" size="4"

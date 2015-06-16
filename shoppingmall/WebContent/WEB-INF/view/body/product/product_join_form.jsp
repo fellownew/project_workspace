@@ -3,52 +3,71 @@
 <script type="text/javascript" src="<%=request.getContextPath() %>/script/jquery.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/script/date_picker.js"></script>
 <script type="text/javascript">
-
-
+var flag=true;
 	$(document).ready(function(){
 		$("#registerBtn").on("click",function(){
 			if($("#productId").val()==''  ||
 					$("#productPrice").val()==''  ||
 					$("#productInfo").val()==''  ||
 					$("#upfile").val()==''  ||
+					$("#infoUpfile").val()==''  ||
 					$("#expDate").val()=='' ){
 					alert("입력정보를 확인하세요");
 					return false;
 				}
+			if(!flag){
+				alert("이미지 파일을 확인해주세요");
+				return false;
+			}
 		});
 		
 		$("#upfile").on("change",function(){
-			var path = $(this).val();			
+			var path = $(this).val() ;			
 			var leng = path.length;
-			var txt = path.substr(leng-3,3);
-			document.e
-			if((txt != "jpg") && (txt != "peg") && (txt != "png") && (txt != "gif") && (txt != "bmp")){
+			var txt = path.substr(leng-3,3).toLowerCase() ;
+			flag = true;
+			if(txt != "jpg" && txt != "peg" && txt != "png" && txt != "gif" && txt != "bmp"){
 				alert("jpg, jpeg, png, gif 파일만 등록 가능합니다.");
-				return false;
+				flag = false;
 			}
-					
-			
 		});
+		
 		$("#infoUpfile").on("change",function(){
 			var path = $(this).val();			
 			var leng = path.length;
-			var txt = path.substr(leng-3,3);
+			var txt = path.substr(leng-3,3).toLoserCase();
+			flag = true;
 			if((txt != "jpg") && (txt != "peg") && (txt != "png") && (txt != "gif") && (txt != "bmp")){
 				alert("jpg, jpeg, png, gif 파일만 등록 가능합니다.");
-				return false;
+				flag = false;
 			}
 		});
 	});
 </script>
 <style>
+#join_form{
+	width:350px;
+	margin:0 auto;
+	text-align: left;
+}
 #join_form input{
 	margin-top: 2px;
 	margin-bottom: 2px;
 }
+
+#join_form input[type="text"], #join_form input[type="number"]{
+	width: 220px;
+	height: 21px;
+}
+
+#join_form select{
+	height: 21px;
+}
+
 </style>
 <div style="width: 700px;margin:0 auto">
 <h2 style="text-align: center"> 상 품 등 록 </h2>
-	<div id="join_form" style="width:300px;margin:0 auto;text-align: left">
+	<div id="join_form">
 		<form action="insertProduct.do" method="POST" enctype="multipart/form-data">
 			<input type="text" id="productName" name="productName" placeholder="상품이름" maxlength="50" required="required"/><br>
 			<input type="number" id="productPrice" name="productPrice" placeholder="상품가격" required="required"/><br>

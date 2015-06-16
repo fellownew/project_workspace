@@ -1,20 +1,8 @@
 INDEX VERSION 1.3+C:\JAVA\eclipse\project_workspace\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-<<<<<<< HEAD
-<<<<<<< HEAD
-2358489328.index
-3630192381.index
-2822452857.index
-2457810028.index
-=======
->>>>>>> 477e1b155eee536234217b2b6696041f70b68f31
+2689455548.index
 113758656.index
 2457810028.index
 2822452857.index
 1397729945.index
-<<<<<<< HEAD
-113758656.index
->>>>>>> fafb74dd4c3fb906ae858d90c845b85192ff8a0a
-=======
 3630192381.index
 2358489328.index
->>>>>>> 477e1b155eee536234217b2b6696041f70b68f31

@@ -1,4 +1,5 @@
-<%@page import="kr.co.taommall.product.vo.Product"%>
+<%@page import="java.util.Date"%>
+<%@page import="kr.co.taommall.product.vo.Product"%>.
 <%@page import="java.text.NumberFormat"%>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -33,7 +34,7 @@
 }
 
 </style>
-		<script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
 <script type="text/javascript">
 
 // 쿠키 생성
@@ -70,11 +71,11 @@ $(document).ready(function(){
 		//쿠키중에서 value가 같은 쿠키 찾는다.
 		<%Cookie[] list = request.getCookies();
 		for(Cookie c : list){%>
-		//찾으면 break;
-		if(id == '<%=c.getValue()%>'){
-			 flag = true;
-			break;
-		}
+			//찾으면 break;
+			if(id == '<%=c.getValue()%>'){
+				 flag = true;
+				break;
+			}
 		<%}%>
 		//value 같은거 있으면 바로 빠져나온다.
 		if(flag){
@@ -99,12 +100,8 @@ $(document).ready(function(){
 			break;
 		}
 	}
-
-	
-	
-	 
-	 
 });
+
 function order(id){
 	location = "<%=request.getContextPath()%>/auth/memberOrderForm.do?productId="+id+"&amount="+$("#amount").val();
 }
@@ -112,7 +109,6 @@ function cart(id){
 	var amount = $("#amount").val();
 	location = "<%=request.getContextPath() %>/cart/auth/cartInput.do?productId="+id+"&amount="+amount;	
 }
-var ro;
 
 </script>
 <div>
@@ -131,7 +127,9 @@ var ro;
 			</tr>
 			<tr>
 				<td>유통기한</td>
-				<td>${product.expDate}</td>
+				<td>
+				${product.expDate}
+				</td>
 			</tr>
 			<tr>
 				<td>판매자 정보</td>

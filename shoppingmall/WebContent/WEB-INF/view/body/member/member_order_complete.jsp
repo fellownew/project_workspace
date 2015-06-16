@@ -10,6 +10,8 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+	var abcd = '${requestScope.list}';
+	
 	history.pushState(null, null, location.href);
 	window.onpopstate = function(event) {
 		history.go(1);
@@ -27,8 +29,10 @@ $(document).ready(function(){
 	});
 	
 	$("#order").on("click",function(){
+
 		location = "/taommall/auth/completeList.do";
 	});
+
 });
 
 
@@ -44,6 +48,20 @@ function cfHistoryNoBack(){
 	function home(){
 		location = "/taommall";
 	}	
+	
+	function volumeorder(productId,amount){
+		$.ajax({
+			url:"/taommall/auth/updateVolumeOfOrder.do",
+			type:"POST",
+			data:{"productId":productId,"amount":amount},	
+			dataType:"text",
+			success:function(res){
+			},
+			error:function(a,b,c){
+				alert("주문 처리중 문제가 생겼습니다. 관리자에게 문의해주세요.");
+			}
+		});
+	}
 </script>
 
 </head>
@@ -65,6 +83,10 @@ function cfHistoryNoBack(){
 			<tr>
 				<td>총 결제금액</td>
 				<td align="right" id="sumPrice"><fmt:formatNumber value="${requestScope.price}"/>원</td>
+			</tr>
+			<tr>
+				<td>결제 내역</td>
+				<td align="right"> ${requestScope.list[0].recipient.context} ${requestScope.list[0].recipient.result} ${requestScope.name }</td>
 			</tr>
 
 	</table>
@@ -89,6 +111,9 @@ function cfHistoryNoBack(){
 			<tr>
 				<td style="text-align:left">
 					<div style="float: left"> 
+						<script type="text/javascript">
+							volumeorder("${order.product.productId }","${order.amount}");
+						</script>
 					<img src="<%=request.getContextPath()%>/${order.product.imagePath}" style="width: 100px;height: 100px; "/>
 					</div>
 					<div class="productName" style="padding-left: 120px"><font size="3">${order.product.productName }</font></div><br>

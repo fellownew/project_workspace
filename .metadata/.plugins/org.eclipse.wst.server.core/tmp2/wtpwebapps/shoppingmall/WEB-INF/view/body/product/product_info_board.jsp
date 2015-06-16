@@ -57,7 +57,7 @@ $(document).ready(function(){
 	
 	
 	$("#registerBtn").on("click",function(){
-		window.open("writeBoard.do","글쓰기",'width=500,height=500,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,left=150,top=100');
+		window.open("writeBoard.do","글쓰기",'width=600,height=500,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,left=150,top=100');
 	});
 	$("#tbody").on("mouseover","tr",function(){
 		$("#tbody tr").css("background-color","white");

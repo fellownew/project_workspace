@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
@@ -48,27 +49,7 @@ public class ProductController {
 	//상품 수정 처리
 	@RequestMapping("/modifyProduct.do")
 	public String update(@ModelAttribute Product product ,@RequestParam MultipartFile upfile,@RequestParam MultipartFile infoUpfile,Model model,HttpSession session,HttpServletRequest request){
-		System.out.println("이거 잘 실행되나??");
-		System.out.println(upfile.getName());
-		System.out.println(infoUpfile);
-		if(upfile !=null ){
-			System.out.println(upfile.getName());
-		}
-		if(infoUpfile != null){
-			System.out.println(infoUpfile.getName());
-		}
-		//사진,정보 파일 둘 다 올렸을 때
-		int count = 0;
-		System.out.println(product);
-				if(	(upfile.getContentType().equals("image/jpeg") && infoUpfile.getContentType().equals("image/jpeg")) ||
-					(upfile.getContentType().equals("image/jpeg") && infoUpfile.getSize()==0) || 
-					(infoUpfile.getContentType().equals("image/jpeg") && upfile.getSize()==0) ||
-					(infoUpfile.getSize()==0 && upfile.getSize()==0)){
-					count = service.updateProduct(product,upfile,infoUpfile);
-				}else{
-					request.setAttribute("errorMessage", "상품 수정 실패 ! 이미지 파일이 아닙니다. 메인페이지로 이동합니다.");
-					return "/WEB-INF/view/layout/error.jsp";
-				}
+		service.updateProduct(product,upfile,infoUpfile);
 		Product rProduct = service.selectProductByIdNoPaging(product.getProductId(),model);
 		model.addAttribute("product",rProduct);
 		Seller seller = (Seller)session.getAttribute("loginInfo");
@@ -76,10 +57,21 @@ public class ProductController {
 	}
 	//상품 삭제 처리
 	@RequestMapping("/deleteProduct.do")
-	public String delete(@RequestParam(required=true) String productId, HttpSession session){
-			int pId = Integer.parseInt(productId); 
-			service.deleteProduct(pId);
+	public String delete(@RequestParam(required=true) int productId, HttpSession session){
+			service.deleteProduct(productId);
 			Seller seller = (Seller)session.getAttribute("loginInfo");
 		return "redirect:productManager.do?sellerId="+seller.getSellerId();
 	}	
+	
+	//주문량 올리기
+	@RequestMapping("/updateVolumeOfOrder.do")
+	@ResponseBody
+	public String updateProductbyOrder(@RequestParam int productId, @RequestParam int amount,Model model){
+		model.addAttribute("productId",productId);
+		model.addAttribute("amount",amount);
+		service.updateProductVolumeOfOrder(model);
+		
+		return "success";
+		
+	}
 }
