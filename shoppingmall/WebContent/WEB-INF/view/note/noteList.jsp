@@ -3,10 +3,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <script type="text/javascript" src="<%=request.getContextPath() %>/script/jquery.js"></script>
 <script type="text/javascript">
-<!--
-
-//-->
-
 $(document).ready(function(){
 	$("#delete").on("click",function(){
 		var checkList = [];
@@ -110,9 +106,9 @@ function viewNote(no){
 					<tr>
 						<td><input type="checkbox" id="check" name="check" class="class" value="${note.noteNo }"></td>
 						<td style="text-align: left;text-indent: 3px;" onclick="viewNote(${note.noteNo })">
-						<c:if test="${note.read != true}"> <font style="font-weight: bold; "> </c:if>
-						${note.title}
-						<c:if test="${note.read != true}"> </font> </c:if>
+							<c:if test="${note.read != true}"> <font style="font-weight: bold; "> </c:if>
+							${note.title}
+							<c:if test="${note.read != true}"> </font> </c:if>
 						</td>
 						
 						<c:if test="${param.folder=='receive' or param.folder=='store' }">

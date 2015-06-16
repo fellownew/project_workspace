@@ -70,7 +70,7 @@ function cfHistoryNoBack(){
 <hr>
 
 	<table class="center">
-		<caption style="text-align: left; font-weight: bold; font-size: 20px">결제 정보</caption><br>
+		<caption style="text-align: left; font-weight: bold; font-size: 20px">결제 정보</caption>
 
 			<tr>
 				<td style="width:120px">주문 금액</td>
@@ -99,7 +99,7 @@ function cfHistoryNoBack(){
 				<col width="13%">
 				<col width="17%"> 
 		</colgroup>
-		<caption style="text-align: left; font-weight: bold; font-size: 20px">주문 상품 정보</caption><br>
+		<caption style="text-align: left; font-weight: bold; font-size: 20px">주문 상품 정보</caption>
 			<tr>
 				<th style="width:120px; text-align:center">상품/옵션 정보</th>
 				<th style="width:100px; text-align:center">수량</th>
@@ -119,10 +119,10 @@ function cfHistoryNoBack(){
 					<div class="productName" style="padding-left: 120px"><font size="3">${order.product.productName }</font></div><br>
 					<div class="productInfo" style="padding-left: 120px"><font size="2">${order.product.productInfo }</font></div>
 				</td>
-				<td style="text-align:right">${order.amount}</td>
+				<td style="text-align:center">${order.amount}</td>
 				<td style="text-align:right"><fmt:formatNumber value="${order.product.productPrice}"/>원</td>
-				<td style="text-align:right">무료</td>
-				<td style="text-align:right"  collspan="3">${order.status}</td>
+				<td style="text-align:center">무료</td>
+				<td style="text-align:center">${order.status}</td>
 			</tr>
 			</c:forEach>
 		</table>
@@ -132,7 +132,7 @@ function cfHistoryNoBack(){
 		<col width="25%"> 
 		<col width="75%">
 		</colgroup>
-		<caption style="text-align: left; font-weight: bold; font-size: 20px">배송지 정보</caption><br>
+		<caption style="text-align:left; font-weight:bold; font-size:20px">배송지 정보</caption>
 			<tr>
 				<th style="width:120px; text-align:center" rowspan="1">받는 사람</th>
 				<th style="text-align:left">
