@@ -133,7 +133,7 @@ var codeCheck;
 		});
 		
 		$("#phone").blur(function(){	
-			
+			alert(reg_phone);
 			if(reg_phone.test($("#phone").val())===false){
 				$("#phoneErr").show().html("휴대전화 형식에 맞게 입력하세요.").attr('style', "color:red");
 				return false;

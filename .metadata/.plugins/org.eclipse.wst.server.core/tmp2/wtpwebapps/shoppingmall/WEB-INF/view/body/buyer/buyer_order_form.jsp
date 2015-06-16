@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,10 +21,12 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
 <script type="text/javascript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js" ></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/address.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/script/buyer_order.js"></script>
 
 </head>
 
 <script type="text/javascript">
+var reg_phone = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
 
 	function payment(){
 	 	if($("#test1").is(":checked")){
@@ -33,7 +36,7 @@
 	 		$("#postcode").val($("#postcode1").val()+"-"+$("#postcode2").val());
 			$("#addressDetail").val($("#address").val()+" "+$("#addressDetails").val());
 	 	}
-	 	
+
 		location = "<%=request.getContextPath() %>/auth/payment.do?productId="+'${param.productId}'
          		+"&amount="+'${param.amount}'
          		+"&name="+$("#name").val()
@@ -44,7 +47,74 @@
 	}
 
 	$(document).ready(function(){
+		
+		
+		
+		//주소 입력 여부 체크
+		$("#address").keydown(function(){
+			$("#addressErr").hide();
+		});
+		$("#address").blur(function(){
+			if(($("#address").val() == "")){
+				$("#addressErr").show();
+			}else{
+				$("#addressErr").hide();
+			}
+		});
+		//상세주소 입력 여부 체크
+		$("#addressDetails").keydown(function(){
+			$("#addressErr").hide();
+		});
+		$("#addressDetails").blur(function(){
+			if(($("#addressDetails").val() == "")){
+				$("#addressErr").show();
+			}else{
+				$("#addressErr").hide();
+			}
+		});
+		//연락처 입력 여부 체크
+		$("#phone").keydown(function(){
+			$("#phoneErr").hide();
+		});
+/* 		$("#phone").blur(function(){
+			
+			if(reg_phone.test($("#phone").val())===false){
+				$("#phoneErr").show().html("휴대전화 형식에 맞게 입력하세요.").attr('style', "color:red");
+			}
+			
+			if(($("#phone").val() == "")){
+				$("#phoneErr").show();
+			}else{
+				$("#phoneErr").hide();
+			}
+		}); */
+		
+		
+		$("#phone").blur(function(){	
+			alert(reg_phone);
+			if(reg_phone.test($("#phone").val())===false){
+				$("#phoneErr").show().html("휴대전화 형식에 맞게 입력하세요.").attr('style', "color:red");
+				$("#phone").val('');
+				$("#phone").focus();
+				return false;
+			}
+			if($("#phone").val().trim()==''){
+				$("#phoneErr").show().html("필수 정보입니다").attr('style', "color:red");
+				$("#phone").val('');
+				return false;
+			}else{	
+				$("#phoneErr").html('').hide();
+			}
+		});
 
+		
+		if(reg_phone.test($("#phone").val())===false){
+			$("#phoneErr").show().html("휴대전화 형식에 맞게 입력하세요.").attr('style', "color:red");
+			return false;
+		}
+		
+		
+		
 		$("select").change(function(){
 		
 			if($("select option:selected").attr("id")!="op1"){				
@@ -54,7 +124,8 @@
 				$("#detail").focus();
 			}
 		});
-	
+
+		
 		//결제시 결제팝업창 추가
 		$("#orderpopup").on("click",function(){
 			
@@ -64,6 +135,31 @@
 		 	}else if($("#test2").is(":checked")){
 		 		$("#postcode").val($("#postcode1").val()+"-"+$("#postcode2").val());
 				$("#addressDetail").val($("#address").val()+" "+$("#addressDetails").val());
+				
+				// 결제시 필수 입력 필드 체크
+				//받는분 이름
+				if($("#name").val().trim() == ""){
+					$("#name").focus();
+					return false;
+				}
+				//받는분 주소
+				if($("#address").val().trim() == ""){
+					$("#address").prop("readonly", true);
+					$("#addressErr").show();
+					return false;
+				}
+				//받는분 상세주소
+				if($("#addressDetails").val().trim() == ""){
+					$("#addressDetails").focus();
+					$("#addressErr").show();
+					return false;
+				}
+				//받는분 연락처
+				if($("#phone").val().trim() == ""){
+					$("#phone").focus();
+					$("#phoneErr").show();
+					return false;
+				}
 		 	}
 			
 		 	//팝업start
@@ -74,7 +170,7 @@
 	          bank = $("#sbank").val();
 	          installment = $("#installment").val();
 	          
-	          sw=500;    //띄울 창의 넓이
+	          sw=700;    //띄울 창의 넓이
 	          sh=450;    //띄울 창의 높이
 
 	          ml=(cw-sw)/2;        //가운데 띄우기위한 창의 x위치
@@ -95,13 +191,15 @@
 		        	  alert("카드를 선택하세요");
 		        	  return false;       
 	 	          }else{
-	 	        	 window.open('<%=request.getContextPath() %>/orderPopup.do?card='+card+
+	 	        	 window.open('<%=request.getContextPath() %>/auth/orderInfo.do?card='+card+
 	 	        			 		'&bank='+bank+
 	 	        			 		'&addtype='+addtype+
 	 	        			 		'&installment='+installment+
 	 	        			 		'&name='+$("#name").val()+
 	 	        			 		'&phone='+$("#phone").val()+
 	 	        			 		'&postcode='+($("#postcode").val())+
+	 	        			 		'&productId='+($("input[name='productId']").val())+
+	 	        			 		'&amount='+($("input[name='amount']").val())+
 	 	        			 		'&addressDetails='+$("#addressDetail").val(),'tst','width='+sw+',height='+sh+',top='+mt+',left='+ml+',resizable=no,scrollbars=yes');
 	 	          }
 			  }
@@ -112,21 +210,24 @@
 		        	  alert("은행 선택하세요");
 		        	  return false;       
 	 	          }else{
-		 	        	 window.open('<%=request.getContextPath() %>/orderPopup.do?card='+card+
+		 	        	 window.open('<%=request.getContextPath() %>/auth/orderInfo.do?card='+card+
 									 '&bank='+bank+
 									 '&addtype='+addtype+
 									 '&installment='+installment+
 									 '&name='+$("#name").val()+
 									 '&phone='+$("#phone").val()+
 									 '&postcode='+($("#postcode").val())+
+									 '&productId='+($("input[name='productId']").val())+
+									 '&amount='+($("input[name='amount']").val())+
 									 '&addressDetails='+$("#addressDetail").val(),'tst','width='+sw+',height='+sh+',top='+mt+',left='+ml+',resizable=no,scrollbars=yes');
-	 	        	 //window.open('<%=request.getContextPath() %>/orderPopup.do?card='+card+'&bank='+bank+'&installment='+installment,'tst','width='+sw+',height='+sh+',top='+mt+',left='+ml+',resizable=no,scrollbars=yes');
-	 	          }
+	 	    	   }
 			  }
 		});		
 		
+		//받는사람 정보 배송지 [기본주소] 선택시
 		$("#test1").on("click",function(){
 
+ 			$("#nameErr").hide();
 			$("#postcode").val();
 			$("#addressDetail").val($("#address").val()+" "+$("#addressDetails").val());
 			$("#addr1").html($("#oiginalAddr").text());
@@ -143,6 +244,7 @@
 		$(window).load(function(){
 			$("#payType1").show();
 			$("#payType2").hide();
+			$("#nameErr").hide();
 		});
 		
 		//결제방식 : 신용카드
@@ -159,12 +261,28 @@
 		});
 	});
 	
+	//받는사람 정보 배송지 [새로입력] 선택시
 	$(document).ready(function(){
 		$("#test2").on("click",function(){
 
 			$("#addr2").show();
 			$("#addr1").hide();
  			$("#name").prop("readonly", false).val("");
+ 			
+ 			$("#name").focus();
+ 				$("#name").keydown(function(){
+ 					$("#nameErr").hide();
+ 				});
+ 				
+ 				$("#name").blur(function(){		
+ 					if($("#name").val().trim()==''){
+ 						$("#nameErr").show().html("필수 정보입니다").attr('style', "color:red");
+ 						$("#name").val('');
+ 					return false;
+ 				}else{
+ 					$("#nameErr").html('').hide();
+ 				}
+ 			});
 			$("#address").prop("readonly", false).val("");
 			$("#phone").prop("readonly", false).val("");
 			$("#postcode1").val('');
@@ -179,6 +297,7 @@
 
 
 <body>
+<form action="" method="post"></form>
 <!-- 	<fieldset style="height:500px"> -->
 	<table class="center" >
 		<colgroup>
@@ -203,6 +322,9 @@
 		<c:forEach items="${requestScope.list}" var="cart">
 				<tr>
 					<td style="text-align:left">
+					<input type="hidden" name="productId" value="${cart.product.productId}">
+					<input type="hidden" name="amount" value="${cart.amount}">
+					
 					<div style="float: left"> 
 					<img src="<%=request.getContextPath()%>/${cart.product.imagePath}" style="width: 100px;height: 100px; "/>
 					</div>
@@ -213,7 +335,7 @@
 					<td style="text-align:center">${cart.amount}</td>
 					<td style="text-align:center"><fmt:formatNumber value="${cart.product.productPrice*cart.amount}"/>원</td>
 					<td style="text-align:center">${cart.product.sellerId}</td>
-				</tr> 
+				</tr>
 		</c:forEach>
 		</tbody>
 	</table>
@@ -240,8 +362,8 @@
 		
 	<table class="center">
 		<colgroup>
-				<col width="20%"> 
-				<col width="80%">
+				<col width="15%"> 
+				<col width="85%">
 		</colgroup>
 	<caption style="text-align:left; font-weight:bold; font-size:20px">받는사람 정보</caption>
 			<tr>
@@ -253,7 +375,8 @@
 			</tr>
 			<tr>
 				<th>받는분</th>
-				<td style="text-align:left"><input type="text" name="name" id="name" readonly="readonly" value="${sessionScope.loginInfo.name}"></td>
+				<td style="text-align:left"><input type="text" name="name" id="name" readonly="readonly" value="${sessionScope.loginInfo.name}"><div id="nameErr" class="error" style="display: none">필수정보입니다.</div>
+				</td>
 				<!-- <td style="text-align:left" id="td1">${sessionScope.loginInfo.name}</td>  -->
 			</tr>
 			<tr>
@@ -265,7 +388,7 @@
 							type="text" id="postcode2" readonly="readonly" class="d_form mini" size="4"	maxlength="3"> 
 							<input type="button" id="addressBtn" value="우편번호 찾기" class="d_btn"><br>
 							<input type="text" id="address" class="d_form std" placeholder="주소" readonly="readonly" size="40"> 
-							<input type="text" id="addressDetails" class="d_form" placeholder="상세주소" size="30">	
+							<input type="text" id="addressDetails" class="d_form" placeholder="상세주소" size="30">	<div id="addressErr" class="error" style="display: none">필수정보입니다.</div>
 							<input type="hidden" id="postcode" name="postcode"><input type="hidden" id="addressDetail" name="addressDetail">							
 							<span id="addressErr" class="error" style="display: none">필수입력 사항입니다.</span>
 				</div>
@@ -274,7 +397,9 @@
 			</tr>
 			<tr>
 				<th>연락처</th>
-				<td style="text-align:left"><input type="text" name="phone" id="phone" readonly="readonly" value="${sessionScope.loginInfo.phone }"></td>
+				<td style="text-align:left"><input type="text" name="phone" id="phone" maxlength="14" readonly="readonly" value="${sessionScope.loginInfo.phone }">
+					<div id="phoneErr" class="error" style="display: none">필수정보입니다.</div>
+				</td>
 				<!-- <td style="text-align:left" id="td3">${sessionScope.loginInfo.phone}</td>-->
 			</tr>
 			<tr>
@@ -304,7 +429,7 @@
 				</td>
 			</tr>
 			<tr id="payType1">
-				<th>신용카드/할부 방식</th>
+				<th>신용카드</th>
 				<td align="left">
 					<select id="scard">
 						<option>카드선택</option>

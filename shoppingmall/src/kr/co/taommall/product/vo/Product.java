@@ -14,7 +14,7 @@ public class Product implements Serializable{
 	private String expDate;
 	private String sellerId;
 	
-	public Product(){}
+		public Product(){}
 
 	public Product(int productId, String productName, int productPrice,
 			String category, String productInfo, String imagePath,

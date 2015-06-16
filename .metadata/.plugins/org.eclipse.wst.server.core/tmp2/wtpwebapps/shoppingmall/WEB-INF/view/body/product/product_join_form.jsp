@@ -7,11 +7,11 @@
 
 	$(document).ready(function(){
 		$("#registerBtn").on("click",function(){
-			if($("#productId").val().trim()=='' ||
-					$("#productPrice").val().trim()=='' ||
-					$("#productInfo").val().trim()=='' ||
-					$("#upfile").val().trim()=='' ||
-					$("#expDate").val().trim()=='' ){
+			if($("#productId").val()==''  ||
+					$("#productPrice").val()==''  ||
+					$("#productInfo").val()==''  ||
+					$("#upfile").val()==''  ||
+					$("#expDate").val()=='' ){
 					alert("입력정보를 확인하세요");
 					return false;
 				}

@@ -5,11 +5,11 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#modifyBtn").on("click",function(){
-			if($("#productId").val().trim()=='' ||
-					$("#productPrice").val().trim()=='' ||
-					$("#productInfo").val().trim()=='' ||
-					$("#upfile").val().trim()=='' ||
-					$("#expDate").val().trim()=='' ){
+			if($("#productId").val()==''  ||
+					$("#productPrice").val()==''  ||
+					$("#productInfo").val()==''  ||
+					$("#upfile").val()==''  ||
+					$("#expDate").val()=='' ){
 					alert("입력정보를 확인하세요");
 					return false;
 				}
@@ -20,7 +20,7 @@
 			var leng = path.length;
 			var txt = path.substr(leng-3,3);
 			document.e
-			if((txt != "jpg") && (txt != "peg") && (txt != "png") && (txt != "gif") && (txt != "bmp")){
+			if((txt != "jpg" || txt != "JPG") && (txt != "peg"||txt != "PEG") && (txt != "png" || txt != "PNG") && (txt != "gif" || txt != "GIF") && (txt != "bmp" || txt != "BMP")){
 				alert("jpg, jpeg, png, gif 파일만 등록 가능합니다.");
 				return false;
 			}
@@ -37,6 +37,9 @@
 				return false;
 			}
 		});
+		
+		$("#default").text(($("#"+$("#default").attr("value")).text()));
+		
 	});
 
 </script>
@@ -49,10 +52,11 @@
 	<input type="number" id="productPrice" name="productPrice" placeholder="상품가격" value="${requestScope.product.productPrice }" required="required"/><br>
 	상품 분류 : 
 	<select name="category" id="category">
-		<option value="food">농/수/축산물</option>
-		<option value="fruit">과일/채소</option>
-		<option value="health">건강식품</option>
-		<option value="snack">간식</option>
+		<option id="default" value="${requestScope.product.category }" selected="selected" disabled="disabled"></option>
+		<option id="food" value="food">농/수/축산물</option>
+		<option id ="fruit" value="fruit">과일/채소</option>
+		<option id ="health" value="health">건강식품</option>
+		<option id ="snack" value="snack">간식</option>
 	</select><br>
 	<input type="text" id="productInfo" name="productInfo" placeholder="상품 요약 정보" required="required" value="${requestScope.product.productInfo }"><br>
 	상품 사진 : <input type="file" id="upfile" name="upfile"/><br>
