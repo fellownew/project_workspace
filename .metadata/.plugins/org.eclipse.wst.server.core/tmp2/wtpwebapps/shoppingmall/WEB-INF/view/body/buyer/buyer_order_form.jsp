@@ -171,8 +171,8 @@
 			$("#postcode2").val('');
 			$("#addressDetails").val('');
 		});
+		
 	});
-	
 	
 </script>
 

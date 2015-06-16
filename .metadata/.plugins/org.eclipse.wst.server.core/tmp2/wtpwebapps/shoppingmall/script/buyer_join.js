@@ -5,7 +5,7 @@ var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:
 var reg_phone = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
 var msg;
 var idCheck;
-var passwordCheck;
+var passwordCheck; 
 var codeCheck;
 	$(document).ready(function() {
 		$("#join").on("click", function() {

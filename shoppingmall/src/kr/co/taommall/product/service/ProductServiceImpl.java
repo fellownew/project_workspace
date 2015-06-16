@@ -179,14 +179,7 @@ public class ProductServiceImpl implements ProductService {
 		model.addAttribute("pagingBean", pagingBean);
 		model.addAttribute("min", lPrice);
 		model.addAttribute("max",Hprice);
-		if(true){
-			List<Product> list = dao.selectProductBetweenPrice(model);
-			List<Product> list1 = dao.selectProductMinPrice(model);
-			List<Product> list2 = dao.selectProductMaxPrice(model);
-		}
-		
-		
-		return null;
+		return dao.selectProductBetweenPrice(model);
 	}
 	
 	@Override
