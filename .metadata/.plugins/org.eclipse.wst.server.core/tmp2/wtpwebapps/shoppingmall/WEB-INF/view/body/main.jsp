@@ -6,7 +6,9 @@
        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/demo.css" />
        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css" />
        <style type="text/css">
-       
+       #tbody a{
+       	text-decoration: none;
+       }
        .pic {
          border:1px solid #e3e3e3;
          opacity: 1;
@@ -15,12 +17,10 @@
         }
 
      	.pic:hover{
-	  border:1px solid blue;
-	  opacity : 0.4;
-	  filter: alpha(opacity=40);	
-        }
-        
-        
+		  border:1px solid blue;
+		  opacity : 0.4;
+		  filter: alpha(opacity=40);	
+	        }
         .da-slider{
            background: transparent url('<%=request.getContextPath() %>/image/waves.gif') repeat 0% 0%;
            }
@@ -91,7 +91,7 @@
            }
         });
      </script>   
-<div>
+	<div>
         <div class="container">
          <div id="da-slider" class="da-slider">
             <c:forEach items="${requestScope.productList }" var="product">
@@ -109,15 +109,13 @@
          </div>
         </div>
         
-       <table style="width: 33.3%;vertical-align: top;" >
-
-       	<tbody id="tbody">
+	<table style="width: 33.3%;vertical-align: top;" >
+		<tbody id="tbody">
        		<c:forEach items="${requestScope.bottomList }" var="product" varStatus="i">
 				<c:if test="${i.index==0 or i.index==3 or i.index==6 }">
 					<tr>
 				</c:if>
 		       			<td style="border-collapse; border:5px solid white; margin-right: 10px;" id="${product.productId}" value="${product.productName}" title="">
-
 							<div class="pic" >
 								<div style="border-bottom:1px solid #e3e3e3;">
 									<a href="productInfo.do?productId=${product.productId }" onmouseover='this.style.filter="alpha(opacity=20)"' onmouseout='this.style.filter=""' class="el-main_list_03">
@@ -134,8 +132,7 @@
 										<fmt:formatNumber value="${product.productPrice}"/>원
 									</div>			
 									</div>
-							</div>
-							
+							</div>							
 						</td>
 				<c:if test="${i.index==2 or i.index==5 or i.index==8 }">
 					</tr>

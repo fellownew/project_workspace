@@ -6,7 +6,7 @@
        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/demo.css" />
        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css" />
        <style type="text/css">
-       #tbody a{
+       tbody a{
        	text-decoration: none;
        }
        .pic {

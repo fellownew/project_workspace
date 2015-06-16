@@ -6,9 +6,7 @@
        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/demo.css" />
        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css" />
        <style type="text/css">
-       #tbody a{
-       	text-decoration: none;
-       }
+       
        .pic {
          border:1px solid #e3e3e3;
          opacity: 1;
@@ -17,10 +15,12 @@
         }
 
      	.pic:hover{
-		  border:1px solid blue;
-		  opacity : 0.4;
-		  filter: alpha(opacity=40);	
-	        }
+	  border:1px solid blue;
+	  opacity : 0.4;
+	  filter: alpha(opacity=40);	
+        }
+        
+        
         .da-slider{
            background: transparent url('<%=request.getContextPath() %>/image/waves.gif') repeat 0% 0%;
            }
