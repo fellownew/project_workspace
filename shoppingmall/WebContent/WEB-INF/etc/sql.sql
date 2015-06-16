@@ -1,10 +1,6 @@
 /*
  * 세팅용 sql문.
  */
-select * from orders where recipient_id = 308
-select * from product
-
-delete from PRODUCT
 drop table note;
 drop table rnote;
 drop table cart;
@@ -304,7 +300,10 @@ where page = 2
 	update testt set b= (select b from TESTT where a=1)+1
 	select * from testt
 	
-	
+	select * from orders where recipient_id = 308
+select * from product
+
+delete from PRODUCT
 	
 	
 	

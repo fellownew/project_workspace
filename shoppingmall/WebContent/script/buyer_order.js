@@ -1,5 +1,6 @@
 var reg_phone = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
-
+productList = new Array();
+amountList = new Array();
 	function payment(){
 	 	if($("#test1").is(":checked")){
 	 		$("#postcode").val('${sessionScope.loginInfo.address.postcode}');
@@ -8,18 +9,27 @@ var reg_phone = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
 	 		$("#postcode").val($("#postcode1").val()+"-"+$("#postcode2").val());
 			$("#addressDetail").val($("#address").val()+" "+$("#addressDetails").val());
 	 	}
-
-		location = "<%=request.getContextPath() %>/auth/payment.do?productId="+'${param.productId}'
-         		+"&amount="+'${param.amount}'
+	 	 if($(':radio[name="pay"]:checked').val() == "신용카드"){
+	 		 context = $("#scard").val();
+	 		 result = $("#installment").val();
+	 	 }else{
+	 		 context = $("#sbank").val();
+	 		 result = $("#account").val();
+	 	 }
+	 	
+		location = "/taommall/auth/payment.do?productId="+'${param.productId}'
+         		+"&amount="+'${param.amount}' 
          		+"&name="+$("#name").val()
          		+"&postcode="+($("#postcode").val())
          		+"&addressDetails="+$("#addressDetail").val()
          		+"&phone="+$("#phone").val()
+         		+"&context="+context
+         		+"&result="+result
          		+"&detail="+$("#detail").val();
 	}
 
 	$(document).ready(function(){
-		
+
 		
 		
 		//주소 입력 여부 체크
@@ -162,15 +172,15 @@ var reg_phone = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
 		        	  alert("카드를 선택하세요");
 		        	  return false;       
 	 	          }else{
-	 	        	 window.open('<%=request.getContextPath() %>/auth/orderInfo.do?card='+card+
+	 	        	 window.open('/taommall/auth/orderInfo.do?card='+card+
 	 	        			 		'&bank='+bank+
 	 	        			 		'&addtype='+addtype+
 	 	        			 		'&installment='+installment+
 	 	        			 		'&name='+$("#name").val()+
 	 	        			 		'&phone='+$("#phone").val()+
 	 	        			 		'&postcode='+($("#postcode").val())+
-	 	        			 		'&productId='+($("input[name='productId']").val())+
-	 	        			 		'&amount='+($("input[name='amount']").val())+
+	 	        			 		'&productId='+'${param.productId}'+
+	 	        			 		'&amount='+'${param.amount}'+
 	 	        			 		'&addressDetails='+$("#addressDetail").val(),'tst','width='+sw+',height='+sh+',top='+mt+',left='+ml+',resizable=no,scrollbars=yes');
 	 	          }
 			  }
@@ -181,15 +191,16 @@ var reg_phone = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
 		        	  alert("은행 선택하세요");
 		        	  return false;       
 	 	          }else{
-		 	        	 window.open('<%=request.getContextPath() %>/auth/orderInfo.do?card='+card+
+		 	        	 window.open('/taommall/auth/orderInfo.do?card='+card+
 									 '&bank='+bank+
 									 '&addtype='+addtype+
 									 '&installment='+installment+
 									 '&name='+$("#name").val()+
 									 '&phone='+$("#phone").val()+
 									 '&postcode='+($("#postcode").val())+
-									 '&productId='+($("input[name='productId']").val())+
-									 '&amount='+($("input[name='amount']").val())+
+		 	        			 	 '&productId='+'${param.productId}'+
+		 	        			 	 '&amount='+'${param.productId}'+
+									 '&accountName='+($("#accountName").attr("value"))+
 									 '&addressDetails='+$("#addressDetail").val(),'tst','width='+sw+',height='+sh+',top='+mt+',left='+ml+',resizable=no,scrollbars=yes');
 	 	    	   }
 			  }
@@ -204,7 +215,6 @@ var reg_phone = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
 			$("#addr1").html($("#oiginalAddr").text());
 			$("#addr1").show();
 			$("#addr2").hide();
-			$("")
 			$("#name").prop("readonly", true).val('${sessionScope.loginInfo.name}');
 			$("#phone").prop("readonly", true).val('${sessionScope.loginInfo.phone}');
 			$("#postcode1").val('');

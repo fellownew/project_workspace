@@ -43,8 +43,7 @@ public class OrderController {
 
 	
 	@RequestMapping("/orderInfo.do")
-	public String orderInfo(@RequestParam int[] productId,@RequestParam int[] amount,Model model){
-
+	public String orderInfo(@RequestParam("productId") int[] productId,@RequestParam("amount") int[] amount,Model model){
 		List productList = new ArrayList();
 		List amountList = new ArrayList();
 	for(int  i=0; i<productId.length;i++){
@@ -53,7 +52,6 @@ public class OrderController {
 		productList.add(product);
 		amountList.add(amnt);
 	}
-	System.out.println(amountList);
 	model.addAttribute("productList",productList);
 	model.addAttribute("amountList", amountList);
 	return "/WEB-INF/view/body/buyer/buyer_order_popup.jsp";

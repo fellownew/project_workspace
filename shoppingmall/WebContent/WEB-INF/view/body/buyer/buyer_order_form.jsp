@@ -21,13 +21,10 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/jquery.js"></script>
 <script type="text/javascript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js" ></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/address.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/script/buyer_order.js"></script>
-
-</head>
-
 <script type="text/javascript">
 var reg_phone = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
-
+productList = new Array();
+amountList = new Array();
 	function payment(){
 	 	if($("#test1").is(":checked")){
 	 		$("#postcode").val('${sessionScope.loginInfo.address.postcode}');
@@ -44,8 +41,8 @@ var reg_phone = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
 	 		 result = $("#account").val();
 	 	 }
 	 	
-		location = "<%=request.getContextPath() %>/auth/payment.do?productId="+'${param.productId}'
-         		+"&amount="+'${param.amount}'
+		location = "/taommall/auth/payment.do?productId="+'${param.productId}'
+         		+"&amount="+'${param.amount}' 
          		+"&name="+$("#name").val()
          		+"&postcode="+($("#postcode").val())
          		+"&addressDetails="+$("#addressDetail").val()
@@ -56,7 +53,7 @@ var reg_phone = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
 	}
 
 	$(document).ready(function(){
-		
+
 		
 		
 		//주소 입력 여부 체크
@@ -85,19 +82,6 @@ var reg_phone = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
 		$("#phone").keydown(function(){
 			$("#phoneErr").hide();
 		});
-/* 		$("#phone").blur(function(){
-			
-			if(reg_phone.test($("#phone").val())===false){
-				$("#phoneErr").show().html("휴대전화 형식에 맞게 입력하세요.").attr('style', "color:red");
-			}
-			
-			if(($("#phone").val() == "")){
-				$("#phoneErr").show();
-			}else{
-				$("#phoneErr").hide();
-			}
-		}); */
-		
 		
 		$("#phone").blur(function(){	
 			if(reg_phone.test($("#phone").val())===false){
@@ -199,15 +183,15 @@ var reg_phone = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
 		        	  alert("카드를 선택하세요");
 		        	  return false;       
 	 	          }else{
-	 	        	 window.open('<%=request.getContextPath() %>/auth/orderInfo.do?card='+card+
+	 	        	 window.open('/taommall/auth/orderInfo.do?card='+card+
 	 	        			 		'&bank='+bank+
 	 	        			 		'&addtype='+addtype+
 	 	        			 		'&installment='+installment+
 	 	        			 		'&name='+$("#name").val()+
 	 	        			 		'&phone='+$("#phone").val()+
 	 	        			 		'&postcode='+($("#postcode").val())+
-	 	        			 		'&productId='+($("input[name='productId']").val())+
-	 	        			 		'&amount='+($("input[name='amount']").val())+
+	 	        			 		'&productId='+'${param.productId}'+
+	 	        			 		'&amount='+'${param.amount}'+
 	 	        			 		'&addressDetails='+$("#addressDetail").val(),'tst','width='+sw+',height='+sh+',top='+mt+',left='+ml+',resizable=no,scrollbars=yes');
 	 	          }
 			  }
@@ -218,15 +202,15 @@ var reg_phone = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
 		        	  alert("은행 선택하세요");
 		        	  return false;       
 	 	          }else{
-		 	        	 window.open('<%=request.getContextPath() %>/auth/orderInfo.do?card='+card+
+		 	        	 window.open('/taommall/auth/orderInfo.do?card='+card+
 									 '&bank='+bank+
 									 '&addtype='+addtype+
 									 '&installment='+installment+
 									 '&name='+$("#name").val()+
 									 '&phone='+$("#phone").val()+
 									 '&postcode='+($("#postcode").val())+
-									 '&productId='+($("input[name='productId']").val())+
-									 '&amount='+($("input[name='amount']").val())+
+		 	        			 	 '&productId='+'${param.productId}'+
+		 	        			 	 '&amount='+'${param.productId}'+
 									 '&accountName='+($("#accountName").attr("value"))+
 									 '&addressDetails='+$("#addressDetail").val(),'tst','width='+sw+',height='+sh+',top='+mt+',left='+ml+',resizable=no,scrollbars=yes');
 	 	    	   }
@@ -298,9 +282,8 @@ var reg_phone = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
 			$("#addressDetails").val('');
 		});
 	});
-	
-	
 </script>
+</head>
 
 
 
@@ -330,9 +313,6 @@ var reg_phone = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
 		<c:forEach items="${requestScope.list}" var="cart">
 				<tr>
 					<td style="text-align:left">
-					<input type="hidden" name="productId" value="${cart.product.productId}">
-					<input type="hidden" name="amount" value="${cart.amount}">
-					
 					<div style="float: left"> 
 					<img src="<%=request.getContextPath()%>/${cart.product.imagePath}" style="width: 100px;height: 100px; "/>
 					</div>

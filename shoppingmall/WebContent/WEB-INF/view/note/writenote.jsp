@@ -2,9 +2,6 @@
 <script type="text/javascript" src="<%=request.getContextPath() %>/script/jquery.js"></script>
 <script type="text/javascript">
 <!--
-
-//-->
-
 $(document).ready(function(){
 	$("#cancel").on("click",function(){
 		location="note.do?folder=receive";
