@@ -36,13 +36,22 @@ var reg_phone = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
 	 		$("#postcode").val($("#postcode1").val()+"-"+$("#postcode2").val());
 			$("#addressDetail").val($("#address").val()+" "+$("#addressDetails").val());
 	 	}
-
+	 	 if($(':radio[name="pay"]:checked').val() == "신용카드"){
+	 		 context = $("#scard").val();
+	 		 result = $("#installment").val();
+	 	 }else{
+	 		 context = $("#sbank").val();
+	 		 result = $("#account").val();
+	 	 }
+	 	
 		location = "<%=request.getContextPath() %>/auth/payment.do?productId="+'${param.productId}'
          		+"&amount="+'${param.amount}'
          		+"&name="+$("#name").val()
          		+"&postcode="+($("#postcode").val())
          		+"&addressDetails="+$("#addressDetail").val()
          		+"&phone="+$("#phone").val()
+         		+"&context="+context
+         		+"&result="+result
          		+"&detail="+$("#detail").val();
 	}
 
@@ -219,6 +228,7 @@ var reg_phone = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
 									 '&postcode='+($("#postcode").val())+
 									 '&productId='+($("input[name='productId']").val())+
 									 '&amount='+($("input[name='amount']").val())+
+									 '&accountName='+($("#accountName").attr("value"))+
 									 '&addressDetails='+$("#addressDetail").val(),'tst','width='+sw+',height='+sh+',top='+mt+',left='+ml+',resizable=no,scrollbars=yes');
 	 	    	   }
 			  }
@@ -233,7 +243,6 @@ var reg_phone = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
 			$("#addr1").html($("#oiginalAddr").text());
 			$("#addr1").show();
 			$("#addr2").hide();
-			$("")
 			$("#name").prop("readonly", true).val('${sessionScope.loginInfo.name}');
 			$("#phone").prop("readonly", true).val('${sessionScope.loginInfo.phone}');
 			$("#postcode1").val('');
@@ -464,6 +473,8 @@ var reg_phone = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
 						<option>하나은행</option>
 						<option>외환은행</option>
 					</select>
+					<input type="hidden" id="account" value="3562-01-2343">
+					<span id="accountName" value="따옴몰" > 예금주 : 따옴몰</span>
 				</td>
 			</tr>		
 			<caption style="text-align:right" align="bottom">

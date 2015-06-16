@@ -56,7 +56,6 @@ function cfHistoryNoBack(){
 			data:{"productId":productId,"amount":amount},	
 			dataType:"text",
 			success:function(res){
-				alert("주문이 정상처리 되었습니다.");
 			},
 			error:function(a,b,c){
 				alert("주문 처리중 문제가 생겼습니다. 관리자에게 문의해주세요.");
@@ -84,6 +83,10 @@ function cfHistoryNoBack(){
 			<tr>
 				<td>총 결제금액</td>
 				<td align="right" id="sumPrice"><fmt:formatNumber value="${requestScope.price}"/>원</td>
+			</tr>
+			<tr>
+				<td>결제 내역</td>
+				<td align="right"> ${requestScope.list[0].recipient.context} ${requestScope.list[0].recipient.result} ${requestScope.name }</td>
 			</tr>
 
 	</table>

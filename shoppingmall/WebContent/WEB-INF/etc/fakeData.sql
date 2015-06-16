@@ -8,8 +8,12 @@ where o.seller_id = s.seller_id and o.product_id = p.product_id and o.buyer_id =
 order by o.recipient_id desc
 
 
-delete from product
-select *
+delete from recipient
+select * from recipient
+
+alter table recipient add (context varchar2(40) not null);
+alter table recipient add (result varchar2(40) not null);
+
 from product
 select * from buyer
 

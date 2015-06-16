@@ -3,7 +3,7 @@
 <mapper namespace="kr.co.taommall.recipient.dao">
 
 <sql id="select-recipient-default" >
-	select 	recipient_id, name, address, phone, detail,postcode
+	select 	recipient_id, name, address, phone, detail,postcode,context,result
 	from recipient 
 </sql>
 
@@ -13,13 +13,15 @@
 	<result column="name" property="name"/>
 	<result column="phone" property="phone"/>
 	<result column="detail" property="detail"/>
+	<result column="context" property="context"/>
+	<result column="result" property="result"/>
 	<association  property="address" javaType="kr.co.taommall.account.vo.Address" resultMap="account.dao.buyer.address-default"/>
 </resultMap>
 
 <!-- insert -->
 <insert id="insertRecipient" parameterType="recipient">
 <selectKey keyProperty="recipientId" order="BEFORE" resultType="_int">select recipient_no_seq.nextval from dual</selectKey>
-   insert into recipient values(#{recipientId},#{name},#{address.addressDetails},#{phone},#{detail},#{address.postcode})
+   insert into recipient values(#{recipientId},#{name},#{address.addressDetails},#{phone},#{detail},#{address.postcode},#{context},#{result})
 </insert>
 
 <!-- update -->
@@ -36,10 +38,16 @@
 		postcode=#{address.postcode} ,
 		</if>
 		<if test="status != null">
-		phone=#{phone} ,
+		status=#{status} ,
 		</if>
 		<if test="detail != null">
-		detail=#{detail}
+		detail=#{detail},
+		</if>
+		<if test="context != null">
+		context=#{context} ,
+		</if>
+		<if test="result != null">
+		result=#{result}
 		</if>
 	</set>
 	where recipient_id=#{recipient}

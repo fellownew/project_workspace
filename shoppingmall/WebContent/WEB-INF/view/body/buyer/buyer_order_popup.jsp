@@ -35,29 +35,6 @@ table, td, th {
 <script type="text/javascript">
 
 	$(document).ready(function() {
-		$.ajax({
-			url:"/taommall/auth/orderInfo.do",
-			type:"POST",
-			data:{'productId' : '${param.productId}','amount' : '${param.amount}'},	
-			dataType:"json",
-			beforeSend:function(){
-
-		alert('asd');
-			},error:function(a,b,c){
-				alert('asd2'+a+b+c);
-			},
-			success:function(res){
-				alert(a);
-				alert(res);
-				alert(b);
-				
-				/* .text(res.productName);
-				.text(res.productPrice);
-				.text(res.amount);
-				.text(res.prodcutPrice*1 + res.amount); */
-			}
-		});	
-		
 		$("#test").on("click", function() {
 			opener.parent.payment();
 			window.self.close();
@@ -81,14 +58,16 @@ table, td, th {
 				<th>수량</th>
 				<th>합계</th>
 			</tr>
-		</thead>
-		<tbody>
+		</thead>	
+		<tbody>	
+		<c:forEach begin="1" end="${fn:length(requestScope.productList)}" var="cnt">
 			<tr>
-				<td style="padding-left: 30px">${product.productName }</td>
-				<td style="text-align:center">${product.productPrice }</td>
-				<td style="text-align:center">${amount }</td>
-				<td style="text-align:center">${product.productPrice }</td>
-			</tr>
+				<td style="padding-left: 30px">${requestScope.productList[cnt-1].productName }</td>
+				<td style="text-align:center">${requestScope.productList[cnt-1].productPrice }</td>
+				<td style="text-align:center">${requestScope.amountList[cnt-1]}</td>
+				<td style="text-align:center">${requestScope.productList[cnt-1].productPrice * requestScope.amountList[cnt-1]}</td>
+			</tr>	
+		</c:forEach>
 		</tbody>
 </table>
 	<table class="center">
@@ -152,7 +131,7 @@ table, td, th {
 					</tr>
 					<tr>
 						<th>계좌번호</th>
-						<td style="padding-left: 10px">3562-01-2343</td>
+						<td style="padding-left: 10px">3562-01-2343  (예금주:${param.accountName})</td>
 					</tr>
 				</c:if>
 			</tr>
