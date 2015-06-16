@@ -2,12 +2,13 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="reg_phone" key="selection"/>
+		<item value="test" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="test"/>
 			<item value="reg_phone"/>
 			<item value="aler"/>
 			<item value="buyer"/>
@@ -15,7 +16,6 @@
 			<item value="Buyer"/>
 			<item value="selectSellerById"/>
 			<item value="updateSellerById"/>
-			<item value="updateBuyerById"/>
 		</list>
 		<list key="replacehistory">
 			<item value="seller"/>
