@@ -53,7 +53,6 @@ public class OrderController {
 		productList.add(product);
 		amountList.add(amnt);
 	}
-	System.out.println(amountList);
 	model.addAttribute("productList",productList);
 	model.addAttribute("amountList", amountList);
 	return "/WEB-INF/view/body/buyer/buyer_order_popup.jsp";

@@ -18,7 +18,7 @@ var phoneNum = '<c:out value="${message}"/>';
 <script type="text/javascript" src="<%=request.getContextPath()%>/script/buyer_info.js"></script>
 <div>
 		<fieldset style="border:none; width:70%;margin:0 auto	">
-				<table border="0" class="tbl_model">
+				<table class="tbl_model">
 				<colgroup>
 				<col style="width:22%"><col>
 				</colgroup>
