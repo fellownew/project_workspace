@@ -1,4 +1,4 @@
-<%@page import="kr.co.taommall.account.vo.Seller"%>
+<%@ page import="kr.co.taommall.account.vo.Seller"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8"%>
 
