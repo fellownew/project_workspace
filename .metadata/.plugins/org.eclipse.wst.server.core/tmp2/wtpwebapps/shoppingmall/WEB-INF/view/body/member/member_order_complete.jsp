@@ -32,7 +32,6 @@ $(document).ready(function(){
 
 		location = "/taommall/auth/completeList.do";
 	});
-
 });
 
 
