@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.8" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" language="java" name="kr.co.taommall.common.controller.CommonController" project="shoppingmall" 
+    file="/shoppingmall/src/kr/co/taommall/common/controller/CommonController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="160" width="330" x="4417" y="92"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="2" language="java" name="kr.co.taommall.note.service.NoteService" project="shoppingmall" 
+    file="/shoppingmall/src/kr/co/taommall/note/service/NoteService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="214" width="324" x="3093" y="562"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="3" language="java" name="kr.co.taommall.board.dao.BoardDAO" project="shoppingmall" 
+    file="/shoppingmall/src/kr/co/taommall/board/dao/BoardDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="160" width="302" x="174" y="92"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="4" language="java" name="kr.co.taommall.common.controller.BuyerController" project="shoppingmall" 
+    file="/shoppingmall/src/kr/co/taommall/common/controller/BuyerController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="304" width="353" x="1102" y="92"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="5" language="java" name="kr.co.taommall.account.dao.SellerDAO" project="shoppingmall" 
+    file="/shoppingmall/src/kr/co/taommall/account/dao/SellerDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="250" width="285" x="516" y="92"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="6" language="java" name="kr.co.taommall.common.controller.NoteController" project="shoppingmall" 
+    file="/shoppingmall/src/kr/co/taommall/common/controller/NoteController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="232" width="393" x="3093" y="92"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="7" language="java" name="kr.co.taommall.order.service.OrderService" project="shoppingmall" 
+    file="/shoppingmall/src/kr/co/taommall/order/service/OrderService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="268" width="306" x="3457" y="562"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="8" language="java" name="kr.co.taommall.recipient.dao.RecipientDAO" project="shoppingmall" 
+    file="/shoppingmall/src/kr/co/taommall/recipient/dao/RecipientDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="142" width="221" x="841" y="92"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="9" language="java" name="kr.co.taommall.order.dao.OrderDAO" project="shoppingmall" 
+    file="/shoppingmall/src/kr/co/taommall/order/dao/OrderDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="304" width="320" x="1495" y="92"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="10" language="java" name="kr.co.taommall.cart.dao.CartDAO" project="shoppingmall" 
+    file="/shoppingmall/src/kr/co/taommall/cart/dao/CartDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="160" width="216" x="1855" y="92"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="11" language="java" name="kr.co.taommall.common.controller.OrderController" project="shoppingmall" 
+    file="/shoppingmall/src/kr/co/taommall/common/controller/OrderController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="232" width="510" x="3526" y="92"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="12" language="java" name="kr.co.taommall.product.dao.ProductDAO" project="shoppingmall" 
+    file="/shoppingmall/src/kr/co/taommall/product/dao/ProductDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="412" width="349" x="2111" y="92"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="13" language="java" name="kr.co.taommall.account.dao.BuyerDAO" project="shoppingmall" 
+    file="/shoppingmall/src/kr/co/taommall/account/dao/BuyerDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="178" width="240" x="2500" y="92"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="14" language="java" name="kr.co.taommall.common.controller.CartController" project="shoppingmall" 
+    file="/shoppingmall/src/kr/co/taommall/common/controller/CartController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="160" width="301" x="4076" y="92"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="15" language="java" name="kr.co.taommall.product.service.ProductService" project="shoppingmall" 
+    file="/shoppingmall/src/kr/co/taommall/product/service/ProductService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="322" width="388" x="4320" y="562"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="16" language="java" name="kr.co.taommall.board.service.BoardService" project="shoppingmall" 
+    file="/shoppingmall/src/kr/co/taommall/board/service/BoardService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="142" width="302" x="5362" y="562"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="17" language="java" name="kr.co.taommall.recipient.service.RecipientService" project="shoppingmall" 
+    file="/shoppingmall/src/kr/co/taommall/recipient/service/RecipientService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="142" width="221" x="3803" y="562"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="18" language="java" name="kr.co.taommall.cart.service.CartService" project="shoppingmall" 
+    file="/shoppingmall/src/kr/co/taommall/cart/service/CartService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="160" width="216" x="4064" y="562"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="19" language="java" name="kr.co.taommall.common.controller.ProductController" project="shoppingmall" 
+    file="/shoppingmall/src/kr/co/taommall/common/controller/ProductController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="196" width="535" x="4787" y="92"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="20" language="java" name="kr.co.taommall.note.dao.NoteDAO" project="shoppingmall" 
+    file="/shoppingmall/src/kr/co/taommall/note/dao/NoteDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="430" width="273" x="2780" y="92"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="21" language="java" name="kr.co.taommall.account.service.BuyerService" project="shoppingmall" 
+    file="/shoppingmall/src/kr/co/taommall/account/service/BuyerService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="178" width="222" x="1102" y="562"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="22" language="java" name="kr.co.taommall.account.service.SellerService" project="shoppingmall" 
+    file="/shoppingmall/src/kr/co/taommall/account/service/SellerService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="250" width="286" x="5704" y="562"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="23" language="java" name="kr.co.taommall.common.controller.BoardController" project="shoppingmall" 
+    file="/shoppingmall/src/kr/co/taommall/common/controller/BoardController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="160" width="302" x="5362" y="92"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="kr.co.taommall.common.controller.SellerController" project="shoppingmall" 
+    file="/shoppingmall/src/kr/co/taommall/common/controller/SellerController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="322" width="435" x="5704" y="92"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="25">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="26" name="service"/>      
+      <multiplicity id="27" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="28">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="29" name="productService"/>      
+      <multiplicity id="30" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="31">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="32" name="service"/>      
+      <multiplicity id="33" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="34">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="35" name="service"/>      
+      <multiplicity id="36" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="37">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="38" name="recipientService"/>      
+      <multiplicity id="39" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="40">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="41" name="service"/>      
+      <multiplicity id="42" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="43">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="44" name="productService"/>      
+      <multiplicity id="45" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="46">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="47" name="service"/>      
+      <multiplicity id="48" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="49">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="50" name="service"/>      
+      <multiplicity id="51" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="52">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="53" name="service"/>      
+      <multiplicity id="54" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="22" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="55">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="56" name="cartService"/>      
+      <multiplicity id="57" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="58">    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="59" name="service"/>      
+      <multiplicity id="60" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
