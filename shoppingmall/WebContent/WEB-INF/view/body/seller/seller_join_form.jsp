@@ -61,7 +61,7 @@
 		<table>
 			<tr>
 				<td><input type="text" id="corporateNumber" name="corporateNumber" 
-					placeholder="사업자 등록번호" class="int">
+					placeholder="사업자 등록번호" class="int" maxlength="10">
 					<div id="corporateErr" class="error" style="display: none">필수 정보입니다.</div></td>
 			</tr>
 		</table>

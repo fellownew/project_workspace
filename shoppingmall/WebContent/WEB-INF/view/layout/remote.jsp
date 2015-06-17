@@ -5,7 +5,7 @@
 	position: fixed;
 	width: 100px;
 	height: auto;
-	right: 157px;
+	right: 3%;
 	top: 138px;
 	border: thin solid gray;
 	background-color : white;

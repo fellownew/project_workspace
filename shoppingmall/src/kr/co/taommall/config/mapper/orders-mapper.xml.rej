@@ -1,0 +1,9 @@
+diff a/shoppingmall/src/kr/co/taommall/config/mapper/orders-mapper.xml b/shoppingmall/src/kr/co/taommall/config/mapper/orders-mapper.xml	(rejected hunks)
+@@ -8,6 +8,7 @@
+ 
+ insert into orders values(#{orderId},#{productId},#{amount},#{status},#{buyerId},#{recipientId}, to_char(sysdate, 'yyyy-mm-dd'),#{sellerId})
+ =======
++   insert into orders values(#{orderId},#{productId},#{amount},#{status},#{buyerId},#{recipientId},to_char(sysdate, 'yyyy-mm-dd'),#{sellerId})
+ >>>>>>> 8c5258eecae0bcb3e6971b659f976d533b34fecf
+ 
+ </insert>

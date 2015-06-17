@@ -244,14 +244,15 @@ $(document).ready(function(){
 	</pre>
 	</td>
 	</tr>
-	<tr id="9" value="1"><th>9</th><td><!-- 제목입력 --></td></tr>
+	<tr id="9" value="1"><th>9</th><td>6번 내용에 대한 추가 내용</td></tr>
 	<tr id="9_ex" class="explain"><td colspan="2" style="text-align: center;"><pre>
-	<!-- 내용 입력 -->
+	사실 IP체크 안합니다. 인증번호만 잘 쓰신다면 가입은 얼마든지 하실 수 있어요
 	</pre></td>
 	</tr>
-	<tr id="10" value="1"><th>10</th><td><!-- 제목입력 --></td></tr>
+	<tr id="10" value="1"><th>10</th><td>7번 내용에 대한 추가 내용</td></tr>
 	<tr id="10_ex" class="explain"><td colspan="2" style="text-align: center;"><pre>
-	<!-- 내용 입력 -->
+	사실 해외 IP도 체크 못합니다. IP체크따위 개나 주세요.
+	근데 별것도 없는 이 게시판에서 이것까지 읽어보시다니 심심하신가봐요...
 	</pre></td>
 	</tr>  
 </tbody>

@@ -1,6 +1,7 @@
 /*
  * 세팅용 sql문.
  */
+
 drop table note;
 drop table rnote;
 drop table cart;
@@ -77,7 +78,7 @@ create table product(
    exp_date varchar2(10) not null,
    seller_id varchar2(20),
    volume_order number,
-   premium varchar2 
+   premium varchar2(10),
    
    constraint product_seller_id_fk foreign key(seller_id) references seller(seller_id) ON DELETE CASCADE
 );
@@ -94,7 +95,10 @@ create table recipient(
 	name varchar2(20) not null,
 	address varchar2(100) not null,
 	phone varchar2(13) not null,
-	detail varchar2(200) not null
+	detail varchar2(200) not null,
+	postcode varchar2(10) not null,
+	context varchar2(20),
+	result varchar2(20)
 	
 );
 
@@ -114,10 +118,13 @@ create table orders(
    status varchar2(20),
    buyer_id varchar2(20),
    recipient_id number,
+   regi_date varchar2(10) not null,
+   seller_id varchar2(20),
    
    constraint order_product_id_fk foreign key(product_id) references product(product_id) ON DELETE CASCADE,
    constraint order_buyer_id_fk foreign key(buyer_id) references buyer(buyer_id) ON DELETE CASCADE,
-   constraint recipient_id_fk foreign key (recipient_id) references recipient(recipient_id) ON DELETE CASCADE
+   constraint order_recipient_id_fk foreign key (recipient_id) references recipient(recipient_id) ON DELETE CASCADE,
+   CONSTRAINT order_seller_id_fk FOREIGN KEY (seller_id) REFERENCES seller(seller_id) on delete cascade
 );
 
 create table pboard(
@@ -132,18 +139,6 @@ create table pboard(
 
 );
 
-create table note(
-   note_no number primary key,
-   title varchar2(50) not null,
-   content varchar2(2000) not null,
-   send_id varchar2(20) not null,
-   receive_id varchar2(20) not null,
-   send_date varchar2(20) not null,
-   read varchar2(10),
-   store varchar2(10)
-);
-
-
 
 
 create sequence c_note_no;
@@ -151,21 +146,20 @@ create sequence recipient_no_seq;
 create sequence c_product_id;
 create sequence c_board_id;
 create sequence order_no;
-create sequence c_note_no;
-select * from buyer
-select * from orders
-delete from orders
-where amount between 1 and 20 
-alter table recipient add (postcode varchar2(10) not null)
-alter table orders add (regi_date varchar2(10) not null)
+
+
+insert into seller (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number,postcode)
+values('admin','admin','관리자','male','관리시 관리구 관리동 2-2 2호','admin@taommall.co.kr','010-2222-2222','true','true','2222-22222','222-222');
+
 
 /*
  * 세팅용 sql문 끝
  */
 
 
-
-
+ 
+ 
+ 
 /*
  * 각 DB selelt
  */
@@ -190,8 +184,7 @@ select * from rnote;
 SELECT CONSTRAINT_NAME, TABLE_NAME, R_CONSTRAINT_NAME FROM USER_CONSTRAINTS
 WHERE CONSTRAINT_NAME = 'table명'
 
-insert into seller (seller_id,password,name,gender,address,email,phone,auth,admin,corporate_number,postcode)
-values('admin','admin','콩콩콩','콩','콩콩','admin@taommall.co.kr','010-2222-2222','true','true','2222-22222','222-222');
+
 
 
 select count(*)from product
@@ -287,23 +280,6 @@ where page = 2
 /*
  * test
  */
-	select * from rnote
-	delete from rnote where receive_id=123456 and note_no in(33,32)
-	
-	
-	drop table testt
-	create table testt(
-		a number primary key,
-		b number not null
-	);
-	insert into testt (a,b) values(1,5)
-	update testt set b= (select b from TESTT where a=1)+1
-	select * from testt
-	
-	select * from orders where recipient_id = 308
-select * from product
 
-delete from PRODUCT
 	
-	
-	
+delete from seller where seller_id = '123456'
