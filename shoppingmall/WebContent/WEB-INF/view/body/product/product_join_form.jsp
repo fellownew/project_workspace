@@ -37,7 +37,7 @@ var flag=true;
 			var leng = path.length;
 			var txt = path.substr(leng-3,3).toLoserCase();
 			flag = true;
-			if((txt != "jpg") && (txt != "peg") && (txt != "png") && (txt != "gif") && (txt != "bmp")){
+			if(txt != "jpg" && txt != "peg" && txt != "png" && txt != "gif" && txt != "bmp"){
 				alert("jpg, jpeg, png, gif 파일만 등록 가능합니다.");
 				flag = false;
 			}

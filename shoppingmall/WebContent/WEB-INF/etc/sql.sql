@@ -282,3 +282,4 @@ where page = 2
  */
 
 	
+delete from seller where seller_id = '123456'

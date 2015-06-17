@@ -1,5 +1,5 @@
 <%@page import="java.util.Date"%>
-<%@page import="kr.co.taommall.product.vo.Product"%>.
+<%@page import="kr.co.taommall.product.vo.Product"%>
 <%@page import="java.text.NumberFormat"%>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -7,10 +7,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@page import="java.net.URLEncoder"%>
 <%@page import="java.net.URLDecoder"%>
-
-<!DOCTYPE html>
 <meta charset="UTF-8">
-
 <style type="text/css">
 .buyButton {
   font-family: arial;
