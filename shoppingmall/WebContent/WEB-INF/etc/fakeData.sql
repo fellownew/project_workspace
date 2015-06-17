@@ -14,9 +14,12 @@ select * from recipient
 alter table recipient add (context varchar2(40) not null);
 alter table recipient add (result varchar2(40) not null);
 
+ insert into orders values(#{orderId},#{productId},#{amount},#{status},#{buyerId},#{recipientId},#{sellerId}, to_char(sysdate, 'yyyy-mm-dd'))
 from product
 select * from buyer
+select * from orders
 
+alter table orders add(regi_date varchar2(10) not null)
 /*
  * 관리자 ID 등록.
  */

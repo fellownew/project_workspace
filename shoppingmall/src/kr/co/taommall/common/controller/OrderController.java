@@ -95,7 +95,6 @@ public class OrderController {
 			recipient.setDetail("빠른 배송 부탁드립니다");
 		}
 		recipientService.insertRecipient(recipient);
-
 		if (pIds != null && amounts != null && pIds.length == amounts.length) {
 			for (int idx = 0; idx < pIds.length; idx++) {
 				int productId = Integer.parseInt(pIds[idx]);
@@ -124,8 +123,10 @@ public class OrderController {
 			HttpServletResponse response, HttpServletRequest request,
 			HttpSession session) {
 		List<Order> list = service.selectOrderByRecipientId(recipientId);
+		System.out.println("list : "+list);
 		int price = 0;
 		for (Order o : list) {
+			System.out.println("주문?"+":"+o);
 			Product product = productService.selectProductByIdNoPaging(
 					o.getProductId(), null);
 			if (product != null) {
@@ -140,10 +141,12 @@ public class OrderController {
 			}
 			Recipient recipient = recipientService.selectRecipientById(o.getRecipientId());
 			o.setRecipient(recipient);
+			
+			if(list.get(0).getRecipient().getContext().contains("은행")){
+				request.setAttribute("name", "(예금주 : 따옴몰)");
+			}
 		}
-		if(list.get(0).getRecipient().getContext().contains("은행")){
-			request.setAttribute("name", "(예금주 : 따옴몰)");
-		}
+
 		request.setAttribute("list", list);
 		request.setAttribute("price", price);
 		return "member/member_order_complete.form";

@@ -23,7 +23,6 @@ var codeCheck;
 				if(idCheck && passwordCheck && codeCheck){
 					$("#postcode").val($("#postcode1").val()+"-"+$("#postcode2").val());
 					$("#addressDetails").val($("#address").val()+" "+$("#addressDetail").val());
-					alert($("#postcode").val()+":"+$("#addressDetails").val());
 				document.getElementById("seller_form").submit();
 				}else if(!codeCheck){
 					$("#joinErr").show().html("인증번호를 확인해주세요.").attr('style', "color:red");
